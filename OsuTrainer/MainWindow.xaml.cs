@@ -28,6 +28,7 @@ namespace OsuTrainer
             // subscribe the first circle (innerCircle) to the TapCircle event
             ellipseCircle.Item1.MouseDown += TapCircle;
 
+            area.Children.Remove(ellipseCircle.Item1);
         }
 
         // 2 tapping buttons
@@ -43,6 +44,7 @@ namespace OsuTrainer
         {
             Combo++;
             ComboText.Text = Combo.ToString() + "x";
+            
         }
 
     }
