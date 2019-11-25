@@ -1,0 +1,17 @@
+C:\Users\Rogue\source\repos\OsuTrainer\OsuTrainer\obj\Debug\netcoreapp3.0\OsuTrainer.csprojAssemblyReference.cache
+C:\Users\Rogue\source\repos\OsuTrainer\OsuTrainer\obj\Debug\netcoreapp3.0\MainWindow.g.cs
+C:\Users\Rogue\source\repos\OsuTrainer\OsuTrainer\obj\Debug\netcoreapp3.0\App.g.cs
+C:\Users\Rogue\source\repos\OsuTrainer\OsuTrainer\obj\Debug\netcoreapp3.0\OsuTrainer_MarkupCompile.cache
+C:\Users\Rogue\source\repos\OsuTrainer\OsuTrainer\obj\Debug\netcoreapp3.0\OsuTrainer_MarkupCompile.lref
+C:\Users\Rogue\source\repos\OsuTrainer\OsuTrainer\bin\Debug\netcoreapp3.0\OsuTrainer.exe
+C:\Users\Rogue\source\repos\OsuTrainer\OsuTrainer\bin\Debug\netcoreapp3.0\OsuTrainer.deps.json
+C:\Users\Rogue\source\repos\OsuTrainer\OsuTrainer\bin\Debug\netcoreapp3.0\OsuTrainer.runtimeconfig.json
+C:\Users\Rogue\source\repos\OsuTrainer\OsuTrainer\bin\Debug\netcoreapp3.0\OsuTrainer.runtimeconfig.dev.json
+C:\Users\Rogue\source\repos\OsuTrainer\OsuTrainer\bin\Debug\netcoreapp3.0\OsuTrainer.dll
+C:\Users\Rogue\source\repos\OsuTrainer\OsuTrainer\bin\Debug\netcoreapp3.0\OsuTrainer.pdb
+C:\Users\Rogue\source\repos\OsuTrainer\OsuTrainer\obj\Debug\netcoreapp3.0\MainWindow.baml
+C:\Users\Rogue\source\repos\OsuTrainer\OsuTrainer\obj\Debug\netcoreapp3.0\OsuTrainer.g.resources
+C:\Users\Rogue\source\repos\OsuTrainer\OsuTrainer\obj\Debug\netcoreapp3.0\OsuTrainer.AssemblyInfoInputs.cache
+C:\Users\Rogue\source\repos\OsuTrainer\OsuTrainer\obj\Debug\netcoreapp3.0\OsuTrainer.AssemblyInfo.cs
+C:\Users\Rogue\source\repos\OsuTrainer\OsuTrainer\obj\Debug\netcoreapp3.0\OsuTrainer.dll
+C:\Users\Rogue\source\repos\OsuTrainer\OsuTrainer\obj\Debug\netcoreapp3.0\OsuTrainer.pdb
