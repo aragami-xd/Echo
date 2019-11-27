@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Shapes;
 
 namespace OsuTrainer
@@ -13,22 +15,12 @@ namespace OsuTrainer
         public MainWindow()
         {
             InitializeComponent();
-            Combo = 0;
-            Area = (int)gd.ColumnDefinitions[2].ActualWidth;
 
             // create the first circle
-            Circle circle1 = new Circle(ref gd);
+            Circle circle = new Circle(ref gd);
 
-            // get the ellipse drawn from the circle and add it into the canvas
-            // the outer circle must be added in first otherwise it'll overlap the outer circle mouse control
-            (Ellipse, Ellipse) ellipseCircle = circle1.DrawCircle();
-            area.Children.Add(ellipseCircle.Item2);
-            area.Children.Add(ellipseCircle.Item1);
-
-            // subscribe the first circle (innerCircle) to the TapCircle event
-            ellipseCircle.Item1.MouseDown += TapCircle;
-
-            area.Children.Remove(ellipseCircle.Item1);
+            // draw the circle on the screen
+            DrawCircle(ref circle);
         }
 
         // 2 tapping buttons
@@ -36,15 +28,26 @@ namespace OsuTrainer
         public char Button2 { get; set; }
 
         // combo counter
-        public int Combo { get; set; }
+        public int Combo { get; private set; }
 
-        public int Area { get; private set; }
 
-        private void TapCircle(object sender, MouseButtonEventArgs e)
+        public void DrawCircle(ref Circle circle)
         {
-            Combo++;
-            ComboText.Text = Combo.ToString() + "x";
-            
+            Ellipse InCircle = new Ellipse
+            {
+                Width = circle.CircleSize,
+                Height = circle.CircleSize,
+                Stroke = circle.CircleColor,
+
+                Fill = Brushes.Transparent,
+                StrokeThickness = 3
+            };
+
+            area.Children.Add(InCircle);
+            Canvas.SetLeft(InCircle, circle.X);
+            Canvas.SetTop(InCircle, circle.Y);
+
+            ComboText.Text = circle.X.ToString() + " " + circle.Y.ToString();
         }
 
     }

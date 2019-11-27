@@ -6,37 +6,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OsuTrainer"
         mc:Ignorable="d"
-        Title="Osu!Trainer" Height="480" Width="855">
+        Title="Osu!Trainer" Height="540" Width="960" ResizeMode="CanMinimize">
 
     <Grid x:Name="gd" Background="Black">
         <!--window layout-->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="20*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--combo text-->
-        <TextBlock x:Name="ComboText" Grid.Column="1" Foreground="LightCyan" FontFamily="Segoe UI" FontSize="30" Text="0x"  Margin="0,420,0,0" />
+        <TextBlock x:Name="ComboText" Grid.Column="0" Grid.Row="2" Foreground="LightCyan" FontFamily="Segoe UI" FontSize="30" Margin="10,0,0,0" Text="0x" />
 
         <!--the main gameplay canvas-->
-        <Canvas x:Name="area" Grid.Column="2" Background="#222222" RenderTransformOrigin="0.5,0.5" >
-            <Canvas.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleX="-1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Canvas.RenderTransform>
-
-        </Canvas>
+        <Grid x:Name="area" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Background="#222222">
+            
+        </Grid>
 
 
     </Grid>
