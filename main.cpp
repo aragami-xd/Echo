@@ -22,19 +22,10 @@ struct ShaderSource
 static ShaderSource ParseShader(const std::string& path)
 {
 	std::fstream file(path);
-
 	if (!file)
 		std::cout << "oof" << std::endl;
 
-	enum class ShaderType
-	{
-		NONE = -1,
-		VERTEX = 0,
-		FRAGMENT = 1
-	};
-
-	ShaderType type = ShaderType::NONE;
-
+	int type = -1;
 	std::string line;
 	std::stringstream ss[2];
 
@@ -47,20 +38,19 @@ static ShaderSource ParseShader(const std::string& path)
 		{
 			// choose type based on the keyword
 			if (line.find("vertex") != std::string::npos)
-				type = ShaderType::VERTEX;
+				type = 0;
 			else if (line.find("fragment") != std::string::npos)
-				type = ShaderType::FRAGMENT;
+				type = 1;
 		}
 		else
 		{
 			// else add the line in as source code
-			ss[(int)type] << line << '\n';
+			ss[type] << line << '\n';
 		}
 	}
 
 	return { ss[0].str(), ss[1].str() };
 }
-
 
 // create an new individual shader
 static unsigned int CompiledShader(unsigned int type, const std::string& source)
@@ -133,10 +123,10 @@ int main(void)
 	GLFWwindow* window;
 	int width = 1280;
 	int height = 720;
-	double ratio = height/double(width);
+	double ratio = height / double(width);
 
 	/* frame time - the delay in between each frame in ms */
-	int frameTime = 20;
+	int frameTime = 10;
 
 	/* Initialize the library */
 	if (!glfwInit())
@@ -198,6 +188,8 @@ int main(void)
 	float red = 0.2f;
 	float inc = 0.01f;
 
+	glLineWidth(2);
+
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
 	{
@@ -211,7 +203,9 @@ int main(void)
 		glUniform4f(location, red, 0.2f, 0.8f, 1.0f);
 
 		// draw the rectangle using drawElements
-		glDrawElements(GL_LINE_LOOP, 6, GL_UNSIGNED_INT, nullptr);
+		// glDrawElements(GL_LINE_LOOP, 6, GL_UNSIGNED_INT, nullptr);
+
+		core.Draw();
 
 		// cycle through the color
 		if (red > 1.0f)

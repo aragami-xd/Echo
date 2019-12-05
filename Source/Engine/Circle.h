@@ -14,93 +14,137 @@ private:
 	// AR determines how fast (how long) the circle will show on the screen
 	// scaling with the static AR variable
 	// generally, AR9 - AR9.5 is the sweet spot
-	float approachRate{ 0.0f };
+	float approachRate{ 9.0f };
 	// CS determines how large the circle will be
 	// scaling with the static CS variable
 	// generally, CS4 - CS5 is the sweet spot
-	float circleSize{ 0.0f };
+	float circleSize{ 5.0f };
 	// OD determines how tight you have to press to hit the circle
 	// you can only tap in the 50 score range (best if 300), higher OD means this range is tighter
 	// generally, OD9 - OD 9.5 is the sweet spot
-	float overallDifficulty{ 0.0f };
+	float overallDifficulty{ 9.0f };
 
 	/* static variables for AR and CS scaling */
 	// reference approach rate duration for scaling
-	// default to 4500ms
-	static int scaleAR;
+	static const int scaleAR;
 	// reference circle size for scaling
-	// the game area will be a grid of 512x384
-	// default scaling will be a circle with radius half of the height of the area
-	static int scaleCS;
+	static const float scaleCS;
 
-	/* timestamp checkpoint variables */
 	// animationLength is the duration from when the circle appears on the screen
 	// till the ring touches the circle and dissapear (circle not yet dissapear)
-	int animationLength{ -1 };
-
-	// 300 score is the time range that tapping within that time will give maximum
-	// +- (animationLength / 30)
-	int threeHundred{ -1 };
-	// 100 score (a bit worse)
-	// +- (animationLength / 10) (until 300 score)
-	int oneHundred{ -1 };
-	// 50 score (worst)
-	// +- (animationLength / 5)
+	int animationLength;
+	// 300 score (best score) =  +- (animationLength / 30)
+	int threeHundred;
+	// 100 score (a bit worse) = +- (animationLength / 10)
+	int oneHundred;
+	// 50 score (worst) = +- (animationLength / 5)
 	// outside of this range will be a miss (i.e. way too soon or early)
-	int fifty{ -1 };
+	int fifty;
 
 	// when the circle appears on the screen
-	int animationTime{ -1 };
+	int animationTime;
 	// when the beat of the circle is mapped to (i.e. animation ends)
-	int beatTime{ -1 };
+	int beatTime{ 0 };
 	// when the circle disappears
-	int endTime{ -1 };
+	int endTime;
 
-	/* size of the actual circle and outer ring */
 	// at the start of the animation, ring will have float the radius of the circle
-	int circleRadius{ -1 };
-	int ringRadius{ -1 };
+	float circleRadius;
+	float ringRadius;
 
 	// color of the circle
-	Color circleColor{ 0.0f, 0.0f, 0.0f, 0.0f };
+	Color circleColor{ 1.0f, 1.0f, 1.0f, 1.0f };
+
+	// screen aspect ratio (height / width)
+	double ratio{ 0.5625 };
+	// points on the surface of the circle, used to draw the circle later on
+	static const int dotCount = 240;
+	float circleDot[dotCount];
+	float ringDot[dotCount];
 
 public:
 	// set and get (x,y)
-	void SetX(float x);
-	float GetX();
-	void SetY(float y);
-	float GetY();
+	inline void SetX(float x) {
+		this->x = x;
+	}
+	inline float GetX() {
+		return x;
+	}
+	inline void SetY(float y) {
+		this->y = y;
+	}
+	inline float GetY() {
+		return y;
+	}
 
 	// set and getColor (set based on 4 attributes or a pre-made color)
-	void CreateColor(float r, float g, float b, float a);
-	void SetColor(Color color);
-	Color GetColor();
+	inline void CreateColor(float r, float g, float b, float a) {
+		circleColor = { r,g,b,a };
+	}
+	inline void SetColor(Color color) {
+		circleColor = color;
+	}
+	inline Color GetColor() {
+		return circleColor;
+	}
 
-	/* set and get (AR, CS, OD) */
-	// set AR will also set animationLength
-	void SetAR(float AR);
-	float GetAR();
-	// set CS will also set the circle and ring radius
-	void SetCS(float CS);
-	float GetCS();
-	// set OD will also set the 300, 100 and 50
-	void SetOD(float OD);
-	float GetOD();
+	// set and get AR
+	inline void SetAR(float AR) {
+		approachRate = AR;
+	}
+	inline float GetAR() {
+		return approachRate;
+	}
+	// set and get CS
+	inline void SetCS(float CS) {
+		circleSize = CS;
+	}
+	inline float GetCS() {
+		return circleSize;
+	}
+	// set and get OD
+	inline void SetOD(float OD) {
+		overallDifficulty = OD;
+	}
+	inline float GetOD() {
+		return overallDifficulty;
+	}
 
-	// set() and get() the beat time for the circle
-	void setBeatTime(int time);
-	int getAnimationTime();
-	int getBeatTime();
-	int getEndTime();
+	// set the beat time for the circle
+	inline void SetBeatTime(int timestamp) {
+		beatTime = timestamp;
+	}
 
-	// animationLength will return the amount of time the animation will last
-	// maybe removed later since it's probably not necessary
-	// int GetAnimationLength();
-	// circleRadius will return the size of the circle on the screen
-	int GetCircleRadius();
+	// get beat time, animation time and end time
+	inline int GetBeatTime() {
+		return beatTime;
+	}
+	inline int GetAnimationTime() {
+		return animationTime;
+	}
+	inline int GetEndTime() {
+		return endTime;
+	}
+
+	// set screen ratio
+	inline void SetRatio(double ratio) {
+		this->ratio = ratio;
+	}
+
+	// get the circle dot and ring dot arrays to draw the circle
+	inline float* GetCircleDot() {
+		return circleDot;
+	}
 
 	// getScore will return the score when the circle is tapped at a certain moment
-	int GetScore(int time);
-	// ringRadius will return the size of the ring at the start of the animation
-	int GetRingRadius(int time);
+	int GetScore(int timestamp);
+
+	// time is the timestamp of the beatmap, as the ring gets smaller and smaller
+	float* GetRingDot(int timestamp);
+
+	// use the attributes above to create the actual circle
+	void CreateCircle();
+
+	// for testing purposes
+	void GenCircle();
 };

@@ -13,6 +13,9 @@
 class Core
 {
 private:
+	// time will keep track of how long into the map it is
+	static int time;
+
 	// the beatmap text file
 	std::ifstream map;
 
@@ -36,13 +39,10 @@ private:
 	// combo is how many circles have been tapped in a row without miss
 	int combo{ 0 };
 
-	// time will keep track of how long into the map it is
-	static int time;
-
-	// map parsing data
 	// animationTime will keep track of when the next animation will start playing so it can read the next line
 	int animationTime{ 0 };
 
+	/* functions */
 	// parse the map based on its text file
 	void MapParser();
 

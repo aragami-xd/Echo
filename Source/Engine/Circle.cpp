@@ -1,188 +1,81 @@
 #include "Circle.h"
-#include <iostream>
 #include <math.h>
+#include <iostream>
 #include <GL/glew.h>
-
-#define PI 3.1415
-
 using namespace std;
 
-// static variables
-int Circle::scaleAR = 5000;
-int Circle::scaleCS = 500;
+#define PI 3.14
 
-// setters and getters
-// *
-// set x
-void Circle::SetX(float x)
-{
-	this->x = x;
-}
-// get x
-float Circle::GetX()
-{
-	return x;
-}
-
-// set y
-void Circle::SetY(float y)
-{
-	this->y = y;
-}
-// get y
-float Circle::GetY()
-{
-	return y;
-}
-
-// create color
-void Circle::CreateColor(float r = 1.0f, float g = 1.0f, float b = 1.0f, float a = 1.0f)
-{
-	circleColor = { r,g,b,a };
-}
-// set color
-void Circle::SetColor(Color color)
-{
-	circleColor = color;
-}
-// get color
-Color Circle::GetColor()
-{
-	return circleColor;
-}
-
-// set AR
-// setAR will also set animationLength, 300, 100 and 50
-void Circle::SetAR(float AR)
-{
-	// set the AR scale value
-	approachRate = AR;
-	// set the actual animation length
-	animationLength = (int)(scaleAR / approachRate);
-}
-// get AR
-float Circle::GetAR()
-{
-	return approachRate;
-}
-
-// set CS
-void Circle::SetCS(float CS)
-{
-	// set the CS scale value
-	circleSize = CS;
-	// set the actual cirle and ring radius
-	circleRadius = (int)(scaleCS / circleSize);
-	ringRadius = circleRadius * 2;
-	// generate the vertices to draw the circle
-	GenCircle();
-}
-// get CS
-float Circle::GetCS()
-{
-	return circleSize;
-}
-
-// set OD
-// set OD will also set the timestamps
-void Circle::SetOD(float OD)
-{
-	// set the OD value
-	overallDifficulty = OD;
-	// set the timestamps
-	threeHundred = (int)(animationLength / (3 * OD));
-	oneHundred = threeHundred * 3;
-	fifty = oneHundred * 2;
-}
-// getOD
-float Circle::GetOD()
-{
-	return overallDifficulty;
-}
-
-//// animation length
-//int Circle::GetAnimationLength()
-//{
-//	return animationLength;
-//}
-// circle radius
-int Circle::GetCircleRadius()
-{
-	return circleRadius;
-}
-
-// set beat time
-// set beat time will also set animation start time and end time
-void Circle::setBeatTime(int time)
-{
-	beatTime = time;
-
-	// animation time needs to be set up before calling this function
-	if (animationLength < 0)
-	{
-		std::cout << "AR must be set before setting beat time" << std::endl;
-		throw std::exception();
-	}
-
-	animationTime = time - animationLength;
-	endTime = time + fifty;
-}
-// get beat time
-int Circle::getBeatTime()
-{
-	return beatTime;
-}
-// get animation time
-int Circle::getAnimationTime()
-{
-	return animationTime;
-}
-// get end time
-int Circle::getEndTime()
-{
-	return endTime;
-}
+const int Circle::scaleAR = 5000;
+const float Circle::scaleCS = 0.5f;
 
 // get score will return the score based on the time stamp
-// time here will be the timestamp of the beatmap
 int Circle::GetScore(int timestamp)
 {
 	// since time is the timestamp into the map, we'll have to convert it into remaining time to the beat
 	timestamp = beatTime - timestamp;
-
-	// difference between time of tapping and perfect animation finished
 	int diff = abs(animationLength - timestamp);
 
 	// compare against time checkpoints
 	if (diff > fifty)
-		// too early or too late, 0 score (miss)
 		return 0;
 	else if (diff > oneHundred)
-		// 50 scores
 		return 50;
 	else if (diff > threeHundred)
-		// 100 scores
 		return 100;
 	else
-		// 300 scores
 		return 300;
 }
-// ring radius
-int Circle::GetRingRadius(int timestamp)
+
+// setup the actual circle
+void Circle::CreateCircle()
 {
-	// see how much time is remaining in the animation as scaling
-	timestamp = beatTime - timestamp;
-	return ringRadius * (timestamp / approachRate);
+	// timestamps
+	animationLength = scaleAR / approachRate;
+	threeHundred = animationLength / (3 * overallDifficulty);
+	oneHundred = threeHundred * 3;
+	fifty = threeHundred * 6;
+
+	animationTime = beatTime - animationLength;
+	endTime = beatTime + fifty;
+
+	// circle size
+	circleRadius = scaleCS / circleSize;
+	ringRadius = circleRadius * 2;
+
+	// setup the dots on the circle
+	double angle = 0;
+	for (int i = 0; i < dotCount; i += 2)
+	{
+		angle = 2 * PI * i / dotCount;
+		circleDot[i] = x + circleRadius * cos(angle) * ratio;
+		circleDot[i + 1] = y + circleRadius * sin(angle);
+	}
 }
 
+// get the ringDot array at a certain time
+float* Circle::GetRingDot(int timeStamp)
+{
+	double angle = 0;
+	float remaining = abs((beatTime - timeStamp) / animationLength);
+	for (int i = 0; i < dotCount; i += 2)
+	{
+		angle = 2 * PI * i / dotCount;
+		ringDot[i] = (x + ringRadius * cos(angle) * ratio ) * remaining;
+		ringDot[i + 1] = (y + ringRadius * sin(angle)) * remaining;
+	}
+	return ringDot;
+}
 
-/* helper functions */
+// for testing purposes: drawing the circle using legacy opengl
 void Circle::GenCircle()
 {
-
-}
-
-std::vector<float> Circle::GetCircleVertices()
-{
-	return vertices;
+	glBegin(GL_LINE_LOOP);
+	double angle = 0;
+	for (int i = 0; i < dotCount; i += 2)
+	{
+		angle = 2 * PI * i / dotCount;
+		glVertex2d(x + circleRadius * cos(angle) * ratio, y + circleRadius * sin(angle));
+	}
+	glEnd();
 }
