@@ -4,11 +4,13 @@
 #include <string>
 #include <fstream>
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-
 #include "Circle.h"
 #include "Beatmap.h"
+#include "../Buffers/VertexArray.h"
+#include "../Buffers/VertexBuffer.h"
+#include "../Buffers/IndexBuffer.h"
+#include "../Buffers/Shader.h"
+
 
 class Core
 {
@@ -18,6 +20,12 @@ private:
 
 	// the beatmap text file
 	std::ifstream map;
+
+	// openGL elements
+	VertexArray* va;
+	VertexBufferLayout* vbl;
+	unsigned int indices[::DotCount * 3];
+	IndexBuffer* ib;
 
 	// the circles appear on the screen at a certain moment
 	std::list<Circle*> circle;
@@ -59,17 +67,15 @@ private:
 	void AnimateAllCircle();
 
 public:
-	// core constructor should pass in the reference to the window of the program and its size
-	// otherwise, it'll throw an exception
+	// core will setup some vertex array and buffer
 	Core();
-	Core(GLFWwindow* window);
-
-	// reference to the main window created in the main program
-	GLFWwindow* Window;
 
 	// initialize the map
 	void MapInit(std::string path);
 
 	// draw the entire screen
 	void Draw();
+
+	// delete the buffers when the core is deleted
+	~Core();
 };

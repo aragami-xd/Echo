@@ -132,12 +132,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Source\Buffers\CircleRenderer.cpp" />
     <ClCompile Include="Source\Buffers\IndexBuffer.cpp" />
     <ClCompile Include="Source\Buffers\Renderer.cpp" />
+    <ClCompile Include="Source\Buffers\Shader.cpp" />
     <ClCompile Include="Source\Buffers\VertexArray.cpp" />
     <ClCompile Include="Source\Buffers\VertexBuffer.cpp" />
-    <ClCompile Include="Source\Engine\Circle.cpp" />
-    <ClCompile Include="Source\Engine\Core.cpp" />
+    <ClCompile Include="Source\Components\Circle.cpp" />
+    <ClCompile Include="Source\Components\Core.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shaders\Basic.shader" />
@@ -146,15 +148,19 @@
     <Text Include="Library\Beatmaps\map.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Buffers\CircleRenderer.h" />
     <ClInclude Include="Source\Buffers\IndexBuffer.h" />
     <ClInclude Include="Source\Buffers\Renderer.h" />
+    <ClInclude Include="Source\Buffers\Shader.h" />
     <ClInclude Include="Source\Buffers\VertexArray.h" />
     <ClInclude Include="Source\Buffers\VertexBuffer.h" />
     <ClInclude Include="Source\Buffers\VertexBufferLayout.h" />
-    <ClInclude Include="Source\Engine\Beatmap.h" />
-    <ClInclude Include="Source\Engine\Circle.h" />
-    <ClInclude Include="Source\Engine\Color.h" />
-    <ClInclude Include="Source\Engine\Core.h" />
+    <ClInclude Include="Source\Components\Beatmap.h" />
+    <ClInclude Include="Source\Components\Circle.h" />
+    <ClInclude Include="Source\Components\Color.h" />
+    <ClInclude Include="Source\Components\Core.h" />
+    <ClInclude Include="Source\Engine\Attribute.h" />
+    <ClInclude Include="Source\Engine\Parser.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

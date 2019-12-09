@@ -1,5 +1,7 @@
 #include "VertexArray.h"
 
+using namespace std;
+
 VertexArray::VertexArray()
 {
 	glGenVertexArrays(1, &elementID);
@@ -9,7 +11,7 @@ void VertexArray::AddBuffer(VertexBuffer& vb, VertexBufferLayout& vbl)
 {
 	Bind();
 	vb.Bind();
-	const std::vector<VertexBufferElement> elements = vbl.GetElement();
+	const auto& elements = vbl.GetElement();
 	unsigned int offset = 0;
 
 	for (int i = 0; i < elements.size(); i++)
@@ -21,12 +23,12 @@ void VertexArray::AddBuffer(VertexBuffer& vb, VertexBufferLayout& vbl)
 	}
 }
 
-void VertexArray::Bind()
+void VertexArray::Bind() const
 {
 	glBindVertexArray(elementID);
 }
 
-void VertexArray::Unbind()
+void VertexArray::Unbind() const
 {
 	glBindVertexArray(0);
 }

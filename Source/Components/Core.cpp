@@ -1,54 +1,72 @@
 #include "Core.h"
-
+#include "../Engine/Attribute.h"
+#include "../Buffers/CircleRenderer.h"
 #include <iostream>
 #include <sstream>
 
-// for the program to work properly, the reference to window must be passed into the core
+using namespace std;
+
 Core::Core()
 {
-	std::cout << "core constructor requires reference to the working window to work properly" << std::endl;
-	throw std::exception();
+	va = new VertexArray();
+	vbl = new VertexBufferLayout();
+
+	// vertex array and layout
+	vbl->Push<float>(2);
+
+	// setup the index buffer
+	for (int i = 0; i < ::DotCount * 3; i += 3)
+	{
+		indices[i] = 0;
+		indices[i + 1] = i * 2 + 1;
+		indices[i + 2] = i * 2 + 2;
+	}
+
+	ib = new IndexBuffer(indices, ::DotCount * 3);
 }
 
-Core::Core(GLFWwindow* window) : Window(window)
+Core::~Core()
 {
+	delete va;
+	delete vbl;
+	delete ib;
 }
 
 // set time
-int Core::time = 0;
+int Core::time = -1000;
 
 // initialize the map
 // the text file from the path will be open, and the first line will be read
-void Core::MapInit(std::string path)
+void Core::MapInit(string path)
 {
-	map.open(path, std::fstream::in);
+	map.open(path, fstream::in);
 	if (!map)
 	{
-		std::cout << "beatmap not loaded" << std::endl;
+		cout << "beatmap not loaded" << endl;
 		return;
 	}
 
-	std::string line;
-	std::string x, y, beatTime;
+	string line;
+	string x, y, beatTime;
 
 	// read the first line
 	getline(map, line);
 	// dump the data into the variables
-	std::stringstream ss(line);
+	stringstream ss(line);
 	ss >> x;
 	ss >> y;
 	ss >> beatTime;
 	// create the circle
-	CreateCircle(std::stof(x), std::stof(y), std::stoi(beatTime));
+	CreateCircle(stof(x), stof(y), stoi(beatTime));
 
 	// read the next line
 	getline(map, line);
-	std::stringstream ss1(line);
+	stringstream ss1(line);
 	ss1 >> x;
 	ss1 >> y;
 	ss1 >> beatTime;
 	// set the data
-	CreateCircle(std::stof(x), std::stof(y), std::stoi(beatTime));
+	CreateCircle(stof(x), stof(y), stoi(beatTime));
 	animationTime = circle.back()->GetAnimationTime();
 }
 
@@ -58,43 +76,35 @@ void Core::MapParser()
 	// if the next circle hasn't started animated yet then do nothing
 	if (time < animationTime)
 		return;
-	if (map.eof())
-		return;
 
-	std::string line;
-	std::string x, y, beatTime;
+	string line;
+	string x, y, beatTime;
 
 	// read the next line
-	getline(map, line);
-	std::stringstream ss(line);
+	if (!getline(map, line))
+		return;
+
+	stringstream ss(line);
 	ss >> x;
 	ss >> y;
 	ss >> beatTime;
 	// set the data
-	CreateCircle(std::stof(x), std::stof(y), std::stoi(beatTime));
+	CreateCircle(stof(x), stof(y), stoi(beatTime));
 	animationTime = circle.back()->GetAnimationTime();
 }
 
 // create a circle with the desired specs
 void Core::CreateCircle(float x, float y, int beatTime)
 {
+	Color color = { 1.0f, 1.0f, 1.0f, 1.0f };
+
 	// create a new circle and push it into the back of the list
 	// to draw multiple circles at the same time
-	Circle* newCircle = new Circle();
+	Circle* newCircle = new Circle(x, y, color, approachRate, circleSize, overallDifficulty, beatTime);
+	va->AddBuffer(*(newCircle->GetCircleBuffer()), *vbl);
+	va->AddBuffer(*(newCircle->GetRingBuffer(time)), *vbl);
+
 	circle.push_back(newCircle);
-
-	// set color
-	newCircle->CreateColor(0.0f, 0.2f, 1.0f, 0.8f);
-	// set attributes
-	newCircle->SetAR(approachRate);
-	newCircle->SetCS(circleSize);
-	newCircle->SetOD(overallDifficulty);
-	// map data
-	newCircle->SetX(x);
-	newCircle->SetY(y);
-	newCircle->SetBeatTime(beatTime);
-
-	newCircle->CreateCircle();
 }
 
 // animate the circle
@@ -112,17 +122,19 @@ void Core::AnimatePerCircle(Circle* animateCircle)
 		return;
 	}
 
-	// generate that circle
-	animateCircle->GenCircle();
+	if (time > animateCircle->GetBeatTime())
+		animateCircle->GetRingBuffer(time)->Unbind();
+	else
+		animateCircle->GetRingBuffer(time)->Bind();
 }
 
 // animate all circle
 void Core::AnimateAllCircle()
 {
 	// loop through every circle in the list and animate each of them individually
-	for (auto x : circle)
+	for (auto i = circle.rbegin(); i != circle.rend(); i++)
 	{
-		AnimatePerCircle(x);
+		AnimatePerCircle(*i);
 	}
 }
 
@@ -131,9 +143,8 @@ void Core::DeleteCircle()
 {
 	// pop the queue and delete the circle
 	// no need to worry about which one to delete since it'll always be the first one
-	Circle* delCircle = circle.front();
-	// circle.pop_front();
-	delete delCircle;
+	delete circle.front();
+	circle.pop_front();
 }
 
 // animate the entire screen
@@ -141,5 +152,9 @@ void Core::Draw()
 {
 	time += 30;
 	AnimateAllCircle();
+
+	va->Bind();
+	glDrawElements(GL_TRIANGLES, DotCount * 3, GL_UNSIGNED_INT, nullptr);
+
 	MapParser();
 }

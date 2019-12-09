@@ -9,7 +9,7 @@ struct VertexBufferElement
 	unsigned int Count;
 	unsigned char Normalized;
 
-	static int GetSizeOfType(unsigned int type)
+	static unsigned int GetSizeOfType(unsigned int type)
 	{
 		switch (type)
 		{
@@ -35,19 +35,19 @@ public:
 
 	template<> void Push<float>(unsigned int count)
 	{
-		elements.push_back({ GL_FLOAT, count, false });
+		elements.push_back({ GL_FLOAT, count, GL_FALSE });
 		stride += count * sizeof(GL_FLOAT);
 	}
 
 	template<> void Push<unsigned int>(unsigned int count)
 	{
-		elements.push_back({ GL_UNSIGNED_INT, count, false });
+		elements.push_back({ GL_UNSIGNED_INT, count, GL_FALSE });
 		stride += count * sizeof(GL_UNSIGNED_INT);
 	}
 
 	template<> void Push<unsigned char>(unsigned int count)
 	{
-		elements.push_back({ GL_UNSIGNED_BYTE, count, false });
+		elements.push_back({ GL_UNSIGNED_BYTE, count, GL_FALSE });
 		stride += count * sizeof(GL_UNSIGNED_BYTE);
 	}
 
