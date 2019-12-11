@@ -1,5 +1,6 @@
 #include "Texture.h"
-#include "Renderer.h"
+#include "Macro.h"
+#include <iostream>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb/stb_image.h"
@@ -7,7 +8,7 @@
 using namespace std;
 
 Texture::Texture(const string& file) :
-	id(0), path(file), localBuffer(0), width(0), height(0), bpp(0)
+	id(0), path(file), localBuffer(nullptr), width(0), height(0), bpp(0)
 {
 	// flip the image vertically because of the way opengl load and render image
 	stbi_set_flip_vertically_on_load(1);
@@ -19,8 +20,8 @@ Texture::Texture(const string& file) :
 	// settings for the texture
 	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
 	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
-	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
-	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER));
+	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER));
 
 	// set the texture data
 	GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, localBuffer));
@@ -45,6 +46,3 @@ Texture::~Texture()
 {
 	GLCall(glDeleteTextures(1, &id));
 }
-
-
-

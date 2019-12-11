@@ -1,5 +1,5 @@
 #include "VertexBuffer.h"
-#include "Renderer.h"
+#include "Macro.h"
 #include <GL/glew.h>
 
 using namespace std;

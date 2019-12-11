@@ -1,103 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Resource Files\Shaders">
-      <UniqueIdentifier>{b721cb2f-a89d-4b83-a11e-7ded70acce06}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Beatmaps">
-      <UniqueIdentifier>{f95141f6-9075-4044-9387-c23b6a6bd74d}</UniqueIdentifier>
+    <Filter Include="Osu!Trainer">
+      <UniqueIdentifier>{b2441f4d-3025-40d6-a6bf-7d9515c62e33}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Buffers\IndexBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Buffers\Renderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Buffers\VertexBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Buffers\VertexArray.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Buffers\CircleRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Components\Core.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Components\Circle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Buffers\Shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClInclude Include="Osu!Trainer\Source\Buffers\stb\stb_image.h" />
+    <ClInclude Include="Osu!Trainer\Source\Buffers\CircleRenderer.h" />
+    <ClInclude Include="Osu!Trainer\Source\Buffers\IndexBuffer.h" />
+    <ClInclude Include="Osu!Trainer\Source\Buffers\Renderer.h" />
+    <ClInclude Include="Osu!Trainer\Source\Buffers\Shader.h" />
+    <ClInclude Include="Osu!Trainer\Source\Buffers\Texture.h" />
+    <ClInclude Include="Osu!Trainer\Source\Buffers\VertexArray.h" />
+    <ClInclude Include="Osu!Trainer\Source\Buffers\VertexBuffer.h" />
+    <ClInclude Include="Osu!Trainer\Source\Buffers\VertexBufferLayout.h" />
+    <ClInclude Include="Osu!Trainer\Source\Components\Circle.h" />
+    <ClInclude Include="Osu!Trainer\Source\Engine\Attribute.h" />
+    <ClInclude Include="Osu!Trainer\Source\Engine\Parser.h" />
+    <ClInclude Include="Osu!Trainer\Source\Buffers\Macro.h" />
+    <ClInclude Include="Osu!Trainer\Source\Components\Core.h" />
+    <ClInclude Include="Osu!Trainer\Source\Engine\Color.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Shaders\Basic.shader">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
+    <ClCompile Include="Osu!Trainer\Source\Buffers\CircleRenderer.cpp" />
+    <ClCompile Include="Osu!Trainer\Source\Buffers\IndexBuffer.cpp" />
+    <ClCompile Include="Osu!Trainer\Source\Buffers\Renderer.cpp" />
+    <ClCompile Include="Osu!Trainer\Source\Buffers\Shader.cpp" />
+    <ClCompile Include="Osu!Trainer\Source\Buffers\Texture.cpp" />
+    <ClCompile Include="Osu!Trainer\Source\Buffers\VertexArray.cpp" />
+    <ClCompile Include="Osu!Trainer\Source\Buffers\VertexBuffer.cpp" />
+    <ClCompile Include="Osu!Trainer\Source\Components\Circle.cpp" />
+    <ClCompile Include="Osu!Trainer\Source\Components\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Library\Beatmaps\map.txt">
-      <Filter>Resource Files\Beatmaps</Filter>
-    </Text>
+    <Text Include="Osu!Trainer\Library\Beatmaps\map.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Buffers\IndexBuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Buffers\Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Buffers\VertexBuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Buffers\VertexBufferLayout.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Buffers\VertexArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Buffers\CircleRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Engine\Parser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Components\Circle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Components\Color.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Components\Core.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Components\Beatmap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Engine\Attribute.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Buffers\Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <None Include="Osu!Trainer\Documentation\osu!trainer.drawio" />
+    <None Include="Osu!Trainer\Documentation\Design.md" />
+    <None Include="README.md" />
+    <None Include="Documentation\Design.md" />
+    <None Include="Documentation\osu!trainer.drawio" />
+    <None Include="Osu!Trainer\Source\Shaders\Vertex.shader" />
+    <None Include="Osu!Trainer\Source\Shaders\Fragment.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Osu!Trainer\Library\Textures\thumb.png" />
   </ItemGroup>
 </Project>

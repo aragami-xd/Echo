@@ -1,8 +1,12 @@
 /* source files */
-#include "Core.h"
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+
+#include "../Engine/Attribute.h"
 #include "../Buffers/Renderer.h"
 #include "../Buffers/Shader.h"
 #include "../Buffers/Texture.h"
+#include "../Buffers/IndexBuffer.h"
 
 using namespace std;
 
@@ -57,31 +61,37 @@ int main(void)
 	VertexBufferLayout vbl;
 
 	vbl.Push<float>(2);
+	vbl.Push<float>(2);
 	va.AddBuffer(vb, vbl);
 	va.Bind();
+	vb.Bind();
 
 	IndexBuffer ib(indices, 6);
 	ib.Bind();
-	
+
 	// new shader source code
-	Shader shader("Source/Shaders/Basic.shader");
+	Shader shader("Osu!Trainer/Source/Shaders/Vertex.shader", "Osu!Trainer/Source/Shaders/Fragment.shader");
 	shader.Bind();
 
 	// renderer class
 	Renderer renderer;
 
 	// texture class
-	Texture texture("Library/Textures/approachcircle.png");
-	texture.Bind(0);
-	shader.SetUniform1i("u_Texture", 0);	// the value and the texture buffer slot must be the same
+	//Texture texture("Osu!Trainer/Library/Textures/thumb.png");
+	//texture.Bind();
+	//shader.SetUniform1i("vTexture", 0);	// the value and the texture buffer slot must be the same
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
 	{
-		/* Render here */
-		renderer.Clear();
+		if (glfwGetKey(window, GLFW_KEY_ESCAPE))
+			glfwSetWindowShouldClose(window, true);
 
-		// shader.SetUniform4f("u_Color", red, 0.2f, 0.8f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		/* Render here */
+
+		shader.SetUniform4f("uColor", red, 0.2f, 0.8f, 1.0f);
 		renderer.Draw(va, ib, shader);
 
 		// cycle through the color

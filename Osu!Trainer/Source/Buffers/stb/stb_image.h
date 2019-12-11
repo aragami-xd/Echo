@@ -15,7 +15,6 @@
    You can #define STBI_ASSERT(x) before the #include to avoid using assert.h.
    And #define STBI_MALLOC, STBI_REALLOC, and STBI_FREE to avoid using malloc,realloc,free
 
-
    QUICK NOTES:
 	  Primarily of interest to game developers and other people who can
 		  avoid problematic images and only need the trivial interface
@@ -40,7 +39,6 @@
 	  - SIMD acceleration on x86/x64 (SSE2) and ARM (NEON)
 
    Full documentation under "DOCUMENTATION" below.
-
 
 LICENSE
 
@@ -68,7 +66,6 @@ RECENT REVISION HISTORY:
 	  2.09  (2016-01-16) 16-bit TGA; comments in PNM files; STBI_REALLOC_SIZED
 
    See end of file for full revision history.
-
 
  ============================    Contributors    =========================
 
@@ -316,7 +313,6 @@ RECENT REVISION HISTORY:
 //     want the zlib decoder to be available, #define STBI_SUPPORT_ZLIB
 //
 
-
 #ifndef STBI_NO_STDIO
 #include <stdio.h>
 #endif // STBI_NO_STDIO
@@ -432,7 +428,6 @@ extern "C" {
 	STBIDEF int      stbi_is_hdr_from_file(FILE* f);
 #endif // STBI_NO_STDIO
 
-
 	// get a VERY brief reason for failure
 	// NOT THREADSAFE
 	STBIDEF const char* stbi_failure_reason(void);
@@ -452,8 +447,6 @@ extern "C" {
 	STBIDEF int      stbi_is_16_bit(char const* filename);
 	STBIDEF int      stbi_is_16_bit_from_file(FILE* f);
 #endif
-
-
 
 	// for image formats that explicitly notate that they have premultiplied alpha,
 	// we just return the colors as stored in the file. set this flag to force
@@ -476,7 +469,6 @@ extern "C" {
 
 	STBIDEF char* stbi_zlib_decode_noheader_malloc(const char* buffer, int len, int* outlen);
 	STBIDEF int   stbi_zlib_decode_noheader_buffer(char* obuffer, int olen, const char* ibuffer, int ilen);
-
 
 #ifdef __cplusplus
 }
@@ -526,7 +518,6 @@ extern "C" {
 #define STBI_NO_ZLIB
 #endif
 
-
 #include <stdarg.h>
 #include <stddef.h> // ptrdiff_t on osx
 #include <stdlib.h>
@@ -552,7 +543,6 @@ extern "C" {
 #define STBI_EXTERN extern
 #endif
 
-
 #ifndef _MSC_VER
 #ifdef __cplusplus
 #define stbi_inline inline
@@ -562,7 +552,6 @@ extern "C" {
 #else
 #define stbi_inline __forceinline
 #endif
-
 
 #ifdef _MSC_VER
 typedef unsigned short stbi__uint16;
@@ -736,7 +725,6 @@ typedef struct
 	stbi_uc* img_buffer, * img_buffer_end;
 	stbi_uc* img_buffer_original, * img_buffer_original_end;
 } stbi__context;
-
 
 static void stbi__refill_buffer(stbi__context* s);
 
@@ -1218,7 +1206,6 @@ static FILE* stbi__fopen(char const* filename, char const* mode)
 	return f;
 }
 
-
 STBIDEF stbi_uc* stbi_load(char const* filename, int* x, int* y, int* comp, int req_comp)
 {
 	FILE* f = stbi__fopen(filename, "rb");
@@ -1264,7 +1251,6 @@ STBIDEF stbi_us* stbi_load_16(char const* filename, int* x, int* y, int* comp, i
 	fclose(f);
 	return result;
 }
-
 
 #endif //!STBI_NO_STDIO
 
@@ -1437,7 +1423,6 @@ static float stbi__h2l_gamma_i = 1.0f / 2.2f, stbi__h2l_scale_i = 1.0f;
 STBIDEF void   stbi_hdr_to_ldr_gamma(float gamma) { stbi__h2l_gamma_i = 1 / gamma; }
 STBIDEF void   stbi_hdr_to_ldr_scale(float scale) { stbi__h2l_scale_i = 1 / scale; }
 
-
 //////////////////////////////////////////////////////////////////////////////
 //
 // Common code used by all image loaders
@@ -1563,7 +1548,6 @@ static stbi__uint32 stbi__get32le(stbi__context* s)
 #endif
 
 #define STBI__BYTECAST(x)  ((stbi_uc) ((x) & 255))  // truncate int to byte without warnings
-
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -4399,7 +4383,6 @@ typedef struct
 	int depth;
 } stbi__png;
 
-
 enum {
 	STBI__F_none = 0,
 	STBI__F_sub = 1,
@@ -5128,7 +5111,6 @@ static int stbi__bmp_test(stbi__context* s)
 	return r;
 }
 
-
 // returns 0..31 for the highest set bit
 static int stbi__high_bit(unsigned int z)
 {
@@ -5268,7 +5250,6 @@ static void* stbi__bmp_parse_header(stbi__context* s, stbi__bmp_data* info)
 	}
 	return (void*)1;
 }
-
 
 static void* stbi__bmp_load(stbi__context* s, int* x, int* y, int* comp, int req_comp, stbi__result_info* ri)
 {
@@ -5966,7 +5947,6 @@ static void* stbi__psd_load(stbi__context* s, int* x, int* y, int* comp, int req
 				}
 			}
 		}
-
 	}
 	else {
 		// We're at the raw image data.  It's each channel in order (Red, Green, Blue, Alpha, ...)
@@ -6392,7 +6372,7 @@ static void stbi__out_gif_code(stbi__gif* g, stbi__uint16 code)
 	g->history[idx / 4] = 1;
 
 	c = &g->color_table[g->codes[code].suffix * 4];
-	if (c[3] > 128) { // don't render transparent pixels; 
+	if (c[3] > 128) { // don't render transparent pixels;
 		p[0] = c[2];
 		p[1] = c[1];
 		p[2] = c[0];
@@ -6525,9 +6505,9 @@ static stbi_uc* stbi__gif_load_next(stbi__context* s, stbi__gif* g, int* comp, i
 		if (!g->out || !g->background || !g->history)
 			return stbi__errpuc("outofmem", "Out of memory");
 
-		// image is treated as "transparent" at the start - ie, nothing overwrites the current background; 
+		// image is treated as "transparent" at the start - ie, nothing overwrites the current background;
 		// background colour is only used for pixels that are not rendered first frame, after that "background"
-		// color refers to the color that was there the previous frame. 
+		// color refers to the color that was there the previous frame.
 		memset(g->out, 0x00, 4 * pcount);
 		memset(g->background, 0x00, 4 * pcount); // state of the background (starts transparent)
 		memset(g->history, 0x00, pcount);        // pixels that were affected previous frame
@@ -6550,7 +6530,7 @@ static stbi_uc* stbi__gif_load_next(stbi__context* s, stbi__gif* g, int* comp, i
 			}
 		}
 		else if (dispose == 2) {
-			// restore what was changed last frame to background before that frame; 
+			// restore what was changed last frame to background before that frame;
 			for (pi = 0; pi < pcount; ++pi) {
 				if (g->history[pi]) {
 					memcpy(&g->out[pi * 4], &g->background[pi * 4], 4);
@@ -6558,17 +6538,17 @@ static stbi_uc* stbi__gif_load_next(stbi__context* s, stbi__gif* g, int* comp, i
 			}
 		}
 		else {
-			// This is a non-disposal case eithe way, so just 
+			// This is a non-disposal case eithe way, so just
 			// leave the pixels as is, and they will become the new background
 			// 1: do not dispose
 			// 0:  not specified.
 		}
 
-		// background is what out is after the undoing of the previou frame; 
+		// background is what out is after the undoing of the previou frame;
 		memcpy(g->background, g->out, 4 * g->w * g->h);
 	}
 
-	// clear my history; 
+	// clear my history;
 	memset(g->history, 0x00, g->w * g->h);        // pixels that were affected previous frame
 
 	for (;;) {
@@ -6625,13 +6605,13 @@ static stbi_uc* stbi__gif_load_next(stbi__context* s, stbi__gif* g, int* comp, i
 			o = stbi__process_gif_raster(s, g);
 			if (!o) return NULL;
 
-			// if this was the first frame, 
+			// if this was the first frame,
 			pcount = g->w * g->h;
 			if (first_frame && (g->bgindex > 0)) {
 				// if first frame, any pixel not drawn to gets the background color
 				for (pi = 0; pi < pcount; ++pi) {
 					if (g->history[pi] == 0) {
-						g->pal[g->bgindex][3] = 255; // just in case it was made transparent, undo that; It will be reset next frame if need be; 
+						g->pal[g->bgindex][3] = 255; // just in case it was made transparent, undo that; It will be reset next frame if need be;
 						memcpy(&g->out[pi * 4], &g->pal[g->bgindex], 4);
 					}
 				}
@@ -6733,12 +6713,12 @@ static void* stbi__load_gif_main(stbi__context* s, int** delays, int* x, int* y,
 			}
 		} while (u != 0);
 
-		// free temp buffer; 
+		// free temp buffer;
 		STBI_FREE(g.out);
 		STBI_FREE(g.history);
 		STBI_FREE(g.background);
 
-		// do the final conversion after loading everything; 
+		// do the final conversion after loading everything;
 		if (req_comp && req_comp != 4)
 			out = stbi__convert_format(out, 4, req_comp, layers * g.w, g.h);
 
@@ -6764,7 +6744,7 @@ static void* stbi__gif_load(stbi__context* s, int* x, int* y, int* comp, int req
 		*y = g.h;
 
 		// moved conversion to after successful load so that the same
-		// can be done for multiple frames. 
+		// can be done for multiple frames.
 		if (req_comp && req_comp != 4)
 			u = stbi__convert_format(u, 4, req_comp, g.w, g.h);
 	}
@@ -6773,7 +6753,7 @@ static void* stbi__gif_load(stbi__context* s, int* x, int* y, int* comp, int req
 		STBI_FREE(g.out);
 	}
 
-	// free buffers needed for multiple frame loading; 
+	// free buffers needed for multiple frame loading;
 	STBI_FREE(g.history);
 	STBI_FREE(g.background);
 
@@ -7621,7 +7601,6 @@ STBIDEF int stbi_is_16_bit_from_callbacks(stbi_io_callbacks const* c, void* user
 	  0.50  (2006-11-19)
 			  first released version
 */
-
 
 /*
 ------------------------------------------------------------------------------

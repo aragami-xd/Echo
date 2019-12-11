@@ -1,5 +1,5 @@
 #include "Shader.h"
-#include "Renderer.h"
+#include "Macro.h"
 #include <GL/glew.h>
 
 #include <sstream>
@@ -8,59 +8,27 @@
 
 using namespace std;
 
-Shader::Shader(const string& path) :
-	file(path), id(0)
+Shader::Shader(const string& vertexPath, const string& fragmentPath) :
+	vertexSource(vertexPath), fragmentSource(fragmentPath), id(0)
 {
-	// new shader source code
-	ShaderSource source = ParseShader(path);
-
 	// create the shader
-	id = CreateShader(source.Vertex, source.Fragment);
+	id = CreateShader(ParseShader(vertexPath), ParseShader(fragmentPath));
 }
 
-ShaderSource Shader::ParseShader(const string& path)
+string Shader::ParseShader(const string& path)
 {
 	// open the file
 	ifstream source(path);
 	if (!source)
 	{
 		cout << "cannot open shader file" << endl;
-		return { "","" };
+		return "";
 	}
 
-	// enum class determines the type of the shader of a certain line
-	enum class ShaderType
-	{
-		NONE = -1,
-		VERTEX = 0,
-		FRAGMENT = 1
-	};
+	stringstream ss;
+	ss << source.rdbuf();
 
-	ShaderType type = ShaderType::NONE;
-
-	string line;
-	stringstream ss[2];
-
-	// read till the last line
-	while (getline(source, line))
-	{
-		cout << line << endl;
-
-		// if that line contains the #shader keyword then change the shader type as specified
-		if (line.find("#shader") != string::npos)
-		{
-			if (line.find("vertex") != string::npos)
-				type = ShaderType::VERTEX;
-			else if (line.find("fragment") != string::npos)
-				type = ShaderType::FRAGMENT;
-		}
-		else
-		{
-			ss[(int)type] << line << "\n";
-		}
-	}
-
-	return { ss[0].str(), ss[1].str() };
+	return ss.str();
 }
 
 unsigned int Shader::CompileShader(unsigned int type, const string& source)
@@ -96,6 +64,8 @@ unsigned int Shader::CompileShader(unsigned int type, const string& source)
 
 unsigned int Shader::CreateShader(const string& vertex, const string& fragment)
 {
+	cout << "[vertex shader]\n" << vertex << "\n\n[fragment shader]\n" << fragment << "\n" << endl;
+
 	// create the program and call the compile function to compile and attach the 2 shaders
 	unsigned int program = glCreateProgram();
 
@@ -107,8 +77,8 @@ unsigned int Shader::CreateShader(const string& vertex, const string& fragment)
 	GLCall(glLinkProgram(program));
 	GLCall(glValidateProgram(program));
 
-	GLCall(glDetachShader(program, vs));
-	GLCall(glDetachShader(program, fs));
+	GLCall(glDeleteShader(vs));
+	GLCall(glDeleteShader(fs));
 
 	return program;
 }
@@ -128,12 +98,12 @@ int Shader::GetUniformLocation(const string& name)
 	return location;
 }
 
-void Shader::SetUniform4f(string name, float v0, float v1, float v2, float v3)
+void Shader::SetUniform4f(const string& name, float v0, float v1, float v2, float v3)
 {
 	GLCall(glUniform4f(GetUniformLocation(name), v0, v1, v2, v3));
 }
 
-void Shader::SetUniform1i(string name, int v)
+void Shader::SetUniform1i(const string& name, int v)
 {
 	GLCall(glUniform1i(GetUniformLocation(name), v));
 }
