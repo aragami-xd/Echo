@@ -11,15 +11,15 @@ const int Circle::scaleAR = 5000;
 const float Circle::scaleCS = 0.5f;
 
 // constructor
-Circle::Circle(float cx, float cy, Color ccolor, float cAR, float cCS, float cOD, int cbeat) :
-	x(cx),
-	y(cy),
-	circleColor(ccolor),
-	approachRate(cAR),
-	circleSize(cCS),
-	overallDifficulty(cOD),
-	beatTime(cbeat)
+Circle::Circle(float cx, float cy, Color ccolor, float cAR, float cCS, float cOD, int cbeat)
 {
+	x = cx;
+	y = cy;
+	circleColor = ccolor;
+	approachRate = cAR;
+	overallDifficulty = cOD;
+	beatTime = cbeat;
+
 	// timestamps: animationLength, 300, 100, 50, animationTime, endTime
 	animationLength = scaleAR / approachRate;
 	threeHundred = animationLength / (3 * overallDifficulty);
@@ -30,7 +30,7 @@ Circle::Circle(float cx, float cy, Color ccolor, float cAR, float cCS, float cOD
 	endTime = beatTime + fifty;
 
 	// circle size
-	circleRadius = scaleCS / circleSize;
+	objectRadius = scaleCS / circleSize;
 
 	// setup the dots on the circle and the initial ring
 	circleDot[0] = x;
@@ -43,8 +43,8 @@ Circle::Circle(float cx, float cy, Color ccolor, float cAR, float cCS, float cOD
 	{
 		angle = 2 * PI * i / ::DotCount;
 
-		circleDot[i] = x + circleRadius * cos(angle) * ::HeightDivWidth;
-		circleDot[i + 1] = y + circleRadius * sin(angle);
+		circleDot[i] = x + objectRadius * cos(angle) * ::HeightDivWidth;
+		circleDot[i + 1] = y + objectRadius * sin(angle);
 
 		ringDot[i] = circleDot[i] * 2;
 		ringDot[i + 1] = circleDot[i + 1] * 2;
@@ -82,8 +82,8 @@ VertexBuffer* Circle::GetRingBuffer(int timeStamp)
 	for (int i = 2; i < ::DotCount * 2 + 2; i += 2)
 	{
 		angle = 2 * PI * i / ::DotCount;
-		ringDot[i] = x + circleRadius * cos(angle) * ::HeightDivWidth * remaining;
-		ringDot[i + 1] = y + circleRadius * sin(angle) * remaining;
+		ringDot[i] = x + objectRadius * cos(angle) * ::HeightDivWidth * remaining;
+		ringDot[i + 1] = y + objectRadius * sin(angle) * remaining;
 	}
 
 	// set the data to the buffer

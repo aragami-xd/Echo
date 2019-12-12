@@ -30,9 +30,12 @@
     <ClInclude Include="Osu!Trainer\Source\Buffers\VertexBuffer.h" />
     <ClInclude Include="Osu!Trainer\Source\Buffers\VertexBufferLayout.h" />
     <ClInclude Include="Osu!Trainer\Source\Components\Circle.h" />
+    <ClInclude Include="Osu!Trainer\Source\Components\Object.h" />
+    <ClInclude Include="Osu!Trainer\Source\Components\Slider.h" />
     <ClInclude Include="Osu!Trainer\Source\Engine\Color.h" />
     <ClInclude Include="Osu!Trainer\Source\Components\Core.h" />
     <ClInclude Include="Osu!Trainer\Source\Engine\Attribute.h" />
+    <ClInclude Include="Osu!Trainer\Source\Engine\ObjectFormat.h" />
     <ClInclude Include="Osu!Trainer\Source\Engine\Parser.h" />
   </ItemGroup>
   <ItemGroup>
@@ -45,6 +48,9 @@
     <ClCompile Include="Osu!Trainer\Source\Buffers\VertexBuffer.cpp" />
     <ClCompile Include="Osu!Trainer\Source\Components\Circle.cpp" />
     <ClCompile Include="Osu!Trainer\Source\Components\main.cpp" />
+    <ClCompile Include="Osu!Trainer\Source\Components\Core.cpp" />
+    <ClCompile Include="Osu!Trainer\Source\Components\Slider.cpp" />
+    <ClCompile Include="Osu!Trainer\Source\Components\Object.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Osu!Trainer\Library\Beatmaps\map.txt" />

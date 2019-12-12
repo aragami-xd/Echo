@@ -4,54 +4,13 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-
-using namespace std;
-
-// circle object
-struct MapCircle
-{
-	// position of the circle
-	float X{ 0.0f };
-	float Y{ 0.0f };
-
-	// timestamp that the beat starts
-	int BeatStart{ 0 };
-
-	// the instrument that will be played with the circle
-	Instrument instrument{ Instrument::STD_DRUM };
-};
-
-// slider object
-struct MapSlider
-{
-	// position of the start of the slider
-	float X{ 0.0f };
-	float Y{ 0.0f };
-
-	// timestamp that the beat starts and ends
-	int BeatStart{ 0 };
-	int BeatEnd{ 0 };
-
-	// the slider curve equation
-	string Equation{ "" };
-
-	// instrumental that will be played at the start/end of the circle and each tick
-	Instrument instrument{ Instrument::STD_DRUM };
-	Instrument tick{ Instrument::STD_TICK };
-};
-
-// object instrument: drump, clap, whistle, tick...
-enum class Instrument
-{
-	STD_DRUM = 0,
-	STD_CLAP = 1,
-	STD_WHISTLE = 2,
-	STD_TICK = 3,
-};
+#include "MapCircle.h"
+#include "MapSlider.h"
 
 // types of object
 enum class ParserType
 {
+	NONE = -1,
 	CIRCLE = 1,
 	SLIDER = 2,
 };
@@ -61,21 +20,31 @@ class Parser
 {
 private:
 	// the map itself
-	static ifstream map;
+	static std::ifstream map;
 
 	// the current line
 	static std::string line;
 
+	// metadata - song setup (there will be metadata for song detail)
+	static float approachRate;
+	static float circleSize;
+	static float overallDifficulty;
+	static float hpDrain;
+
+	static void ParseMetadata()
+	{
+	}
+
 public:
 	// load the map
-	static void Load(string path)
+	static void Load(std::string& path)
 	{
 		// check the map
 		map.open(path);
-		if (!map.open)
+		if (!map)
 		{
-			cout << "beatmap not loaded" << endl;
-			//throw exception();
+			std::cout << "beatmap not loaded" << std::endl;
+			return;
 		}
 
 		// when the map is loaded, the first line will be read
@@ -86,15 +55,17 @@ public:
 	// peek ahead one line to know which type the next object is
 	static ParserType Peek()
 	{
-		if (line.find("#circle") != line.npos)
-			return ParserType::CIRCLE;
+		if (line.empty())
+			return ParserType::NONE;	// eof
+		else if (line.find("#circle") != line.npos)
+			return ParserType::CIRCLE;	// circle
 		else if (line.find("#slider") != line.npos)
-			return ParserType::SLIDER;
+			return ParserType::SLIDER;	// slider
 	}
 
 	/* parsing functions
-		- peek ahead before reading these object in to know which type of
-		object appears next (circle, slider...)
+		- you should peek ahead before reading these object in to know which
+		type of	object appears next (circle, slider...)
 		- if call the right function then nothing special will happen
 		- if call the wrong type and the stream is too long, the function
 		will discard the remaining
@@ -103,11 +74,11 @@ public:
 	*/
 
 	// if stringstream.eof(): a wrong function has been called, print out warning
-	static inline bool StreamEnd(stringstream& ss)
+	static inline bool StreamEnd(std::stringstream& ss)
 	{
 		if (ss.eof())
 		{
-			cout << "warning: wrong object type parsed" << endl;
+			std::cout << "warning: wrong object type parsed" << std::endl;
 			return false;
 		}
 		return true;
@@ -116,31 +87,38 @@ public:
 	// read the line in as a circle
 	static MapCircle ParseCircle()
 	{
+		// default data
 		float x = 0.0f, y = 0.0f;
 		int beatStart = 0;
 		Instrument instrument = Instrument::STD_DRUM;
 
-		stringstream ss(line);
-		string token;
+		std::stringstream ss(line);
+		std::string token;
 
 		ss >> token;		// discard first type token
 
 		if (StreamEnd(ss))
 		{
 			ss >> token;	// x
-			x = stof(token);
+			x = std::stof(token);
 		}
 
 		if (StreamEnd(ss))
 		{
 			ss >> token;	// y
-			y = stof(token);
+			y = std::stof(token);
 		}
 
 		if (StreamEnd(ss))
 		{
 			ss >> token;	// beatTime
-			beatStart = stoi(token);
+			beatStart = std::stoi(token);
+		}
+
+		if (StreamEnd(ss))
+		{
+			ss >> token;	// instrument passed in as int
+			instrument = (Instrument)(std::stoi(token));
 		}
 
 		// read the next line
@@ -152,39 +130,41 @@ public:
 	// read the line in as a slider
 	static MapSlider ParseSlider()
 	{
+		// default data
 		float x = 0.0f, y = 0.0f;
 		int beatStart = 0, beatEnd = 0;
-		string equation = "1";
+		std::vector<int> beatTick = {};
+		std::string equation = "1";
 		Instrument instrument = Instrument::STD_DRUM;
 		Instrument tick = Instrument::STD_TICK;
 
-		stringstream ss(line);
-		string token;
+		std::stringstream ss(line);
+		std::string token;
 
 		ss >> token;		// discard the first type token
 
 		if (StreamEnd(ss))
 		{
 			ss >> token;	// x
-			x = stof(token);
+			x = std::stof(token);
 		}
 
 		if (StreamEnd(ss))
 		{
 			ss >> token;	// y
-			y = stof(token);
+			y = std::stof(token);
 		}
 
 		if (StreamEnd(ss))
 		{
 			ss >> token;	// beatStart
-			beatStart = stoi(token);
+			beatStart = std::stoi(token);
 		}
 
 		if (StreamEnd(ss))
 		{
 			ss >> token;	// beatEnd
-			beatEnd = stoi(token);
+			beatEnd = std::stoi(token);
 		}
 
 		if (StreamEnd(ss))
@@ -192,10 +172,28 @@ public:
 			ss >> equation;	// slider curve equation
 		}
 
+		if (StreamEnd(ss))
+		{
+			ss >> token;	// instrument
+			instrument = (Instrument)(std::stoi(token));
+		}
+
+		if (StreamEnd(ss))
+		{
+			ss >> token;	// tick instrument
+			tick = (Instrument)(std::stoi(token));
+		}
+
+		while (!ss.eof())
+		{
+			ss >> token;
+			beatTick.push_back(std::stoi(token));
+		}
+
 		// read the next line
 		getline(map, line);
 
-		return { x, y, beatStart, beatEnd, equation, instrument, tick };
+		return { x, y, beatStart, beatEnd, beatTick, equation, instrument, tick };
 	}
 
 };
