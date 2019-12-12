@@ -195,5 +195,4 @@ public:
 
 		return { x, y, beatStart, beatEnd, beatTick, equation, instrument, tick };
 	}
-
 };

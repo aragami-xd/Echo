@@ -7,15 +7,14 @@
 #include "../Buffers/Shader.h"
 #include "../Buffers/Texture.h"
 
-#include <list>
 #include <vector>
 
 class Core
 {
 private:
 	// all the circle and slider parsed from the map
-	std::list<Circle*> allCircle;
-	std::list<Slider*> allSlider;
+	std::vector<Circle*> allCircle;
+	std::vector<Slider*> allSlider;
 
 	// metadata - song setup
 	float approachRate{ 9.5f };

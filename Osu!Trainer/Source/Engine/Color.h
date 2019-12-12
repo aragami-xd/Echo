@@ -21,4 +21,3 @@ struct Color
 #define COLOR_RED Color(1.0f, 0.0f, 0.0f, 0.0f)
 #define COLOR_YELLOW Color(1.0f, 1.0f, 0.0f, 0.0f)
 #define COLOR_LIGHT_YELLOW (1.0f, 1.0f, 0.88f, 0.0f)
-

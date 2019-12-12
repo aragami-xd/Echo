@@ -26,12 +26,11 @@ private:
 	std::string equation;	// example equations: "1x^-2", "2x^3-5x^2+1"...
 	std::vector<int> constant;
 	std::vector<int> exponant;
-	
 
 	// function breaks down equation string into constant and exponants
 	void EquationParser();
 
 public:
-	Slider(float x, float y, float AR, float CS, float OD, int beatStart, int beatEnd, 
+	Slider(float x, float y, float AR, float CS, float OD, int beatStart, int beatEnd,
 		std::vector<int> beatTick, Color sliderColor, Color sliderBallColor);
 };
