@@ -11,14 +11,14 @@ const int Circle::scaleAR = 5000;
 const float Circle::scaleCS = 0.5f;
 
 // constructor
-Circle::Circle(float cx, float cy, Color ccolor, float cAR, float cCS, float cOD, int cbeat)
+Circle::Circle(float cx, float cy, float cAR, float cCS, float cOD, int cbeat, Color ccolor)
 {
 	x = cx;
 	y = cy;
-	circleColor = ccolor;
 	approachRate = cAR;
 	overallDifficulty = cOD;
 	beatTime = cbeat;
+	circleColor = ccolor;
 
 	// timestamps: animationLength, 300, 100, 50, animationTime, endTime
 	animationLength = scaleAR / approachRate;

@@ -6,7 +6,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Osu!Trainer\Source\Buffers\stb\stb_image.h" />
     <ClInclude Include="Osu!Trainer\Source\Buffers\CircleRenderer.h" />
     <ClInclude Include="Osu!Trainer\Source\Buffers\IndexBuffer.h" />
     <ClInclude Include="Osu!Trainer\Source\Buffers\Renderer.h" />
@@ -21,9 +20,18 @@
     <ClInclude Include="Osu!Trainer\Source\Buffers\Macro.h" />
     <ClInclude Include="Osu!Trainer\Source\Components\Core.h" />
     <ClInclude Include="Osu!Trainer\Source\Engine\Color.h" />
-    <ClInclude Include="Osu!Trainer\Source\Engine\ObjectFormat.h" />
     <ClInclude Include="Osu!Trainer\Source\Components\Slider.h" />
     <ClInclude Include="Osu!Trainer\Source\Components\Object.h" />
+    <ClInclude Include="Osu!Trainer\Source\Engine\MapCircle.h" />
+    <ClInclude Include="Osu!Trainer\Source\Engine\MapSlider.h" />
+    <ClInclude Include="Osu!Trainer\Source\Engine\Instrument.h" />
+    <ClInclude Include="Osu!Trainer\Dependencies\vendor\stb\stb_image.h" />
+    <ClInclude Include="Osu!Trainer\Dependencies\GLEW\include\GL\eglew.h" />
+    <ClInclude Include="Osu!Trainer\Dependencies\GLEW\include\GL\glew.h" />
+    <ClInclude Include="Osu!Trainer\Dependencies\GLEW\include\GL\glxew.h" />
+    <ClInclude Include="Osu!Trainer\Dependencies\GLEW\include\GL\wglew.h" />
+    <ClInclude Include="Osu!Trainer\Dependencies\GLFW\include\GLFW\glfw3.h" />
+    <ClInclude Include="Osu!Trainer\Dependencies\GLFW\include\GLFW\glfw3native.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Osu!Trainer\Source\Buffers\CircleRenderer.cpp" />
@@ -50,6 +58,16 @@
     <None Include="Documentation\osu!trainer.drawio" />
     <None Include="Osu!Trainer\Source\Shaders\Vertex.shader" />
     <None Include="Osu!Trainer\Source\Shaders\Fragment.shader" />
+    <None Include="Osu!Trainer\Dependencies\GLEW\doc\advanced.html" />
+    <None Include="Osu!Trainer\Dependencies\GLEW\doc\basic.html" />
+    <None Include="Osu!Trainer\Dependencies\GLEW\doc\build.html" />
+    <None Include="Osu!Trainer\Dependencies\GLEW\doc\credits.html" />
+    <None Include="Osu!Trainer\Dependencies\GLEW\doc\glew.html" />
+    <None Include="Osu!Trainer\Dependencies\GLEW\doc\glxew.html" />
+    <None Include="Osu!Trainer\Dependencies\GLEW\doc\index.html" />
+    <None Include="Osu!Trainer\Dependencies\GLEW\doc\install.html" />
+    <None Include="Osu!Trainer\Dependencies\GLEW\doc\log.html" />
+    <None Include="Osu!Trainer\Dependencies\GLEW\doc\wglew.html" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Osu!Trainer\Library\Textures\thumb.png" />

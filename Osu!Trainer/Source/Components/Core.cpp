@@ -18,12 +18,10 @@ void Core::DrawAllObject()
 {
 	for (auto x : allCircle)
 	{
-
 	}
 
 	for (auto x : allSlider)
 	{
-
 	}
 }
 
