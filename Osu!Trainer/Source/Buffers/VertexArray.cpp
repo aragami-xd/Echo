@@ -5,33 +5,45 @@ using namespace std;
 
 VertexArray::VertexArray()
 {
-	GLCall(glGenVertexArrays(1, &elementID));
+	glGenVertexArrays(1, &elementID);
 }
 
-void VertexArray::AddBuffer(VertexBuffer& vb, VertexBufferLayout& vbl)
+void VertexArray::AddBuffer(const VertexBuffer& vb, const VertexBufferObject& vbo) 
 {
 	Bind();
 	vb.Bind();
-	const auto& elements = vbl.GetElement();
+
+	// get vbl elements
+	const auto& elements = vbo.GetElement();
 	unsigned int offset = 0;
 
-	for (int i = 0; i < elements.size(); i++)
+	// add each element of vbl into the vao
+	for (unsigned int i = 0; i < elements.size(); i++)
 	{
-		glEnableVertexAttribArray(0);
-		GLCall(glVertexAttribPointer(i, elements[i].Count, elements[i].Type,
-			elements[i].Normalized, vbl.GetStride(), (const void*)offset);
-		offset += elements[i].Count * VertexBufferElement::GetSizeOfType(elements[i].Type));
+		glEnableVertexAttribArray(i);
+
+		glVertexAttribPointer(
+			i,
+			elements[i].Count,
+			elements[i].Type,
+			elements[i].Normalized,
+			vbo.GetStride(),
+			(const void*)offset
+		);
+
+		// increment to the next offset
+		offset += elements[i].Count * VertexBufferElement::GetSizeOfType(elements[i].Type);
 	}
 }
 
 void VertexArray::Bind() const
 {
-	GLCall(glBindVertexArray(elementID));
+	glBindVertexArray(elementID);
 }
 
 void VertexArray::Unbind() const
 {
-	GLCall(glBindVertexArray(0));
+	glBindVertexArray(0);
 }
 
 VertexArray::~VertexArray()

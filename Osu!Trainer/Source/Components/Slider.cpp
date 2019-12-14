@@ -5,3 +5,17 @@ using namespace std;
 void Slider::EquationParser()
 {
 }
+
+Slider::Slider(float sx, float sy, int sBeatStart, int sBeatEnd, std::vector<int> sBeatTick, string sEquation)
+{
+	x = sx;
+	y = sy;
+	beatStartTime = sBeatStart;
+	beatEndTime = sBeatEnd;
+	beatTickTime = sBeatTick;
+	equation = sEquation;
+
+	animationTime = beatStartTime - animationLength;
+	endTime = beatEndTime + fifty;
+
+}

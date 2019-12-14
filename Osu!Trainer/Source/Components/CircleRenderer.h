@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../Engine/Color.h"
+
 class CircleRenderer
 {
 private:
@@ -7,5 +9,5 @@ private:
 	static void DrawInCircle(float* circle);
 
 public:
-	static void DrawCircle(float* circle, float* ring, bool renderRing);
+	static void DrawCircle(float* circle, float* ring, bool renderRing, Color color);
 };

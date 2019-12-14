@@ -1,32 +1,30 @@
 #include "VertexBuffer.h"
-#include "Macro.h"
-#include <GL/glew.h>
 
 using namespace std;
 
-VertexBuffer::VertexBuffer(const void* data, unsigned int size)
+VertexBuffer::VertexBuffer(const void* data, unsigned int size, GLenum flag /* = GL_DYNAMIC_DRAW*/)
 {
-	GLCall(glGenBuffers(1, &vertexID));
-	GLCall(glBindBuffer(GL_ARRAY_BUFFER, vertexID));
-	GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW));
+	glGenBuffers(1, &vertexID);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexID);
+	glBufferData(GL_ARRAY_BUFFER, size, data, flag);
 }
 
-void VertexBuffer::Update(const void* data, unsigned int size)
+void VertexBuffer::Update(const void* data, unsigned int size, GLenum flag /* = GL_DYNAMIC_DRAW*/)
 {
-	GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW));
+	glBufferData(GL_ARRAY_BUFFER, size, data, flag);
 }
 
 void VertexBuffer::Bind() const
 {
-	GLCall(glBindBuffer(GL_ARRAY_BUFFER, vertexID));
+	glBindBuffer(GL_ARRAY_BUFFER, vertexID);
 }
 
 void VertexBuffer::Unbind() const
 {
-	GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 VertexBuffer::~VertexBuffer()
 {
-	GLCall(glDeleteBuffers(1, &vertexID));
+	glDeleteBuffers(1, &vertexID);
 }

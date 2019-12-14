@@ -1,7 +1,11 @@
 #pragma once
 
 #include "Object.h"
-#include "../Buffers/VertexBuffer.h"
+#include "../Buffers/VertexArray.h"
+#include "../Buffers/IndexBuffer.h"
+#include "../Buffers/Shader.h"
+
+#include <vector>
 
 class Circle : public Object
 {
@@ -13,19 +17,15 @@ private:
 	// when the circle disappears
 	int endTime;
 
-	// color of the circle
-	Color circleColor{ COLOR_LIGHT_BLUE };
-
-	// points on the surface of the circle, used to draw the circle later on
-	float circleDot[::DotCount * 2 + 2];
-	float ringDot[::DotCount * 2 + 2];
-
-	// vertex buffers created from the data above
-	VertexBuffer* vbCircle, * vbRing;
+	// dots on the surface of the inner circle at (x,y) = (0.0f, 0.0f)
+	// they're the same with every circle, a translation matrix will handle where they're placed
+	std::vector<float> circleDot;
+	// dots on the surface of the outer ing, they're tied with the circle
+	std::vector<float> ringDot;
 
 public:
 	// circle constructor
-	Circle(float x, float y, float AR, float CS, float OD, int beat, Color color);
+	Circle(float x, float y, int beat);
 
 	// get beat time, animation time and end time
 	inline int GetBeatTime() {
@@ -39,16 +39,15 @@ public:
 	}
 
 	// get the vertex buffers
-	inline VertexBuffer* GetCircleBuffer()
+	inline std::vector<float> GetCircleDot()
 	{
-		return vbCircle;
+		return circleDot;
 	}
 	// ring buffer will bind new data and return the buffer depend on the timestamp
-	VertexBuffer* GetRingBuffer(int timestamp);
+	std::vector<float> GetRingDot(int timestamp);
 
 	// getScore will return the score when the circle is tapped at a certain moment
 	int GetScore(int timestamp);
 
-	// delete the buffers
-	~Circle();
+	void Draw();
 };

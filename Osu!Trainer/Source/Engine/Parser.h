@@ -15,27 +15,28 @@ enum class ParserType
 	SLIDER = 2,
 };
 
-/* the parser contains only static function, used to parse the data from the beatmap file */
-class Parser
+/* the parser contains only static functions, used to parse the data from the beatmap file */
+namespace Parser
 {
-private:
-	// the map itself
-	static std::ifstream map;
+	// anonymous namespace used to hide the private members
+	namespace {
+		// the map itself
+		static std::fstream map;
 
-	// the current line
-	static std::string line;
+		// the current line
+		static std::string line;
 
-	// metadata - song setup (there will be metadata for song detail)
-	static float approachRate;
-	static float circleSize;
-	static float overallDifficulty;
-	static float hpDrain;
+		// metadata - song setup (there will be metadata for song detail)
+		static float approachRate;
+		static float circleSize;
+		static float overallDifficulty;
+		static float hpDrain;
 
-	static void ParseMetadata()
-	{
+		static void ParseMetadata()
+		{
+		}
 	}
 
-public:
 	// load the map
 	static void Load(std::string& path)
 	{
@@ -61,6 +62,8 @@ public:
 			return ParserType::CIRCLE;	// circle
 		else if (line.find("#slider") != line.npos)
 			return ParserType::SLIDER;	// slider
+		else
+			throw std::exception();		// this shouldn't happen
 	}
 
 	/* parsing functions
@@ -73,7 +76,7 @@ public:
 		will fill the missing data with the default one
 	*/
 
-	// if stringstream.eof(): a wrong function has been called, print out warning
+	// if stringstream::eof(): a wrong function has been called, print out warning
 	static inline bool StreamEnd(std::stringstream& ss)
 	{
 		if (ss.eof())

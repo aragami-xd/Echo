@@ -4,9 +4,8 @@
 
 #include "../Engine/Attribute.h"
 #include "../Buffers/Renderer.h"
-#include "../Buffers/Shader.h"
 #include "../Buffers/Texture.h"
-#include "../Buffers/IndexBuffer.h"
+#include "Core.h"
 
 using namespace std;
 
@@ -15,6 +14,8 @@ int main(void)
 {
 	glfwWindowHint(GLFW_SAMPLES, 4); // 4x antialiasing
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // use OpenGL core profile
+	glfwWindowHint(GLFW_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_VERSION_MINOR, 6);
 
 	/* main window and its size */
 	GLFWwindow* window;
@@ -44,10 +45,10 @@ int main(void)
 	float inc = 0.01f;
 
 	float position[] = {
-		-0.5f, -0.5f, 0.0f, 0.0f,
-		 0.5f, -0.5f, 1.0f, 0.0f,
-		 0.5f,  0.5f, 1.0f, 1.0f,
-		-0.5f,  0.5f, 0.0f, 1.0f
+		-0.5f, -0.5f, //0.0f, 0.0f,
+		 0.5f, -0.5f, //1.0f, 0.0f,
+		 0.5f,  0.5f, //1.0f, 1.0f,
+		-0.5f,  0.5f, //0.0f, 1.0f
 	};
 
 	unsigned int indices[] = {
@@ -58,28 +59,19 @@ int main(void)
 	// vertex array object, vertex buffer
 	VertexArray va;
 	VertexBuffer vb(&position, sizeof(position));
-	VertexBufferLayout vbl;
 
-	vbl.Push<float>(2);
-	vbl.Push<float>(2);
-	va.AddBuffer(vb, vbl);
-	va.Bind();
-	vb.Bind();
+	VertexBufferObject vbo;
+	vbo.Push<float>(2);
+	va.AddBuffer(vb, vbo);
 
 	IndexBuffer ib(indices, 6);
-	ib.Bind();
 
 	// new shader source code
-	Shader shader("Osu!Trainer/Source/Shaders/Vertex.shader", "Osu!Trainer/Source/Shaders/Fragment.shader");
+	Shader shader("Osu!Trainer/Source/Shaders/Shader.vert", "Osu!Trainer/Source/Shaders/Shader.frag");
 	shader.Bind();
 
-	// renderer class
-	Renderer renderer;
-
-	// texture class
-	//Texture texture("Osu!Trainer/Library/Textures/thumb.png");
-	//texture.Bind();
-	//shader.SetUniform1i("vTexture", 0);	// the value and the texture buffer slot must be the same
+	Object::SetMetadata(9.0f, 4.0f, 9.0f);
+	Circle circle(0.0f, 0.0f, 0);
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
@@ -91,8 +83,8 @@ int main(void)
 
 		/* Render here */
 
-		shader.SetUniform4f("uColor", red, 0.2f, 0.8f, 1.0f);
-		renderer.Draw(va, ib, shader);
+		// shader.SetUniform4f("uColor", red, 0.2f, 0.8f, 1.0f);
+		// Renderer::Draw(va, ib, shader);
 
 		// cycle through the color
 		if (red > 1.0f)

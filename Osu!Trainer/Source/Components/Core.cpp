@@ -1,9 +1,18 @@
 #include "Core.h"
+#include "CircleRenderer.h"
+#include "../Engine/Attribute.h"
 #include "../Engine/Parser.h"
 using namespace std;
 
 Core::Core()
 {
+	// setup time
+	time = 0;
+	start = (int)clock();
+	prevFrame = start;
+
+	// create new shader
+	shader = new Shader(::VertexPath, ::FragmentPath);
 }
 
 void Core::DrawOneCircle(Circle* circle)
@@ -16,13 +25,22 @@ void Core::DrawOneSlider(Slider* slider)
 
 void Core::DrawAllObject()
 {
-	for (auto x : allCircle)
+	// loop through circle
+	for (int i = circleIndex; i < allCircle.size(); i++)
 	{
+		// every circle afterwards are not supposed to appear yet
+		if (time < allCircle[i]->GetAnimationTime())	
+			break;
+		else if (time > allCircle[i]->GetEndTime())
+		{
+			circleIndex++;
+			delete allCircle[i];
+		}
+
+		DrawOneCircle(allCircle[i]);
 	}
 
-	for (auto x : allSlider)
-	{
-	}
+	// loop through sliders
 }
 
 void Core::MapInit(std::string path)
@@ -40,11 +58,7 @@ void Core::MapInit(std::string path)
 			Circle* newCircle = new Circle(
 				circle.X,				// x
 				circle.Y,				// y
-				approachRate,			// AR
-				circleSize,				// CS
-				overallDifficulty,		// OD
-				circle.BeatStart,		// beatStart
-				colorList.front()		// circleColor
+				circle.BeatStart		// beatStart
 			);
 			allCircle.push_back(newCircle);
 		}
@@ -55,14 +69,10 @@ void Core::MapInit(std::string path)
 			Slider* newSlider = new Slider(
 				slider.X,				// x
 				slider.Y,				// y
-				approachRate,			// AR
-				circleSize,				// CS
-				overallDifficulty,		// OD
 				slider.BeatStart,		// beatStart
 				slider.BeatEnd,			// beatEnd
 				slider.BeatTick,		// beatTick(s)
-				colorList.front(),		// sliderColor
-				colorList.front()		// sliderBallColor
+				slider.Equation			// curve equation
 			);
 			allSlider.push_back(newSlider);
 		}
@@ -71,8 +81,15 @@ void Core::MapInit(std::string path)
 
 void Core::Draw()
 {
+	DrawAllObject();
+	
+	// update the time
+	time = (int)clock() - start;
+	cout << time << " fps: " << 1000 / (float)(time - prevFrame) << endl;
+	prevFrame = time;
 }
 
 Core::~Core()
 {
+	delete shader;
 }

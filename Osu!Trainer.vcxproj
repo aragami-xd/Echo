@@ -25,7 +25,7 @@
     <ClInclude Include="Osu!Trainer\Dependencies\GLEW\include\GL\wglew.h" />
     <ClInclude Include="Osu!Trainer\Dependencies\GLFW\include\GLFW\glfw3.h" />
     <ClInclude Include="Osu!Trainer\Dependencies\GLFW\include\GLFW\glfw3native.h" />
-    <ClInclude Include="Osu!Trainer\Source\Buffers\CircleRenderer.h" />
+    <ClInclude Include="Osu!Trainer\Source\Components\CircleRenderer.h" />
     <ClInclude Include="Osu!Trainer\Source\Buffers\Macro.h" />
     <ClInclude Include="Osu!Trainer\Source\Buffers\IndexBuffer.h" />
     <ClInclude Include="Osu!Trainer\Source\Buffers\Renderer.h" />
@@ -34,7 +34,7 @@
     <ClInclude Include="Osu!Trainer\Source\Buffers\Texture.h" />
     <ClInclude Include="Osu!Trainer\Source\Buffers\VertexArray.h" />
     <ClInclude Include="Osu!Trainer\Source\Buffers\VertexBuffer.h" />
-    <ClInclude Include="Osu!Trainer\Source\Buffers\VertexBufferLayout.h" />
+    <ClInclude Include="Osu!Trainer\Source\Buffers\VertexBufferObject.h" />
     <ClInclude Include="Osu!Trainer\Source\Components\Circle.h" />
     <ClInclude Include="Osu!Trainer\Source\Engine\Instrument.h" />
     <ClInclude Include="Osu!Trainer\Source\Engine\MapSlider.h" />
@@ -47,7 +47,8 @@
     <ClInclude Include="Osu!Trainer\Source\Engine\Parser.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Osu!Trainer\Source\Buffers\CircleRenderer.cpp" />
+    <ClCompile Include="Osu!Trainer\Dependencies\vendor\stb\stb_image.cpp" />
+    <ClCompile Include="Osu!Trainer\Source\Components\CircleRenderer.cpp" />
     <ClCompile Include="Osu!Trainer\Source\Buffers\IndexBuffer.cpp" />
     <ClCompile Include="Osu!Trainer\Source\Buffers\Renderer.cpp" />
     <ClCompile Include="Osu!Trainer\Source\Buffers\Shader.cpp" />
@@ -57,8 +58,8 @@
     <ClCompile Include="Osu!Trainer\Source\Components\Circle.cpp" />
     <ClCompile Include="Osu!Trainer\Source\Components\main.cpp" />
     <ClCompile Include="Osu!Trainer\Source\Components\Core.cpp" />
-    <ClCompile Include="Osu!Trainer\Source\Components\Slider.cpp" />
     <ClCompile Include="Osu!Trainer\Source\Components\Object.cpp" />
+    <ClCompile Include="Osu!Trainer\Source\Components\Slider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Osu!Trainer\Library\Beatmaps\map.txt" />
@@ -78,11 +79,13 @@
     <None Include="Osu!Trainer\Dependencies\GLEW\doc\wglew.html" />
     <None Include="Osu!Trainer\Documentation\Design.md" />
     <None Include="Osu!Trainer\Documentation\osu!trainer.drawio" />
-    <None Include="Osu!Trainer\Source\Shaders\Fragment.shader" />
-    <None Include="Osu!Trainer\Source\Shaders\Vertex.shader" />
+    <None Include="Osu!Trainer\Source\Shaders\Shader.frag" />
+    <None Include="Osu!Trainer\Source\Shaders\Shader.vert" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\Pictures\wallpaper.jpg" />
+    <Image Include="Osu!Trainer\Library\Textures\smudge.jpg" />
     <Image Include="Osu!Trainer\Library\Textures\thumb.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

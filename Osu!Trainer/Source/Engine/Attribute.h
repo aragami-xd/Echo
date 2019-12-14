@@ -1,12 +1,18 @@
 #pragma once
+#include <string>
 
 /* this file contain public attributes related to how the game is set up */
 
 // number of dots to draw the circle
-const unsigned int DotCount = 120;
+constexpr int DotCount = 60;
 
 // height and width of the window and window aspect ratio
-const int WindowWidth = 720;	// height
-const int WindowHeight = 480;	// width
+constexpr int WindowWidth = 1280;	// height
+constexpr int WindowHeight = 720;	// width
 const float WidthDivHeight = WindowWidth / (float)WindowHeight;	// width divide height
 const float HeightDivWidth = WindowHeight / (float)WindowWidth;	// height divide width
+
+// paths
+const std::string VertexPath = "Osu!Trainer/Source/Shaders/Vertex.shader";		// vertex shader
+const std::string FragmentPath = "Osu!Trainer/Source/Shaders/Fragment.shader";	// fragment shader
+const std::string BeatmapPath = "Osu!Trainer/Library/Beatmaps/map.txt";			// beatmap

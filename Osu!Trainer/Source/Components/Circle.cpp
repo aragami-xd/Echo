@@ -1,58 +1,30 @@
 #include "Circle.h"
-#include <math.h>
-#include <iostream>
-#include <GL/glew.h>
+#include "../Buffers/Renderer.h"
+#include <cmath>
 
 using namespace std;
 
 constexpr double PI = 3.14;
 
-const int Circle::scaleAR = 5000;
-const float Circle::scaleCS = 0.5f;
-
 // constructor
-Circle::Circle(float cx, float cy, float cAR, float cCS, float cOD, int cbeat, Color ccolor)
+Circle::Circle(float cx, float cy, int cbeat)
 {
 	x = cx;
 	y = cy;
-	approachRate = cAR;
-	overallDifficulty = cOD;
 	beatTime = cbeat;
-	circleColor = ccolor;
-
-	// timestamps: animationLength, 300, 100, 50, animationTime, endTime
-	animationLength = scaleAR / approachRate;
-	threeHundred = animationLength / (3 * overallDifficulty);
-	oneHundred = threeHundred * 1.1;
-	fifty = threeHundred * 1.3;
 
 	animationTime = beatTime - animationLength;
 	endTime = beatTime + fifty;
 
-	// circle size
-	objectRadius = scaleCS / circleSize;
-
-	// setup the dots on the circle and the initial ring
-	circleDot[0] = x;
-	circleDot[1] = y;
-	ringDot[0] = x;
-	ringDot[1] = y;
 	// calculate the dots on the circle and the initial ring
-	float angle = 0;
-	for (int i = 2; i < ::DotCount * 2 + 2; i += 2)
+	for (double i = 0; i < 2 * PI; i += 2 * PI / ::DotCount)
 	{
-		angle = 2 * PI * i / ::DotCount;
+		circleDot.push_back(objectRadius * cos(i) * ::HeightDivWidth);
+		ringDot.push_back(x + circleDot.back() * 2);
 
-		circleDot[i] = x + objectRadius * cos(angle) * ::HeightDivWidth;
-		circleDot[i + 1] = y + objectRadius * sin(angle);
-
-		ringDot[i] = circleDot[i] * 2;
-		ringDot[i + 1] = circleDot[i + 1] * 2;
+		circleDot.push_back(objectRadius * sin(i));
+		ringDot.push_back(y + circleDot.back() * 2);
 	}
-
-	// create the buffers
-	vbCircle = new VertexBuffer(circleDot, sizeof(circleDot));
-	vbRing = new VertexBuffer(ringDot, sizeof(ringDot));
 }
 
 // get score will return the score based on the time stamp
@@ -74,26 +46,30 @@ int Circle::GetScore(int timestamp)
 }
 
 // get the ringDot array at a certain time
-VertexBuffer* Circle::GetRingBuffer(int timeStamp)
+vector<float> Circle::GetRingDot(int timeStamp)
 {
 	// calculate the dots on the ring again, based on the timestamp
-	float angle = 0;
-	float remaining = abs((beatTime - timeStamp) / (float)animationLength) + 1;
-	for (int i = 2; i < ::DotCount * 2 + 2; i += 2)
+	float remaining = abs((beatTime - timeStamp)) / (float)animationLength + 1;
+
+	for (double i = 2; i < 2 * PI; i += 2 * PI / ::DotCount)
 	{
-		angle = 2 * PI * i / ::DotCount;
-		ringDot[i] = x + objectRadius * cos(angle) * ::HeightDivWidth * remaining;
-		ringDot[i + 1] = y + objectRadius * sin(angle) * remaining;
+		ringDot[i] = x + objectRadius * cos(i) * ::HeightDivWidth * remaining;
+		ringDot[i + 1] = y + objectRadius * sin(i) * remaining;
 	}
 
-	// set the data to the buffer
-	vbRing->Update(ringDot, sizeof(ringDot));
-	return vbRing;
+	return ringDot;
 }
 
-// delete the buffers in the destructor
-Circle::~Circle()
+void Circle::Draw()
 {
-	delete vbCircle;
-	delete vbRing;
+	glBegin(GL_LINE_LOOP);
+
+	glEnable(GL_LINE_SMOOTH);
+	glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	for (double angle = 0; angle < 2 * 3.1415; angle += 0.001)
+		glVertex2f(objectRadius * cos(angle) * ::HeightDivWidth, objectRadius * sin(angle));
+	glEnd();
 }

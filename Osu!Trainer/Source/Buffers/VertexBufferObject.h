@@ -3,6 +3,7 @@
 #include <vector>
 #include <GL/glew.h>
 
+// essential elements of the vertex buffer object
 struct VertexBufferElement
 {
 	unsigned int Type;
@@ -21,13 +22,14 @@ struct VertexBufferElement
 	}
 };
 
-class VertexBufferLayout
+class VertexBufferObject
 {
 private:
 	std::vector<VertexBufferElement> elements;
 	unsigned int stride{ 0 };
 
 public:
+	// pushing a new element list to the vbo. a data type is required
 	template<typename T> void Push(unsigned int count)
 	{
 		static_assert(false);
@@ -36,21 +38,26 @@ public:
 	template<> void Push<float>(unsigned int count)
 	{
 		elements.push_back({ GL_FLOAT, count, GL_FALSE });
-		stride += count * sizeof(GL_FLOAT);
+		stride += count * sizeof(GLfloat);
 	}
 
 	template<> void Push<unsigned int>(unsigned int count)
 	{
 		elements.push_back({ GL_UNSIGNED_INT, count, GL_FALSE });
-		stride += count * sizeof(GL_UNSIGNED_INT);
+		stride += count * sizeof(GLuint);
 	}
 
 	template<> void Push<unsigned char>(unsigned int count)
 	{
-		elements.push_back({ GL_UNSIGNED_BYTE, count, GL_FALSE });
-		stride += count * sizeof(GL_UNSIGNED_BYTE);
+		elements.push_back({ GL_UNSIGNED_BYTE, count, GL_TRUE });
+		stride += count * sizeof(GLubyte);
 	}
 
-	inline std::vector<VertexBufferElement> GetElement() { return elements; }
-	inline unsigned int GetStride() { return stride; }
+	// get functions
+	inline std::vector<VertexBufferElement> GetElement() const& {
+		return elements;
+	}
+	inline unsigned int GetStride() const {
+		return stride;
+	}
 };

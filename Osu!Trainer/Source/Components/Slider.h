@@ -18,19 +18,16 @@ private:
 	// when the slider disappear
 	int endTime;
 
-	// color of the slider and the slider ball
-	Color sliderColor{ COLOR_LIGHT_BLUE };
-	Color sliderBallColor{ COLOR_LIGHT_BLUE };
-
 	// equation elements: how to construct the curve
-	std::string equation;	// example equations: "1x^-2", "2x^3-5x^2+1"...
+	std::string equation;
 	std::vector<int> constant;
-	std::vector<int> exponant;
+	std::vector<int> exponent;
 
 	// function breaks down equation string into constant and exponants
 	void EquationParser();
 
+	// function returns
+
 public:
-	Slider(float x, float y, float AR, float CS, float OD, int beatStart, int beatEnd,
-		std::vector<int> beatTick, Color sliderColor, Color sliderBallColor);
+	Slider(float x, float y, int beatStart, int beatEnd, std::vector<int> beatTick, std::string equation);
 };
