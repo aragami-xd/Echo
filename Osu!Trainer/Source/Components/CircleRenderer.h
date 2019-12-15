@@ -1,13 +1,12 @@
 #pragma once
 
+#include <vector>
+
 #include "../Engine/Color.h"
 
 class CircleRenderer
 {
 private:
-	static void DrawRing(float* ring);
-	static void DrawInCircle(float* circle);
-
+	static std::vector<unsigned int> indices;
 public:
-	static void DrawCircle(float* circle, float* ring, bool renderRing, Color color);
 };

@@ -48,6 +48,4 @@ public:
 
 	// getScore will return the score when the circle is tapped at a certain moment
 	int GetScore(int timestamp);
-
-	void Draw();
 };

@@ -39,16 +39,17 @@ int main(void)
 		return -1;
 
 	glfwSwapInterval(1);	// set fps limit to vsync
+	glEnable(GL_BLEND);
 
 	// new color
 	float red = 0.2f;
 	float inc = 0.01f;
 
 	float position[] = {
-		-0.5f, -0.5f, //0.0f, 0.0f,
-		 0.5f, -0.5f, //1.0f, 0.0f,
-		 0.5f,  0.5f, //1.0f, 1.0f,
-		-0.5f,  0.5f, //0.0f, 1.0f
+		-0.5f, -0.5f, 0.0f, 0.0f,
+		 0.5f, -0.5f, 1.0f, 0.0f,
+		 0.5f,  0.5f, 1.0f, 1.0f,
+		-0.5f,  0.5f, 0.0f, 1.0f
 	};
 
 	unsigned int indices[] = {
@@ -60,9 +61,10 @@ int main(void)
 	VertexArray va;
 	VertexBuffer vb(&position, sizeof(position));
 
-	VertexBufferObject vbo;
-	vbo.Push<float>(2);
-	va.AddBuffer(vb, vbo);
+	VertexBufferLayout vbl;
+	vbl.Push<float>(2);
+	vbl.Push<float>(2);
+	va.AddBuffer(vb, vbl);
 
 	IndexBuffer ib(indices, 6);
 
@@ -70,8 +72,9 @@ int main(void)
 	Shader shader("Osu!Trainer/Source/Shaders/Shader.vert", "Osu!Trainer/Source/Shaders/Shader.frag");
 	shader.Bind();
 
-	Object::SetMetadata(9.0f, 4.0f, 9.0f);
-	Circle circle(0.0f, 0.0f, 0);
+	Texture texture("Osu!Trainer/Library/Textures/smudge.jpg");
+	texture.Bind(0);
+	shader.SetUniform1i("vTexture", 0);
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
@@ -82,9 +85,8 @@ int main(void)
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		/* Render here */
-
-		// shader.SetUniform4f("uColor", red, 0.2f, 0.8f, 1.0f);
-		// Renderer::Draw(va, ib, shader);
+		//shader.SetUniform4f("uColor", red, 0.2f, 0.8f, 1.0f);
+		Renderer::Draw(va, ib, shader, GL_TRIANGLES);
 
 		// cycle through the color
 		if (red > 1.0f)

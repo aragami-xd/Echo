@@ -8,13 +8,13 @@ VertexArray::VertexArray()
 	glGenVertexArrays(1, &elementID);
 }
 
-void VertexArray::AddBuffer(const VertexBuffer& vb, const VertexBufferObject& vbo) 
+void VertexArray::AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& vbl) 
 {
 	Bind();
 	vb.Bind();
 
 	// get vbl elements
-	const auto& elements = vbo.GetElement();
+	const auto& elements = vbl.GetElement();
 	unsigned int offset = 0;
 
 	// add each element of vbl into the vao
@@ -27,7 +27,7 @@ void VertexArray::AddBuffer(const VertexBuffer& vb, const VertexBufferObject& vb
 			elements[i].Count,
 			elements[i].Type,
 			elements[i].Normalized,
-			vbo.GetStride(),
+			vbl.GetStride(),
 			(const void*)offset
 		);
 

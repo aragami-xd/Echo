@@ -22,14 +22,14 @@ struct VertexBufferElement
 	}
 };
 
-class VertexBufferObject
+class VertexBufferLayout
 {
 private:
 	std::vector<VertexBufferElement> elements;
 	unsigned int stride{ 0 };
 
 public:
-	// pushing a new element list to the vbo. a data type is required
+	// pushing a new element list to the vbl. a data type is required
 	template<typename T> void Push(unsigned int count)
 	{
 		static_assert(false);

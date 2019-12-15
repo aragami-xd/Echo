@@ -17,12 +17,15 @@ Circle::Circle(float cx, float cy, int cbeat)
 	endTime = beatTime + fifty;
 
 	// calculate the dots on the circle and the initial ring
-	for (double i = 0; i < 2 * PI; i += 2 * PI / ::DotCount)
+	double angle = 0;
+	for (int i = 0; i < ::DotCount; i++)
 	{
-		circleDot.push_back(objectRadius * cos(i) * ::HeightDivWidth);
+		angle = 2 * PI * i / ::DotCount;
+
+		circleDot.push_back(objectRadius * cos(angle) * ::HeightDivWidth);
 		ringDot.push_back(x + circleDot.back() * 2);
 
-		circleDot.push_back(objectRadius * sin(i));
+		circleDot.push_back(objectRadius * sin(angle));
 		ringDot.push_back(y + circleDot.back() * 2);
 	}
 }
@@ -51,25 +54,11 @@ vector<float> Circle::GetRingDot(int timeStamp)
 	// calculate the dots on the ring again, based on the timestamp
 	float remaining = abs((beatTime - timeStamp)) / (float)animationLength + 1;
 
-	for (double i = 2; i < 2 * PI; i += 2 * PI / ::DotCount)
+	for (float i = 2; i < 2 * PI; i += 2 * PI / ::DotCount)
 	{
 		ringDot[i] = x + objectRadius * cos(i) * ::HeightDivWidth * remaining;
 		ringDot[i + 1] = y + objectRadius * sin(i) * remaining;
 	}
 
 	return ringDot;
-}
-
-void Circle::Draw()
-{
-	glBegin(GL_LINE_LOOP);
-
-	glEnable(GL_LINE_SMOOTH);
-	glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	for (double angle = 0; angle < 2 * 3.1415; angle += 0.001)
-		glVertex2f(objectRadius * cos(angle) * ::HeightDivWidth, objectRadius * sin(angle));
-	glEnd();
 }

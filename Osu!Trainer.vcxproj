@@ -34,7 +34,7 @@
     <ClInclude Include="Osu!Trainer\Source\Buffers\Texture.h" />
     <ClInclude Include="Osu!Trainer\Source\Buffers\VertexArray.h" />
     <ClInclude Include="Osu!Trainer\Source\Buffers\VertexBuffer.h" />
-    <ClInclude Include="Osu!Trainer\Source\Buffers\VertexBufferObject.h" />
+    <ClInclude Include="Osu!Trainer\Source\Buffers\VertexBufferLayout.h" />
     <ClInclude Include="Osu!Trainer\Source\Components\Circle.h" />
     <ClInclude Include="Osu!Trainer\Source\Engine\Instrument.h" />
     <ClInclude Include="Osu!Trainer\Source\Engine\MapSlider.h" />
@@ -79,12 +79,13 @@
     <None Include="Osu!Trainer\Dependencies\GLEW\doc\wglew.html" />
     <None Include="Osu!Trainer\Documentation\Design.md" />
     <None Include="Osu!Trainer\Documentation\osu!trainer.drawio" />
+    <None Include="Osu!Trainer\Source\Shaders\CircleShader.frag" />
+    <None Include="Osu!Trainer\Source\Shaders\CircleShader.vert" />
     <None Include="Osu!Trainer\Source\Shaders\Shader.frag" />
     <None Include="Osu!Trainer\Source\Shaders\Shader.vert" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\Pictures\wallpaper.jpg" />
     <Image Include="Osu!Trainer\Library\Textures\smudge.jpg" />
     <Image Include="Osu!Trainer\Library\Textures\thumb.png" />
   </ItemGroup>
