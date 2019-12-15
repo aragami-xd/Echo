@@ -6,17 +6,19 @@ using namespace std;
 
 Core::Core()
 {
-	// setup time
+	// setup time variables
 	time = 0;
 	start = (int)clock();
 	prevFrame = start;
 
-	// create new shader
+	Object::SetMetadata(approachRate, circleSize, overallDifficulty);
 	shader = new Shader(::VertexPath, ::FragmentPath);
+	shader->SetUniform4f("uColor", 1.0f, 1.0f, 1.0f, 1.0f);
 }
 
 void Core::DrawOneCircle(Circle* circle)
 {
+	circle->Draw(time);
 }
 
 void Core::DrawOneSlider(Slider* slider)
@@ -29,13 +31,10 @@ void Core::DrawAllObject()
 	for (int i = circleIndex; i < allCircle.size(); i++)
 	{
 		// every circle afterwards are not supposed to appear yet
-		if (time < allCircle[i]->GetAnimationTime())	
+		if (time < allCircle[i]->GetStartTime())	
 			break;
 		else if (time > allCircle[i]->GetEndTime())
-		{
 			circleIndex++;
-			delete allCircle[i];
-		}
 
 		DrawOneCircle(allCircle[i]);
 	}
@@ -85,11 +84,15 @@ void Core::Draw()
 	
 	// update the time
 	time = (int)clock() - start;
-	cout << time << " fps: " << 1000 / (float)(time - prevFrame) << endl;
+	cout << "fps: " << 1000 / (float)(time - prevFrame) << "\r";
 	prevFrame = time;
 }
 
 Core::~Core()
 {
+	for (int i = 0; i < allCircle.size(); i++)
+		delete allCircle[i];
+	for (int i = 0; i < allSlider.size(); i++)
+		delete allSlider[i];
 	delete shader;
 }

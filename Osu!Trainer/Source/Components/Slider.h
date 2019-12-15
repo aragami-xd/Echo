@@ -8,7 +8,7 @@ class Slider : public Object
 {
 private:
 	// when the slider start appears on the screen
-	int animationTime;
+	int startTime;
 	// when the beat of the slider starts
 	int beatStartTime{ 0 };
 	// when the beat of the circle ends

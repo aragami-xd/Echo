@@ -1,6 +1,7 @@
 #include "Circle.h"
 #include "../Buffers/Renderer.h"
 #include <cmath>
+#include <iostream>
 
 using namespace std;
 
@@ -13,21 +14,25 @@ Circle::Circle(float cx, float cy, int cbeat)
 	y = cy;
 	beatTime = cbeat;
 
-	animationTime = beatTime - animationLength;
+	startTime = beatTime - animationLength;
 	endTime = beatTime + fifty;
 
 	// calculate the dots on the circle and the initial ring
-	double angle = 0;
-	for (int i = 0; i < ::DotCount; i++)
+	float angle = 0;
+	float baseX = 0, baseY = 0;
+	for (int i = 0; i <= ::DotCount; i++)
 	{
 		angle = 2 * PI * i / ::DotCount;
+		baseX = objectRadius * cos(angle) * ::HeightDivWidth;
+		baseY = objectRadius * sin(angle);
 
-		circleDot.push_back(objectRadius * cos(angle) * ::HeightDivWidth);
-		ringDot.push_back(x + circleDot.back() * 2);
+		circleDot.push_back(x + baseX);
+		ringDot.push_back(x + baseX * 2);
 
-		circleDot.push_back(objectRadius * sin(angle));
-		ringDot.push_back(y + circleDot.back() * 2);
+		circleDot.push_back(y + baseY);
+		ringDot.push_back(y + baseY * 2);
 	}
+
 }
 
 // get score will return the score based on the time stamp
@@ -49,16 +54,40 @@ int Circle::GetScore(int timestamp)
 }
 
 // get the ringDot array at a certain time
-vector<float> Circle::GetRingDot(int timeStamp)
+float* Circle::GetRingDot(int timeStamp)
 {
 	// calculate the dots on the ring again, based on the timestamp
-	float remaining = abs((beatTime - timeStamp)) / (float)animationLength + 1;
+	float remaining = (abs((beatTime - timeStamp)) / (float)animationLength) + 1;
 
-	for (float i = 2; i < 2 * PI; i += 2 * PI / ::DotCount)
+	float angle = 0;
+	for (int i = 0; i < ringDot.size(); i+=2)
 	{
-		ringDot[i] = x + objectRadius * cos(i) * ::HeightDivWidth * remaining;
-		ringDot[i + 1] = y + objectRadius * sin(i) * remaining;
+		angle = 2 * PI * i / ::DotCount;
+
+		ringDot[i] = x + objectRadius * cos(angle) * ::HeightDivWidth * remaining;
+		ringDot[i + 1] = y + objectRadius * sin(angle) * remaining;
 	}
 
-	return ringDot;
+	return ringDot.data();
+}
+
+void Circle::Draw(int time)
+{
+	VertexBufferLayout vbl;
+	vbl.Push<float>(2);
+
+	VertexArray vaCircle;
+	VertexBuffer vbCircle(GetCircleDot(), sizeof(float) * circleDot.size(), GL_STATIC_DRAW);
+	vaCircle.AddBuffer(vbCircle, vbl);
+
+	glDrawArrays(GL_LINE_LOOP, 0, ::DotCount);
+
+	if (time < beatTime)
+	{
+		VertexArray vaRing;
+		VertexBuffer vbRing(GetRingDot(time), sizeof(float) * ringDot.size(), GL_STATIC_DRAW);
+		vaRing.AddBuffer(vbRing, vbl);
+
+		glDrawArrays(GL_LINE_LOOP, 0, ::DotCount);
+	}
 }

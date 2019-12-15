@@ -13,6 +13,6 @@ const float WidthDivHeight = WindowWidth / (float)WindowHeight;	// width divide 
 const float HeightDivWidth = WindowHeight / (float)WindowWidth;	// height divide width
 
 // paths
-const std::string VertexPath = "Osu!Trainer/Source/Shaders/Vertex.shader";		// vertex shader
-const std::string FragmentPath = "Osu!Trainer/Source/Shaders/Fragment.shader";	// fragment shader
+const std::string VertexPath = "Osu!Trainer/Source/Shaders/Shader.vert";		// vertex shader
+const std::string FragmentPath = "Osu!Trainer/Source/Shaders/Shader.frag";	// fragment shader
 const std::string BeatmapPath = "Osu!Trainer/Library/Beatmaps/map.txt";			// beatmap

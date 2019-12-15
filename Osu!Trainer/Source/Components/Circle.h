@@ -11,16 +11,14 @@ class Circle : public Object
 {
 private:
 	// when the circle appears on the screen
-	int animationTime;
+	int startTime;
 	// when the beat of the circle is mapped to (i.e. animation ends)
 	int beatTime{ 0 };
 	// when the circle disappears
 	int endTime;
 
-	// dots on the surface of the inner circle at (x,y) = (0.0f, 0.0f)
-	// they're the same with every circle, a translation matrix will handle where they're placed
+	// dots to draw the circle
 	std::vector<float> circleDot;
-	// dots on the surface of the outer ing, they're tied with the circle
 	std::vector<float> ringDot;
 
 public:
@@ -31,21 +29,23 @@ public:
 	inline int GetBeatTime() {
 		return beatTime;
 	}
-	inline int GetAnimationTime() {
-		return animationTime;
+	inline int GetStartTime() {
+		return startTime;
 	}
 	inline int GetEndTime() {
 		return endTime;
 	}
 
 	// get the vertex buffers
-	inline std::vector<float> GetCircleDot()
+	inline float* GetCircleDot()
 	{
-		return circleDot;
+		return circleDot.data();
 	}
 	// ring buffer will bind new data and return the buffer depend on the timestamp
-	std::vector<float> GetRingDot(int timestamp);
+	float* GetRingDot(int timestamp);
 
 	// getScore will return the score when the circle is tapped at a certain moment
 	int GetScore(int timestamp);
+
+	void Draw(int time);
 };

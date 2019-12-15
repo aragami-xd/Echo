@@ -45,36 +45,8 @@ int main(void)
 	float red = 0.2f;
 	float inc = 0.01f;
 
-	float position[] = {
-		-0.5f, -0.5f, 0.0f, 0.0f,
-		 0.5f, -0.5f, 1.0f, 0.0f,
-		 0.5f,  0.5f, 1.0f, 1.0f,
-		-0.5f,  0.5f, 0.0f, 1.0f
-	};
-
-	unsigned int indices[] = {
-		0,1,2,
-		2,3,0
-	};
-
-	// vertex array object, vertex buffer
-	VertexArray va;
-	VertexBuffer vb(&position, sizeof(position));
-
-	VertexBufferLayout vbl;
-	vbl.Push<float>(2);
-	vbl.Push<float>(2);
-	va.AddBuffer(vb, vbl);
-
-	IndexBuffer ib(indices, 6);
-
-	// new shader source code
-	Shader shader("Osu!Trainer/Source/Shaders/Shader.vert", "Osu!Trainer/Source/Shaders/Shader.frag");
-	shader.Bind();
-
-	Texture texture("Osu!Trainer/Library/Textures/smudge.jpg");
-	texture.Bind(0);
-	shader.SetUniform1i("vTexture", 0);
+	Core core;
+	core.MapInit(::BeatmapPath);
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
@@ -85,15 +57,15 @@ int main(void)
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		/* Render here */
-		//shader.SetUniform4f("uColor", red, 0.2f, 0.8f, 1.0f);
-		Renderer::Draw(va, ib, shader, GL_TRIANGLES);
+
+		core.Draw();
 
 		// cycle through the color
-		if (red > 1.0f)
-			inc = -0.05f;
-		else if (red < 0.0f)
-			inc = 0.05f;
-		red += inc;
+		//if (red > 1.0f)
+		//	inc = -0.05f;
+		//else if (red < 0.0f)
+		//	inc = 0.05f;
+		//red += inc;
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(window);

@@ -15,7 +15,7 @@ Slider::Slider(float sx, float sy, int sBeatStart, int sBeatEnd, std::vector<int
 	beatTickTime = sBeatTick;
 	equation = sEquation;
 
-	animationTime = beatStartTime - animationLength;
+	startTime = beatStartTime - animationLength;
 	endTime = beatEndTime + fifty;
 
 }
