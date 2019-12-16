@@ -11,6 +11,7 @@ VertexBuffer::VertexBuffer(const void* data, unsigned int size, GLenum flag /* =
 
 void VertexBuffer::Update(const void* data, unsigned int size, GLenum flag /* = GL_DYNAMIC_DRAW*/)
 {
+	glBindBuffer(GL_ARRAY_BUFFER, vertexID);
 	glBufferData(GL_ARRAY_BUFFER, size, data, flag);
 }
 

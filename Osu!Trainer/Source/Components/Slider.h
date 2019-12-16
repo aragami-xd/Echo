@@ -29,5 +29,5 @@ private:
 	// function returns
 
 public:
-	Slider(float x, float y, int beatStart, int beatEnd, std::vector<int> beatTick, std::string equation);
+	Slider(float x, float y, int beatStart, int beatEnd, std::vector<int> beatTick, std::string equation, float AR, float CS, float OD);
 };

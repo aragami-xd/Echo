@@ -10,7 +10,6 @@ out vec2 val;
 
 void main()
 {
-	// nothing exciting here
 	val = value;
 	gl_Position = proj_matrix * view_matrix * vertex;
 }

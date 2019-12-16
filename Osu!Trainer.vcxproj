@@ -457,6 +457,8 @@
     <None Include="Osu!Trainer\Dependencies\vendor\glm\gtx\wrap.inl" />
     <None Include="Osu!Trainer\Documentation\Design.md" />
     <None Include="Osu!Trainer\Documentation\osu!trainer.drawio" />
+    <None Include="Osu!Trainer\Source\Shaders\CIrcleShader.frag" />
+    <None Include="Osu!Trainer\Source\Shaders\CircleShader.vert" />
     <None Include="Osu!Trainer\Source\Shaders\Shader.frag" />
     <None Include="Osu!Trainer\Source\Shaders\Shader.vert" />
     <None Include="README.md" />

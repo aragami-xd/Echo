@@ -6,16 +6,14 @@ void Slider::EquationParser()
 {
 }
 
-Slider::Slider(float sx, float sy, int sBeatStart, int sBeatEnd, std::vector<int> sBeatTick, string sEquation)
+Slider::Slider(float x, float y, int beatStart, int beatEnd, std::vector<int> beatTick, string s_equation, float AR, float CS, float OD) :
+	Object(x, y, AR, CS, OD)
 {
-	x = sx;
-	y = sy;
-	beatStartTime = sBeatStart;
-	beatEndTime = sBeatEnd;
-	beatTickTime = sBeatTick;
-	equation = sEquation;
+	beatStartTime = beatStart;
+	beatEndTime = beatEnd;
+	beatTickTime = beatTick;
+	equation = s_equation;
 
 	startTime = beatStartTime - animationLength;
 	endTime = beatEndTime + fifty;
-
 }

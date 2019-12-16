@@ -8,16 +8,12 @@ using namespace std;
 Core::Core()
 {
 	// setup time variables
-	time = -2000;
-	start = (int)clock() - 2000;
+	time = 0;
+	start = (int)clock();
 	prevFrame = start;
 
-	Object::SetMetadata(approachRate, circleSize, overallDifficulty);
 	shader = new Shader(::VertexPath, ::FragmentPath);
 	shader->SetUniform4f("uColor", 1.0f, 1.0f, 1.0f, 1.0f);
-
-	// sleep the thread for 2s as a preparation
-	// Sleep(2000);
 }
 
 void Core::DrawOneCircle(Circle* circle)
@@ -61,7 +57,10 @@ void Core::MapInit(std::string path)
 			Circle* newCircle = new Circle(
 				circle.X,				// x
 				circle.Y,				// y
-				circle.BeatStart		// beatStart
+				circle.BeatStart,		// beatStart
+				approachRate,			// AR
+				circleSize,				// CS
+				overallDifficulty		// OD
 			);
 			allCircle.push_back(newCircle);
 		}
@@ -75,7 +74,10 @@ void Core::MapInit(std::string path)
 				slider.BeatStart,		// beatStart
 				slider.BeatEnd,			// beatEnd
 				slider.BeatTick,		// beatTick(s)
-				slider.Equation			// curve equation
+				slider.Equation,		// curve equation
+				approachRate,			// AR
+				circleSize,				// CS
+				overallDifficulty		// OD
 			);
 			allSlider.push_back(newSlider);
 		}
@@ -87,9 +89,9 @@ void Core::Draw()
 	DrawAllObject();
 	
 	// update the time
-	time = (int)clock() - start - 2000;
-	cout << "fps: " << 1000 / (float)(time - prevFrame) << "\r";
-	prevFrame = time;
+	time = (int)clock() - start;
+	//cout << "fps: " << 1000 / (float)(time - prevFrame) << "\r";
+	//prevFrame = time;
 }
 
 Core::~Core()

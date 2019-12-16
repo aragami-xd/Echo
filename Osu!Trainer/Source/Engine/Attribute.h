@@ -7,8 +7,8 @@
 constexpr int DotCount = 60;
 
 // height and width of the window and window aspect ratio
-constexpr int WindowWidth = 640;	// height
-constexpr int WindowHeight = 480;	// width
+constexpr int WindowWidth = 1280;	// height
+constexpr int WindowHeight = 720;	// width
 const float WidthDivHeight = WindowWidth / (float)WindowHeight;	// width divide height
 const float HeightDivWidth = WindowHeight / (float)WindowWidth;	// height divide width
 

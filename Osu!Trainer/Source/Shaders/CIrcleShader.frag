@@ -2,6 +2,7 @@
 
 in vec2 val;
 
+uniform vec4 color;
 uniform float R1;
 uniform float R2;
 
@@ -16,8 +17,8 @@ void main()
 	// fxaa
 	float sm1 = smoothstep(R1, R1-0.01, dist);
 	float sm2 = smoothstep(R2, R2+0.01, dist);
-	float alpha = sm1 * sm2;
+	float alpha = sm1 * sm2 * color.w;
 
 	// color
-	gl_FragColor = vec4(1.0, 1.0, 1.0, alpha);
+	gl_FragColor = vec4(color.r, color.g, color.b, alpha);
 }

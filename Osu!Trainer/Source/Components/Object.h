@@ -42,21 +42,5 @@ protected:
 	static int fifty;
 
 public:
-	// set the metadata of the circle and other variables
-	static void SetMetadata(float AR, float CS, float OD)
-	{
-		// AR, CS, OD
-		approachRate = AR;
-		circleSize = CS;
-		overallDifficulty = OD;
-
-		// object radius
-		objectRadius = scaleCS / circleSize;
-
-		// timestamp variables
-		animationLength = (int)(scaleAR / approachRate);
-		threeHundred = (int)(animationLength / (3 * overallDifficulty));
-		oneHundred = (int)(threeHundred * 1.1);
-		fifty = (int)(threeHundred * 1.3);
-	}
+	Object(float x, float y, float AR, float CS, float OD);
 };
