@@ -1,8 +1,11 @@
-Welcome to the osu!traier game. this game will be a mouse aim training game for the popular "musical" rhythm game "osu!"
+Welcome to the osu!traier game. this game will be a mouse aim training game for the popular "musical" rhythm game [osu!](https://osu.ppy.sh)
 
-The game will feature circles to be clicked based on the beats of the song like osu!. But unlike the real game, the circle will be completely random, so there is no need for dedicated mapping. Sliders and spinners might available in the future
+Osu! (specifically osu!standard) is a rhythm game where the player will tap an object, whether a circle or a sldier, at a certain beat of the song
+
+The original game features the objects laid out in a specific manner by players in the community (known as "beatmapping"). However, unlike the original game, osu!trainer will generate the objects in a pseudorandom order based on the tempo of the song, giving the game a totally new and exicting play style, a combination of consistency and sharp mouse aiming reaction
 
 Libraries included in the project:
 1. [OpenGL](https://www.opengl.org/): the graphics API used in this project
-2. [Glew](http://glew.sourceforge.net/) ("OpenGL Extension Wrangler"): an extension loading/querying library for OpenGL
-3. [stb](https://github.com/nothings/stb): a collection of single-file libraries for c++. `stb_image.h` is used specifically in this application to load texture images
+2. [Glew](http://glew.sourceforge.net/): an extension loading/querying library for opengl
+3. [stb](https://github.com/nothings/stb): a collection of single-file libraries for c++, used for image loading in this application
+4. [glm](https://github.com/g-truc/glm): a mathematics library for opengl

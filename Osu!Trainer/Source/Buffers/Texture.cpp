@@ -1,7 +1,7 @@
 #include "Texture.h"
 #include <iostream>
 
-#include "../../Dependencies/vendor/stb/stb_image.h"
+#include <stb/stb_image.h>
 
 using namespace std;
 

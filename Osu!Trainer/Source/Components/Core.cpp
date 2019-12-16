@@ -2,18 +2,22 @@
 #include "CircleRenderer.h"
 #include "../Engine/Attribute.h"
 #include "../Engine/Parser.h"
+#include <Windows.h>
 using namespace std;
 
 Core::Core()
 {
 	// setup time variables
-	time = 0;
-	start = (int)clock();
+	time = -2000;
+	start = (int)clock() - 2000;
 	prevFrame = start;
 
 	Object::SetMetadata(approachRate, circleSize, overallDifficulty);
 	shader = new Shader(::VertexPath, ::FragmentPath);
 	shader->SetUniform4f("uColor", 1.0f, 1.0f, 1.0f, 1.0f);
+
+	// sleep the thread for 2s as a preparation
+	// Sleep(2000);
 }
 
 void Core::DrawOneCircle(Circle* circle)
@@ -83,7 +87,7 @@ void Core::Draw()
 	DrawAllObject();
 	
 	// update the time
-	time = (int)clock() - start;
+	time = (int)clock() - start - 2000;
 	cout << "fps: " << 1000 / (float)(time - prevFrame) << "\r";
 	prevFrame = time;
 }
