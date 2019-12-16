@@ -1,6 +1,8 @@
 /* source files */
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 #include "../Engine/Attribute.h"
 #include "../Buffers/Renderer.h"
@@ -46,10 +48,10 @@ int main(void)
 	float inc = 0.01f;
 
 	float position[] = {
-		-0.5f, -0.5f, 0.0f, 0.0f,
-		 0.5f, -0.5f, 1.0f, 0.0f,
-		 0.5f,  0.5f, 1.0f, 1.0f,
-		-0.5f,  0.5f, 0.0f, 1.0f
+		-50.5f, -50.5f, 0.0f, 0.0f,
+		 50.5f, -50.5f, 1.0f, 0.0f,
+		 50.5f,  50.5f, 1.0f, 1.0f,
+		-50.5f,  50.5f, 0.0f, 1.0f
 	};
 
 	unsigned int indices[] = {
@@ -71,9 +73,18 @@ int main(void)
 
 	IndexBuffer ib(indices, 6);
 
+	// projection matrix with 4x3 aspect ratio
+	glm::mat4 proj = glm::ortho(0.0f, 640.0f, 0.0f, 480.0f, -1.0f, 1.0f);
+	glm::mat4 view = glm::translate(glm::mat4(1.0), glm::vec3(80, 0, 0));
+	glm::mat4 model = glm::translate(glm::mat4(1.0), glm::vec3(0, 0, 0));
+
+	glm::mat4 mvp = proj * view * model;
+
 	// new shader source code
 	Shader shader(::VertexPath, ::FragmentPath);
 	shader.Bind();
+	shader.SetUniform4f("uColor", red, 0.2f, 0.8f, 1.0f);
+	shader.SetUniformMat4f("u_mvp", mvp);
 
 	Texture texture("Osu!Trainer/Library/Textures/cursor.png");
 	texture.Bind(0);
@@ -88,7 +99,7 @@ int main(void)
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		/* Render here */
-		//shader.SetUniform4f("uColor", red, 0.2f, 0.8f, 1.0f);
+		shader.SetUniform4f("uColor", red, 0.2f, 0.8f, 1.0f);
 		Renderer::Draw(va, ib, shader, GL_TRIANGLES);
 
 		// cycle through the color

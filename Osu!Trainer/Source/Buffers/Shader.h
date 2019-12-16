@@ -2,6 +2,7 @@
 
 #include <string>
 #include <unordered_map>
+#include <glm/glm.hpp>
 
 class Shader
 {
@@ -29,6 +30,7 @@ public:
 	// set the uniforms
 	void SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3);
 	void SetUniform1i(const std::string& name, int v);
+	void SetUniformMat4f(const std::string& name, const glm::mat4& matrix);
 
 	~Shader();
 };
