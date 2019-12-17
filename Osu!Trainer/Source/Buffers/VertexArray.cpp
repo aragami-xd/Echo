@@ -8,7 +8,7 @@ VertexArray::VertexArray()
 	glGenVertexArrays(1, &elementID);
 }
 
-void VertexArray::AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& vbl) 
+void VertexArray::AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& vbl)
 {
 	Bind();
 	vb.Bind();

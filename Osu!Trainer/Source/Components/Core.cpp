@@ -2,22 +2,40 @@
 #include "CircleRenderer.h"
 #include "../Engine/Attribute.h"
 #include "../Engine/Parser.h"
+
 #include <Windows.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <iostream>
+
 using namespace std;
 
-Core::Core()
+Core::Core(string path, ShaderList s) 
 {
 	// setup time variables
 	time = 0;
 	start = (int)clock();
 	prevFrame = start;
 
-	shader = new Shader(::VertexPath, ::FragmentPath);
-	shader->SetUniform4f("uColor", 1.0f, 1.0f, 1.0f, 1.0f);
+	// initialize the map
+	MapInit(path);
+
+	shader = s;
+	//shader.CircleShader = new Shader(::CircleVertexPath, ::CircleFragmentPath);
+
+	//// setup shader.circleShader
+	//glm::mat4 proj = glm::ortho(0.0f, 1.0f, 0.0f, 1.0f, -1.0f, 1.0f);
+	//glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
+
+	//shader.CircleShader->SetUniformMat4f("proj", proj);
+	//shader.CircleShader->SetUniformMat4f("view", view);
+
+	shader.CircleShader->Bind();
 }
 
 void Core::DrawOneCircle(Circle* circle)
 {
+	shader.CircleShader->Bind();
 	circle->Draw(time);
 }
 
@@ -31,7 +49,7 @@ void Core::DrawAllObject()
 	for (int i = circleIndex; i < allCircle.size(); i++)
 	{
 		// every circle afterwards are not supposed to appear yet
-		if (time < allCircle[i]->GetStartTime())	
+		if (time < allCircle[i]->GetStartTime())
 			break;
 		else if (time > allCircle[i]->GetEndTime())
 			circleIndex++;
@@ -87,11 +105,9 @@ void Core::MapInit(std::string path)
 void Core::Draw()
 {
 	DrawAllObject();
-	
+
 	// update the time
 	time = (int)clock() - start;
-	//cout << "fps: " << 1000 / (float)(time - prevFrame) << "\r";
-	//prevFrame = time;
 }
 
 Core::~Core()
@@ -100,5 +116,4 @@ Core::~Core()
 		delete allCircle[i];
 	for (int i = 0; i < allSlider.size(); i++)
 		delete allSlider[i];
-	delete shader;
 }

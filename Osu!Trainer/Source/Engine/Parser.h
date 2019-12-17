@@ -16,27 +16,22 @@ enum class ParserType
 };
 
 /* the parser contains only static functions, used to parse the data from the beatmap file */
-namespace Parser
+class Parser
 {
-	// anonymous namespace used to hide the private members
-	namespace {
-		// the map itself
-		static std::fstream map;
+private:
+	// the map itself
+	static std::fstream map;
 
-		// the current line
-		static std::string line;
+	// the current line
+	static std::string line;
 
-		// metadata - song setup (there will be metadata for song detail)
-		static float approachRate;
-		static float circleSize;
-		static float overallDifficulty;
-		static float hpDrain;
+	// metadata - song setup (there will be metadata for song detail)
+	static float approachRate;
+	static float circleSize;
+	static float overallDifficulty;
+	static float hpDrain;
 
-		static void ParseMetadata()
-		{
-		}
-	}
-
+public:
 	// load the map
 	static void Load(std::string& path)
 	{
@@ -199,3 +194,11 @@ namespace Parser
 		return { x, y, beatStart, beatEnd, beatTick, equation, instrument, tick };
 	}
 };
+
+// define static variables
+std::fstream Parser::map;
+std::string Parser::line = "";
+float Parser::approachRate = 0.0f;
+float Parser::circleSize = 0.0f;
+float Parser::overallDifficulty = 0.0f;
+float Parser::hpDrain = 0.0f;

@@ -2,6 +2,7 @@
 
 #include "Circle.h"
 #include "Slider.h"
+#include "ShaderList.h"
 #include "../Engine/Color.h"
 
 #include <vector>
@@ -15,16 +16,14 @@ private:
 	int time;		// current time
 	int prevFrame;	// previous frame
 
-	// program shader
-	Shader* shader;
+	//shader
+	ShaderList shader;
 
 	// all the circle and slider parsed from the map
-	// since the program costantly loop through the elements, it's better to use
-	// array (vector) than list for better cache hit
 	std::vector<Circle*> allCircle;
 	std::vector<Slider*> allSlider;
-	// index of the circle and slider
-	unsigned int circleIndex{ 0 }, sliderIndex{ 0 };
+	// current index of the circle and slider
+	int circleIndex{ 0 }, sliderIndex{ 0 };
 
 	// metadata - song setup
 	float approachRate{ 9.0f };
@@ -34,6 +33,9 @@ private:
 
 	// color list
 	std::vector<Color> colorList{ COLOR_WHITE, COLOR_LIGHT_BLUE, COLOR_LIGHT_YELLOW };
+
+	// initialize the map
+	void MapInit(std::string path);
 
 	// function draws individual circle at a time
 	void DrawOneCircle(Circle* circle);
@@ -45,10 +47,7 @@ private:
 	void DrawAllObject();
 
 public:
-	Core();
-
-	// initialize the map
-	void MapInit(std::string path);
+	Core(std::string path, ShaderList shader);
 
 	// draw everything on the screen
 	void Draw();

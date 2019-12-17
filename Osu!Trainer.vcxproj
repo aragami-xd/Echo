@@ -279,6 +279,7 @@
     <ClInclude Include="Osu!Trainer\Source\Buffers\VertexBuffer.h" />
     <ClInclude Include="Osu!Trainer\Source\Buffers\VertexBufferLayout.h" />
     <ClInclude Include="Osu!Trainer\Source\Components\Circle.h" />
+    <ClInclude Include="Osu!Trainer\Source\Components\ShaderList.h" />
     <ClInclude Include="Osu!Trainer\Source\Engine\Instrument.h" />
     <ClInclude Include="Osu!Trainer\Source\Engine\MapSlider.h" />
     <ClInclude Include="Osu!Trainer\Source\Components\Object.h" />

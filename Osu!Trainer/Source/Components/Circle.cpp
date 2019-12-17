@@ -36,9 +36,9 @@ int Circle::GetScore(int timestamp)
 
 void Circle::Draw(int time)
 {
-	renderer->DrawCircleDep();
+	renderer->DrawCircleFrag();
 	if (time < beatTime)
-		renderer->DrawRingDep(time, beatTime, animationLength);
+		renderer->DrawRingFrag(time, beatTime, animationLength);
 }
 
 Circle::~Circle()

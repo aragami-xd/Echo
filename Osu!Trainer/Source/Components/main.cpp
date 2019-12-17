@@ -42,16 +42,23 @@ int main(void)
 
 	glfwSwapInterval(1);	// set fps limit to vsync
 	glEnable(GL_BLEND);
-
-	// new color
-	float red = 0.2f;
-	float inc = 0.01f;
-
-	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glDisable(GL_DEPTH_TEST);
+	glDisable(GL_CULL_FACE);
 
-	Core core;
-	core.MapInit(::BeatmapPath);
+	ShaderList shader;
+	// setup the shaders
+	shader.CircleShader = new Shader(::CircleVertexPath, ::CircleFragmentPath);
+	glm::mat4 proj = glm::ortho(-1.778f, 1.778f, -1.0f, 1.0f);
+	glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
+
+	shader.CircleShader->Bind();
+	shader.CircleShader->SetUniformMat4f("proj", proj);
+	shader.CircleShader->SetUniformMat4f("view", view);
+
+	//Circle circle(0.0f, 0.0f, 0, 10.0f, 5.0f, 10.0f);
+
+	Core core(::BeatmapPath, shader);
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
@@ -62,13 +69,7 @@ int main(void)
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		core.Draw();
-
-		// cycle through the color
-		if (red > 1.0f)
-			inc = -0.05f;
-		else if (red < 0.0f)
-			inc = 0.05f;
-		red += inc;
+		//circle.Draw(0);
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(window);

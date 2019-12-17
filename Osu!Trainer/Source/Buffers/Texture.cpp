@@ -10,7 +10,7 @@ Texture::Texture(const string& file) :
 {
 	// flip the image vertically because of the way opengl load and render image
 	stbi_set_flip_vertically_on_load(1);
-	localBuffer = stbi_load(file.c_str(), &width, &height, &bpp, 4	);
+	localBuffer = stbi_load(file.c_str(), &width, &height, &bpp, 4);
 
 	glGenTextures(1, &id);
 	glBindTexture(GL_TEXTURE_2D, id);

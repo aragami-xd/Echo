@@ -1,8 +1,9 @@
 #include "Object.h"
+#include "../Engine/Attribute.h"
 using namespace std;
 
 const int Object::scaleAR = 5000;
-const float Object::scaleCS = 0.5f;
+const float Object::scaleCS = 1.0f;
 
 float Object::approachRate = 9.0f;
 float Object::circleSize = 5.0f;

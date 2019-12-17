@@ -275,6 +275,7 @@
     <ClInclude Include="Osu!Trainer\Dependencies\vendor\glm\vec3.hpp" />
     <ClInclude Include="Osu!Trainer\Dependencies\vendor\glm\vec4.hpp" />
     <ClInclude Include="Osu!Trainer\Dependencies\vendor\glm\vector_relational.hpp" />
+    <ClInclude Include="Osu!Trainer\Source\Components\ShaderList.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Osu!Trainer\Source\Buffers\IndexBuffer.cpp" />
