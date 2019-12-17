@@ -26,7 +26,7 @@ private:
 	int circleIndex{ 0 }, sliderIndex{ 0 };
 
 	// metadata - song setup
-	float approachRate{ 9.0f };
+	float approachRate{ 8.0f };
 	float circleSize{ 5.0f };
 	float overallDifficulty{ 9.0f };
 	float hpDrain{ 6.0f };

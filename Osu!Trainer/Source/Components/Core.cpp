@@ -3,14 +3,13 @@
 #include "../Engine/Attribute.h"
 #include "../Engine/Parser.h"
 
-#include <Windows.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <iostream>
 
 using namespace std;
 
-Core::Core(string path, ShaderList s) 
+Core::Core(string path, ShaderList s) : 
+	shader(s)
 {
 	// setup time variables
 	time = 0;
@@ -20,22 +19,11 @@ Core::Core(string path, ShaderList s)
 	// initialize the map
 	MapInit(path);
 
-	shader = s;
-	//shader.CircleShader = new Shader(::CircleVertexPath, ::CircleFragmentPath);
-
-	//// setup shader.circleShader
-	//glm::mat4 proj = glm::ortho(0.0f, 1.0f, 0.0f, 1.0f, -1.0f, 1.0f);
-	//glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
-
-	//shader.CircleShader->SetUniformMat4f("proj", proj);
-	//shader.CircleShader->SetUniformMat4f("view", view);
-
 	shader.CircleShader->Bind();
 }
 
 void Core::DrawOneCircle(Circle* circle)
 {
-	shader.CircleShader->Bind();
 	circle->Draw(time);
 }
 

@@ -53,6 +53,7 @@ CircleRenderer::CircleRenderer(float cx, float cy, float cRad) :
 	// circle vertices and value array
 	circleVerticesFrag.reserve(20);
 	circleVerticesFrag = {
+		// x, y, z, lx, ly
 		right, bottom, 0, 1.0, -1.0,
 		right, top, 0, 1.0, 1.0,
 		left, top, 0, -1.0, 1.0,
@@ -67,7 +68,6 @@ CircleRenderer::CircleRenderer(float cx, float cy, float cRad) :
 	ringVerticesFrag.reserve(20);
 	ringVerticesFrag = {
 		// x, y, z, lx, ly
-		// lx, ly are local fragment shader coordinate system
 		right, bottom, 0, 1.0, -1.0,
 		right, top, 0, 1.0, 1.0,
 		left, top, 0, -1.0, 1.0,

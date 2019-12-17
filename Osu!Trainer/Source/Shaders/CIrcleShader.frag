@@ -1,5 +1,6 @@
 #version 460 core
 
+layout(location = 0) out vec4 color_output;
 in vec2 val;
 
 void main()
@@ -20,5 +21,5 @@ void main()
 	float alpha = sm1 * sm2 * color.a;
 
 	// color
-	gl_FragColor = vec4(color.r, color.g, color.b, alpha);
+	color_output = vec4(color.r, color.g, color.b, alpha);
 }
