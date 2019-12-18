@@ -268,46 +268,46 @@
     <ClInclude Include="Osu!Trainer\Dependencies\vendor\glm\vec3.hpp" />
     <ClInclude Include="Osu!Trainer\Dependencies\vendor\glm\vec4.hpp" />
     <ClInclude Include="Osu!Trainer\Dependencies\vendor\glm\vector_relational.hpp" />
-    <ClInclude Include="Osu!Trainer\Source\Components\CircleRenderer.h" />
-    <ClInclude Include="Osu!Trainer\Source\Buffers\Macro.h" />
-    <ClInclude Include="Osu!Trainer\Source\Buffers\IndexBuffer.h" />
-    <ClInclude Include="Osu!Trainer\Source\Buffers\Renderer.h" />
-    <ClInclude Include="Osu!Trainer\Source\Buffers\Shader.h" />
+    <ClInclude Include="Osu!Trainer\src\Components\CircleRenderer.h" />
+    <ClInclude Include="Osu!Trainer\src\Buffers\Macro.h" />
+    <ClInclude Include="Osu!Trainer\src\Buffers\IndexBuffer.h" />
+    <ClInclude Include="Osu!Trainer\src\Buffers\Renderer.h" />
+    <ClInclude Include="Osu!Trainer\src\Buffers\Shader.h" />
     <ClInclude Include="Osu!Trainer\Dependencies\vendor\stb\stb_image.h" />
-    <ClInclude Include="Osu!Trainer\Source\Buffers\Texture.h" />
-    <ClInclude Include="Osu!Trainer\Source\Buffers\VertexArray.h" />
-    <ClInclude Include="Osu!Trainer\Source\Buffers\VertexBuffer.h" />
-    <ClInclude Include="Osu!Trainer\Source\Buffers\VertexBufferLayout.h" />
-    <ClInclude Include="Osu!Trainer\Source\Components\Circle.h" />
-    <ClInclude Include="Osu!Trainer\Source\Components\ShaderList.h" />
-    <ClInclude Include="Osu!Trainer\Source\Engine\Instrument.h" />
-    <ClInclude Include="Osu!Trainer\Source\Engine\MapSlider.h" />
-    <ClInclude Include="Osu!Trainer\Source\Components\Object.h" />
-    <ClInclude Include="Osu!Trainer\Source\Components\Slider.h" />
-    <ClInclude Include="Osu!Trainer\Source\Engine\Color.h" />
-    <ClInclude Include="Osu!Trainer\Source\Components\Core.h" />
-    <ClInclude Include="Osu!Trainer\Source\Engine\Attribute.h" />
-    <ClInclude Include="Osu!Trainer\Source\Engine\MapCircle.h" />
-    <ClInclude Include="Osu!Trainer\Source\Engine\Parser.h" />
+    <ClInclude Include="Osu!Trainer\src\Buffers\Texture.h" />
+    <ClInclude Include="Osu!Trainer\src\Buffers\VertexArray.h" />
+    <ClInclude Include="Osu!Trainer\src\Buffers\VertexBuffer.h" />
+    <ClInclude Include="Osu!Trainer\src\Buffers\VertexBufferLayout.h" />
+    <ClInclude Include="Osu!Trainer\src\Components\Circle.h" />
+    <ClInclude Include="Osu!Trainer\src\Components\ShaderList.h" />
+    <ClInclude Include="Osu!Trainer\src\Engine\Instrument.h" />
+    <ClInclude Include="Osu!Trainer\src\Components\MapSlider.h" />
+    <ClInclude Include="Osu!Trainer\src\Engine\Object.h" />
+    <ClInclude Include="Osu!Trainer\src\Components\Slider.h" />
+    <ClInclude Include="Osu!Trainer\src\Engine\Color.h" />
+    <ClInclude Include="Osu!Trainer\src\Engine\Core.h" />
+    <ClInclude Include="Osu!Trainer\src\Engine\Attribute.h" />
+    <ClInclude Include="Osu!Trainer\src\Components\MapCircle.h" />
+    <ClInclude Include="Osu!Trainer\src\Engine\Parser.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Osu!Trainer\Dependencies\vendor\glm\detail\glm.cpp" />
     <ClCompile Include="Osu!Trainer\Dependencies\vendor\stb\stb_image.cpp" />
-    <ClCompile Include="Osu!Trainer\Source\Components\CircleRenderer.cpp" />
-    <ClCompile Include="Osu!Trainer\Source\Buffers\IndexBuffer.cpp" />
-    <ClCompile Include="Osu!Trainer\Source\Buffers\Renderer.cpp" />
-    <ClCompile Include="Osu!Trainer\Source\Buffers\Shader.cpp" />
-    <ClCompile Include="Osu!Trainer\Source\Buffers\Texture.cpp" />
-    <ClCompile Include="Osu!Trainer\Source\Buffers\VertexArray.cpp" />
-    <ClCompile Include="Osu!Trainer\Source\Buffers\VertexBuffer.cpp" />
-    <ClCompile Include="Osu!Trainer\Source\Components\Circle.cpp" />
-    <ClCompile Include="Osu!Trainer\Source\Components\main.cpp" />
-    <ClCompile Include="Osu!Trainer\Source\Components\Core.cpp" />
-    <ClCompile Include="Osu!Trainer\Source\Components\Object.cpp" />
-    <ClCompile Include="Osu!Trainer\Source\Components\Slider.cpp" />
+    <ClCompile Include="Osu!Trainer\src\Components\CircleRenderer.cpp" />
+    <ClCompile Include="Osu!Trainer\src\Buffers\IndexBuffer.cpp" />
+    <ClCompile Include="Osu!Trainer\src\Buffers\Renderer.cpp" />
+    <ClCompile Include="Osu!Trainer\src\Buffers\Shader.cpp" />
+    <ClCompile Include="Osu!Trainer\src\Buffers\Texture.cpp" />
+    <ClCompile Include="Osu!Trainer\src\Buffers\VertexArray.cpp" />
+    <ClCompile Include="Osu!Trainer\src\Buffers\VertexBuffer.cpp" />
+    <ClCompile Include="Osu!Trainer\src\Components\Circle.cpp" />
+    <ClCompile Include="Osu!Trainer\src\Engine\main.cpp" />
+    <ClCompile Include="Osu!Trainer\src\Engine\Core.cpp" />
+    <ClCompile Include="Osu!Trainer\src\Engine\Object.cpp" />
+    <ClCompile Include="Osu!Trainer\src\Components\Slider.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Osu!Trainer\Library\Beatmaps\map.txt" />
+    <Text Include="Osu!Trainer\lib\Beatmaps\map.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Documentation\Design.md" />
@@ -458,10 +458,10 @@
     <None Include="Osu!Trainer\Dependencies\vendor\glm\gtx\wrap.inl" />
     <None Include="Osu!Trainer\Documentation\Design.md" />
     <None Include="Osu!Trainer\Documentation\osu!trainer.drawio" />
-    <None Include="Osu!Trainer\Source\Shaders\CIrcleShader.frag" />
-    <None Include="Osu!Trainer\Source\Shaders\CircleShader.vert" />
-    <None Include="Osu!Trainer\Source\Shaders\Shader.frag" />
-    <None Include="Osu!Trainer\Source\Shaders\Shader.vert" />
+    <None Include="Osu!Trainer\src\Shaders\CIrcleShader.frag" />
+    <None Include="Osu!Trainer\src\Shaders\CircleShader.vert" />
+    <None Include="Osu!Trainer\src\Shaders\Shader.frag" />
+    <None Include="Osu!Trainer\src\Shaders\Shader.vert" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
@@ -526,7 +526,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Osu!Trainer\Dependencies\vendor;$(SolutionDir)Osu!Trainer\Dependencies\GLFW\include;$(SolutionDir)Osu!Trainer\Dependencies\GLEW\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Osu!Trainer\src;$(SolutionDir)Osu!Trainer\Dependencies\vendor;$(SolutionDir)Osu!Trainer\Dependencies\GLFW\include;$(SolutionDir)Osu!Trainer\Dependencies\GLEW\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -554,7 +554,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Osu!Trainer\Dependencies\vendor;$(SolutionDir)Osu!Trainer\Dependencies\GLFW\include;$(SolutionDir)Osu!Trainer\Dependencies\GLEW\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Osu!Trainer\src;$(SolutionDir)Osu!Trainer\Dependencies\vendor;$(SolutionDir)Osu!Trainer\Dependencies\GLFW\include;$(SolutionDir)Osu!Trainer\Dependencies\GLEW\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
