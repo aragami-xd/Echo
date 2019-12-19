@@ -43,7 +43,7 @@ private:
 	float* GetRingVerticesFrag(int time, int beatTime, int animationLength);
 
 public:
-	CircleRenderer(float cx, float cy, float cRad);
+	CircleRenderer(float x, float y, float radius);
 
 	// draw the circle and the ring using buffers vertices (deprecated)
 	void DrawCircleBuf();

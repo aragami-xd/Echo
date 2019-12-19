@@ -266,7 +266,6 @@
     <ClInclude Include="Osu!Trainer\src\Buffers\VertexBufferLayout.h" />
     <ClInclude Include="Osu!Trainer\src\Components\Circle.h" />
     <ClInclude Include="Osu!Trainer\src\Components\CircleRenderer.h" />
-    <ClInclude Include="Osu!Trainer\src\Components\ShaderList.h" />
     <ClInclude Include="Osu!Trainer\src\Components\Slider.h" />
     <ClInclude Include="Osu!Trainer\src\Engine\Attribute.h" />
     <ClInclude Include="Osu!Trainer\src\Engine\Color.h" />
@@ -276,6 +275,9 @@
     <ClInclude Include="Osu!Trainer\src\Engine\Core.h" />
     <ClInclude Include="Osu!Trainer\src\Components\MapCircle.h" />
     <ClInclude Include="Osu!Trainer\src\Components\MapSlider.h" />
+    <ClInclude Include="Osu!Trainer\src\Engine\ObjectComponent.h" />
+    <ClInclude Include="Osu!Trainer\src\Engine\ObjectRenderer.h" />
+    <ClInclude Include="Osu!Trainer\src\Engine\ShaderList.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Osu!Trainer\Dependencies\vendor\stb\stb_image.cpp" />

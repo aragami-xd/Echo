@@ -4,12 +4,12 @@ layout(location = 0) out vec4 color_output;
 in vec2 val;
 
 uniform float borderThickness = 0.05;
+uniform vec4 color = vec4(1.0, 1.0, 1.0, 1.0);
 
 void main()
 {
 	float R1 = 1.0;
 	float R2 = R1 - borderThickness;
-	vec4 color = vec4(1.0, 1.0, 1.0, 1.0);
 
 	// determine the color filling space
 	// if distant is outside of range then that point is not on the circle, so discard that shader

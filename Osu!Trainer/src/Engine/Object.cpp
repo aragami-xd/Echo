@@ -2,8 +2,8 @@
 #include "Attribute.h"
 using namespace std;
 
-const int Object::scaleAR = object::ObjectSpeedScaling;
-const float Object::scaleCS = object::ObjectSizeScaling;
+const int Object::scaleAR = object::objectSpeedScaling;
+const float Object::scaleCS = object::objectSizeScaling;
 
 float Object::approachRate = 9.0f;
 float Object::circleSize = 5.0f;

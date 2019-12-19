@@ -32,12 +32,9 @@ protected:
 	// till the ring touches the object and dissapear (object not yet dissapear)
 	// circles and sliders will utilize these variables differently
 	static int animationLength;
-	// 300 score (best score)
-	static int threeHundred;
-	// 100 score (a bit worse)
-	static int oneHundred;
-	// 50 score (worst)
-	static int fifty;
+	static int threeHundred;	// 300 score (best score)
+	static int oneHundred;		// 100 score (a bit worse)
+	static int fifty;			// 50 score (worst)
 
 	// when the object appears and disappears on the screen
 	int startTime{ 0 };

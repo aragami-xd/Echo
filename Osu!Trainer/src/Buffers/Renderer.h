@@ -8,7 +8,7 @@
 class Renderer
 {
 public:
-	static void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader, GLenum flag = GL_LINE_LOOP)
+	static void DrawIb(const VertexArray& va, const IndexBuffer& ib, const Shader& shader, GLenum flag = GL_LINE_LOOP)
 	{
 		ib.Bind();
 		va.Bind();

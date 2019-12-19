@@ -279,7 +279,7 @@
     <ClInclude Include="Osu!Trainer\src\Buffers\VertexBuffer.h" />
     <ClInclude Include="Osu!Trainer\src\Buffers\VertexBufferLayout.h" />
     <ClInclude Include="Osu!Trainer\src\Components\Circle.h" />
-    <ClInclude Include="Osu!Trainer\src\Components\ShaderList.h" />
+    <ClInclude Include="Osu!Trainer\src\Engine\ShaderList.h" />
     <ClInclude Include="Osu!Trainer\src\Engine\Instrument.h" />
     <ClInclude Include="Osu!Trainer\src\Components\MapSlider.h" />
     <ClInclude Include="Osu!Trainer\src\Engine\Object.h" />
@@ -288,6 +288,8 @@
     <ClInclude Include="Osu!Trainer\src\Engine\Core.h" />
     <ClInclude Include="Osu!Trainer\src\Engine\Attribute.h" />
     <ClInclude Include="Osu!Trainer\src\Components\MapCircle.h" />
+    <ClInclude Include="Osu!Trainer\src\Engine\ObjectComponent.h" />
+    <ClInclude Include="Osu!Trainer\src\Engine\ObjectRenderer.h" />
     <ClInclude Include="Osu!Trainer\src\Engine\Parser.h" />
   </ItemGroup>
   <ItemGroup>

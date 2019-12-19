@@ -11,12 +11,8 @@
 class Circle : public Object
 {
 private:
-	// when the circle appears on the screen
-	int startTime;
 	// when the beat of the circle is mapped to (i.e. animation ends)
 	int beatTime{ 0 };
-	// when the circle disappears
-	int endTime;
 
 	// the circle renderer
 	CircleRenderer* renderer;

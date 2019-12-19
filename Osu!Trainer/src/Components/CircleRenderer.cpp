@@ -21,9 +21,9 @@ CircleRenderer::CircleRenderer(float cx, float cy, float cRad) :
 	// calculate the dots on the circle and the initial ring
 	float angle = 0;
 	float baseX = 0, baseY = 0;
-	for (int i = 0; i <= object::DotCount; i++)
+	for (int i = 0; i <= object::dotCount; i++)
 	{
-		angle = 2 * PI * i / object::DotCount;
+		angle = 2 * PI * i / object::dotCount;
 		baseX = radius * cos(angle);
 		baseY = radius * sin(angle);
 
@@ -61,10 +61,10 @@ CircleRenderer::CircleRenderer(float cx, float cy, float cRad) :
 	};
 
 	// ring vertices and boundaries array
-	top += radius;
-	bottom -= radius;
-	left -= radius;
-	right += radius;
+	top = y - object::ringSizeScaling * radius;
+	bottom = y + object::ringSizeScaling * radius;
+	left = x - object::ringSizeScaling * radius;
+	right = x + object::ringSizeScaling * radius;
 	ringVerticesFrag.reserve(20);
 	ringVerticesFrag = {
 		// x, y, z, lx, ly
@@ -91,7 +91,7 @@ float* CircleRenderer::GetRingDotBuf(int time, int beatTime, int animationLength
 	float angle = 0;
 	for (int i = 0; i < ringDotBuf.size(); i += 2)
 	{
-		angle = 2 * PI * i / object::DotCount;
+		angle = 2 * PI * i / object::dotCount;
 
 		ringDotBuf[i] = x + radius * cos(angle) * remaining;
 		ringDotBuf[i + 1] = y + radius * sin(angle) * remaining;
@@ -103,14 +103,14 @@ float* CircleRenderer::GetRingDotBuf(int time, int beatTime, int animationLength
 void CircleRenderer::DrawCircleBuf()
 {
 	vaCircleBuf.Bind();
-	glDrawArrays(GL_LINE_LOOP, 0, object::DotCount);
+	glDrawArrays(GL_LINE_LOOP, 0, object::dotCount);
 }
 
 void CircleRenderer::DrawRingBuf(int time, int beatTime, int animationLength)
 {
 	vbRingBuf->Update(GetRingDotBuf(time, beatTime, animationLength), sizeof(float) * ringDotBuf.size(), GL_STREAM_DRAW);
 	vaRingBuf.Bind();
-	glDrawArrays(GL_LINE_LOOP, 0, object::DotCount);
+	glDrawArrays(GL_LINE_LOOP, 0, object::dotCount);
 }
 
 /* fragment drawing functions */
@@ -118,12 +118,13 @@ void CircleRenderer::DrawRingBuf(int time, int beatTime, int animationLength)
 float* CircleRenderer::GetRingVerticesFrag(int time, int beatTime, int animationLength)
 {
 	// calculate the new boundaries based on the timestamps
-	float remaining = (abs((beatTime - time)) / (float)animationLength) + 1;
+	float remaining = (abs((beatTime - time)) / (float)animationLength) + 0.5;
 
-	float top = y + radius * remaining;
-	float bottom = y - radius * remaining;
-	float left = x - radius * remaining;
-	float right = x + radius * remaining;
+	float top = y - object::ringSizeScaling * radius * remaining;
+	float bottom = y + object::ringSizeScaling * radius * remaining;
+	float left = x - object::ringSizeScaling * radius * remaining;
+	float right = x + object::ringSizeScaling * radius * remaining;
+
 	ringVerticesFrag = {
 		// x, y, z, lx, ly
 		right, bottom, 0, 1.0, -1.0,

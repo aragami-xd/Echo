@@ -2,6 +2,7 @@
 #include "Parser.h"
 #include <Components/Circle.h>
 #include <Components/Slider.h>
+#include <Components/CircleRenderer.h>
 
 #include "Core.h"
 
@@ -19,7 +20,7 @@ Core::Core(string path, ShaderList s) :
 	MapInit(path);
 
 	// bind shader
-	shader.CircleShader->Bind();
+	shader.BindShader(shader::circleName);
 }
 
 // draw all objects
@@ -35,12 +36,13 @@ void Core::DrawAllObject()
 		}
 		else if (time > allObject[i]->GetEndTime())
 		{
-			//delete allObject[i];
+			delete allObject[i];
 			objectIndex++;
 		}
 		else
 		{
 			// draw the object
+			shader.GetShader(shader::circleName)->Bind();
 			allObject[i]->Draw(time);
 		}
 
@@ -101,6 +103,6 @@ void Core::Draw()
 
 Core::~Core()
 {
-	for (int i = 0; i < allObject.size(); i++)
-		delete allObject[i];
+	//for (int i = 0; i < allObject.size(); i++)
+	//	delete allObject[i];
 }

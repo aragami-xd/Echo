@@ -24,7 +24,7 @@ int main(void)
 		return -1;
 
 	/* Create a windowed mode window and its OpenGL context */
-	window = glfwCreateWindow(window::WindowWidth, window::WindowHeight, "OpenGL", NULL, NULL);
+	window = glfwCreateWindow(window::windowWidth, window::windowHeight, "OpenGL", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -45,15 +45,15 @@ int main(void)
 
 	ShaderList shader;
 	// setup the shaders
-	shader.CircleShader = new Shader(path::CircleVertexPath, path::CircleFragmentPath);
-	glm::mat4 proj = glm::ortho(-1.0f, 1.0f, -1.0f / window::WidthDivHeight, 1.0f / window::WidthDivHeight);
+	shader.AddShader(shader::circleName, shader::circleVertexPath, shader::circleFragmentPath);
+	glm::mat4 proj = glm::ortho(-1.0f * window::wdh, 1.0f * window::wdh, -1.0f, 1.0f);
 	// setup circleshader
-	shader.CircleShader->Bind();
-	shader.CircleShader->SetUniformMat4f("proj", proj);
-	shader.CircleShader->SetUniformMat4f("view", glm::mat4(1.0));
+	shader.BindShader(shader::circleName);
+	shader.GetShader(shader::circleName)->SetUniformMat4f("proj", proj);
+	shader.GetShader(shader::circleName)->SetUniformMat4f("view", glm::mat4(1.0));
 
 	// new core
-	Core core(path::BeatmapPath, shader);
+	Core core(lib::beatmapPath, shader);
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
