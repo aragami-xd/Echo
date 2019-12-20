@@ -3,6 +3,7 @@
 #include <Components/Circle.h>
 #include <Components/Slider.h>
 #include <Components/CircleRenderer.h>
+#include <Components/SliderRenderer.h>
 
 #include "Core.h"
 
@@ -18,34 +19,28 @@ Core::Core(string path, ShaderList s) :
 
 	// initialize the map
 	MapInit(path);
-
-	// bind shader
-	shader.BindShader(shader::circleName);
 }
 
 // draw all objects
 void Core::DrawAllObject()
 {
 	// go through all objects
-	for (int i = objectIndex; i < allObject.size(); i++)
+	for (int i = index; i < object.size(); i++)
 	{
-		if (time < allObject[i]->GetStartTime())
+		if (time < object[i].object->GetStartTime())
 		{
 			// every object afterwards are not supposed to appear yet, so we break the loop here
 			break;
 		}
-		else if (time > allObject[i]->GetEndTime())
+		else if (time > object[i].object->GetEndTime())
 		{
-			delete allObject[i];
-			objectIndex++;
+			index++;
 		}
 		else
 		{
 			// draw the object
-			shader.GetShader(shader::circleName)->Bind();
-			allObject[i]->Draw(time);
+			object[i].objectRenderer->DrawFrag(time, shader.GetShader(shader::circleName));
 		}
-
 	}
 }
 
@@ -60,34 +55,36 @@ void Core::MapInit(std::string path)
 	{
 		if (Parser::Peek() == ParserType::CIRCLE)
 		{
-			// get the data, create the circle and add it to the list
-			MapCircle circle = Parser::ParseCircle();
-			Object* newCircle = new Circle(
-				circle.X,				// x
-				circle.Y,				// y
-				circle.BeatStart,		// beatStart
-				approachRate,			// AR
-				circleSize,				// CS
-				overallDifficulty		// OD
+			// get the data, create the circle and renderer and add it to the vector
+			MapCircle parseCircle = Parser::ParseCircle();
+			Object* circle = new Circle(
+				parseCircle.X,				// x
+				parseCircle.Y,				// y
+				parseCircle.BeatStart,		// beatStart
+				approachRate,				// AR
+				circleSize,					// CS
+				overallDifficulty			// OD
 			);
-			allObject.push_back(newCircle);
+			ObjectRenderer* circleRenderer = new CircleRenderer(circle);
+			object.push_back(ObjectComponent(circle, circleRenderer));
 		}
 		else if (Parser::Peek() == ParserType::SLIDER)
 		{
 			// get the data, create the slider and add it to the list
-			MapSlider slider = Parser::ParseSlider();
-			Object* newSlider = new Slider(
-				slider.X,				// x
-				slider.Y,				// y
-				slider.BeatStart,		// beatStart
-				slider.BeatEnd,			// beatEnd
-				slider.BeatTick,		// beatTick(s)
-				slider.Equation,		// curve equation
-				approachRate,			// AR
-				circleSize,				// CS
-				overallDifficulty		// OD
+			MapSlider parseSlider = Parser::ParseSlider();
+			Object* slider = new Slider(
+				parseSlider.X,				// x
+				parseSlider.Y,				// y
+				parseSlider.BeatStart,		// beatStart
+				parseSlider.BeatEnd,		// beatEnd
+				parseSlider.BeatTick,		// beatTick(s)
+				parseSlider.Equation,		// curve equation
+				approachRate,				// AR
+				circleSize,					// CS
+				overallDifficulty			// OD
 			);
-			allObject.push_back(newSlider);
+			ObjectRenderer* sliderRenderer = new SliderRenderer(slider);
+			object.push_back(ObjectComponent(slider, sliderRenderer));
 		}
 	}
 }
@@ -99,10 +96,4 @@ void Core::Draw()
 
 	// update the time
 	time = (int)clock() - start;
-}
-
-Core::~Core()
-{
-	//for (int i = 0; i < allObject.size(); i++)
-	//	delete allObject[i];
 }

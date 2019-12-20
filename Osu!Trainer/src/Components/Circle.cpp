@@ -12,8 +12,6 @@ Circle::Circle(float x, float y, int beat, float AR, float CS, float OD) :
 	beatTime = beat;
 	startTime = beatTime - animationLength;
 	endTime = beatTime + fifty;
-
-	renderer = new CircleRenderer(x, y, objectRadius);
 }
 
 // get score will return the score based on the time stamp
@@ -32,16 +30,4 @@ int Circle::GetScore(int timestamp)
 		return 100;
 	else
 		return 300;
-}
-
-void Circle::Draw(int time)
-{
-	renderer->DrawCircleFrag();
-	if (time < beatTime)
-		renderer->DrawRingFrag(time, beatTime, animationLength);
-}
-
-Circle::~Circle()
-{
-	delete renderer;
 }

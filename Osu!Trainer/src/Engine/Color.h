@@ -1,16 +1,19 @@
 #pragma once
-
-/* color for opengl vec4 */
+#include <glm/glm.hpp>
 
 // color struct, default to white
 struct Color
 {
-	Color(float r = 1.0f, float g = 1.0f, float b = 1.0f, float a = 1.0f) :
-		R(r), G(g), B(b), A(a) {}
-	float R;
-	float G;
-	float B;
-	float A;
+	Color(float R = 1.0f, float G = 1.0f, float B = 1.0f, float A = 1.0f) :
+		r(R), g(G), b(B), a(A), rgba(R,G,B,A), rgb(R,G,B) 
+	{}
+	// color options
+	glm::vec4 rgba;
+	glm::vec3 rgb;
+	float r;
+	float g;
+	float b;
+	float a;
 };
 
 // some predefinied color (mostly bright colors as the game background is dark)

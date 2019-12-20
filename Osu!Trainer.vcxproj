@@ -279,6 +279,7 @@
     <ClInclude Include="Osu!Trainer\src\Buffers\VertexBuffer.h" />
     <ClInclude Include="Osu!Trainer\src\Buffers\VertexBufferLayout.h" />
     <ClInclude Include="Osu!Trainer\src\Components\Circle.h" />
+    <ClInclude Include="Osu!Trainer\src\Components\SliderRenderer.h" />
     <ClInclude Include="Osu!Trainer\src\Engine\ShaderList.h" />
     <ClInclude Include="Osu!Trainer\src\Engine\Instrument.h" />
     <ClInclude Include="Osu!Trainer\src\Components\MapSlider.h" />
@@ -303,6 +304,7 @@
     <ClCompile Include="Osu!Trainer\src\Buffers\VertexArray.cpp" />
     <ClCompile Include="Osu!Trainer\src\Buffers\VertexBuffer.cpp" />
     <ClCompile Include="Osu!Trainer\src\Components\Circle.cpp" />
+    <ClCompile Include="Osu!Trainer\src\Components\SliderRenderer.cpp" />
     <ClCompile Include="Osu!Trainer\src\Engine\main.cpp" />
     <ClCompile Include="Osu!Trainer\src\Engine\Core.cpp" />
     <ClCompile Include="Osu!Trainer\src\Engine\Object.cpp" />
@@ -462,8 +464,8 @@
     <None Include="Osu!Trainer\Documentation\osu!trainer.drawio" />
     <None Include="Osu!Trainer\src\Shaders\CIrcleShader.frag" />
     <None Include="Osu!Trainer\src\Shaders\CircleShader.vert" />
-    <None Include="Osu!Trainer\src\Shaders\Shader.frag" />
-    <None Include="Osu!Trainer\src\Shaders\Shader.vert" />
+    <None Include="Osu!Trainer\src\Shaders\BasicShader.frag" />
+    <None Include="Osu!Trainer\src\Shaders\BasicShader.vert" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>

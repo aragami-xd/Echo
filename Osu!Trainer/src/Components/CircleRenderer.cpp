@@ -1,4 +1,5 @@
 #include "CircleRenderer.h"
+#include <Engine/Color.h>
 #include <Engine/Attribute.h>
 #include <mutex>
 
@@ -7,14 +8,13 @@ constexpr float PI = 3.1415;
 
 once_flag flag1, flag2, flag3;
 
-float CircleRenderer::radius = 0;
 VertexBufferLayout CircleRenderer::vblBuf;
 VertexBufferLayout CircleRenderer::vblFrag;
 
-CircleRenderer::CircleRenderer(float cx, float cy, float cRad) :
-	x(cx), y(cy)
+CircleRenderer::CircleRenderer(Object* circle)
 {
-	radius = cRad;
+	object = circle;
+
 	call_once(flag1, []() { vblBuf.Push<float>(2); });
 
 	/* deprecated buffer functions */
@@ -24,14 +24,14 @@ CircleRenderer::CircleRenderer(float cx, float cy, float cRad) :
 	for (int i = 0; i <= object::dotCount; i++)
 	{
 		angle = 2 * PI * i / object::dotCount;
-		baseX = radius * cos(angle);
-		baseY = radius * sin(angle);
+		baseX = object->GetObjectRadius() * cos(angle);
+		baseY = object->GetObjectRadius() * sin(angle);
 
-		circleDotBuf.push_back(x + baseX);
-		ringDotBuf.push_back(x + baseX * 2);
+		circleDotBuf.push_back(object->GetX() + baseX);
+		ringDotBuf.push_back(object->GetX() + baseX * 2);
 
-		circleDotBuf.push_back(y + baseY);
-		ringDotBuf.push_back(y + baseY * 2);
+		circleDotBuf.push_back(object->GetY() + baseY);
+		ringDotBuf.push_back(object->GetY() + baseY * 2);
 	}
 
 	// create and bind the buffers
@@ -46,10 +46,10 @@ CircleRenderer::CircleRenderer(float cx, float cy, float cRad) :
 	call_once(flag3, []() { vblFrag.Push<float>(2); });
 
 	// top, bottom, left, right
-	float top = y + radius;
-	float bottom = y - radius;
-	float left = x - radius;
-	float right = x + radius;
+	float top = object->GetY() + object->GetObjectRadius();
+	float bottom = object->GetY() - object->GetObjectRadius();
+	float left = object->GetX() - object->GetObjectRadius();
+	float right = object->GetX() + object->GetObjectRadius();
 	// circle vertices and value array
 	circleVerticesFrag.reserve(20);
 	circleVerticesFrag = {
@@ -61,10 +61,10 @@ CircleRenderer::CircleRenderer(float cx, float cy, float cRad) :
 	};
 
 	// ring vertices and boundaries array
-	top = y - object::ringSizeScaling * radius;
-	bottom = y + object::ringSizeScaling * radius;
-	left = x - object::ringSizeScaling * radius;
-	right = x + object::ringSizeScaling * radius;
+	top = object->GetY() - object::ringSizeScaling * object->GetObjectRadius();
+	bottom = object->GetY() + object::ringSizeScaling * object->GetObjectRadius();
+	left = object->GetX() - object::ringSizeScaling * object->GetObjectRadius();
+	right = object->GetX() + object::ringSizeScaling * object->GetObjectRadius();
 	ringVerticesFrag.reserve(20);
 	ringVerticesFrag = {
 		// x, y, z, lx, ly
@@ -83,47 +83,61 @@ CircleRenderer::CircleRenderer(float cx, float cy, float cRad) :
 
 /* buffer drawing functions */
 // get the ringDotBuf array at a certain time
-float* CircleRenderer::GetRingDotBuf(int time, int beatTime, int animationLength)
+float* CircleRenderer::GetRingDotBuf(int time)
 {
 	// calculate new dots on the ring, based on the timestamp
-	float remaining = (abs((beatTime - time)) / (float)animationLength) + 1;
+	float remaining = (abs((object->GetBeatTime() - time)) / (float)object->GetAnimationLength()) + 1;
 
 	float angle = 0;
 	for (int i = 0; i < ringDotBuf.size(); i += 2)
 	{
 		angle = 2 * PI * i / object::dotCount;
 
-		ringDotBuf[i] = x + radius * cos(angle) * remaining;
-		ringDotBuf[i + 1] = y + radius * sin(angle) * remaining;
+		ringDotBuf[i] = object->GetX() + object->GetObjectRadius() * cos(angle) * remaining;
+		ringDotBuf[i + 1] = object->GetY() + object->GetObjectRadius() * sin(angle) * remaining;
 	}
 
 	return ringDotBuf.data();
 }
 
+// draw circle using buffer
 void CircleRenderer::DrawCircleBuf()
 {
 	vaCircleBuf.Bind();
 	glDrawArrays(GL_LINE_LOOP, 0, object::dotCount);
 }
-
-void CircleRenderer::DrawRingBuf(int time, int beatTime, int animationLength)
+// draw approach circle (ring) using buffer
+void CircleRenderer::DrawRingBuf(int time)
 {
-	vbRingBuf->Update(GetRingDotBuf(time, beatTime, animationLength), sizeof(float) * ringDotBuf.size(), GL_STREAM_DRAW);
+	vbRingBuf->Update(GetRingDotBuf(time), sizeof(float) * ringDotBuf.size(), GL_STREAM_DRAW);
 	vaRingBuf.Bind();
 	glDrawArrays(GL_LINE_LOOP, 0, object::dotCount);
+}
+// draw the object using buffer
+void CircleRenderer::DrawBuf(int time, Shader* shader)
+{
+	shader->Bind();
+
+	shader->SetUniform1f("borderThickness", object::circleBorderThickness);
+	shader->SetUniformVec4f("color", COLOR_LIGHT_BLUE.rgba);
+	DrawCircleBuf();
+
+	shader->SetUniform1f("borderThickness", object::ringBorderThickness);
+	shader->SetUniformVec4f("color", COLOR_WHITE.rgba);
+	DrawRingBuf(time);
 }
 
 /* fragment drawing functions */
 // calculate the boundaries of the ring at a certain time
-float* CircleRenderer::GetRingVerticesFrag(int time, int beatTime, int animationLength)
+float* CircleRenderer::GetRingVerticesFrag(int time)
 {
 	// calculate the new boundaries based on the timestamps
-	float remaining = (abs((beatTime - time)) / (float)animationLength) + 0.5;
+	float remaining = (abs((object->GetBeatTime() - time)) / (float)object->GetAnimationLength()) + 0.5;
 
-	float top = y - object::ringSizeScaling * radius * remaining;
-	float bottom = y + object::ringSizeScaling * radius * remaining;
-	float left = x - object::ringSizeScaling * radius * remaining;
-	float right = x + object::ringSizeScaling * radius * remaining;
+	float top = object->GetY() - object::ringSizeScaling * object->GetObjectRadius() * remaining;
+	float bottom = object->GetY() + object::ringSizeScaling * object->GetObjectRadius() * remaining;
+	float left = object->GetX() - object::ringSizeScaling * object->GetObjectRadius() * remaining;
+	float right = object->GetX() + object::ringSizeScaling * object->GetObjectRadius() * remaining;
 
 	ringVerticesFrag = {
 		// x, y, z, lx, ly
@@ -134,18 +148,31 @@ float* CircleRenderer::GetRingVerticesFrag(int time, int beatTime, int animation
 	};
 	return ringVerticesFrag.data();
 }
-
+// draw circle using fragment shader
 void CircleRenderer::DrawCircleFrag()
 {
 	vaCircleFrag.Bind();
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 }
-
-void CircleRenderer::DrawRingFrag(int time, int beatTime, int animationLength)
+// draw approach circle using fragment shader
+void CircleRenderer::DrawRingFrag(int time)
 {
-	vbRingFrag->Update(GetRingVerticesFrag(time, beatTime, animationLength), sizeof(float) * ringVerticesFrag.size(), GL_STREAM_DRAW);
+	vbRingFrag->Update(GetRingVerticesFrag(time), sizeof(float) * ringVerticesFrag.size(), GL_STREAM_DRAW);
 	vaRingFrag.Bind();
 	glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+}
+// draw the object
+void CircleRenderer::DrawFrag(int time, Shader* shader)
+{
+	shader->Bind();
+
+	shader->SetUniform1f("borderThickness", object::circleBorderThickness);
+	shader->SetUniformVec4f("color", COLOR_LIGHT_BLUE.rgba);
+	DrawCircleFrag();
+
+	shader->SetUniform1f("borderThickness", object::ringBorderThickness);
+	shader->SetUniformVec4f("color", COLOR_WHITE.rgba);
+	DrawRingFrag(time);
 }
 
 CircleRenderer::~CircleRenderer()

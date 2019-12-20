@@ -278,6 +278,7 @@
     <ClInclude Include="Osu!Trainer\src\Engine\ObjectComponent.h" />
     <ClInclude Include="Osu!Trainer\src\Engine\ObjectRenderer.h" />
     <ClInclude Include="Osu!Trainer\src\Engine\ShaderList.h" />
+    <ClInclude Include="Osu!Trainer\src\Components\SliderRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Osu!Trainer\Dependencies\vendor\stb\stb_image.cpp" />
@@ -294,6 +295,7 @@
     <ClCompile Include="Osu!Trainer\src\Engine\Object.cpp" />
     <ClCompile Include="Osu!Trainer\src\Engine\main.cpp" />
     <ClCompile Include="Osu!Trainer\src\Engine\Core.cpp" />
+    <ClCompile Include="Osu!Trainer\src\Components\SliderRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Osu!Trainer\Documentation\osu!trainer.drawio" />
@@ -447,8 +449,8 @@
     <None Include="Osu!Trainer\Dependencies\vendor\glm\gtx\wrap.inl" />
     <None Include="Osu!Trainer\src\Shaders\CIrcleShader.frag" />
     <None Include="Osu!Trainer\src\Shaders\CircleShader.vert" />
-    <None Include="Osu!Trainer\src\Shaders\Shader.frag" />
-    <None Include="Osu!Trainer\src\Shaders\Shader.vert" />
+    <None Include="Osu!Trainer\src\Shaders\BasicShader.frag" />
+    <None Include="Osu!Trainer\src\Shaders\BasicShader.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Osu!Trainer\Library\Textures\thumb.png" />

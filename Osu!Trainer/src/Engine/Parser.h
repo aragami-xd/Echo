@@ -19,6 +19,9 @@ enum class ParserType
 class Parser
 {
 private:
+	// block class construction
+	Parser() {}
+
 	// the map itself
 	static std::fstream map;
 

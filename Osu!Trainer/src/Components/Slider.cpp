@@ -17,7 +17,3 @@ Slider::Slider(float x, float y, int beatStart, int beatEnd, std::vector<int> be
 	startTime = beatStartTime - animationLength;
 	endTime = beatEndTime + fifty;
 }
-
-void Slider::Draw(int time)
-{
-}

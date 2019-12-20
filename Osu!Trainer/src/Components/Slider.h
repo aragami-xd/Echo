@@ -29,5 +29,5 @@ private:
 public:
 	Slider(float x, float y, int beatStart, int beatEnd, std::vector<int> beatTick, std::string equation, float AR, float CS, float OD);
 
-	virtual void Draw(int time);
+	inline virtual int GetBeatTime() final { return beatStartTime; }
 };

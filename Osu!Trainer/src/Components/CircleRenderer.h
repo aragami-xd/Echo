@@ -3,15 +3,13 @@
 #include <vector>
 #include <Buffers/VertexArray.h>
 #include <Buffers/VertexBufferLayout.h>
+#include <Engine/ObjectRenderer.h>
 
-class CircleRenderer
+#include "Circle.h"
+
+class CircleRenderer : public ObjectRenderer
 {
 private:
-	// x, y and radius
-	float x;
-	float y;
-	static float radius;
-
 	/* deprecated draw functions: drawing the circle using vertices from the vertex array and vertex buffers */
 	// dots to draw the circle
 	std::vector<float> circleDotBuf;
@@ -25,7 +23,11 @@ private:
 	VertexBuffer* vbRingBuf;
 
 	// calculate the size of the ring
-	float* GetRingDotBuf(int time, int beatTime, int animationLength);
+	float* GetRingDotBuf(int time);
+
+	// draw the circle and the ring using buffers vertices (deprecated)
+	void DrawCircleBuf();
+	void DrawRingBuf(int time);
 
 	/* new fragment shader function: drawing the circle using the fragment shader */
 	// boundaries of the circle and ring
@@ -40,18 +42,17 @@ private:
 	VertexBuffer* vbRingFrag;
 
 	// calculate the boundaries of the ring
-	float* GetRingVerticesFrag(int time, int beatTime, int animationLength);
-
-public:
-	CircleRenderer(float x, float y, float radius);
-
-	// draw the circle and the ring using buffers vertices (deprecated)
-	void DrawCircleBuf();
-	void DrawRingBuf(int time, int beatTime, int animationLength);
+	float* GetRingVerticesFrag(int time);
 
 	// draw the circle and the ring using fragment shaders (the new way)
 	void DrawCircleFrag();
-	void DrawRingFrag(int time, int beatTime, int animationLength);
+	void DrawRingFrag(int time);
+
+public:
+	CircleRenderer(Object* circle);
+
+	virtual void DrawBuf(int time, Shader* shader) final;
+	virtual void DrawFrag(int time, Shader* shader) final;
 
 	~CircleRenderer();
 };

@@ -31,9 +31,9 @@ namespace object
 	const float ringSizeScaling = 2.0f;			// ring size relative to circle
 
 	// shader attributes
-	const float circleBorderThickness = 0.07f;
+	const float circleBorderThickness = 0.1f;
 	const float circleAccentThickness = 0.2f;
-	const float ringBorderThickness = 0.05f;
+	const float ringBorderThickness = 0.04f;
 };
 
 /* key mapping */
@@ -48,12 +48,12 @@ namespace keymapping
 namespace shader
 {
 	// basic shader
-	const std::string basicVertexPath = "Osu!Trainer/src/Shaders/Shader.vert";
-	const std::string basicFragmentPath = "Osu!Trainer/src/Shaders/Shader.frag";
-	const std::string basicName = "basicShader";
+	const std::string basicName = "BasicShader";
+	const std::string basicVertexPath = "Osu!Trainer/src/Shaders/" + basicName + ".vert";
+	const std::string basicFragmentPath = "Osu!Trainer/src/Shaders/" + basicName + ".frag";
 
 	// circle shader
-	const std::string circleVertexPath = "Osu!Trainer/src/Shaders/CircleShader.vert";
-	const std::string circleFragmentPath = "Osu!Trainer/src/Shaders/CircleShader.frag";
-	const std::string circleName = "circleShader";
+	const std::string circleName = "CircleShader";
+	const std::string circleVertexPath = "Osu!Trainer/src/Shaders/" + circleName + ".vert";
+	const std::string circleFragmentPath = "Osu!Trainer/src/Shaders/" + circleName + ".frag";
 }

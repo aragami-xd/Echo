@@ -44,8 +44,13 @@ protected:
 	Object(float x, float y, float AR, float CS, float OD);
 
 public:
+	inline float GetX() { return x; }
+	inline float GetY() { return y; }
+	inline float GetObjectRadius() { return objectRadius; }
+	inline int GetAnimationLength() { return animationLength; }
 	inline int GetStartTime() { return startTime; }
 	inline int GetEndTime() { return endTime; }
 
-	virtual void Draw(int time) = 0;
+	// get beat time will be different with each type of object
+	virtual int GetBeatTime() = 0;
 };

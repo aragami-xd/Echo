@@ -32,6 +32,7 @@ public:
 	void SetUniform1f(const std::string& name, float v);
 	void SetUniform1i(const std::string& name, int v);
 	void SetUniformMat4f(const std::string& name, const glm::mat4& matrix);
+	void SetUniformVec4f(const std::string& name, const glm::vec4& matrix);
 
 	~Shader();
 };

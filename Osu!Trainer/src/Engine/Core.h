@@ -3,6 +3,7 @@
 #include "Object.h"
 #include "Color.h"
 #include "ShaderList.h"
+#include "ObjectComponent.h"
 
 #include <vector>
 #include <ctime>
@@ -20,9 +21,8 @@ private:
 	ShaderList shader;
 
 	// all the circle and slider parsed from the map
-	std::vector<Object*> allObject;
-	// current index of the circle and slider
-	int objectIndex{ 0 };
+	std::vector<ObjectComponent> object;
+	int index{ 0 };
 
 	// metadata - song setup
 	float approachRate{ 9.5f };
@@ -31,7 +31,7 @@ private:
 	float hpDrain{ 6.0f };
 
 	// color list
-	std::vector<Color> colorList{ COLOR_WHITE, COLOR_LIGHT_BLUE, COLOR_LIGHT_YELLOW };
+	std::vector<Color> colorList{ COLOR_LIGHT_BLUE, COLOR_LIGHT_YELLOW };
 
 	// initialize the map
 	void MapInit(std::string path);
@@ -44,6 +44,4 @@ public:
 
 	// draw everything on the screen
 	void Draw();
-
-	~Core();
 };
