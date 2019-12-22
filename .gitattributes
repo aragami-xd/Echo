@@ -1,0 +1,3 @@
+# vendored codes and dependencies
+osu!trainer/dependencies/* linguist-vendored
+echo/dependencies/* linguist-vendored
