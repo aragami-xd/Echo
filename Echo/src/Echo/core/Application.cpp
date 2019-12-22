@@ -1,5 +1,5 @@
 #include "Application.h"
-#include <Echo/EchoHeader.h>
+#include <EchoHeader.h>
 #include <Echo/events/ApplicationEvent.h>
 using namespace std;
 

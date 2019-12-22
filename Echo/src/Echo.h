@@ -7,4 +7,4 @@
 #include <Echo/core/EntryPoint.h>
 
 /* echo headers */
-#include <Echo/EchoHeader.h>
+#include <EchoHeader.h>

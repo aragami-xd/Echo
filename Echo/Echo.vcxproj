@@ -153,7 +153,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Echo\Echo.h" />
+    <ClInclude Include="src\Echo.h" />
+    <ClInclude Include="src\EchoHeader.h" />
     <ClInclude Include="src\Echo\core\Application.h" />
     <ClInclude Include="src\Echo\core\Core.h" />
     <ClInclude Include="src\Echo\core\EntryPoint.h" />
@@ -161,11 +162,10 @@
     <ClInclude Include="src\Echo\events\Event.h" />
     <ClInclude Include="src\Echo\events\KeyboardEvent.h" />
     <ClInclude Include="src\Echo\events\MouseEvent.h" />
-    <ClInclude Include="src\Echo\EchoHeader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\EchoHeader.cpp" />
     <ClCompile Include="src\Echo\core\Application.cpp" />
-    <ClCompile Include="src\Echo\EchoHeader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\glfw\glfw.vcxproj">

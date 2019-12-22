@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Echo/core/Core.h>
-#include <Echo/EchoHeader.h>
+#include <EchoHeader.h>
 
 /* the event system is running on blocking mechanics: halt the program and execute the event */
 

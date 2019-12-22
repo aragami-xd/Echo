@@ -1,4 +1,4 @@
-#include <Echo/Echo.h>
+#include <Echo.h>
 
 class Program : public Application
 {

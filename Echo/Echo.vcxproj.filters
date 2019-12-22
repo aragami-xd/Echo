@@ -33,13 +33,13 @@
     <ClInclude Include="src\Echo\events\MouseEvent.h">
       <Filter>Echo\events</Filter>
     </ClInclude>
-    <ClInclude Include="src\Echo\Echo.h" />
-    <ClInclude Include="src\Echo\EchoHeader.h" />
+    <ClInclude Include="src\Echo.h" />
+    <ClInclude Include="src\EchoHeader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Echo\core\Application.cpp">
       <Filter>Echo\core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Echo\EchoHeader.cpp" />
+    <ClCompile Include="src\EchoHeader.cpp" />
   </ItemGroup>
 </Project>
