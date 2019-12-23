@@ -6,6 +6,10 @@ class WindowCloseEvent : public Event
 {
 public:
 	WindowCloseEvent() = default;
-	EVENT_CLASS_TYPE(WindowClose);
-	EVENT_CLASS_CATEGORY(EventCategoryApplication);
+	inline virtual EventType GetEventType() const final override { 
+		return EventType::WindowClose;
+	}
+	inline virtual EventCategory GetEventCategory() const final override { 
+		return EventCategory::EventCategoryApplication;
+	}
 };

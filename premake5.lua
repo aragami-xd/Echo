@@ -53,7 +53,7 @@ project "Echo"
 		cppdialect "C++17"
 		staticruntime "on"
 		systemversion "latest"
-		defines { "ECHO_WINDOWS", "ECHO_BUILD" }
+		defines { "ECHO_BUILD" }
 		postbuildcommands { "{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/osu!trainer" }
 
 	filter "configurations:Debug"
@@ -100,7 +100,6 @@ project "osu!trainer"
 		cppdialect "C++17"
 		staticruntime "on"
 		systemversion "latest"
-		defines { "ECHO_WINDOWS" }
 
 	filter "configurations:Debug"
 		defines {"ECHO_DEBUG"}

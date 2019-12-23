@@ -162,10 +162,13 @@
     <ClInclude Include="src\Echo\events\Event.h" />
     <ClInclude Include="src\Echo\events\KeyboardEvent.h" />
     <ClInclude Include="src\Echo\events\MouseEvent.h" />
+    <ClInclude Include="src\Echo\core\Window.h" />
+    <ClInclude Include="src\platform\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EchoHeader.cpp" />
     <ClCompile Include="src\Echo\core\Application.cpp" />
+    <ClCompile Include="src\platform\WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\glfw\glfw.vcxproj">

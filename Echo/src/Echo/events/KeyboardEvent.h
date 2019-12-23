@@ -6,13 +6,15 @@
 class KeyEvent : public Event
 {
 protected:
-	KeyEvent(char keyInput) : 
-		key(keyInput) 
+	KeyEvent(char keyInput) :
+		key(keyInput)
 	{}
 
 	char key;
 public:
-	EVENT_CLASS_CATEGORY(EventCategoryKeyboard);
+	inline virtual EventCategory GetEventCategory() const final override { 
+		return EventCategory::EventCategoryKeyboard;
+	}
 
 	inline char GetKey() { return key; }
 };
@@ -24,10 +26,12 @@ private:
 	int count;
 public:
 	KeyDownEvent(char keyInput, int keyCount) :
-		KeyEvent(keyInput), count(keyCount) 
+		KeyEvent(keyInput), count(keyCount)
 	{}
 
-	EVENT_CLASS_TYPE(KeyDown);
+	inline virtual EventType GetEventType() const final override { 
+		return EventType::KeyDown;
+	}
 
 	inline int GetKeyCount() { return count; }
 };
@@ -40,5 +44,7 @@ public:
 		KeyEvent(keyInput)
 	{}
 
-	EVENT_CLASS_TYPE(KeyUp);
+	inline virtual EventType GetEventType() const final override { 
+		return EventType::KeyUp;
+	}
 };

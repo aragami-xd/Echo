@@ -35,11 +35,14 @@
     </ClInclude>
     <ClInclude Include="src\Echo.h" />
     <ClInclude Include="src\EchoHeader.h" />
+    <ClInclude Include="src\Echo\core\Window.h" />
+    <ClInclude Include="src\platform\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Echo\core\Application.cpp">
       <Filter>Echo\core</Filter>
     </ClCompile>
     <ClCompile Include="src\EchoHeader.cpp" />
+    <ClCompile Include="src\platform\WindowsWindow.cpp" />
   </ItemGroup>
 </Project>

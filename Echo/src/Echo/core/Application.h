@@ -1,9 +1,14 @@
 #pragma once
 
 #include "Core.h"
+#include "Window.h"
 
-class ECHO_API Application
+class ECHO_DLL Application
 {
+private:
+	std::unique_ptr<Window> window;
+	bool running{ true };
+
 public:
 	Application();
 

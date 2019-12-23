@@ -1,21 +1,26 @@
 #pragma once
 
 /* [insert every libraries you can think of here] */
+// miscellaneous
 #include <string>
 #include <algorithm>
 #include <ctime>
 #include <cmath>
 #include <random>
+#include <functional>
+#include <memory>
 
+// i/o
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <stdio.h>
 
+// containers
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
 #include <utility>
 
-#ifdef ECHO_WINDOWS
-	#include <Windows.h>
-#endif // ECHO_WINDOWS
+// windows specific
+#include <Windows.h>
