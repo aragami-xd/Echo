@@ -1,16 +1,19 @@
 #include "Application.h"
-#include <EchoHeader.h>
-#include <glfw/glfw3.h>
-
 using namespace std;
 
-Application::Application()
+Application::Application() :
+	running(true)
 {
+	//window = unique_ptr<Window>();
 }
 
 /* this acts as main.cpp */
 int Application::Run()
 {
+	while (true)
+	{
+		//window->OnUpdate();
+	}
 }
 
 Application::~Application()

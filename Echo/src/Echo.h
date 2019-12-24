@@ -8,3 +8,6 @@
 
 /* echo headers */
 #include <EchoHeader.h>
+
+/* log */
+#include <Echo/core/Log.h>

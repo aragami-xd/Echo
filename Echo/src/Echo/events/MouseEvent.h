@@ -1,89 +1,69 @@
 #pragma once
 
 #include "Event.h"
+using namespace std;
 
-// mouse button event
 class MouseButtonEvent : public Event
 {
 protected:
-	int button;
-public:
-	MouseButtonEvent(int left) :
-		button(left)
+	MouseButtonEvent(int btn) :
+		button(btn)
 	{}
 
-	inline virtual EventCategory GetEventCategory() const final override {
-		return EventCategory::EventCategoryMouseButton;
-	}
-
-	inline int GetButton() { return button; }
+	int button;
+public:
+	EVENT_CLASS_CATEGORY(MouseButtonEventCategory);
 };
 
-// mouse button down
 class MouseDownEvent : public MouseButtonEvent
 {
 public:
-	MouseDownEvent(int left) :
-		MouseButtonEvent(left)
+	MouseDownEvent(int btn) :
+		MouseButtonEvent(btn)
 	{}
-	
-	inline virtual EventType GetEventType() const final override {
-		return EventType::MouseDown;
-	}
+
+	EVENT_CLASS_TYPE(MouseDown);
 };
 
-// mouse button up
 class MouseUpEvent : public MouseButtonEvent
 {
 public:
-	MouseUpEvent(int left) :
-		MouseButtonEvent(left)
+	MouseUpEvent(int btn) :
+		MouseButtonEvent(btn)
 	{}
 
-	inline virtual EventType GetEventType() const final override {
-		return EventType::MouseUp;
-	}
+	EVENT_CLASS_TYPE(MouseUp);
 };
 
-// mouse move
 class MouseMoveEvent : public Event
 {
 private:
-	float x, y;
+	float x;
+	float y;
 public:
-	MouseMoveEvent(float xm, float ym) : 
-		x(xm), y(ym)
+	MouseMoveEvent(float mx, float my) :
+		x(mx), y(my)
 	{}
 
-	inline virtual EventType GetEventType() const final override {
-		return EventType::MouseMove;
-	}
-
-	inline virtual EventCategory GetEventCategory() const final override {
-		return EventCategory::EventCategoryMouse;
-	}
+	EVENT_CLASS_TYPE(MouseMove);
+	EVENT_CLASS_CATEGORY(MouseEventCategory);
 
 	inline float GetX() { return x; }
 	inline float GetY() { return y; }
 };
 
-// mouse wheel
 class MouseWheelEvent : public Event
 {
 private:
-	float xoffset, yoffset;
+	float xoffset;
+	float yoffset;
 public:
-	MouseWheelEvent(float xo, float yo) :
-		xoffset(xo), yoffset(yo)
+	MouseWheelEvent(float mx, float my) :
+		xoffset(mx), yoffset(my)
 	{}
 
-	inline virtual EventType GetEventType() const final override {
-		return EventType::MouseWheel;
-	}
-
-	inline virtual EventCategory GetEventCategory() const final override {
-		return EventCategory::EventCategoryMouse;
-	}
+	EVENT_CLASS_TYPE(MouseWheel);
+	EVENT_CLASS_CATEGORY(MouseEventCategory);
 
 	inline float GetXOffset() { return xoffset; }
 	inline float GetYOffset() { return yoffset; }

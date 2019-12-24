@@ -9,6 +9,7 @@
 #include <random>
 #include <functional>
 #include <memory>
+#include <iterator>
 
 // i/o
 #include <iostream>
@@ -23,4 +24,6 @@
 #include <utility>
 
 // windows specific
+#ifdef ECHO_WINDOWS
 #include <Windows.h>
+#endif

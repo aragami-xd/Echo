@@ -10,8 +10,15 @@
     <Filter Include="Echo\events">
       <UniqueIdentifier>{28B8B046-946D-293C-1D62-231389162040}</UniqueIdentifier>
     </Filter>
+    <Filter Include="platform">
+      <UniqueIdentifier>{4A63C33C-3630-1E48-5F49-0CF04B7553D6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\windows">
+      <UniqueIdentifier>{A44FC440-9048-E392-B97A-C817A5D2C29E}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Echo.h" />
     <ClInclude Include="src\Echo\core\Application.h">
       <Filter>Echo\core</Filter>
     </ClInclude>
@@ -21,28 +28,36 @@
     <ClInclude Include="src\Echo\core\EntryPoint.h">
       <Filter>Echo\core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Echo\core\Log.h">
+      <Filter>Echo\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\core\Window.h">
+      <Filter>Echo\core</Filter>
+    </ClInclude>
     <ClInclude Include="src\Echo\events\ApplicationEvent.h">
       <Filter>Echo\events</Filter>
     </ClInclude>
     <ClInclude Include="src\Echo\events\Event.h">
       <Filter>Echo\events</Filter>
     </ClInclude>
-    <ClInclude Include="src\Echo\events\KeyboardEvent.h">
+    <ClInclude Include="src\Echo\events\Header.h">
       <Filter>Echo\events</Filter>
     </ClInclude>
     <ClInclude Include="src\Echo\events\MouseEvent.h">
       <Filter>Echo\events</Filter>
     </ClInclude>
-    <ClInclude Include="src\Echo.h" />
     <ClInclude Include="src\EchoHeader.h" />
-    <ClInclude Include="src\Echo\core\Window.h" />
-    <ClInclude Include="src\platform\WindowsWindow.h" />
+    <ClInclude Include="src\platform\windows\WindowsWindow.h">
+      <Filter>platform\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Echo\core\Application.cpp">
       <Filter>Echo\core</Filter>
     </ClCompile>
     <ClCompile Include="src\EchoHeader.cpp" />
-    <ClCompile Include="src\platform\WindowsWindow.cpp" />
+    <ClCompile Include="src\platform\windows\WindowsWindow.cpp">
+      <Filter>platform\windows</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

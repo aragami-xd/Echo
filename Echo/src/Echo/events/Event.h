@@ -1,53 +1,53 @@
 #pragma once
 
-#include <Echo/core/Core.h>
 #include <EchoHeader.h>
 
-/* the event system is running on blocking mechanics: halt the program and execute the event */
-
-// event types: window, keyboard (key) and mouse
+// event type
 enum class EventType
 {
 	None = 0,
-	WindowClose,
-	KeyDown, KeyUp,
-	MouseDown, MouseUp, MouseMove, MouseWheel
+	WindowClose, WindowResize,
+	MouseDown, MouseUp, MouseMove, MouseWheel,
+	KeyDown, KeyUp
 };
 
-// event categories. using bitfield so an event can have more than 1 category
 enum class EventCategory
 {
 	None = 0,
-	EventCategoryApplication,
-	EventCategoryMouse,
-	EventCategoryMouseButton,
-	EventCategoryKeyboard
+	ApplicationEventCategory,
+	MouseButtonEventCategory,
+	MouseEventCategory,
+	KeyEventCategory,
 };
 
-// event
+#define EVENT_CLASS_TYPE(type)\
+	inline virtual EventType GetEventType() final override { return EventType::type; }\
+	inline virtual char* GetEventName() final override { return #type; }
+
+#define EVENT_CLASS_CATEGORY(category)\
+	inline virtual EventCategory GetEventCategory() final override { return EventCategory::category; }
+
 class Event
 {
 public:
-	// see if event has been handled or not
-	bool Handled = false;
+	bool handled = false;
 
-	// functions returning information about the event
-	virtual EventType GetEventType() const = 0;
-	virtual EventCategory GetEventCategory() const = 0;
+	inline virtual EventType GetEventType() = 0;
+	inline virtual EventCategory GetEventCategory() = 0;
+	inline virtual char* GetEventName() = 0;
+	inline virtual std::string GetEventDetail() { return GetEventName(); }
 
-	// check to see if an event belongs to a certain category or not
-	inline bool IsInCategory(EventCategory category)
-	{
-		return (GetEventCategory() == category ? true : false);
+	inline bool IsCategory(EventCategory category) {
+		return GetEventCategory() == category;
 	}
 };
 
-// event disapatcher
 class EventDispatcher
 {
 private:
+	Event& e;
 public:
-
+	EventDispatcher(Event& et) :
+		e(et)
+	{}
 };
-
-// inline std::ostream& operator << (std::ostream& os, const Event& e) { return os << e.GetEventDetail(); }

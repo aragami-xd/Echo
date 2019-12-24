@@ -3,8 +3,8 @@
 class Program : public Application
 {
 public:
-	Program() {}
-	~Program() {}
+	Program() = default;
+	~Program() = default;
 };
 
 Application* CreateApp()

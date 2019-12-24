@@ -25,6 +25,7 @@ project "Echo"
 	language "C++"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+	defines { "ECHO_WINDOWS", "ECHO_BUILD" }
 
 	-- include library
 	files
@@ -53,7 +54,6 @@ project "Echo"
 		cppdialect "C++17"
 		staticruntime "on"
 		systemversion "latest"
-		defines { "ECHO_BUILD" }
 		postbuildcommands { "{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/osu!trainer" }
 
 	filter "configurations:Debug"
@@ -75,6 +75,7 @@ project "osu!trainer"
 	language "C++"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+	defines { "ECHO_WINDOWS" } 
 
 	-- include library
 	files
