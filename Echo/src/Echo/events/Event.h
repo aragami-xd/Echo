@@ -6,48 +6,40 @@
 enum class EventType
 {
 	None = 0,
-	WindowClose, WindowResize,
+	WindowClose,
 	MouseDown, MouseUp, MouseMove, MouseWheel,
 	KeyDown, KeyUp
 };
 
-enum class EventCategory
-{
-	None = 0,
-	ApplicationEventCategory,
-	MouseButtonEventCategory,
-	MouseEventCategory,
-	KeyEventCategory,
-};
-
-#define EVENT_CLASS_TYPE(type)\
-	inline virtual EventType GetEventType() final override { return EventType::type; }\
-	inline virtual char* GetEventName() final override { return #type; }
-
-#define EVENT_CLASS_CATEGORY(category)\
-	inline virtual EventCategory GetEventCategory() final override { return EventCategory::category; }
+#define EVENT_CLASS_TYPE(x)\
+	static inline EventType StaticEventType() { return EventType::x; }\
+	inline virtual EventType GetEventType() final override { return EventType::x; }\
 
 class Event
 {
+protected:
+	Event() = default;
 public:
 	bool handled = false;
-
 	inline virtual EventType GetEventType() = 0;
-	inline virtual EventCategory GetEventCategory() = 0;
-	inline virtual char* GetEventName() = 0;
-	inline virtual std::string GetEventDetail() { return GetEventName(); }
-
-	inline bool IsCategory(EventCategory category) {
-		return GetEventCategory() == category;
-	}
 };
 
-class EventDispatcher
+class EventInvoker
 {
 private:
-	Event& e;
+	Event& eiEvent;
 public:
-	EventDispatcher(Event& et) :
-		e(et)
+	EventInvoker(Event& et) :
+		eiEvent(et)
 	{}
+	
+	template<typename T>
+	void Invoke(std::function<void(T&)> func)
+	{
+		if (T::StaticEventType() == eiEvent.GetEventType())
+		{
+			func(*(T*) & eiEvent);
+			eiEvent.handled = true;
+		}
+	}
 };

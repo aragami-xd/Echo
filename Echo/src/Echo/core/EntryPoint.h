@@ -8,10 +8,8 @@ extern Application* CreateApp();
 int main(int argc, char** argv)
 {
 	auto app = CreateApp();
-	int exitCode = app->Run();
+	app->Run();
 	delete app;
-
-	return exitCode;
 }
 
 #endif

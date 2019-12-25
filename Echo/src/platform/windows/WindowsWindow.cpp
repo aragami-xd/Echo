@@ -5,7 +5,12 @@
 
 using namespace std;
 
-WindowsWindow::WindowsWindow(WindowSetting ws)
+Window* Window::Create(const WindowSetting& ws)
+{
+	return new WindowsWindow(ws);
+}
+
+WindowsWindow::WindowsWindow(const WindowSetting& ws)
 {
 	wd.width = ws.width;
 	wd.height = ws.height;
@@ -29,12 +34,16 @@ WindowsWindow::WindowsWindow(WindowSetting ws)
 		glfwTerminate();
 	}
 	glfwMakeContextCurrent(window);
+	glfwSetWindowUserPointer(window, &wd);
 
 	// blending
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE);
+
+	// initialize callback functions
+	InitCallback();
 }
 
 void WindowsWindow::InitCallback()
@@ -42,12 +51,80 @@ void WindowsWindow::InitCallback()
 	// window functions
 	glfwSetWindowCloseCallback(window, [](GLFWwindow* w)
 		{
+			WindowData& wd = *(WindowData*)glfwGetWindowUserPointer(w);
+			WindowCloseEvent event;
+			wd.func(event);
+		}
+	);
 
+	// keyboard functions
+	glfwSetKeyCallback(window, [](GLFWwindow* w, int key, int scancode, int action, int mods)
+		{
+			WindowData& wd = *(WindowData*)glfwGetWindowUserPointer(w);
+			switch (action)
+			{
+				case(GLFW_PRESS):
+				{
+					KeyDownEvent event((char)key, 0);
+					wd.func(event);
+					break;
+				}
+				case(GLFW_REPEAT):
+				{
+					KeyDownEvent event((char)key, 1);
+					wd.func(event);
+					break;
+				}
+				case(GLFW_RELEASE):
+				{
+					KeyUpEvent event((char)key);
+					wd.func(event);
+					break;
+				}
+			}
+		}
+	);
+
+	// mouse functions
+	glfwSetMouseButtonCallback(window, [](GLFWwindow* w, int button, int action, int mods)
+		{
+			WindowData& wd = *(WindowData*)glfwGetWindowUserPointer(w);
+			switch (action)
+			{
+				case(GLFW_PRESS):
+				{
+					MouseDownEvent event(button);
+					wd.func(event);
+					break;
+				}
+				case(GLFW_RELEASE):
+				{
+					MouseUpEvent event(button);
+					wd.func(event);
+					break;
+				}
+			}
+		}
+	);
+
+	glfwSetCursorPosCallback(window, [](GLFWwindow* w, double x, double y)
+		{
+			WindowData& wd = *(WindowData*)glfwGetWindowUserPointer(w);
+			MouseMoveEvent event((float)x, (float)y);
+			wd.func(event);
+		}
+	);
+
+	glfwSetScrollCallback(window, [](GLFWwindow* w, double x, double y)
+		{
+			WindowData& wd = *(WindowData*)glfwGetWindowUserPointer(w);
+			MouseWheelEvent event((float)x, (float)y);
+			wd.func(event);
 		}
 	);
 }
 
-void WindowsWindow::OnUpdate()
+void WindowsWindow::Update()
 {
 	// swap buffers and poll for events
 	glfwSwapBuffers(window);

@@ -20,16 +20,17 @@ private:
 
 	// initialize callback function
 	void InitCallback();
+
 public:
 	// initialize window
-	WindowsWindow(WindowSetting ws = WindowSetting());
+	WindowsWindow(const WindowSetting& ws = WindowSetting());
 
-	virtual void OnUpdate() override;
+	virtual void Update() override;
 
-	inline virtual void SetEventCallback(const EventCallbackFunc& func) final override { wd.func = func; }
-	inline virtual void* GetNativeWindow() final override { return window; }
-	inline virtual unsigned int GetWidth() final override { return wd.width; }
-	inline virtual unsigned int GetHeight() final override { return wd.height; }
+	inline virtual void SetEventCallbackFunc(const EventCallbackFunc& func) final override { wd.func = func; }
+	inline virtual void* GetNativeWindow() const final override { return window; }
+	inline virtual unsigned int GetWidth() const final override { return wd.width; }
+	inline virtual unsigned int GetHeight() const final override { return wd.height; }
 
 	~WindowsWindow();
 };

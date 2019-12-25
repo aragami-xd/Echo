@@ -20,14 +20,13 @@ public:
 	using EventCallbackFunc = std::function<void(Event&)>;
 
 	// update each frame
-	virtual void OnUpdate() = 0;
+	virtual void Update() = 0;
 
-	// set the event callback function
-	virtual void SetEventCallback(const EventCallbackFunc& func) = 0;
+	virtual void SetEventCallbackFunc(const EventCallbackFunc& func) = 0;
 
-	virtual unsigned int GetWidth() = 0;
-	virtual unsigned int GetHeight() = 0;
-	virtual void* GetNativeWindow() = 0;
+	virtual unsigned int GetWidth() const = 0;
+	virtual unsigned int GetHeight() const = 0;
+	virtual void* GetNativeWindow() const = 0;
 
-	~Window() = default;
+	static Window* Create(const WindowSetting& ws = WindowSetting());
 };

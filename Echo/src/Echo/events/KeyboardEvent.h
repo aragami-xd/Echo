@@ -12,7 +12,6 @@ protected:
 
 	char key;
 public:
-	EVENT_CLASS_CATEGORY(KeyEventCategory);
 };
 
 class KeyDownEvent : public KeyEvent

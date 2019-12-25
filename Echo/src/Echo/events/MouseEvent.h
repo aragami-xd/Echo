@@ -12,7 +12,6 @@ protected:
 
 	int button;
 public:
-	EVENT_CLASS_CATEGORY(MouseButtonEventCategory);
 };
 
 class MouseDownEvent : public MouseButtonEvent
@@ -46,7 +45,6 @@ public:
 	{}
 
 	EVENT_CLASS_TYPE(MouseMove);
-	EVENT_CLASS_CATEGORY(MouseEventCategory);
 
 	inline float GetX() { return x; }
 	inline float GetY() { return y; }
@@ -63,7 +61,6 @@ public:
 	{}
 
 	EVENT_CLASS_TYPE(MouseWheel);
-	EVENT_CLASS_CATEGORY(MouseEventCategory);
 
 	inline float GetXOffset() { return xoffset; }
 	inline float GetYOffset() { return yoffset; }

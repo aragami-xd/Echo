@@ -1,21 +1,32 @@
 #include "Application.h"
-#include <platform/windows/WindowsWindow.h>
 using namespace std;
+
+#define EVENT_FUNC(x) bind(&Application::x, this, placeholders::_1)
 
 Application::Application() :
 	running(true)
 {
-	LOG_init("init program");
-	window = unique_ptr<Window>(new WindowsWindow());
-	LOG_init("init program sucessful");
+	LOG_init("echo");
+	window = std::unique_ptr<Window>(Window::Create());
+	window->SetEventCallbackFunc(EVENT_FUNC(OnEvent));
 }
 
-/* this acts as main.cpp */
-int Application::Run()
+void Application::CloseWindow(WindowCloseEvent& e)
 {
-	while (true)
+	running = false;
+}
+
+void Application::OnEvent(Event& e)
+{
+	EventInvoker invoker(e);
+	invoker.Invoke<WindowCloseEvent>(EVENT_FUNC(CloseWindow));
+}
+
+void Application::Run()
+{
+	while (running)
 	{
-		window->OnUpdate();
+		window->Update();
 	}
 }
 
