@@ -10,4 +10,4 @@
 #include <EchoHeader.h>
 
 /* log */
-#include <Echo/core/Log.h>
+//#include <Echo/core/Log.h>

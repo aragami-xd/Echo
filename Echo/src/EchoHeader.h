@@ -23,6 +23,9 @@
 #include <unordered_set>
 #include <utility>
 
+// log
+#include <Echo/core/Log.h>
+
 // windows specific
 #ifdef ECHO_WINDOWS
 #include <Windows.h>

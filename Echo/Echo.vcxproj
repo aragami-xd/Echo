@@ -161,7 +161,7 @@
     <ClInclude Include="src\Echo\core\Window.h" />
     <ClInclude Include="src\Echo\events\ApplicationEvent.h" />
     <ClInclude Include="src\Echo\events\Event.h" />
-    <ClInclude Include="src\Echo\events\Header.h" />
+    <ClInclude Include="src\Echo\events\KeyboardEvent.h" />
     <ClInclude Include="src\Echo\events\MouseEvent.h" />
     <ClInclude Include="src\EchoHeader.h" />
     <ClInclude Include="src\platform\windows\WindowsWindow.h" />

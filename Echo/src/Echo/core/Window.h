@@ -29,5 +29,5 @@ public:
 	virtual unsigned int GetHeight() = 0;
 	virtual void* GetNativeWindow() = 0;
 
-	virtual ~Window() = default;
+	~Window() = default;
 };

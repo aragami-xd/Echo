@@ -18,6 +18,8 @@ private:
 	};
 	WindowData wd;
 
+	// initialize callback function
+	void InitCallback();
 public:
 	// initialize window
 	WindowsWindow(WindowSetting ws = WindowSetting());

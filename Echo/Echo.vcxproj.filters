@@ -40,15 +40,15 @@
     <ClInclude Include="src\Echo\events\Event.h">
       <Filter>Echo\events</Filter>
     </ClInclude>
-    <ClInclude Include="src\Echo\events\Header.h">
-      <Filter>Echo\events</Filter>
-    </ClInclude>
     <ClInclude Include="src\Echo\events\MouseEvent.h">
       <Filter>Echo\events</Filter>
     </ClInclude>
     <ClInclude Include="src\EchoHeader.h" />
     <ClInclude Include="src\platform\windows\WindowsWindow.h">
       <Filter>platform\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\events\KeyboardEvent.h">
+      <Filter>Echo\events</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

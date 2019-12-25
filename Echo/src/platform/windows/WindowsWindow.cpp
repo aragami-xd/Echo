@@ -1,5 +1,8 @@
 #include "WindowsWindow.h"
-#include <Echo.h>
+#include <Echo/events/ApplicationEvent.h>
+#include <Echo/events/KeyboardEvent.h>
+#include <Echo/events/MouseEvent.h>
+
 using namespace std;
 
 WindowsWindow::WindowsWindow(WindowSetting ws)
@@ -18,6 +21,7 @@ WindowsWindow::WindowsWindow(WindowSetting ws)
 	{
 		glfwSetErrorCallback([](int error, const char* message) { LOG_error(message); });
 	}
+
 	window = glfwCreateWindow(wd.width, wd.height, wd.title.data(), nullptr, nullptr);
 	if (!window)
 	{
@@ -31,6 +35,16 @@ WindowsWindow::WindowsWindow(WindowSetting ws)
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE);
+}
+
+void WindowsWindow::InitCallback()
+{
+	// window functions
+	glfwSetWindowCloseCallback(window, [](GLFWwindow* w)
+		{
+
+		}
+	);
 }
 
 void WindowsWindow::OnUpdate()
