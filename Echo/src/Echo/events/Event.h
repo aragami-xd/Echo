@@ -33,12 +33,13 @@ public:
 		eiEvent(et)
 	{}
 	
+	// comparing the function against the event type
 	template<typename T>
 	void Invoke(std::function<void(T&)> func)
 	{
 		if (T::StaticEventType() == eiEvent.GetEventType())
 		{
-			func(*(T*) & eiEvent);
+			func(*(T*) & eiEvent);	// note: i honestly have no idea wtf this thing is, but only this thing works
 			eiEvent.handled = true;
 		}
 	}

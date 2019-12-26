@@ -29,4 +29,6 @@ public:
 	virtual void* GetNativeWindow() const = 0;
 
 	static Window* Create(const WindowSetting& ws = WindowSetting());
+
+	virtual ~Window() = default;
 };

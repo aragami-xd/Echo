@@ -154,10 +154,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Echo.h" />
+    <ClInclude Include="src\Echo\buffers\IndexBuffer.h" />
+    <ClInclude Include="src\Echo\buffers\VertexBuffer.h" />
     <ClInclude Include="src\Echo\core\Application.h" />
+    <ClInclude Include="src\Echo\core\Container.h" />
     <ClInclude Include="src\Echo\core\Core.h" />
     <ClInclude Include="src\Echo\core\EntryPoint.h" />
+    <ClInclude Include="src\Echo\core\Layer.h" />
+    <ClInclude Include="src\Echo\core\LayerStack.h" />
     <ClInclude Include="src\Echo\core\Log.h" />
+    <ClInclude Include="src\Echo\components\Object.h" />
     <ClInclude Include="src\Echo\core\Window.h" />
     <ClInclude Include="src\Echo\events\ApplicationEvent.h" />
     <ClInclude Include="src\Echo\events\Event.h" />
@@ -167,8 +173,13 @@
     <ClInclude Include="src\platform\windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Echo\buffers\IndexBuffer.cpp" />
+    <ClCompile Include="src\Echo\buffers\VertexBuffer.cpp" />
     <ClCompile Include="src\Echo\core\Application.cpp" />
     <ClCompile Include="src\EchoHeader.cpp" />
+    <ClCompile Include="src\Echo\core\Container.cpp" />
+    <ClCompile Include="src\Echo\core\Layer.cpp" />
+    <ClCompile Include="src\Echo\core\LayerStack.cpp" />
     <ClCompile Include="src\platform\windows\WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>

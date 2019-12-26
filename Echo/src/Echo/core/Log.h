@@ -7,3 +7,5 @@
 #define LOG_var(x) printf("[var] %s %d\n", #x, x)
 #define LOG_message(x) printf("[message] %s\n", x)
 #define LOG_error(x) printf("[error] %s\n", x)
+#define LOG_warning(x) printf("[warning] %s\n", x)
+#define LOG_pair(x, y) x; printf(" --> "); y
