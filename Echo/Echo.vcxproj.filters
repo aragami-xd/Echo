@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Echo">
+      <UniqueIdentifier>{A498847C-90CF-850D-39BC-6B1025D2010F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Echo\core">
+      <UniqueIdentifier>{9C4F3C01-08BA-F077-51F8-A11DBDA1CECC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Echo\events">
+      <UniqueIdentifier>{28B8B046-946D-293C-1D62-231389162040}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform">
+      <UniqueIdentifier>{4A63C33C-3630-1E48-5F49-0CF04B7553D6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\windows">
+      <UniqueIdentifier>{A44FC440-9048-E392-B97A-C817A5D2C29E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Echo.h" />
+    <ClInclude Include="src\Echo\core\Application.h">
+      <Filter>Echo\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\core\Core.h">
+      <Filter>Echo\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\core\EntryPoint.h">
+      <Filter>Echo\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\core\Log.h">
+      <Filter>Echo\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\core\Window.h">
+      <Filter>Echo\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\events\ApplicationEvent.h">
+      <Filter>Echo\events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\events\Event.h">
+      <Filter>Echo\events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\events\KeyboardEvent.h">
+      <Filter>Echo\events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\events\MouseEvent.h">
+      <Filter>Echo\events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EchoHeader.h" />
+    <ClInclude Include="src\platform\windows\WindowsWindow.h">
+      <Filter>platform\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\buffers\VertexBuffer.h" />
+    <ClInclude Include="src\Echo\buffers\IndexBuffer.h" />
+    <ClInclude Include="src\Echo\core\Layer.h" />
+    <ClInclude Include="src\Echo\components\Object.h">
+      <Filter>Echo\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\core\Container.h">
+      <Filter>Echo\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\core\LayerStack.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Echo\core\Application.cpp">
+      <Filter>Echo\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EchoHeader.cpp" />
+    <ClCompile Include="src\platform\windows\WindowsWindow.cpp">
+      <Filter>platform\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Echo\buffers\VertexBuffer.cpp" />
+    <ClCompile Include="src\Echo\buffers\IndexBuffer.cpp" />
+    <ClCompile Include="src\Echo\core\Layer.cpp" />
+    <ClCompile Include="src\Echo\core\Container.cpp" />
+    <ClCompile Include="src\Echo\core\LayerStack.cpp" />
+  </ItemGroup>
+</Project>
