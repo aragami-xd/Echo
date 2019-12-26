@@ -24,9 +24,5 @@ protected:
 	}
 
 public:
-	// draw using buffer vertices coordinates
-	virtual void DrawBuf(int time, Shader* shader) = 0;
-
-	// draw using fragment shader
-	virtual void DrawFrag(int time, Shader* shader) = 0;
+	virtual void Draw(int time, Shader* shader) = 0;
 };

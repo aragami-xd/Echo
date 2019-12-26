@@ -12,10 +12,4 @@ struct ObjectComponent
 
 	Object* object;
 	ObjectRenderer* objectRenderer;
-
-	~ObjectComponent()
-	{
-		delete object;
-		delete objectRenderer;
-	}
 };

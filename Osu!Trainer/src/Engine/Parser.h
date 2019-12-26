@@ -200,7 +200,7 @@ public:
 
 // define static variables
 std::fstream Parser::map;
-std::string Parser::line = "";
+std::string Parser::line;
 float Parser::approachRate = 0.0f;
 float Parser::circleSize = 0.0f;
 float Parser::overallDifficulty = 0.0f;

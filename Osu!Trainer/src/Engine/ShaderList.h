@@ -45,6 +45,6 @@ public:
 	~ShaderList()
 	{
 		//for (auto x : shader)
-			//delete x.second;
+		//	delete x.second;
 	}
 };

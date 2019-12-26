@@ -7,7 +7,7 @@ void Slider::EquationParser()
 }
 
 Slider::Slider(float x, float y, int beatStart, int beatEnd, std::vector<int> beatTick, string s_equation, float AR, float CS, float OD) :
-	Object(x, y, AR, CS, OD)
+	Object(x, y, beatTick, AR, CS, OD)
 {
 	beatStartTime = beatStart;
 	beatEndTime = beatEnd;

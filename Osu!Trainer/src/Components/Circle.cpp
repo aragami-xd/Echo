@@ -6,12 +6,9 @@
 using namespace std;
 
 // constructor
-Circle::Circle(float x, float y, int beat, float AR, float CS, float OD) :
-	Object(x, y, AR, CS, OD)
+Circle::Circle(float x, float y, vector<int>& beat, float AR, float CS, float OD) :
+	Object(x, y, beat, AR, CS, OD)
 {
-	beatTime = beat;
-	startTime = beatTime - animationLength;
-	endTime = beatTime + fifty;
 }
 
 // get score will return the score based on the time stamp

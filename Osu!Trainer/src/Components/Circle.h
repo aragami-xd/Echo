@@ -15,7 +15,7 @@ private:
 
 public:
 	// circle constructor
-	Circle(float x, float y, int beat, float AR, float CS, float OD);
+	Circle(float x, float y, std::vector<int>& beat, float AR, float CS, float OD);
 
 	// get beat time, animation time and end time
 	inline virtual int GetBeatTime() final { return beatTime; }

@@ -40,8 +40,10 @@ private:
 	void DrawAllObject();
 
 public:
-	Core(std::string path, ShaderList shader);
+	Core(std::string path);				
 
 	// draw everything on the screen
 	void Draw();
+
+	~Core();
 };
