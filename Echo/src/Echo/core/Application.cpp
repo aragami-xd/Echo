@@ -11,11 +11,6 @@ Application::Application() :
 	window->SetEventCallbackFunc(EVENT_FUNC(OnEvent));
 }
 
-void Application::CloseWindow(WindowCloseEvent& e)
-{
-	running = false;
-}
-
 void Application::OnEvent(Event& e)
 {
 	EventInvoker invoker(e);

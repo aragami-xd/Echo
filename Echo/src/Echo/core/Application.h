@@ -9,6 +9,8 @@
 #include "Window.h"
 #include "LayerStack.h"
 
+#include <glad/glad.h>
+
 class ECHO_DLL Application
 {
 private:
@@ -23,7 +25,7 @@ private:
 	void OnEvent(Event& e);
 
 	// close window function
-	void CloseWindow(WindowCloseEvent& e);
+	inline void CloseWindow(WindowCloseEvent& e) { running = false;	}
 public:
 	Application();
 

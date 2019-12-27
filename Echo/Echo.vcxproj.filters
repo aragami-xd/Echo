@@ -4,9 +4,6 @@
     <Filter Include="Echo">
       <UniqueIdentifier>{A498847C-90CF-850D-39BC-6B1025D2010F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Echo\buffers">
-      <UniqueIdentifier>{40549133-2CB7-20D8-D53C-598EC17EEC5A}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Echo\components">
       <UniqueIdentifier>{5973DCDB-C5FE-49A0-CE0F-CD943A1AA6A0}</UniqueIdentifier>
     </Filter>
@@ -25,12 +22,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Echo.h" />
-    <ClInclude Include="src\Echo\buffers\IndexBuffer.h">
-      <Filter>Echo\buffers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Echo\buffers\VertexBuffer.h">
-      <Filter>Echo\buffers</Filter>
-    </ClInclude>
     <ClInclude Include="src\Echo\components\Object.h">
       <Filter>Echo\components</Filter>
     </ClInclude>
@@ -76,12 +67,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Echo\buffers\IndexBuffer.cpp">
-      <Filter>Echo\buffers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Echo\buffers\VertexBuffer.cpp">
-      <Filter>Echo\buffers</Filter>
-    </ClCompile>
     <ClCompile Include="src\Echo\core\Application.cpp">
       <Filter>Echo\core</Filter>
     </ClCompile>

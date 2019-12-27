@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_BUILD;ECHO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor;vendor\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor;vendor\glfw\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -105,7 +105,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_BUILD;ECHO_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor;vendor\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor;vendor\glfw\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -131,7 +131,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_BUILD;ECHO_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor;vendor\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor;vendor\glfw\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -154,8 +154,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Echo.h" />
-    <ClInclude Include="src\Echo\buffers\IndexBuffer.h" />
-    <ClInclude Include="src\Echo\buffers\VertexBuffer.h" />
     <ClInclude Include="src\Echo\components\Object.h" />
     <ClInclude Include="src\Echo\core\Application.h" />
     <ClInclude Include="src\Echo\core\Container.h" />
@@ -173,8 +171,6 @@
     <ClInclude Include="src\platform\windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Echo\buffers\IndexBuffer.cpp" />
-    <ClCompile Include="src\Echo\buffers\VertexBuffer.cpp" />
     <ClCompile Include="src\Echo\core\Application.cpp" />
     <ClCompile Include="src\Echo\core\Container.cpp" />
     <ClCompile Include="src\Echo\core\Layer.cpp" />
@@ -185,6 +181,9 @@
   <ItemGroup>
     <ProjectReference Include="vendor\glfw\glfw.vcxproj">
       <Project>{9563977C-819A-980D-2A87-7E10169D140F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\glad\glad.vcxproj">
+      <Project>{DD62977C-C999-980D-7286-7E105E9C140F}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -9,14 +9,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- glfw project	
 include "Echo/vendor/glfw"
+include "Echo/vendor/glad"
 
 -- include directories
 includeDir = {}
 includeDir["glfw"] = "Echo/vendor/glfw/include"
-
--- precompiled header
-pchheader "EchoHeader.h"
-pchsource "Echo/EchoHeader.h"
+includeDir["glad"] = "Echo/vendor/glad/include"
 
 -- echo engine solution
 project "Echo"
@@ -26,6 +24,11 @@ project "Echo"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 	defines { "ECHO_WINDOWS", "ECHO_BUILD" }
+
+	
+	-- precompiled header
+	-- pchheader "EchoHeader.h"
+	-- pchsource "Echo/src/EchoHeader.cpp"
 
 	-- include library
 	files
@@ -39,13 +42,15 @@ project "Echo"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor",
-		"%{includeDir.glfw}"
+		"%{includeDir.glfw}",
+		"%{includeDir.glad}"
 	}
 
 	-- links
 	links
 	{
 		"glfw",
+		"glad",
 		"opengl32.lib"
 	}
 
@@ -91,7 +96,8 @@ project "osu!trainer"
 		"Echo/vendor",
 		"%{prj.name}/src",
 		"%{prj.name}/vendor",
-		"%{includeDir.glfw}"
+		"%{includeDir.glfw}",
+		"%{includeDir.glad}"
 	}
 
 	-- linker

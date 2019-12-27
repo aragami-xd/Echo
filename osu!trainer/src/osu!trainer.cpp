@@ -1,19 +1,7 @@
-#include <Echo.h>
-#include "StoryboardLayer.h"
+#include "osu!trainer.h"
+using namespace std;
 
-class Program : public Application
+Program::Program()
 {
-private:
-public:
-	Program()
-	{
-		PushLayer(StoryboardLayer());
-	}
-
-	~Program() = default;
-};
-
-Application* CreateApp()
-{
-	return new Program();
+	PushLayer(StoryboardLayer());
 }

@@ -1,7 +1,29 @@
 #include "VertexBuffer.h"
-#include <glfw/glfw3.h>
+using namespace std;
 
-VertexBuffer::VertexBuffer() :
+VertexBuffer::VertexBuffer(float* data, int count, GLenum flag) :
 	id(0)
 {
+	glGenBuffers(1, &id);
+	glBindBuffer(GL_ARRAY_BUFFER, id);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * count, data, flag);
 }
+
+void VertexBuffer::Bind()
+{
+	glBindBuffer(GL_ARRAY_BUFFER, id);
+}
+
+void VertexBuffer::Unbind()
+{
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+VertexBuffer::~VertexBuffer()
+{
+	glDeleteBuffers(1, &id);
+}
+
+
+
+
