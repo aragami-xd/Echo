@@ -21,8 +21,8 @@ void Application::OnEvent(Event& e)
 	EventInvoker invoker(e);
 	invoker.Invoke<WindowCloseEvent>(EVENT_FUNC(CloseWindow));
 
-	for (auto i = layerStack.end(); i != layerStack.begin(); i--)
-		i->OnEvent(e);
+	for (auto layer = layerStack.rbegin(); layer != layerStack.rend(); layer++)
+		layer->OnEvent(e);
 }
 
 void Application::PushLayer(const Layer& layer)
@@ -36,7 +36,7 @@ void Application::PopLayer(std::string& name)
 	layerStack.pop_back();
 }
 
-void Application::PushToFront(std::string& name)
+void Application::PushToTop(std::string& name)
 {
 	layerStack.push_to_top(name);
 }
@@ -46,8 +46,11 @@ void Application::Run()
 	while (running)
 	{
 		window->Update();
-		for (Layer i : layerStack)
-			i.Update();
+
+		for (Layer layer : layerStack)
+		{
+			layer.Update();
+		}
 	}
 }
 

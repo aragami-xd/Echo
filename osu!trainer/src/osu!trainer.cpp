@@ -1,8 +1,19 @@
-#include "osu!trainer.h"
-#include <GLFW/glfw3.h>
-using namespace std;
+#include <Echo.h>
+#include "StoryboardLayer.h"
 
-void Program::Click(MouseDownEvent& e)
+class Program : public Application
 {
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+private:
+public:
+	Program()
+	{
+		PushLayer(StoryboardLayer());
+	}
+
+	~Program() = default;
+};
+
+Application* CreateApp()
+{
+	return new Program();
 }

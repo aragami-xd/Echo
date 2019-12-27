@@ -37,8 +37,6 @@ public:
 	void Invoke(std::function<void(T&)> func)
 	{
 		if (T::StaticEventType() == eiEvent.GetEventType())
-		{
 			func(*(T*)&eiEvent);
-		}
 	}
 };

@@ -6,19 +6,20 @@
 class ECHO_DLL Layer
 {
 private:
-	static int id;
 	std::string name;
-public:
-	Layer(std::string& layerName = "layer" + to_string(id)) :
-		name(layerName)
-	{}
+	bool enabled;
 
-	virtual void Attach() {};
-	virtual void Detach() {};
+public:
+	Layer(std::string& layerName) :
+		name(layerName), enabled(true)
+	{}
+	inline std::string GetLayerName() { return name; }
+
+	inline virtual void Attach() { enabled = true; }
+	inline virtual void Detach() { enabled = false; }
+
 	virtual void Update() {};
 	virtual void OnEvent(const Event& e) {};
-
-	inline std::string GetLayerName() { return name; }
 
 	virtual ~Layer() = default;
 };
