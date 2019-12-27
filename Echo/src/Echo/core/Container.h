@@ -4,70 +4,80 @@
 
 /* pretty much just a glorified vector of pairs of name and item */
 
-template<class T>
+template<typename T>
 class Container
 {
 protected:
 	std::vector<std::pair<std::string, T>> container;
-	std::vector<std::pair<std::string, T>> it;
-	int id;
 public:
 	Container() = default;
 
-	/* for push and emplace, pass a nullptr as string::name to use the default name */
-
-	// push / pop back
-	inline void push_back(std::pair<std::string&, T&> item) 
+	// push / emplace / pop back
+	inline void push_back(std::pair<std::string&, T&> item)				// container::push_back()
 	{
-		if (item.first == nullptr)
-			item.first == typeid(T)+to_string(++id);
 		container.push_back(item);
 	}
-	inline void emplace_back(std::string& name, T& item)
+	inline void emplace_back(std::string& name, T& item)				// container::emplace_back()
 	{
-		if (name == nullptr)
-			name == typeid(T)+to_string(++id);
-		container.push_back({ name, item }); 
+		container.push_back({ name, item });
 	}
-	inline void pop_back() 
-	{ 
-		container.pop_back(); 
+	inline void pop_back()												// container::pop_back()
+	{
+		container.pop_back();
 	}
-	
+
 	// front / back
-	inline T front() 
-	{ 
-		return container.front().second; 
+	inline T front()							// container::front()
+	{
+		return container.front().second;
 	}
-	inline T back() 
-	{ 
+	inline T back()								// container::back();
+	{
 		return container.back().second;
 	}
 
-	// begin / end
-	inline std::vector<std::pair<std::string, T>> begin()
+	// iterators
+	inline typename std::vector<std::pair<std::string, T>>::iterator begin()	// container::begin()
 	{
-		return container.begin(); 
+		return container.begin();
 	}
-	inline std::vector<std::pair<std::string, T>> end()
-	{ 
-		return container.end(); 
+	inline typename std::vector<std::pair<std::string, T>>::iterator end()		// container::end()
+	{
+		return container.end();
 	}
+	inline typename std::vector<std::pair<std::string, T>>::iterator rbegin()	// container::rbegin()
+	{
+		return container.end();
+	}
+	inline typename std::vector<std::pair<std::string, T>>::iterator rend()		// container::rend();
+	{
+		return container.begin();
+	}
+	static typename std::vector<std::pair<std::string, T>>::iterator iterator;
 
 	// size / empty
-	inline unsigned int size()
+	inline unsigned int size()					// container.size()
 	{
 		return container.size();
 	}
-	inline bool empty() 
-	{ 
-		return container.empty(); 
+	inline bool empty()							// container::end()
+	{
+		return container.empty();
 	}
 
-	// push / pop front
-	void push_front(std::pair<std::string&, T&> item);
-	void emplace_front(std::string& name, T& item);
-	void pop_front();
+	// push / emplace / pop front
+	inline void push_front(std::pair<std::string&, T&> item)		// container::push_front()
+	{
+		container.insert(container.begin(), item);
+	}
+	inline void emplace_front(std::string& name, T& item)			// container::emplace_front()
+	{
+		container.insert(container.begin(), { name, item });
+	}
+	inline void pop_front()											// container::pop_front()
+	{
+		container.erase(container.begin());
+	}
 
 	// erase
 	void erase(std::string& name);

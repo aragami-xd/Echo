@@ -1,13 +1,8 @@
-#include <Echo.h>
+#include "osu!trainer.h"
+#include <GLFW/glfw3.h>
+using namespace std;
 
-class Program : public Application
+void Program::Click(MouseDownEvent& e)
 {
-public:
-	Program() = default;
-	~Program() = default;
-};
-
-Application* CreateApp()
-{
-	return new Program();
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 }

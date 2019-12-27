@@ -1,12 +1,13 @@
 #pragma once
-
-#include "Core.h"
-#include "Window.h"
 #include <EchoHeader.h>
 
 #include <Echo/events/ApplicationEvent.h>
 #include <Echo/events/KeyboardEvent.h>
 #include <Echo/events/MouseEvent.h>
+
+#include "Core.h"
+#include "Window.h"
+#include "LayerStack.h"
 
 class ECHO_DLL Application
 {
@@ -15,9 +16,9 @@ private:
 	std::unique_ptr<Window> window;
 	bool running;
 
-	// event queue
-	std::vector<std::function<void(Event&)>> eventQueue;
-	
+	// layers
+	LayerStack layerStack;
+
 	// calling the event invoker
 	void OnEvent(Event& e);
 
@@ -26,7 +27,13 @@ private:
 public:
 	Application();
 
+	// run
 	void Run();
+
+	// push and pop layer
+	void PushLayer(const Layer& layer);
+	void PopLayer(std::string& name);
+	void PushToFront(std::string& name);
 
 	virtual ~Application();
 };

@@ -11,8 +11,8 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 include "Echo/vendor/glfw"
 
 -- include directories
-IncludeDir = {}
-IncludeDir["glfw"] = "Echo/vendor/glfw/include"
+includeDir = {}
+includeDir["glfw"] = "Echo/vendor/glfw/include"
 
 -- precompiled header
 pchheader "EchoHeader.h"
@@ -39,7 +39,7 @@ project "Echo"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor",
-		"%{IncludeDir.glfw}"
+		"%{includeDir.glfw}"
 	}
 
 	-- links
@@ -90,7 +90,8 @@ project "osu!trainer"
 		"Echo/src",
 		"Echo/vendor",
 		"%{prj.name}/src",
-		"%{prj.name}/vendor"
+		"%{prj.name}/vendor",
+		"%{includeDir.glfw}"
 	}
 
 	-- linker

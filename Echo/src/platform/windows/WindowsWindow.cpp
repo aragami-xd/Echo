@@ -63,24 +63,24 @@ void WindowsWindow::InitCallback()
 			WindowData& wd = *(WindowData*)glfwGetWindowUserPointer(w);
 			switch (action)
 			{
-				case(GLFW_PRESS):
-				{
-					KeyDownEvent event((char)key, 0);
-					wd.func(event);
-					break;
-				}
-				case(GLFW_REPEAT):
-				{
-					KeyDownEvent event((char)key, 1);
-					wd.func(event);
-					break;
-				}
-				case(GLFW_RELEASE):
-				{
-					KeyUpEvent event((char)key);
-					wd.func(event);
-					break;
-				}
+			case(GLFW_PRESS):
+			{
+				KeyDownEvent event((char)key, 0);
+				wd.func(event);
+				break;
+			}
+			case(GLFW_REPEAT):
+			{
+				KeyDownEvent event((char)key, 1);
+				wd.func(event);
+				break;
+			}
+			case(GLFW_RELEASE):
+			{
+				KeyUpEvent event((char)key);
+				wd.func(event);
+				break;
+			}
 			}
 		}
 	);
@@ -91,18 +91,18 @@ void WindowsWindow::InitCallback()
 			WindowData& wd = *(WindowData*)glfwGetWindowUserPointer(w);
 			switch (action)
 			{
-				case(GLFW_PRESS):
-				{
-					MouseDownEvent event(button);
-					wd.func(event);
-					break;
-				}
-				case(GLFW_RELEASE):
-				{
-					MouseUpEvent event(button);
-					wd.func(event);
-					break;
-				}
+			case(GLFW_PRESS):
+			{
+				MouseDownEvent event(button);
+				wd.func(event);
+				break;
+			}
+			case(GLFW_RELEASE):
+			{
+				MouseUpEvent event(button);
+				wd.func(event);
+				break;
+			}
 			}
 		}
 	);

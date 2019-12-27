@@ -20,7 +20,6 @@ class Event
 protected:
 	Event() = default;
 public:
-	bool handled = false;
 	inline virtual EventType GetEventType() = 0;
 };
 
@@ -32,15 +31,14 @@ public:
 	EventInvoker(Event& et) :
 		eiEvent(et)
 	{}
-	
+
 	// comparing the function against the event type
 	template<typename T>
 	void Invoke(std::function<void(T&)> func)
 	{
 		if (T::StaticEventType() == eiEvent.GetEventType())
 		{
-			func(*(T*) & eiEvent);	// note: i honestly have no idea wtf this thing is, but only this thing works
-			eiEvent.handled = true;
+			func(*(T*)&eiEvent);
 		}
 	}
 };
