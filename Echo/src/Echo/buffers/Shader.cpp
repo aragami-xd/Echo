@@ -32,7 +32,7 @@ const char* Shader::ParseShader(string& path)
 	{
 		file.open(path);
 	}
-	catch(ifstream::failure e)
+	catch (ifstream::failure e)
 	{
 		LOG_message(e.what());
 		return nullptr;
@@ -41,7 +41,7 @@ const char* Shader::ParseShader(string& path)
 	ss << file.rdbuf();
 
 	file.close();
-	
+
 	return ss.str().c_str();
 }
 
@@ -85,7 +85,7 @@ void Shader::SetShaderUniform1i(string& name, int v)
 void Shader::SetShaderUniform1f(string& name, float v)
 {
 	glUniform1f(glGetUniformLocation(program, name.c_str()), v);
-} 
+}
 
 void Shader::SetShaderUniform4f(string& name, float v0, float v1, float v2, float v3)
 {

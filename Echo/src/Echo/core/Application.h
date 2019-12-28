@@ -25,7 +25,7 @@ private:
 	void OnEvent(Event& e);
 
 	// close window function
-	inline void CloseWindow(WindowCloseEvent& e) { running = false;	}
+	inline void CloseWindow(WindowCloseEvent& e) { running = false; }
 public:
 	Application();
 

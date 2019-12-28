@@ -65,6 +65,16 @@
     <ClInclude Include="src\platform\windows\WindowsWindow.h">
       <Filter>platform\windows</Filter>
     </ClInclude>
+    <ClInclude Include="src\Echo\buffers\VertexArray.h" />
+    <ClInclude Include="src\Echo\buffers\VertexBuffer.h" />
+    <ClInclude Include="src\Echo\buffers\Shader.h" />
+    <ClInclude Include="src\Echo\buffers\IndexBuffer.h" />
+    <ClInclude Include="src\Echo\buffers\VertexLayout.h" />
+    <ClInclude Include="src\Echo\buffers\Renderer.h" />
+    <ClInclude Include="vendor\stb\stb_image.h" />
+    <ClInclude Include="src\Echo\components\AnimatedElement.h" />
+    <ClInclude Include="src\Echo\components\NonAnimatedElement.h" />
+    <ClInclude Include="src\Echo\components\RenderElement.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Echo\core\Application.cpp">
@@ -83,5 +93,11 @@
     <ClCompile Include="src\platform\windows\WindowsWindow.cpp">
       <Filter>platform\windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\Echo\buffers\VertexBuffer.cpp" />
+    <ClCompile Include="src\Echo\buffers\VertexArray.cpp" />
+    <ClCompile Include="src\Echo\buffers\Shader.cpp" />
+    <ClCompile Include="src\Echo\buffers\IndexBuffer.cpp" />
+    <ClCompile Include="vendor\stb\stb_image.cpp" />
+    <ClCompile Include="src\Echo\components\Object.cpp" />
   </ItemGroup>
 </Project>

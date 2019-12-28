@@ -138,9 +138,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\StoryboardLayer.h" />
+    <ClInclude Include="src\components\Circle.h" />
+    <ClInclude Include="src\osu!trainer.h" />
+    <ClInclude Include="src\core\StoryboardLayer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\components\Circle.cpp" />
     <ClCompile Include="src\osu!trainer.cpp" />
   </ItemGroup>
   <ItemGroup>

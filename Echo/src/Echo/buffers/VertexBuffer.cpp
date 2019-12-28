@@ -23,7 +23,3 @@ VertexBuffer::~VertexBuffer()
 {
 	glDeleteBuffers(1, &id);
 }
-
-
-
-

@@ -154,7 +154,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Echo.h" />
+    <ClInclude Include="src\Echo\buffers\IndexBuffer.h" />
+    <ClInclude Include="src\Echo\buffers\Renderer.h" />
+    <ClInclude Include="src\Echo\buffers\Shader.h" />
+    <ClInclude Include="src\Echo\buffers\VertexBuffer.h" />
+    <ClInclude Include="src\Echo\buffers\VertexLayout.h" />
+    <ClInclude Include="src\Echo\components\AnimatedElement.h" />
     <ClInclude Include="src\Echo\components\Object.h" />
+    <ClInclude Include="src\Echo\buffers\VertexArray.h" />
+    <ClInclude Include="src\Echo\components\NonAnimatedElement.h" />
+    <ClInclude Include="src\Echo\components\RenderElement.h" />
     <ClInclude Include="src\Echo\core\Application.h" />
     <ClInclude Include="src\Echo\core\Container.h" />
     <ClInclude Include="src\Echo\core\Core.h" />
@@ -169,14 +178,21 @@
     <ClInclude Include="src\Echo\events\MouseEvent.h" />
     <ClInclude Include="src\EchoHeader.h" />
     <ClInclude Include="src\platform\windows\WindowsWindow.h" />
+    <ClInclude Include="vendor\stb\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Echo\buffers\IndexBuffer.cpp" />
+    <ClCompile Include="src\Echo\buffers\Shader.cpp" />
+    <ClCompile Include="src\Echo\buffers\VertexArray.cpp" />
+    <ClCompile Include="src\Echo\buffers\VertexBuffer.cpp" />
+    <ClCompile Include="src\Echo\components\Object.cpp" />
     <ClCompile Include="src\Echo\core\Application.cpp" />
     <ClCompile Include="src\Echo\core\Container.cpp" />
     <ClCompile Include="src\Echo\core\Layer.cpp" />
     <ClCompile Include="src\Echo\core\LayerStack.cpp" />
     <ClCompile Include="src\EchoHeader.cpp" />
     <ClCompile Include="src\platform\windows\WindowsWindow.cpp" />
+    <ClCompile Include="vendor\stb\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\glfw\glfw.vcxproj">

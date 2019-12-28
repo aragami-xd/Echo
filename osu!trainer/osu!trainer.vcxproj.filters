@@ -10,8 +10,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\osu!trainer.cpp" />
+    <ClCompile Include="src\components\Circle.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\StoryboardLayer.h" />
+    <ClInclude Include="src\osu!trainer.h" />
+    <ClInclude Include="src\core\StoryboardLayer.h" />
+    <ClInclude Include="src\components\Circle.h" />
   </ItemGroup>
 </Project>

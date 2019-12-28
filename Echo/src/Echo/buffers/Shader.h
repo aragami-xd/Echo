@@ -11,7 +11,7 @@ private:
 
 	// read in the shader source code
 	const char* ParseShader(std::string& path);
-	
+
 	// compile the shader
 	unsigned int  CompileShader(bool isVertex, std::string& path);
 
