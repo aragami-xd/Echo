@@ -8,7 +8,6 @@ class ECHO_DLL Layer
 private:
 	std::string name;
 	bool enabled;
-
 public:
 	Layer(std::string& layerName) :
 		name(layerName), enabled(true)

@@ -1,10 +1,11 @@
 #pragma once
 
 #include <EchoHeader.h>
+#include <Echo/core/Core.h>
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 
-class Shader
+class ECHO_DLL Shader
 {
 private:
 	unsigned int program;

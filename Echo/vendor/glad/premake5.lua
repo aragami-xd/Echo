@@ -13,10 +13,7 @@ project "glad"
 		"src/glad.c"
 	}
 
-	includedirs
-	{
-		"include"
-	}
+	includedirs	{ "include"	}
 
 	filter "system:windows"
 		systemversion "latest"

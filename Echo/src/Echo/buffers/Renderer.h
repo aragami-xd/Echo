@@ -1,10 +1,10 @@
 #pragma once
 
-#include"VertexArray.h"
+#include "VertexArray.h"
 #include "IndexBuffer.h"
 #include "Shader.h"
 
-class Renderer
+class ECHO_DLL Renderer
 {
 private:
 	Renderer() = default;

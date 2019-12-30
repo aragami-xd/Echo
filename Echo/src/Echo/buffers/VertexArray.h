@@ -3,7 +3,7 @@
 #include "VertexLayout.h"
 #include "VertexBuffer.h"
 
-class VertexArray
+class ECHO_DLL VertexArray
 {
 private:
 	unsigned int id;

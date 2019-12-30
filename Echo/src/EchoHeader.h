@@ -10,6 +10,7 @@
 #include <functional>
 #include <memory>
 #include <iterator>
+#include <filesystem>
 
 // i/o
 #include <iostream>

@@ -1,5 +1,6 @@
 #pragma once
 #include <EchoHeader.h>
+#include <nlohmann/json.hpp>
 
 #include <Echo/events/ApplicationEvent.h>
 #include <Echo/events/KeyboardEvent.h>
@@ -8,16 +9,20 @@
 #include "Core.h"
 #include "Window.h"
 #include "LayerStack.h"
+#include "ShaderList.h"
 
-#include <glad/glad.h>
+#include <Echo/components/Parser.h>
+
+using json = nlohmann::json;
 
 class ECHO_DLL Application
 {
-private:
+protected:
 	// window of the program
 	std::unique_ptr<Window> window;
+	WindowSetting ws;
 	bool running;
-
+	
 	// layers
 	LayerStack layerStack;
 

@@ -1,8 +1,9 @@
 #pragma once
 
+#include <Echo/core/Core.h>
 #include <glad/glad.h>
 
-class IndexBuffer
+class ECHO_DLL IndexBuffer
 {
 private:
 	unsigned int id;

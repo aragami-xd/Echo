@@ -1,6 +1,7 @@
 #pragma once
 
 #include <EchoHeader.h>
+#include <Echo/core/Core.h>
 #include <glad/glad.h>
 
 struct VertexElement
@@ -11,7 +12,7 @@ struct VertexElement
 	bool normalized;
 };
 
-class VertexLayout
+class ECHO_DLL VertexLayout
 {
 private:
 	std::vector<VertexElement> vertexElement;

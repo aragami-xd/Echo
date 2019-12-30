@@ -1,20 +1,15 @@
 #include "Object.h"
 using namespace std;
 
-Object::Object(float ox, float oy, vector<int>& obeats/*,
-	const Equation& rx, const Equation& ry, const Equation& mx, const Equation& my*/) :
-
-	x(ox), y(oy), beats(obeats), currentBeat(0),
-	/*renderEquationX(rx), renderEquationY(ry), movementEquationX(mx), movementEquationY(my),*/
-	approachTime(scaleAR / AR)
+Object::Object(float ox, float oy) :
+	x(ox), y(oy), startTime(0), endTime(0)
 {
+	approachTime = scaleAR / AR;
+
 	// score scaling
 	score300 = approachTime / (OD * score300Scaling);
 	score100 = approachTime / (OD * score100Scaling);
 	score50 = approachTime / (OD * score50Scaling);
-
-	startTime = beats.front() - approachTime;
-	endTime = beats.back() + score50;
 }
 
 /* static variables */

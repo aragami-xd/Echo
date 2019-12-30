@@ -22,19 +22,19 @@ WindowsWindow::WindowsWindow(const WindowSetting& ws)
 	glfwWindowHint(GLFW_VERSION_MAJOR, 4);
 
 	// initialize a new window
-	if (!glfwInit())
-	{
-		glfwSetErrorCallback([](int error, const char* message) { LOG_error(message); });
-	}
+	glfwInit();
 
 	window = glfwCreateWindow(wd.width, wd.height, wd.title.data(), nullptr, nullptr);
 	if (!window)
-	{
-		glfwSetErrorCallback([](int error, const char* message) { LOG_error(message); });
 		glfwTerminate();
-	}
+
 	glfwMakeContextCurrent(window);
 	glfwSetWindowUserPointer(window, &wd);
+
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+		LOG_error("glad init failed");
+
+	glViewport(0, 0, ws.width, ws.height);
 
 	// blending
 	glEnable(GL_BLEND);

@@ -1,4 +1,6 @@
 #include "Application.h"
+
+#include <glad/glad.h>
 using namespace std;
 
 #define EVENT_FUNC(x) bind(&Application::x, this, placeholders::_1)
@@ -7,7 +9,7 @@ Application::Application() :
 	running(true)
 {
 	LOG_init("echo");
-	window = std::unique_ptr<Window>(Window::Create());
+	window = std::unique_ptr<Window>(Window::Create(ws));
 	window->SetEventCallbackFunc(EVENT_FUNC(OnEvent));
 }
 
@@ -43,9 +45,7 @@ void Application::Run()
 		window->Update();
 
 		for (Layer layer : layerStack)
-		{
 			layer.Update();
-		}
 	}
 }
 

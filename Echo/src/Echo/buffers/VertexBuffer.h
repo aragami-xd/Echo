@@ -1,8 +1,9 @@
 #pragma once
 
+#include <Echo/core/Core.h>
 #include <glad/glad.h>
 
-class VertexBuffer
+class ECHO_DLL VertexBuffer
 {
 private:
 	unsigned int id;

@@ -1,0 +1,17 @@
+{
+  "path" : {
+    "beatmapPath": "osu!trainer/lib/beatmaps/map.txt"
+  },
+
+  "window": {
+    "width": 1280,
+    "height": 720,
+    "title": "Echo"
+  },
+
+  "shader": {
+    "basic": "basicShader",
+    "basicVertex": "osu!trainer/src/shaders/BasicShader.vert",
+    "basicFragment": "osu!trainer/src/shaders/BasicShader.frag"
+  }
+}

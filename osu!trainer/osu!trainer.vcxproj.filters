@@ -11,10 +11,19 @@
   <ItemGroup>
     <ClCompile Include="src\osu!trainer.cpp" />
     <ClCompile Include="src\components\Circle.cpp" />
+    <ClCompile Include="src\components\Slider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\osu!trainer.h" />
     <ClInclude Include="src\core\StoryboardLayer.h" />
     <ClInclude Include="src\components\Circle.h" />
+    <ClInclude Include="src\components\Slider.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="lib\beatmaps\map.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\shaders\BasicShader.frag" />
+    <None Include="src\shaders\BasicShader.vert" />
   </ItemGroup>
 </Project>

@@ -8,6 +8,3 @@
 
 /* echo headers */
 #include <EchoHeader.h>
-
-/* echo objects */
-//#include <Echo/components/Object.h>
