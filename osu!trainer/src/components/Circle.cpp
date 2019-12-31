@@ -22,11 +22,18 @@ int Circle::GetScore(int time)
 		return 0;	// 0 score is a miss
 }
 
-Object* CircleParser(stringstream& ss)
+ObjectComponent* CircleParser(stringstream& ss)
 {
+	ObjectComponent* object = new ObjectComponent();
+
+	// create circle
 	string x = "0.0f", y = "0.0f", beat = "0";
 	if (!ss.eof()) ss >> x;
 	if (!ss.eof()) ss >> y;
 	if (!ss.eof()) ss >> beat;
-	return new Circle(stof(x), stof(y), stoi(beat));
+
+	object->AddObject(new Circle(stof(x), stof(y), stoi(beat)));
+
+	// add individual element
+	return object;
 }

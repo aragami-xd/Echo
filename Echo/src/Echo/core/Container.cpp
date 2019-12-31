@@ -10,7 +10,7 @@ inline void Container<T>::erase(std::string& name)
 			erase(container.begin() + i);
 			return;
 		}
-	LOG_pair(LOG_warning(name), LOG_message("not found"));
+	LOG_warning(name + " not found");
 }
 
 template<class T>
@@ -19,6 +19,6 @@ inline T Container<T>::find(const std::string& name)
 	for (int i = 0; i < container.size(); i++)
 		if (container[i].first == name)
 			return T();
-	LOG_pair(LOG_warning(name), LOG_message("not found"));
+	LOG_warning(name + " not found");
 	return nullptr;
 }

@@ -1,22 +1,18 @@
 #pragma once
 
 #include <Echo.h>
-#include <core/StoryboardLayer.h>
 
 class Program : public Application
 {
 private:
-	// settings json
-	json settings;
-
 	// shaders
 	ShaderList shaders;
 
 	// parser
 	Parser* parser;
 	
-	// object vector
-	std::vector<Object*> object;
+	// object component vector
+	std::vector<ObjectComponent*> object;
 public:
 	Program();
 	~Program();

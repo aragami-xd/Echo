@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Echo/core/Core.h>
+#include <Core.h>
 #include <glad/glad.h>
 
 class ECHO_DLL VertexBuffer

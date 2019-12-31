@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Event.h"
-using namespace std;
 
 class WindowCloseEvent : public Event
 {

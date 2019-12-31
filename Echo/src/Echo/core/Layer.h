@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Echo/core/Core.h>
+#include <Core.h>
 #include <Echo/events/Event.h>
 
 class ECHO_DLL Layer

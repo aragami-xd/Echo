@@ -1,7 +1,7 @@
 #pragma once
 
 #include <EchoHeader.h>
-#include <Echo/core/Core.h>
+#include <Core.h>
 #include <Echo/events/Event.h>
 
 struct WindowSetting

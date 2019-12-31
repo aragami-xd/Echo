@@ -12,7 +12,7 @@ void LayerStack::push_to_top(std::string& name)
 			return;
 		}
 	}
-	LOG_pair(LOG_warning(name), LOG_message("not found"));
+	LOG_warning(name + " not found");
 }
 
 // swap layers
@@ -28,11 +28,11 @@ void LayerStack::swap(std::string& layer1, std::string& layer2)
 	}
 	if (layer1Index == -1)
 	{
-		LOG_pair(LOG_warning(layer1), LOG_message("not found"));
+		LOG_warning(layer1 + " not found");
 	}
 	else if (layer2Index == -1)
 	{
-		LOG_pair(LOG_warning(layer2), LOG_message("not found"));
+		LOG_warning(layer2 + " not found");
 	}
 	else
 	{

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <EchoHeader.h>
-#include <Echo/core/core.h>
+#include <Core.h>
 
 class ECHO_DLL Object
 {

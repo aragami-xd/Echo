@@ -31,9 +31,6 @@
     <ClInclude Include="src\Echo\core\Container.h">
       <Filter>Echo\core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Echo\core\Core.h">
-      <Filter>Echo\core</Filter>
-    </ClInclude>
     <ClInclude Include="src\Echo\core\EntryPoint.h">
       <Filter>Echo\core</Filter>
     </ClInclude>
@@ -76,6 +73,12 @@
     <ClInclude Include="src\Echo\components\MultibeatObject.h" />
     <ClInclude Include="src\Echo\components\Parser.h" />
     <ClInclude Include="src\Echo\core\ShaderList.h" />
+    <ClInclude Include="src\Echo\components\ObjectComponent.h" />
+    <ClInclude Include="src\Core.h">
+      <Filter>Echo\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Settings.h" />
+    <ClInclude Include="src\Echo\buffers\Orthographic.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Echo\core\Application.cpp">
@@ -103,6 +106,8 @@
     <ClCompile Include="src\Echo\components\RenderElement.cpp" />
     <ClCompile Include="src\Echo\components\MultibeatObject.cpp" />
     <ClCompile Include="src\Echo\components\Parser.cpp" />
+    <ClCompile Include="src\Echo\components\ObjectComponent.cpp" />
+    <ClCompile Include="src\Echo\buffers\Orthographic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Settings.json" />

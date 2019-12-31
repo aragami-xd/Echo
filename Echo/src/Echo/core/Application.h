@@ -1,12 +1,13 @@
 #pragma once
 #include <EchoHeader.h>
-#include <nlohmann/json.hpp>
 
 #include <Echo/events/ApplicationEvent.h>
 #include <Echo/events/KeyboardEvent.h>
 #include <Echo/events/MouseEvent.h>
 
-#include "Core.h"
+#include <Core.h>
+#include "Settings.h"
+
 #include "Window.h"
 #include "LayerStack.h"
 #include "ShaderList.h"

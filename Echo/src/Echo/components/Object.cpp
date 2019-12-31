@@ -1,4 +1,5 @@
 #include "Object.h"
+#include <Settings.h>
 using namespace std;
 
 Object::Object(float ox, float oy) :
@@ -13,13 +14,13 @@ Object::Object(float ox, float oy) :
 }
 
 /* static variables */
-float Object::AR = 10.0f;
-float Object::CS = 5.0f;
-float Object::OD = 10.0f;
+float Object::AR = settings["metadata"]["ar"];
+float Object::CS = settings["metadata"]["cs"];
+float Object::OD = settings["metadata"]["od"];
 
-int Object::scaleAR = 4500;
-float Object::scaleCS = 0.3f;
+int Object::scaleAR = settings["metadata"]["scaleAR"];
+float Object::scaleCS = settings["metadata"]["scaleCS"];
 
-float Object::score300Scaling = 1.2f;
-float Object::score100Scaling = 1.4f;
-float Object::score50Scaling = 1.5f;
+float Object::score300Scaling = settings["metadata"]["score300"];
+float Object::score100Scaling = settings["metadata"]["score100"];
+float Object::score50Scaling = settings["metadata"]["score50"];

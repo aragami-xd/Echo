@@ -1,10 +1,10 @@
 #pragma once
 
 #include <EchoHeader.h>
-#include "Object.h"
+#include "ObjectComponent.h"
 
 // parser functions
-using ParseFunc = std::unordered_map<std::string, std::function<Object * (std::stringstream&)>>;
+using ParseFunc = std::unordered_map<std::string, std::function<ObjectComponent * (std::stringstream&)>>;
 
 class ECHO_DLL Parser
 {
@@ -17,7 +17,7 @@ private:
 public:
 	Parser(std::string path);
 
-	void AddParseFunc(std::string& type, const std::function<Object * (std::stringstream&)>& func);
+	void AddParseFunc(std::string& type, const std::function<ObjectComponent * (std::stringstream&)>& func);
 	void RemoveParseFunc(std::string& name);
 
 	Object* Parse();

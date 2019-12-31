@@ -1,17 +1,35 @@
 {
-  "path" : {
-    "beatmapPath": "osu!trainer/lib/beatmaps/map.txt"
+  "metadata": {
+    "ar": "9.5f",
+    "cs": "5.0f",
+    "od": "9.0f",
+    "hp": "7.0f",
+
+    "scaleAR": "4500",
+    "scaleCS": "0.3f",
+
+    "score300": "1.2f",
+    "score100": "1.4f",
+    "score50": "1.5f"
+  },
+
+  "path": {
+    "beatmapPath": "lib/beatmaps/map.txt"
   },
 
   "window": {
-    "width": 1280,
-    "height": 720,
+    "width": 1600,
+    "height": 900,
     "title": "Echo"
   },
 
   "shader": {
     "basic": "basicShader",
-    "basicVertex": "osu!trainer/src/shaders/BasicShader.vert",
-    "basicFragment": "osu!trainer/src/shaders/BasicShader.frag"
+    "basicVertex": "/src/shaders/BasicShader.vert",
+    "basicFragment": "/src/shaders/BasicShader.frag"
+  },
+
+  "circle": {
+    "vertices": 90
   }
 }

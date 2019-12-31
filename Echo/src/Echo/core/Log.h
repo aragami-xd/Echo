@@ -2,10 +2,17 @@
 
 #include <EchoHeader.h>
 
-#define LOG_init(x) printf("[initialize] %s\n", x)
-#define LOG_func() printf("[function] %s\n", __func__)
-#define LOG_var(x) printf("[var] %s %d\n", #x, x)
-#define LOG_message(x) printf("[message] %s\n", x)
-#define LOG_error(x) printf("[error] %s\n", x)
-#define LOG_warning(x) printf("[warning] %s\n", x)
-#define LOG_pair(x, y) x; printf(" --> "); y
+#define LOG_init(x)\
+	printf("[%s][initialize] %s\n", __func__, x)
+
+#define LOG_var(x)\
+	printf("[%s][var] %s %d\n", __func__, #x, x)
+
+#define LOG_message(x)\
+	printf("[%s][message] %s\n", __func__, x)
+
+#define LOG_error(x)\
+	printf("[%s][error] %s\n", __func__, x)
+
+#define LOG_warning(x)\
+	printf("[%s][warning] %s\n",__func__, x)

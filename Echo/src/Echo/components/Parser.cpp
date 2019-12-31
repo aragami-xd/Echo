@@ -13,7 +13,7 @@ Parser::Parser(std::string path)
 	}
 }
 
-void Parser::AddParseFunc(std::string& type, const std::function<Object * (std::stringstream&)>& func)
+void Parser::AddParseFunc(std::string& type, const std::function<ObjectComponent * (std::stringstream&)>& func)
 {
 	parseFunc.insert({ type, func });
 }

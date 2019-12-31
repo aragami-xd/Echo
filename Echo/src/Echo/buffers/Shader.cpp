@@ -16,7 +16,7 @@ Shader::Shader(string& vertexPath, string& fragmentPath) :
 	if (!success)
 	{
 		char message[512];
-		glGetProgramInfoLog(program, 512, nullptr, message);
+		glGetProgramInfoLog(program, 512, NULL, message);
 		LOG_warning(message);
 	}
 
@@ -27,16 +27,10 @@ Shader::Shader(string& vertexPath, string& fragmentPath) :
 const char* Shader::ParseShader(string& path)
 {
 	// parse the shader source code file into const char*
-	ifstream file;
-	try
-	{
-		file.open(path);
-	}
-	catch (ifstream::failure e)
-	{
-		LOG_message(e.what());
-		return nullptr;
-	}
+	ifstream file(filesystem::current_path().string() + path);
+	if (!file)
+		LOG_warning("cannot open shader");
+
 	stringstream ss;
 	ss << file.rdbuf();
 
@@ -52,7 +46,9 @@ unsigned int Shader::CompileShader(bool isVertex, string& path)
 
 	unsigned int shader = glCreateShader(type);
 	const char* shaderSource = ParseShader(path);
-	glShaderSource(shader, 1, &shaderSource, nullptr);
+	LOG_message(shaderSource);
+	glShaderSource(shader, 1, &shaderSource, NULL);
+	glCompileShader(shader);
 
 	// verify the shader
 	int success;
@@ -60,7 +56,7 @@ unsigned int Shader::CompileShader(bool isVertex, string& path)
 	if (!success)
 	{
 		char message[512];
-		glGetShaderInfoLog(shader, 512, nullptr, message);
+		glGetShaderInfoLog(shader, 512, NULL, message);
 		LOG_warning(message);
 		return 0;
 	}

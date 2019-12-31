@@ -1,20 +1,21 @@
 #pragma once
 
 #include <Echo/buffers/Renderer.h>
+#include <glm/glm.hpp>
 
-class RenderElement
+class ECHO_DLL RenderElement
 {
 protected:
+	RenderElement(glm::vec4 objectColor);
+
+	// buffers
 	VertexLayout* vl;
 	VertexArray* va;
 	VertexBuffer* vb;
 	IndexBuffer* ib;
 
-	float x;
-	float y;
-
+	// element base color
+	glm::vec4 color;
 public:
-	RenderElement();
-
 	~RenderElement();
 };

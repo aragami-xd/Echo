@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Echo/components/Object.h>
+#include <Echo/components/ObjectComponent.h>
 
 class Circle : public Object
 {
@@ -14,4 +14,4 @@ public:
 	~Circle() = default;
 };
 
-Object* CircleParser(std::stringstream& ss);
+ObjectComponent* CircleParser(std::stringstream& ss);

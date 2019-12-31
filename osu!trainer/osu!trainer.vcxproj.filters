@@ -12,12 +12,14 @@
     <ClCompile Include="src\osu!trainer.cpp" />
     <ClCompile Include="src\components\Circle.cpp" />
     <ClCompile Include="src\components\Slider.cpp" />
+    <ClCompile Include="src\components\CircleElement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\osu!trainer.h" />
     <ClInclude Include="src\core\StoryboardLayer.h" />
     <ClInclude Include="src\components\Circle.h" />
     <ClInclude Include="src\components\Slider.h" />
+    <ClInclude Include="src\components\CircleElement.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="lib\beatmaps\map.txt" />
