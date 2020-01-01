@@ -3,8 +3,6 @@
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <Settings.h>
-
 #include "Shader.h"
 
 class Orthographic

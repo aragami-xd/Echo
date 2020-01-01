@@ -1,100 +1,100 @@
-circle 1425.7f 459.3f
-circle 218.1f 10.2f
-circle 349f 223.5f
-circle 175.2f 410.6f
-circle 89.5f 726.2f
-circle 1426.4f 183.7f
-circle 560.9f 190.3f
-circle 125.5f 786.3f
-circle 963.4f 788.2f
-circle 180.4f 507.9f
-circle 886.2f 110.4f
-circle 819f 131.7f
-circle 456.4f 876.4f
-circle 620.7f 539.3f
-circle 1039.5f 665.8f
-circle 348.4f 600.4f
-circle 760.3f 366.5f
-circle 610.6f 244.5f
-circle 325.3f 721.1f
-circle 1455.2f 450f
-circle 1047.3f 116.8f
-circle 1068.9f 8.2f
-circle 207.1f 94.4f
-circle 429.7f 5.8f
-circle 1217.9f 645.4f
-circle 1013.7f 139.3f
-circle 55.8f 368f
-circle 571f 12.3f
-circle 1479.6f 291.7f
-circle 886.8f 819.1f
-circle 492.7f 635.2f
-circle 619.5f 388.2f
-circle 201.8f 865.3f
-circle 32.7f 162.3f
-circle 1286.4f 123.1f
-circle 212.3f 68.9f
-circle 440f 81.2f
-circle 1177.2f 282.3f
-circle 1310.9f 342.1f
-circle 1088.1f 264f
-circle 322.7f 537.1f
-circle 703.3f 578.6f
-circle 5.1f 674.3f
-circle 1326.1f 84.7f
-circle 1301.2f 348.1f
-circle 1239f 493.9f
-circle 683.4f 258.5f
-circle 717.3f 820.4f
-circle 759f 350f
-circle 682.7f 380.7f
-circle 1508.4f 430.2f
-circle 449.6f 448.4f
-circle 1446.6f 262f
-circle 265.9f 792.7f
-circle 904.2f 754.1f
-circle 1356.7f 426.9f
-circle 691.2f 560f
-circle 440.7f 131.5f
-circle 134.3f 802f
-circle 1451.4f 135.5f
-circle 50.2f 590.4f
-circle 464.6f 68.8f
-circle 184.1f 81.9f
-circle 889.2f 278.3f
-circle 767.2f 707.1f
-circle 659f 375.6f
-circle 572.5f 208.7f
-circle 1459.2f 219.1f
-circle 405.9f 125.1f
-circle 847.1f 810.1f
-circle 1479.2f 3.8f
-circle 1372.3f 105.6f
-circle 1063.9f 548.2f
-circle 972.3f 633.4f
-circle 85.5f 558.9f
-circle 1469f 435.7f
-circle 749.3f 868.8f
-circle 1304.5f 568.6f
-circle 350.8f 228.9f
-circle 1582.2f 218f
-circle 1436f 341.2f
-circle 628.8f 8.5f
-circle 585.1f 888f
-circle 1262.8f 491.1f
-circle 613.1f 709.9f
-circle 1136.4f 727.6f
-circle 1113.8f 843.9f
-circle 768.4f 112.9f
-circle 827.4f 540.8f
-circle 1046.3f 412.9f
-circle 234.9f 350.5f
-circle 1483.8f 184.3f
-circle 954.6f 823.5f
-circle 1188.1f 740.6f
-circle 1052.4f 170.3f
-circle 93.8f 823.6f
-circle 646.8f 122.6f
-circle 567.3f 531.9f
-circle 1210.6f 530.1f
-circle 1058.2f 858.9f
+circle 62.7f 182.6f 0
+circle 383.4f 583.7f 300
+circle 1564.6f 678.6f 600
+circle 792.8f 473.3f 900
+circle 1153.9f 475.7f 1200
+circle 1368.1f 345.8f 1500
+circle 852.8f 703.9f 1800
+circle 695f 25.2f 2100
+circle 376.8f 863.8f 2400
+circle 1144.9f 423.4f 2700
+circle 912.4f 614.6f 3000
+circle 420.8f 854f 3300
+circle 387.8f 877.2f 3600
+circle 714.8f 429.2f 3900
+circle 527f 70.1f 4200
+circle 311.5f 689.7f 4500
+circle 1052.7f 395f 4800
+circle 8.6f 652.5f 5100
+circle 1308.8f 736.6f 5400
+circle 25.8f 297.9f 5700
+circle 1547.6f 129.1f 6000
+circle 679f 0.4f 6300
+circle 833.1f 474f 6600
+circle 60.9f 745.1f 6900
+circle 537.8f 541f 7200
+circle 1168.5f 385.5f 7500
+circle 155.6f 589.3f 7800
+circle 1539.5f 78.6f 8100
+circle 801.7f 189.5f 8400
+circle 7.8f 128.7f 8700
+circle 359.6f 119.4f 9000
+circle 753.7f 247.5f 9300
+circle 1449.6f 662.3f 9600
+circle 535.3f 793.6f 9900
+circle 834.2f 596.3f 10200
+circle 1291.5f 281.8f 10500
+circle 1225.5f 570.5f 10800
+circle 417.4f 658.6f 11100
+circle 144.5f 413.5f 11400
+circle 503.7f 317.6f 11700
+circle 954.5f 507.5f 12000
+circle 1403.1f 45.3f 12300
+circle 932f 777.8f 12600
+circle 923.9f 233.8f 12900
+circle 1267.3f 367f 13200
+circle 297.7f 62.1f 13500
+circle 521.6f 651.4f 13800
+circle 1144.8f 206.4f 14100
+circle 649f 680.1f 14400
+circle 800f 383.2f 14700
+circle 1076.5f 291.5f 15000
+circle 1100.2f 837.2f 15300
+circle 862.1f 152.8f 15600
+circle 431f 741.8f 15900
+circle 1266.4f 569.9f 16200
+circle 1394.6f 620.9f 16500
+circle 277.4f 597.7f 16800
+circle 566.3f 744.7f 17100
+circle 210.7f 525.4f 17400
+circle 178.5f 278f 17700
+circle 527.6f 811.4f 18000
+circle 340.1f 849.2f 18300
+circle 362.9f 120.2f 18600
+circle 255.6f 447.1f 18900
+circle 400.3f 255.6f 19200
+circle 165.5f 12f 19500
+circle 382.4f 700.9f 19800
+circle 284.4f 244.5f 20100
+circle 453.7f 15.4f 20400
+circle 1521.5f 255.3f 20700
+circle 485.4f 616.2f 21000
+circle 11.5f 498f 21300
+circle 1349.1f 113f 21600
+circle 1242.7f 259.9f 21900
+circle 1338.4f 156.4f 22200
+circle 273.1f 366.1f 22500
+circle 1167.9f 348.5f 22800
+circle 150.5f 366f 23100
+circle 1368.7f 206.2f 23400
+circle 213.1f 369f 23700
+circle 297f 213.8f 24000
+circle 916.3f 479.4f 24300
+circle 914.7f 435.9f 24600
+circle 759.1f 868.4f 24900
+circle 751.4f 280.7f 25200
+circle 759f 772f 25500
+circle 832.1f 570.5f 25800
+circle 1270f 681.2f 26100
+circle 183.5f 448f 26400
+circle 976.3f 421.9f 26700
+circle 4.4f 49.5f 27000
+circle 623.2f 407.5f 27300
+circle 698f 309f 27600
+circle 373.5f 866.7f 27900
+circle 450.4f 421.8f 28200
+circle 1070.9f 447.4f 28500
+circle 235.6f 822.4f 28800
+circle 262.1f 385.5f 29100
+circle 858.4f 221.2f 29400
+circle 1354f 809.8f 29700

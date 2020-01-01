@@ -4,6 +4,9 @@
     <Filter Include="Echo">
       <UniqueIdentifier>{A498847C-90CF-850D-39BC-6B1025D2010F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Echo\buffers">
+      <UniqueIdentifier>{40549133-2CB7-20D8-D53C-598EC17EEC5A}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Echo\components">
       <UniqueIdentifier>{5973DCDB-C5FE-49A0-CE0F-CD943A1AA6A0}</UniqueIdentifier>
     </Filter>
@@ -21,8 +24,42 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Core.h" />
     <ClInclude Include="src\Echo.h" />
+    <ClInclude Include="src\Echo\buffers\IndexBuffer.h">
+      <Filter>Echo\buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\buffers\Orthographic.h">
+      <Filter>Echo\buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\buffers\Renderer.h">
+      <Filter>Echo\buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\buffers\Shader.h">
+      <Filter>Echo\buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\buffers\VertexArray.h">
+      <Filter>Echo\buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\buffers\VertexBuffer.h">
+      <Filter>Echo\buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\buffers\VertexLayout.h">
+      <Filter>Echo\buffers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\components\MultibeatObject.h">
+      <Filter>Echo\components</Filter>
+    </ClInclude>
     <ClInclude Include="src\Echo\components\Object.h">
+      <Filter>Echo\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\components\ObjectComponent.h">
+      <Filter>Echo\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\components\Parser.h">
+      <Filter>Echo\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Echo\components\RenderElement.h">
       <Filter>Echo\components</Filter>
     </ClInclude>
     <ClInclude Include="src\Echo\core\Application.h">
@@ -43,6 +80,9 @@
     <ClInclude Include="src\Echo\core\Log.h">
       <Filter>Echo\core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Echo\core\ShaderList.h">
+      <Filter>Echo\core</Filter>
+    </ClInclude>
     <ClInclude Include="src\Echo\core\Window.h">
       <Filter>Echo\core</Filter>
     </ClInclude>
@@ -59,28 +99,42 @@
       <Filter>Echo\events</Filter>
     </ClInclude>
     <ClInclude Include="src\EchoHeader.h" />
+    <ClInclude Include="src\Settings.h" />
     <ClInclude Include="src\platform\windows\WindowsWindow.h">
       <Filter>platform\windows</Filter>
     </ClInclude>
-    <ClInclude Include="src\Echo\buffers\VertexArray.h" />
-    <ClInclude Include="src\Echo\buffers\VertexBuffer.h" />
-    <ClInclude Include="src\Echo\buffers\Shader.h" />
-    <ClInclude Include="src\Echo\buffers\IndexBuffer.h" />
-    <ClInclude Include="src\Echo\buffers\VertexLayout.h" />
-    <ClInclude Include="src\Echo\buffers\Renderer.h" />
-    <ClInclude Include="vendor\stb\stb_image.h" />
-    <ClInclude Include="src\Echo\components\RenderElement.h" />
-    <ClInclude Include="src\Echo\components\MultibeatObject.h" />
-    <ClInclude Include="src\Echo\components\Parser.h" />
-    <ClInclude Include="src\Echo\core\ShaderList.h" />
-    <ClInclude Include="src\Echo\components\ObjectComponent.h" />
-    <ClInclude Include="src\Core.h">
-      <Filter>Echo\core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Settings.h" />
-    <ClInclude Include="src\Echo\buffers\Orthographic.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Echo\buffers\IndexBuffer.cpp">
+      <Filter>Echo\buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Echo\buffers\Orthographic.cpp">
+      <Filter>Echo\buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Echo\buffers\Shader.cpp">
+      <Filter>Echo\buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Echo\buffers\VertexArray.cpp">
+      <Filter>Echo\buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Echo\buffers\VertexBuffer.cpp">
+      <Filter>Echo\buffers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Echo\components\MultibeatObject.cpp">
+      <Filter>Echo\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Echo\components\Object.cpp">
+      <Filter>Echo\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Echo\components\ObjectComponent.cpp">
+      <Filter>Echo\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Echo\components\Parser.cpp">
+      <Filter>Echo\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Echo\components\RenderElement.cpp">
+      <Filter>Echo\components</Filter>
+    </ClCompile>
     <ClCompile Include="src\Echo\core\Application.cpp">
       <Filter>Echo\core</Filter>
     </ClCompile>
@@ -97,17 +151,6 @@
     <ClCompile Include="src\platform\windows\WindowsWindow.cpp">
       <Filter>platform\windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Echo\buffers\VertexBuffer.cpp" />
-    <ClCompile Include="src\Echo\buffers\VertexArray.cpp" />
-    <ClCompile Include="src\Echo\buffers\Shader.cpp" />
-    <ClCompile Include="src\Echo\buffers\IndexBuffer.cpp" />
-    <ClCompile Include="vendor\stb\stb_image.cpp" />
-    <ClCompile Include="src\Echo\components\Object.cpp" />
-    <ClCompile Include="src\Echo\components\RenderElement.cpp" />
-    <ClCompile Include="src\Echo\components\MultibeatObject.cpp" />
-    <ClCompile Include="src\Echo\components\Parser.cpp" />
-    <ClCompile Include="src\Echo\components\ObjectComponent.cpp" />
-    <ClCompile Include="src\Echo\buffers\Orthographic.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Settings.json" />

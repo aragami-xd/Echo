@@ -54,6 +54,9 @@ project "Echo"
 		"opengl32.lib"
 	}
 
+	-- linking options
+	linkoptions { "/FORCE:MULTIPLE" }
+
 	-- windows config
 	filter "system:windows"
 		cppdialect "C++17"
@@ -102,6 +105,9 @@ project "osu!trainer"
 
 	-- linker
 	links { "Echo" }
+	
+	-- linking options
+	linkoptions { "/FORCE:MULTIPLE" }
 
 	-- windows config
 	filter "system:windows"

@@ -2,6 +2,7 @@
 
 #include <components/Circle.h>
 #include <core/StoryboardLayer.h>
+#include <Settings.h>
 using namespace std;
 
 Program::Program()

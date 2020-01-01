@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "Settings.h"
 
 #include <glad/glad.h>
 using namespace std;

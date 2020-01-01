@@ -6,15 +6,12 @@
 #include <Echo/events/MouseEvent.h>
 
 #include <Core.h>
-#include "Settings.h"
 
 #include "Window.h"
 #include "LayerStack.h"
 #include "ShaderList.h"
 
 #include <Echo/components/Parser.h>
-
-using json = nlohmann::json;
 
 class ECHO_DLL Application
 {
