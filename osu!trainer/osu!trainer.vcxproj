@@ -144,6 +144,7 @@
     <ClInclude Include="src\components\Circle.h" />
     <ClInclude Include="src\components\CircleElement.h" />
     <ClInclude Include="src\components\Slider.h" />
+    <ClInclude Include="src\core\GameplayLayer.h" />
     <ClInclude Include="src\core\StoryboardLayer.h" />
     <ClInclude Include="src\osu!trainer.h" />
   </ItemGroup>

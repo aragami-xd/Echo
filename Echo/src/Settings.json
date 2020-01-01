@@ -14,7 +14,7 @@
   },
 
   "path": {
-    "beatmapPath": "lib/beatmaps/map.txt"
+    "beatmapPath": "./lib/beatmaps/map.txt"
   },
 
   "window": {
@@ -25,8 +25,8 @@
 
   "shader": {
     "basic": "basicShader",
-    "basicVertex": "/src/shaders/BasicShader.vert",
-    "basicFragment": "/src/shaders/BasicShader.frag"
+    "basicVertex": "./src/shaders/BasicShader.vert",
+    "basicFragment": "./src/shaders/BasicShader.frag"
   },
 
   "circle": {

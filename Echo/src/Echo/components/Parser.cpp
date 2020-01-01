@@ -3,14 +3,9 @@ using namespace std;
 
 Parser::Parser(std::string path)
 {
-	try
-	{
-		map.open(path);
-	}
-	catch (ifstream::failure e)
-	{
-		LOG_warning(e.what());
-	}
+	map.open(path);
+	if (!map)
+		LOG_warning("path not exist");
 }
 
 void Parser::AddParseFunc(std::string& type, const std::function<ObjectComponent * (std::stringstream&)>& func)
@@ -24,7 +19,7 @@ void Parser::RemoveParseFunc(std::string& name)
 		LOG_warning(name + " not found");
 }
 
-Object* Parser::Parse()
+ObjectComponent* Parser::Parse()
 {
 	// if eof
 	if (!getline(map, line))
@@ -37,7 +32,7 @@ Object* Parser::Parse()
 		stringstream ss(line);
 		string type;
 		ss >> type;
-		parseFunc[type](ss);
+		return parseFunc[type](ss);
 	}
 }
 

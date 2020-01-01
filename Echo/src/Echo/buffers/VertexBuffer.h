@@ -9,7 +9,7 @@ private:
 	unsigned int id;
 
 public:
-	VertexBuffer(float* data, int count, GLenum flag = GL_STATIC_DRAW);
+	VertexBuffer(float* data, int size, GLenum flag = GL_STATIC_DRAW);
 
 	void Bind();
 	void Unbind();

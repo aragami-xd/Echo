@@ -1,51 +1,53 @@
 #include "Shader.h"
 using namespace std;
 
-Shader::Shader(string& vertexPath, string& fragmentPath) :
+Shader::Shader(const string& vertexPath, const string& fragmentPath) :
 	program(0)
 {
 	// compile 2 shaders then link them together
 	program = glCreateProgram();
-	glAttachShader(program, CompileShader(true, vertexPath));
-	glAttachShader(program, CompileShader(false, fragmentPath));
-	glLinkProgram(program);
+	unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexPath);
+	unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentPath);
 
-	// verify the shader program
-	int success;
-	glGetProgramiv(program, GL_LINK_STATUS, &success);
-	if (!success)
-	{
-		char message[512];
-		glGetProgramInfoLog(program, 512, NULL, message);
-		LOG_warning(message);
-	}
+	glAttachShader(program, vs);
+	glAttachShader(program, fs);
+	glLinkProgram(program);
+	glValidateProgram(program);
+
+	glDeleteShader(vs);
+	glDeleteShader(fs);
+
+	// set default uniform values
+	SetShaderUniformMat4f(string("model"), glm::mat4(1.0f));
+	SetShaderUniformMat4f(string("view"), glm::mat4(1.0f));
+	SetShaderUniformMat4f(string("proj"), glm::mat4(1.0f));
 
 	// unbind the shader for safety reason
 	glUseProgram(0);
 }
 
-const char* Shader::ParseShader(string& path)
+string Shader::ParseShader(const string& path)
 {
 	// parse the shader source code file into const char*
-	ifstream file(filesystem::current_path().string() + path);
+	ifstream file(path);
 	if (!file)
+	{
 		LOG_warning("cannot open shader");
-
+		return "";
+	}
 	stringstream ss;
 	ss << file.rdbuf();
 
 	file.close();
-
-	return ss.str().c_str();
+	return ss.str();
 }
 
-unsigned int Shader::CompileShader(bool isVertex, string& path)
+unsigned int Shader::CompileShader(unsigned int type, const string& path)
 {
-	// create and compile the shader
-	GLenum type = (isVertex ? GL_VERTEX_SHADER : GL_FRAGMENT_SHADER);
-
+	// parse the shader
 	unsigned int shader = glCreateShader(type);
-	const char* shaderSource = ParseShader(path);
+	const char* shaderSource = ParseShader(path).c_str();
+
 	LOG_message(shaderSource);
 	glShaderSource(shader, 1, &shaderSource, NULL);
 	glCompileShader(shader);
@@ -58,6 +60,7 @@ unsigned int Shader::CompileShader(bool isVertex, string& path)
 		char message[512];
 		glGetShaderInfoLog(shader, 512, NULL, message);
 		LOG_warning(message);
+		glDeleteShader(shader);
 		return 0;
 	}
 	return shader;

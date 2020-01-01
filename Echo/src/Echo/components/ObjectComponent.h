@@ -16,6 +16,9 @@ public:
 	void AddObject(Object* object);
 	void AddElement(std::string& name, RenderElement* element);
 	void RemoveElement(std::string& name);
+	
+	Object* GetObject();
+	RenderElement* GetElement(std::string& name);
 
 	~ObjectComponent();
 };

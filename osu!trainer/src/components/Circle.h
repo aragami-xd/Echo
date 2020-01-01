@@ -14,4 +14,5 @@ public:
 	~Circle() = default;
 };
 
+// circle parsing function
 ObjectComponent* CircleParser(std::stringstream& ss);

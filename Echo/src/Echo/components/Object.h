@@ -14,17 +14,14 @@ protected:
 
 	/* difficulty variables:
 	* AR: approach rate: how fast the object appears and disappears on the screen
-	* CS: how large the object is
 	* OD: how close to the beat the player has to tap to score point
 	*/
 	static float AR;
-	static float CS;
 	static float OD;
 
-	// use to scale AR and CS
+	// use to scale AR
 	static int scaleAR;
 	int approachTime;
-	static float scaleCS;
 
 	// timestamps (when the circle appears and disappears)
 	int startTime;

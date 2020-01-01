@@ -11,13 +11,13 @@ private:
 	unsigned int program;
 
 	// read in the shader source code
-	const char* ParseShader(std::string& path);
+	std::string ParseShader(const std::string& path);
 
 	// compile the shader
-	unsigned int  CompileShader(bool isVertex, std::string& path);
+	unsigned int  CompileShader(unsigned int type, const std::string& path);
 
 public:
-	Shader(std::string& vertexPath, std::string& fragmentPath);
+	Shader(const std::string& vertexPath, const std::string& fragmentPath);
 
 	void Bind();
 	void Unbind();

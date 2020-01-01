@@ -15,11 +15,8 @@ Object::Object(float ox, float oy) :
 
 /* static variables */
 float Object::AR = settings["metadata"]["ar"];
-float Object::CS = settings["metadata"]["cs"];
 float Object::OD = settings["metadata"]["od"];
-
 int Object::scaleAR = settings["metadata"]["scaleAR"];
-float Object::scaleCS = settings["metadata"]["scaleCS"];
 
 float Object::score300Scaling = settings["metadata"]["score300"];
 float Object::score100Scaling = settings["metadata"]["score100"];

@@ -20,5 +20,5 @@ public:
 	void AddParseFunc(std::string& type, const std::function<ObjectComponent * (std::stringstream&)>& func);
 	void RemoveParseFunc(std::string& name);
 
-	Object* Parse();
+	ObjectComponent* Parse();
 };

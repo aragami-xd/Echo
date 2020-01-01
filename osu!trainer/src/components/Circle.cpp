@@ -1,10 +1,11 @@
 #include "Circle.h"
+#include "CircleElement.h"
+#include <Settings.h>
 using namespace std;
 
 Circle::Circle(float cx, float cy, int beatTime) :
-	Object(cx, cy)
+	Object(cx, cy), beat(beatTime)
 {
-	beat = beatTime;
 	startTime = beatTime - approachTime;
 	endTime = beatTime + score50;
 }
@@ -22,6 +23,7 @@ int Circle::GetScore(int time)
 		return 0;	// 0 score is a miss
 }
 
+// circle parsing function
 ObjectComponent* CircleParser(stringstream& ss)
 {
 	ObjectComponent* object = new ObjectComponent();
@@ -31,9 +33,12 @@ ObjectComponent* CircleParser(stringstream& ss)
 	if (!ss.eof()) ss >> x;
 	if (!ss.eof()) ss >> y;
 	if (!ss.eof()) ss >> beat;
-
 	object->AddObject(new Circle(stof(x), stof(y), stoi(beat)));
 
-	// add individual element
+	// add render element
+	float objectRadius = settings["metadata"]["scaleCS"] / (float)settings["metadata"]["cs"];
+	RenderElement* circleElement = new CircleRenderElement(objectRadius);
+	object->AddElement(string("circle"), circleElement);
+
 	return object;
 }

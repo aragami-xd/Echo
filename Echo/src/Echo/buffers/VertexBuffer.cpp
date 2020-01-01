@@ -1,12 +1,12 @@
 #include "VertexBuffer.h"
 using namespace std;
 
-VertexBuffer::VertexBuffer(float* data, int count, GLenum flag) :
+VertexBuffer::VertexBuffer(float* data, int size, GLenum flag) :
 	id(0)
 {
 	glGenBuffers(1, &id);
 	glBindBuffer(GL_ARRAY_BUFFER, id);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * count, data, flag);
+	glBufferData(GL_ARRAY_BUFFER, size, data, flag);
 }
 
 void VertexBuffer::Bind()

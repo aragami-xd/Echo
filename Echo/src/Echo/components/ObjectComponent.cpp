@@ -24,6 +24,16 @@ void ObjectComponent::RemoveElement(string& name)
 	element.erase(name);
 }
 
+Object* ObjectComponent::GetObject()
+{
+	return object;
+}
+
+RenderElement* ObjectComponent::GetElement(std::string& name)
+{
+	return element[name];
+}
+
 ObjectComponent::~ObjectComponent()
 {
 	delete object;

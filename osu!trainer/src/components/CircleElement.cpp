@@ -4,6 +4,11 @@ using namespace std;
 
 #define PI 3.14
 
+/* note that the circle render element has nothing to do with circle object
+	* this element is only use to depict anything rounded on the screen
+	* components like slider can include circle render element 
+*/
+
 CircleRenderElement::CircleRenderElement(float circleRadius, float circleThickness, glm::vec4 circleColor) :
 	RenderElement(circleColor)
 {
