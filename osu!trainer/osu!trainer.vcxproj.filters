@@ -35,5 +35,6 @@
       <Filter>components</Filter>
     </ClCompile>
     <ClCompile Include="src\osu!trainer.cpp" />
+    <ClCompile Include="src\core\GameplayLayer.cpp" />
   </ItemGroup>
 </Project>

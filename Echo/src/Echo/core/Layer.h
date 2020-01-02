@@ -14,8 +14,8 @@ public:
 	{}
 	inline std::string GetLayerName() { return name; }
 
-	inline virtual void Attach() { enabled = true; }
-	inline virtual void Detach() { enabled = false; }
+	inline void Attach() { enabled = true; }
+	inline void Detach() { enabled = false; }
 
 	virtual void Update() {};
 	virtual void OnEvent(const Event& e) {};

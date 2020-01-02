@@ -2,6 +2,7 @@
 #include "Settings.h"
 
 #include <glad/glad.h>
+#include "Timing.h"
 using namespace std;
 
 #define EVENT_FUNC(x) bind(&Application::x, this, placeholders::_1)
@@ -27,10 +28,10 @@ void Application::OnEvent(Event& e)
 	invoker.Invoke<WindowCloseEvent>(EVENT_FUNC(CloseWindow));
 
 	for (auto layer = layerStack.rbegin(); layer != layerStack.rend(); layer++)
-		layer->OnEvent(e);
+		(*(*layer)).OnEvent(e);
 }
 
-void Application::PushLayer(const Layer& layer)
+void Application::PushLayer(Layer* layer)
 {
 	layerStack.push_back(layer);
 }
@@ -48,12 +49,16 @@ void Application::PushToTop(std::string& name)
 
 void Application::Run()
 {
+	// main body loop
 	while (running)
 	{
-		window->Update();
+		// update the time
+		Timing::Refresh();
 
-		for (Layer layer : layerStack)
-			layer.Update();
+		// prepare window for the next frame and update each layer
+		window->Update();
+		for (Layer* layer : layerStack)
+			layer->Update();
 	}
 }
 

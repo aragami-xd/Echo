@@ -40,5 +40,11 @@ public:
 	// return a score when the user taps
 	virtual int GetScore(int time) = 0;
 
+	inline int GetX() { return x; }
+	inline int GetY() { return y; }
+
+	inline int GetStartTime() { return startTime; }
+	inline int GetEndTime() { return endTime; }
+
 	~Object() = default;
 };

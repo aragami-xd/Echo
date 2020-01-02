@@ -5,7 +5,9 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "Shader.h"
 
-class Orthographic
+#include <Core.h>
+
+class ECHO_DLL Orthographic
 {
 public:
 	static void SetViewMatrix(Shader* shader, float x, float y);
