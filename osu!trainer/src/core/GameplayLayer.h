@@ -16,7 +16,6 @@ private:
 	// object component vector
 	std::vector<ObjectComponent*> object;
 	int objectIterate = 0;
-
 public:
 	GameplayLayer();
 

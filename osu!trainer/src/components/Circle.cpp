@@ -1,5 +1,5 @@
 #include "Circle.h"
-#include "CircleElement.h"
+#include "CircleRenderElement.h"
 #include <Settings.h>
 using namespace std;
 
@@ -37,8 +37,12 @@ ObjectComponent* CircleParser(stringstream& ss)
 
 	// add render element
 	float objectRadius = settings["metadata"]["scaleCS"] / (float)settings["metadata"]["cs"];
+
 	RenderElement* circleElement = new CircleRenderElement(objectRadius);
 	object->AddElement(string("circle"), circleElement);
+
+	RenderElement* ringElement = new CircleRenderElement(objectRadius * settings["circle"]["ringScale"]);
+	object->AddElement(string("ring"), ringElement);
 
 	return object;
 }

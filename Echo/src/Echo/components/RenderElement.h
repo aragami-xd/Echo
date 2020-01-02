@@ -16,6 +16,6 @@ protected:
 
 	// element base color
 	glm::vec4 color;
-public:
+
 	~RenderElement();
 };

@@ -30,6 +30,7 @@
   },
 
   "circle": {
-    "vertices": 90
+    "vertices": 90,
+    "ringScale": 2.5
   }
 }
