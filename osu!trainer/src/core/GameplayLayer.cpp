@@ -1,4 +1,6 @@
 #include "GameplayLayer.h"
+
+#include <Echo/buffers/Orthographic.h>
 #include <Echo/core/Timing.h>
 #include <Settings.h>
 
@@ -18,6 +20,13 @@ GameplayLayer::GameplayLayer() :
 			settings["shader"]["basicVertex"],
 			settings["shader"]["basicFragment"]
 		)
+	);
+
+	// set screen ratio
+	Orthographic::SetProjRatio(
+		shaders->At("basic"), 
+		settings["window"]["width"], 
+		settings["window"]["height"]
 	);
 
 	// new parser

@@ -17,9 +17,6 @@ Shader::Shader(const string& vertexPath, const string& fragmentPath) :
 	glDeleteShader(vs);
 	glDeleteShader(fs);
 
-	// set default uniform values
-	SetShaderUniformMat4f("view", glm::mat4(1.0f));
-
 	// unbind the shader for safety reason
 	glUseProgram(0);
 }
@@ -74,29 +71,45 @@ void Shader::Unbind()
 	glUseProgram(0);
 }
 
+int Shader::GetUniform(const string& name)
+{
+	// find the uniform in the cache
+	if (uniform.count(name) > 0)
+		return uniform[name];
+
+	// if not found, look for it
+	int location = glGetUniformLocation(program, name.c_str());
+	if (location == -1)
+		LOG_warning("uniform not found");
+
+	// insert uniform into cache regardless of found or not
+	uniform.insert({ name, location });
+	return location;
+}
+
 void Shader::SetShaderUniform1i(const string& name, int v)
 {
-	glUniform1i(glGetUniformLocation(program, name.c_str()), v);
+	glUniform1i(GetUniform(name), v);
 }
 
 void Shader::SetShaderUniform1f(const string& name, float v)
 {
-	glUniform1f(glGetUniformLocation(program, name.c_str()), v);
+	glUniform1f(GetUniform(name), v);
 }
 
 void Shader::SetShaderUniform4f(const string& name, float v0, float v1, float v2, float v3)
 {
-	glUniform4f(glGetUniformLocation(program, name.c_str()), v0, v1, v2, v3);
+	glUniform4f(GetUniform(name), v0, v1, v2, v3);
 }
 
 void Shader::SetShaderUniformMat4f(const string& name, const glm::mat4& mat)
 {
-	glUniformMatrix4fv(glGetUniformLocation(program, name.c_str()), 1, GL_FALSE, &mat[0][0]);
+	glUniformMatrix4fv(GetUniform(name), 1, GL_FALSE, &mat[0][0]);
 }
 
 void Shader::SetShaderUniformVec4f(const string& name, const glm::vec4& vec)
 {
-	glUniform4f(glGetUniformLocation(program, name.c_str()), vec.r, vec.g, vec.b, vec.a);
+	glUniform4f(GetUniform(name), vec.r, vec.g, vec.b, vec.a);
 }
 
 Shader::~Shader()

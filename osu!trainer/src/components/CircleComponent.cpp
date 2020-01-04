@@ -5,13 +5,10 @@ using namespace std;
 
 void CircleComponent::Render(ShaderList* shaders)
 {
-	// bind the shader
-	//shaders->Bind("basic");
-	//shaders->At("basic")->SetShaderUniform4f("uColor", 1.0f, 1.0f, 1.0f, 1.0f);
-
-	//// render the circle
-	//Orthographic::SetScaleMatrix(shaders->At("basic"), 100, 100);
-	//Orthographic::SetViewMatrix(shaders->At("basic"), object->GetX(), object->GetY());
+	Shader* basic = shaders->At("basic");
+	basic->Bind();
+	Orthographic::SetScaleMatrix(basic, 1, 1);
+	Orthographic::SetViewMatrix(basic, object->GetX(), object->GetY());
 
 	Renderer::Render(
 		element["circle"]->GetVertexArray(),
