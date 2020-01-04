@@ -12,29 +12,39 @@
     <ClInclude Include="src\components\Circle.h">
       <Filter>components</Filter>
     </ClInclude>
-    <ClInclude Include="src\components\CircleElement.h">
+    <ClInclude Include="src\components\CircleComponent.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\CircleRenderElement.h">
       <Filter>components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\Slider.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="src\core\GameplayLayer.h">
+      <Filter>core</Filter>
+    </ClInclude>
     <ClInclude Include="src\core\StoryboardLayer.h">
       <Filter>core</Filter>
     </ClInclude>
     <ClInclude Include="src\osu!trainer.h" />
-    <ClInclude Include="src\core\GameplayLayer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\components\Circle.cpp">
       <Filter>components</Filter>
     </ClCompile>
-    <ClCompile Include="src\components\CircleElement.cpp">
+    <ClCompile Include="src\components\CircleComponent.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\CircleRenderElement.cpp">
       <Filter>components</Filter>
     </ClCompile>
     <ClCompile Include="src\components\Slider.cpp">
       <Filter>components</Filter>
     </ClCompile>
+    <ClCompile Include="src\core\GameplayLayer.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
     <ClCompile Include="src\osu!trainer.cpp" />
-    <ClCompile Include="src\core\GameplayLayer.cpp" />
   </ItemGroup>
 </Project>

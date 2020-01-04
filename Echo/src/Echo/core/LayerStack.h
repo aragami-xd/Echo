@@ -19,8 +19,8 @@ public:
 	inline std::vector<Layer*>::reverse_iterator rend() { return layerStack.rend(); }
 
 	// push a layer to the top. note this will push to the back of the layerStack
-	void push_to_top(std::string& name);
+	void push_to_top(const std::string& name);
 
 	// swap layers
-	void swap(std::string& layer1, std::string& layer2);
+	void swap(const std::string& layer1, const std::string& layer2);
 };

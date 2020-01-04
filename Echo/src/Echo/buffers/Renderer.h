@@ -9,20 +9,16 @@ class ECHO_DLL Renderer
 private:
 	Renderer() = default;
 public:
-	static inline void Render(VertexArray& va, IndexBuffer& ib, Shader& shader, GLenum flag = GL_STATIC_DRAW)
+	static inline void Render(VertexArray* va, IndexBuffer* ib, GLenum flag = GL_TRIANGLES)
 	{
-		va.Bind();
-		ib.Bind();
-		shader.Bind();
-
-		glDrawElements(flag, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
+		va->Bind();
+		ib->Bind();
+		glDrawElements(flag, ib->GetCount(), GL_UNSIGNED_INT, nullptr);
 	}
 
-	static inline void Render(VertexArray& va, int count, Shader& shader, GLenum flag = GL_STATIC_DRAW)
+	static inline void Render(VertexArray* va, int count, GLenum flag = GL_TRIANGLES)
 	{
-		va.Bind();
-		shader.Bind();
-
+		va->Bind();
 		glDrawArrays(flag, 0, count);
 	}
 };

@@ -20,11 +20,12 @@ WindowsWindow::WindowsWindow(const WindowSetting& ws)
 	glfwWindowHint(GLFW_SAMPLES, 4);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_VERSION_MINOR, 6);
 
 	// initialize a new window
 	glfwInit();
 
-	window = glfwCreateWindow(wd.width, wd.height, wd.title.data(), nullptr, nullptr);
+	window = glfwCreateWindow(wd.width, wd.height, wd.title.data(), NULL, NULL);
 	if (!window)
 		glfwTerminate();
 

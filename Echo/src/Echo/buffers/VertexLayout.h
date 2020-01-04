@@ -3,13 +3,14 @@
 #include <EchoHeader.h>
 #include <Core.h>
 #include <glad/glad.h>
+#include <glfw/glfw3.h>
 
 struct VertexElement
 {
 	unsigned int type;
-	unsigned int size;
+	unsigned int byte;
 	unsigned int count;
-	bool normalized;
+	unsigned char normalized;
 };
 
 class ECHO_DLL VertexLayout
@@ -38,7 +39,7 @@ public:
 	template<>
 	void Push<int>(unsigned int count)
 	{
-		vertexElement.push_back({ GL_INT, sizeof(int), count, GL_TRUE });
+		vertexElement.push_back({ GL_INT, sizeof(int), count, GL_FALSE });
 		stride += sizeof(int) * count;
 	}
 };

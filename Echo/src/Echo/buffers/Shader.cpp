@@ -18,9 +18,7 @@ Shader::Shader(const string& vertexPath, const string& fragmentPath) :
 	glDeleteShader(fs);
 
 	// set default uniform values
-	SetShaderUniformMat4f(string("model"), glm::mat4(1.0f));
-	SetShaderUniformMat4f(string("view"), glm::mat4(1.0f));
-	SetShaderUniformMat4f(string("proj"), glm::mat4(1.0f));
+	SetShaderUniformMat4f("view", glm::mat4(1.0f));
 
 	// unbind the shader for safety reason
 	glUseProgram(0);
@@ -76,27 +74,27 @@ void Shader::Unbind()
 	glUseProgram(0);
 }
 
-void Shader::SetShaderUniform1i(string& name, int v)
+void Shader::SetShaderUniform1i(const string& name, int v)
 {
 	glUniform1i(glGetUniformLocation(program, name.c_str()), v);
 }
 
-void Shader::SetShaderUniform1f(string& name, float v)
+void Shader::SetShaderUniform1f(const string& name, float v)
 {
 	glUniform1f(glGetUniformLocation(program, name.c_str()), v);
 }
 
-void Shader::SetShaderUniform4f(string& name, float v0, float v1, float v2, float v3)
+void Shader::SetShaderUniform4f(const string& name, float v0, float v1, float v2, float v3)
 {
 	glUniform4f(glGetUniformLocation(program, name.c_str()), v0, v1, v2, v3);
 }
 
-void Shader::SetShaderUniformMat4f(string& name, const glm::mat4& mat)
+void Shader::SetShaderUniformMat4f(const string& name, const glm::mat4& mat)
 {
 	glUniformMatrix4fv(glGetUniformLocation(program, name.c_str()), 1, GL_FALSE, &mat[0][0]);
 }
 
-void Shader::SetShaderUniformVec4f(std::string& name, const glm::vec4& vec)
+void Shader::SetShaderUniformVec4f(const string& name, const glm::vec4& vec)
 {
 	glUniform4f(glGetUniformLocation(program, name.c_str()), vec.r, vec.g, vec.b, vec.a);
 }

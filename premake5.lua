@@ -23,7 +23,7 @@ project "Echo"
 	language "C++"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-	defines { "ECHO_WINDOWS", "ECHO_BUILD" }
+	defines { "ECHO_WINDOWS", "ECHO_BUILD", "GLFW_INCLUDE_NONE" }
 
 	
 	-- precompiled header

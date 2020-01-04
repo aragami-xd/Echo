@@ -21,7 +21,6 @@ private:
 
 	// initialize callback function
 	void InitCallback();
-
 public:
 	// initialize window
 	WindowsWindow(const WindowSetting& ws = WindowSetting());

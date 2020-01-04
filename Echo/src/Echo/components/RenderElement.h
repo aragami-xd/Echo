@@ -16,6 +16,9 @@ protected:
 
 	// element base color
 	glm::vec4 color;
+public:
+	VertexArray* GetVertexArray() { return va; }
+	IndexBuffer* GetIndexBuffer() { return ib; }
 
 	~RenderElement();
 };

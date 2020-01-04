@@ -12,17 +12,14 @@ private:
 	static int prevTime;
 	static int currentTime;
 public:
-	static inline void Refresh()
-	{
-		prevTime = currentTime;
-		currentTime = (int)clock() - startTime;
-	}
 	static inline int GetTime() 
 	{
-		return currentTime; 
+		prevTime = currentTime;
+		return currentTime = (int)clock() - startTime;
 	}
 	static inline float GetFrameRate()
 	{
+		GetTime();
 		return 1000 / (float)(currentTime - startTime);
 	}
 };

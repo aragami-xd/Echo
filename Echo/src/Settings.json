@@ -6,7 +6,7 @@
     "hp": 7.0,
 
     "scaleAR": 4500,
-    "scaleCS": 0.3,
+    "scaleCS": 1.0,
 
     "score300": 1.2,
     "score100": 1.4,
@@ -24,13 +24,15 @@
   },
 
   "shader": {
-    "basic": "basicShader",
     "basicVertex": "./src/shaders/BasicShader.vert",
     "basicFragment": "./src/shaders/BasicShader.frag"
   },
 
-  "circle": {
-    "vertices": 90,
+  "object": {
     "ringScale": 2.5
+  },
+
+  "circle": {
+    "vertices": 90
   }
 }

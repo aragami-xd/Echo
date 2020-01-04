@@ -2,7 +2,7 @@
 using namespace std;
 
 // push layer to top
-void LayerStack::push_to_top(std::string& name)
+void LayerStack::push_to_top(const std::string& name)
 {
 	for (int i = 0; i < layerStack.size(); i++)
 	{
@@ -16,7 +16,7 @@ void LayerStack::push_to_top(std::string& name)
 }
 
 // swap layers
-void LayerStack::swap(std::string& layer1, std::string& layer2)
+void LayerStack::swap(const std::string& layer1, const std::string& layer2)
 {
 	int layer1Index = -1, layer2Index = -1;
 	for (int i = 0; i < layerStack.size(); i++)

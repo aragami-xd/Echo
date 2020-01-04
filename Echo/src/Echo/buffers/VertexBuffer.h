@@ -2,6 +2,7 @@
 
 #include <Core.h>
 #include <glad/glad.h>
+#include <glfw/glfw3.h>
 
 class ECHO_DLL VertexBuffer
 {

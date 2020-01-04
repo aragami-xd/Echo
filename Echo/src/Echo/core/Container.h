@@ -13,11 +13,11 @@ public:
 	Container() = default;
 
 	// push / emplace / pop back
-	inline void push_back(std::pair<std::string&, T&> item)				// container::push_back()
+	inline void push_back(std::pair<std::string, T>& item)				// container::push_back()
 	{
 		container.push_back(item);
 	}
-	inline void emplace_back(std::string& name, T& item)				// container::emplace_back()
+	inline void emplace_back(const std::string& name, T& item)				// container::emplace_back()
 	{
 		container.push_back({ name, item });
 	}
@@ -66,11 +66,11 @@ public:
 	}
 
 	// push / emplace / pop front
-	inline void push_front(std::pair<std::string&, T&> item)		// container::push_front()
+	inline void push_front(std::pair<std::string, T>& item)		// container::push_front()
 	{
 		container.insert(container.begin(), item);
 	}
-	inline void emplace_front(std::string& name, T& item)			// container::emplace_front()
+	inline void emplace_front(const std::string& name, T& item)			// container::emplace_front()
 	{
 		container.insert(container.begin(), { name, item });
 	}
@@ -80,7 +80,7 @@ public:
 	}
 
 	// erase
-	void erase(std::string& name);
+	void erase(const std::string& name);
 
 	// find
 	T find(const std::string& name);

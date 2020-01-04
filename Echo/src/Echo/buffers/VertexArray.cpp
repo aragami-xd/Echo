@@ -1,14 +1,17 @@
 #include "VertexArray.h"
 
-VertexArray::VertexArray(VertexLayout& vl, VertexBuffer& vb)
+VertexArray::VertexArray()
 {
 	glGenVertexArrays(1, &id);
+}
 
+void VertexArray::AddBuffer(VertexLayout& vl, VertexBuffer& vb)
+{
 	glBindVertexArray(id);
 	vb.Bind();
 
 	const auto& element = vl.GetVertexElement();
-	unsigned int offset;
+	unsigned int offset = 0;
 
 	for (int i = 0; i < element.size(); i++)
 	{
@@ -19,9 +22,9 @@ VertexArray::VertexArray(VertexLayout& vl, VertexBuffer& vb)
 			element[i].type,
 			element[i].normalized,
 			vl.GetStride(),
-			(void*)offset
+			(const void*)offset
 		);
-		offset += element[i].count * element[i].size;
+		offset += element[i].count * element[i].byte;
 	}
 }
 

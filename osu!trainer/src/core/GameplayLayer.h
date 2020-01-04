@@ -8,7 +8,7 @@ class GameplayLayer : public Layer
 {
 private:
 	// shaders
-	ShaderList shaders;
+	ShaderList* shaders;
 
 	// parser
 	Parser* parser;

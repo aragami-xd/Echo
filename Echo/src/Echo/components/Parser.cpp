@@ -8,12 +8,12 @@ Parser::Parser(std::string path)
 		LOG_warning("path not exist");
 }
 
-void Parser::AddParseFunc(std::string& type, const std::function<ObjectComponent * (std::stringstream&)>& func)
+void Parser::AddParseFunc(const std::string& type, const std::function<ObjectComponent * (std::stringstream&)>& func)
 {
 	parseFunc.insert({ type, func });
 }
 
-void Parser::RemoveParseFunc(std::string& name)
+void Parser::RemoveParseFunc(const std::string& name)
 {
 	if (!parseFunc.erase(name))
 		LOG_warning(name + " not found");

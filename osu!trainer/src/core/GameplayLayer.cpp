@@ -6,20 +6,23 @@
 using namespace std;
 
 GameplayLayer::GameplayLayer() :
-	Layer(std::string("gameplay layer"))
+	Layer("gameplay layer")
 {
+	LOG_init("gameplay layer");
+
 	// new shader
-	shaders.Push(
-		string(settings["shader"]["basic"]),
+	shaders = new ShaderList();
+	shaders->Push(
+		"basic",
 		new Shader(
-			string(settings["shader"]["basicVertex"]),
-			string(settings["shader"]["basicFragment"])
+			settings["shader"]["basicVertex"],
+			settings["shader"]["basicFragment"]
 		)
 	);
 
 	// new parser
 	parser = new Parser(settings["path"]["beatmapPath"]);
-	parser->AddParseFunc(string("circle"), CircleParser);
+	parser->AddParseFunc("circle", CircleParser);
 
 	// parse everything
 	while (1)
@@ -38,12 +41,12 @@ void GameplayLayer::Update()
 	// loop through the objects and only render the ones within the time range
 	for (int i = objectIterate; i < object.size(); i++)
 	{
-		if (Timing::GetTime() > object[i]->GetObject()->GetEndTime())			// first object disappears
+		if (40 > object[i]->GetObject()->GetEndTime())			// first object disappears
 			objectIterate++;
-		else if (Timing::GetTime() < object[i]->GetObject()->GetStartTime())	// last object not yet rendered
+		else if (40 < object[i]->GetObject()->GetStartTime())	// last object not yet rendered
 			break;
 		else
-			break;
+			object[i]->Render(shaders);
 	}
 }
 
@@ -58,6 +61,7 @@ GameplayLayer::~GameplayLayer()
 	for (auto oc : object)
 		delete oc;
 
-	for (auto s : shaders)
+	for (auto s : *shaders)
 		delete s.second;
+	delete shaders;
 }

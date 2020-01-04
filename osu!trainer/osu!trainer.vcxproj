@@ -142,7 +142,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\components\Circle.h" />
-    <ClInclude Include="src\components\CircleElement.h" />
+    <ClInclude Include="src\components\CircleComponent.h" />
+    <ClInclude Include="src\components\CircleRenderElement.h" />
     <ClInclude Include="src\components\Slider.h" />
     <ClInclude Include="src\core\GameplayLayer.h" />
     <ClInclude Include="src\core\StoryboardLayer.h" />
@@ -150,7 +151,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\components\Circle.cpp" />
-    <ClCompile Include="src\components\CircleElement.cpp" />
+    <ClCompile Include="src\components\CircleComponent.cpp" />
+    <ClCompile Include="src\components\CircleRenderElement.cpp" />
     <ClCompile Include="src\components\Slider.cpp" />
     <ClCompile Include="src\core\GameplayLayer.cpp" />
     <ClCompile Include="src\osu!trainer.cpp" />
@@ -163,4 +165,4 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-</Project>
+</Project> 

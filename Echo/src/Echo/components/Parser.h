@@ -15,10 +15,10 @@ private:
 	// individual parser functions
 	ParseFunc parseFunc;
 public:
-	Parser(std::string path);
+	Parser(const std::string path);
 
-	void AddParseFunc(std::string& type, const std::function<ObjectComponent * (std::stringstream&)>& func);
-	void RemoveParseFunc(std::string& name);
+	void AddParseFunc(const std::string& type, const std::function<ObjectComponent * (std::stringstream&)>& func);
+	void RemoveParseFunc(const std::string& name);
 
 	ObjectComponent* Parse();
 };

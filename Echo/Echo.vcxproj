@@ -78,7 +78,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_BUILD;ECHO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_BUILD;GLFW_INCLUDE_NONE;ECHO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor;vendor\glfw\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -105,7 +105,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_BUILD;ECHO_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_BUILD;GLFW_INCLUDE_NONE;ECHO_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor;vendor\glfw\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -132,7 +132,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_BUILD;ECHO_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_BUILD;GLFW_INCLUDE_NONE;ECHO_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor;vendor\glfw\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -177,6 +177,7 @@
     <ClInclude Include="src\Echo\core\LayerStack.h" />
     <ClInclude Include="src\Echo\core\Log.h" />
     <ClInclude Include="src\Echo\core\ShaderList.h" />
+    <ClInclude Include="src\Echo\core\Timing.h" />
     <ClInclude Include="src\Echo\core\Window.h" />
     <ClInclude Include="src\Echo\events\ApplicationEvent.h" />
     <ClInclude Include="src\Echo\events\Event.h" />
@@ -199,8 +200,8 @@
     <ClCompile Include="src\Echo\components\RenderElement.cpp" />
     <ClCompile Include="src\Echo\core\Application.cpp" />
     <ClCompile Include="src\Echo\core\Container.cpp" />
-    <ClCompile Include="src\Echo\core\Layer.cpp" />
     <ClCompile Include="src\Echo\core\LayerStack.cpp" />
+    <ClCompile Include="src\Echo\core\Timing.cpp" />
     <ClCompile Include="src\EchoHeader.cpp" />
     <ClCompile Include="src\platform\windows\WindowsWindow.cpp" />
   </ItemGroup>

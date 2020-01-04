@@ -2,6 +2,7 @@
 #include "Settings.h"
 
 #include <glad/glad.h>
+#include <glfw/glfw3.h>
 #include "Timing.h"
 using namespace std;
 
@@ -36,13 +37,13 @@ void Application::PushLayer(Layer* layer)
 	layerStack.push_back(layer);
 }
 
-void Application::PopLayer(std::string& name)
+void Application::PopLayer(const std::string& name)
 {
 	layerStack.push_to_top(name);
 	layerStack.pop_back();
 }
 
-void Application::PushToTop(std::string& name)
+void Application::PushToTop(const std::string& name)
 {
 	layerStack.push_to_top(name);
 }
@@ -52,13 +53,13 @@ void Application::Run()
 	// main body loop
 	while (running)
 	{
-		// update the time
-		Timing::Refresh();
+		glClear(GL_COLOR_BUFFER_BIT);
+		glClearColor(0.1f, 0.1f, 0.1f, 0.1f);
 
-		// prepare window for the next frame and update each layer
-		window->Update();
 		for (Layer* layer : layerStack)
 			layer->Update();
+
+		window->Update();
 	}
 }
 

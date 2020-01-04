@@ -83,6 +83,9 @@
     <ClInclude Include="src\Echo\core\ShaderList.h">
       <Filter>Echo\core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Echo\core\Timing.h">
+      <Filter>Echo\core</Filter>
+    </ClInclude>
     <ClInclude Include="src\Echo\core\Window.h">
       <Filter>Echo\core</Filter>
     </ClInclude>
@@ -141,10 +144,10 @@
     <ClCompile Include="src\Echo\core\Container.cpp">
       <Filter>Echo\core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Echo\core\Layer.cpp">
+    <ClCompile Include="src\Echo\core\LayerStack.cpp">
       <Filter>Echo\core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Echo\core\LayerStack.cpp">
+    <ClCompile Include="src\Echo\core\Timing.cpp">
       <Filter>Echo\core</Filter>
     </ClCompile>
     <ClCompile Include="src\EchoHeader.cpp" />

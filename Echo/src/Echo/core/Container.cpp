@@ -2,7 +2,7 @@
 using namespace std;
 
 template<class T>
-inline void Container<T>::erase(std::string& name)
+inline void Container<T>::erase(const std::string& name)
 {
 	for (int i = 0; i < container.size(); i++)
 		if (container[i].first == name)

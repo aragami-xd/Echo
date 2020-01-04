@@ -34,8 +34,8 @@ public:
 
 	// push and pop layer
 	void PushLayer(Layer* layer);
-	void PopLayer(std::string& name);
-	void PushToTop(std::string& name);
+	void PopLayer(const std::string& name);
+	void PushToTop(const std::string& name);
 
 	virtual ~Application();
 };

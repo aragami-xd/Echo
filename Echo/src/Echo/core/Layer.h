@@ -9,7 +9,7 @@ private:
 	std::string name;
 	bool enabled;
 public:
-	Layer(std::string& layerName) :
+	Layer(const std::string& layerName) :
 		name(layerName), enabled(true)
 	{}
 	inline std::string GetLayerName() { return name; }
@@ -17,8 +17,8 @@ public:
 	inline void Attach() { enabled = true; }
 	inline void Detach() { enabled = false; }
 
-	virtual void Update() {};
-	virtual void OnEvent(const Event& e) {};
+	virtual void Update() {}
+	virtual void OnEvent(const Event& e) {}
 
 	virtual ~Layer() = default;
 };

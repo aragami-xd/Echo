@@ -8,8 +8,9 @@ class ECHO_DLL VertexArray
 private:
 	unsigned int id;
 public:
-	VertexArray(VertexLayout& vl, VertexBuffer& vb);
+	VertexArray();
 
+	void AddBuffer(VertexLayout& vl, VertexBuffer& vb);
 	void Bind();
 	void Unbind();
 

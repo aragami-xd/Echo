@@ -18,14 +18,16 @@ CircleRenderElement::CircleRenderElement(float circleRadius, float circleThickne
 		vertices.push_back(cos(i) * circleRadius);
 		vertices.push_back(sin(i) * circleRadius);
 
-		vertices.push_back(cos(i) * innerRadius);
-		vertices.push_back(sin(i) * innerRadius);
+		//vertices.push_back(cos(i) * innerRadius);
+		//vertices.push_back(sin(i) * innerRadius);
 	}
-	vertices.insert(vertices.end(), { circleRadius, 0.0f, innerRadius, 0.0f });
+	vertices.insert(vertices.end(), { circleRadius, 0.0f/*, innerRadius, 0.0f */});
 
 	// create buffers
 	vl = new VertexLayout();		// vl
+	vb = new VertexBuffer(vertices.data(), vertices.size() * sizeof(float));	// vb
+	va = new VertexArray();			// va
 	vl->Push<float>(2);
-	vb = new VertexBuffer(vertices.data(), vertices.size() * sizeof(float), GL_DYNAMIC_DRAW);	// vb
-	va = new VertexArray(*vl, *vb);	// va
+	//vl->Push<float>(2);
+	va->AddBuffer(*vl, *vb);
 }

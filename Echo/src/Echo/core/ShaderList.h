@@ -11,26 +11,26 @@ class ShaderList
 private:
 	Shaders shaderList;
 public:
-	inline void Push(std::string& name, Shader* shader)
+	inline void Push(const std::string& name, Shader* shader)
 	{
 		shaderList.insert({ name, shader });
 	}
-	inline void Pop(std::string& name)
+	inline void Pop(const std::string& name)
 	{
 		delete shaderList[name];
 		shaderList.erase(name);
 	}
 
-	inline Shader* operator[](std::string& name)
+	inline Shader* At(const std::string& name)
 	{
 		return shaderList[name];
 	}
 
-	inline void Bind(std::string& name)
+	inline void Bind(const std::string& name)
 	{
 		shaderList[name]->Bind();
 	}
-	inline void Unbind(std::string& name)
+	inline void Unbind(const std::string& name)
 	{
 		shaderList[name]->Unbind();
 	}

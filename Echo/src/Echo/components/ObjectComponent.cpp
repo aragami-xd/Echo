@@ -14,12 +14,12 @@ void ObjectComponent::AddObject(Object* o)
 		LOG_warning("object occupied");
 }
 
-void ObjectComponent::AddElement(string& name, RenderElement* e)
+void ObjectComponent::AddElement(const string& name, RenderElement* e)
 {
 	element.insert({ name, e });
 }
 
-void ObjectComponent::RemoveElement(string& name)
+void ObjectComponent::RemoveElement(const string& name)
 {
 	element.erase(name);
 }
@@ -29,7 +29,7 @@ Object* ObjectComponent::GetObject()
 	return object;
 }
 
-RenderElement* ObjectComponent::GetElement(std::string& name)
+RenderElement* ObjectComponent::GetElement(const string& name)
 {
 	return element[name];
 }
