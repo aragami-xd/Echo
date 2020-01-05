@@ -10,6 +10,8 @@
 #include "Window.h"
 #include "LayerStack.h"
 
+#define EVENT_FUNC(x) bind(&x, this, placeholders::_1)
+
 class ECHO_DLL Application
 {
 protected:
@@ -25,7 +27,7 @@ protected:
 	void OnEvent(Event& e);
 
 	// close window event function
-	inline void CloseWindow(WindowCloseEvent& e) { running = false; }
+	void CloseWindow(WindowCloseEvent& e);
 public:
 	Application();
 

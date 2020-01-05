@@ -18,7 +18,7 @@ public:
 	inline void Detach() { enabled = false; }
 
 	virtual void Update() {}
-	virtual void OnEvent(const Event& e) {}
+	virtual void OnEvent(Event& e) {}
 
 	virtual ~Layer() = default;
 };

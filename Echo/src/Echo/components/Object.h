@@ -37,7 +37,7 @@ protected:
 	static float score100Scaling;
 	static float score50Scaling;
 public:
-	// return a score when the user taps
+	// return a score when the user taps, return 0 if tap too early or soon
 	virtual int GetScore(int time) = 0;
 
 	// animation time scale

@@ -1,11 +1,17 @@
 {
+  "window": {
+    "width": 1600,
+    "height": 900,
+    "title": "Echo"
+  },
+
   "metadata": {
-    "ar": 9.5,
-    "cs": 5.0,
+    "ar": 7.0,
+    "cs": 4.5,
     "od": 9.0,
     "hp": 7.0,
 
-    "scaleAR": 4500,
+    "scaleAR": 5000,
     "scaleCS": 200,
 
     "score300": 1.2,
@@ -19,12 +25,6 @@
     "beatmapPath": "./lib/beatmaps/map.txt"
   },
 
-  "window": {
-    "width": 1600,
-    "height": 900,
-    "title": "Echo"
-  },
-
   "shader": {
     "basicVertex": "./src/shaders/BasicShader.vert",
     "basicFragment": "./src/shaders/BasicShader.frag"
@@ -36,5 +36,10 @@
 
   "circle": {
     "vertices": 90
+  },
+
+  "keymapping": {
+    "key1": 69,
+    "key2": 81
   }
 }

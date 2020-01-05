@@ -11,7 +11,13 @@ protected:
 	Object* object = nullptr;
 	Elements element;
 
+	float objectSize;
+	bool enableRender = true;
 public:
+	// set/get object size
+	inline void SetSize(float size) { objectSize = size; }
+	inline float GetSize() { return objectSize; }
+
 	// if object is occupied, warn the user and not add the object
 	inline void AddObject(Object* object)
 	{
@@ -50,4 +56,7 @@ public:
 
 	// render
 	virtual void Render(ShaderList* shaders, int time) = 0;
+
+	// event function, return the score
+	virtual int OnEvent(float x, float y) = 0;
 };

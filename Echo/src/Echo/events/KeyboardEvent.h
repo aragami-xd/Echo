@@ -8,9 +8,9 @@ protected:
 	KeyEvent(char k) :
 		key(k)
 	{}
-
 	char key;
 public:
+	inline char GetKey() { return key; }
 };
 
 class KeyDownEvent : public KeyEvent

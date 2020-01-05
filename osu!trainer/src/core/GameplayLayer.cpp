@@ -40,7 +40,7 @@ GameplayLayer::GameplayLayer() :
 		else
 			object.push_back(oc);
 	}
-	LOG_message("parse total: " + object.size());
+	LOG_message("parse total: " + to_string(object.size()));
 }
 
 void GameplayLayer::Update()
@@ -58,8 +58,34 @@ void GameplayLayer::Update()
 	}
 }
 
-void GameplayLayer::OnEvent(const Event& e)
+void GameplayLayer::OnEvent(Event& e)
 {
+	EventInvoker invoker(e);
+	invoker.Invoke<KeyDownEvent>(EVENT_FUNC(GameplayLayer::Tapping));
+	invoker.Invoke<KeyUpEvent>(EVENT_FUNC(GameplayLayer::Release));
+	invoker.Invoke<MouseMoveEvent>(EVENT_FUNC(GameplayLayer::MouseMove));
+}
+
+void GameplayLayer::Tapping(KeyDownEvent& e)
+{
+	if ((e.GetKey() == settings["keymapping"]["key1"] ||
+		e.GetKey() == settings["keymapping"]["key2"])  && !keyDown)
+	{
+		keyDown = true;
+		object[objectIterate]->OnEvent(mouseX, mouseY);
+	}
+}
+
+void GameplayLayer::Release(KeyUpEvent& e)
+{
+	keyDown = false;
+}
+
+void GameplayLayer::MouseMove(MouseMoveEvent& e)
+{
+	// flip mouseY bc of y-axis direction
+	mouseX = e.GetX();
+	mouseY = settings["window"]["height"] - e.GetY();
 }
 
 GameplayLayer::~GameplayLayer()

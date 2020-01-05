@@ -6,10 +6,6 @@
 #include <glfw/glfw3.h>
 using namespace std;
 
-once_flag timingFlag;
-
-#define EVENT_FUNC(x) bind(&Application::x, this, placeholders::_1)
-
 Application::Application() :
 	running(true)
 {
@@ -22,16 +18,21 @@ Application::Application() :
 
 	// create new window
 	window = std::unique_ptr<Window>(Window::Create(ws));
-	window->SetEventCallbackFunc(EVENT_FUNC(OnEvent));
+	window->SetEventCallbackFunc(EVENT_FUNC(Application::OnEvent));
 }
 
 void Application::OnEvent(Event& e)
 {
 	EventInvoker invoker(e);
-	invoker.Invoke<WindowCloseEvent>(EVENT_FUNC(CloseWindow));
+	invoker.Invoke<WindowCloseEvent>(EVENT_FUNC(Application::CloseWindow));
 
 	for (auto layer = layerStack.rbegin(); layer != layerStack.rend(); layer++)
 		(*(*layer)).OnEvent(e);
+}
+
+void Application::CloseWindow(WindowCloseEvent& e)
+{
+	running = false;
 }
 
 void Application::PushLayer(Layer* layer)
@@ -52,12 +53,12 @@ void Application::PushToTop(const std::string& name)
 
 void Application::Run()
 {
+	// start the timer
+	Timing::StartProgram();
+
 	// main body loop
 	while (running)
 	{
-		// set start time only once
-		call_once(timingFlag, Timing::StartProgram);
-
 		// clear color
 		glClear(GL_COLOR_BUFFER_BIT);
 		glClearColor(0.1f, 0.1f, 0.1f, 0.1f);

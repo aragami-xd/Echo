@@ -33,6 +33,7 @@ float Circle::GetApproachScale(int time)
 ObjectComponent* CircleParser(stringstream& ss)
 {
 	ObjectComponent* object = new CircleComponent();
+	object->SetSize(settings["metadata"]["scaleCS"] / (float)settings["metadata"]["cs"]);
 
 	// create circle
 	string x = "0.0f", y = "0.0f", beat = "0";
@@ -42,9 +43,7 @@ ObjectComponent* CircleParser(stringstream& ss)
 	object->AddObject(new Circle(stof(x), stof(y), stoi(beat)));
 
 	// add render element
-	float objectRadius = settings["metadata"]["scaleCS"] / (float)settings["metadata"]["cs"];
-
-	RenderElement* element = new CircleRenderElement(objectRadius);
+	RenderElement* element = new CircleRenderElement(object->GetSize());
 	object->AddElement("circle", element);
 
 	return object;

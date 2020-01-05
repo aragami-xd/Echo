@@ -7,6 +7,10 @@ using namespace std;
 
 void CircleComponent::Render(ShaderList* shaders, int time)
 {
+	// don't render if it's tapped
+	if (!enableRender)
+		return;
+
 	Shader* basic = shaders->At("basic");
 	basic->Bind();
 
@@ -38,4 +42,19 @@ void CircleComponent::Render(ShaderList* shaders, int time)
 		settings["circle"]["vertices"],
 		GL_LINE_LOOP
 	);
+}
+
+int CircleComponent::OnEvent(float x, float y)
+{
+	// distant between cursor and center
+	float dist = sqrt(pow(x - object->GetX(), 2) + pow(y - object->GetY(), 2));
+	if (dist < objectSize)
+	{
+		enableRender = false;
+		return 0;
+	}
+	else
+	{
+		return -1;
+	}
 }
