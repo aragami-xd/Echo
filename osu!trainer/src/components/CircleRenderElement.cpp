@@ -6,7 +6,7 @@ using namespace std;
 
 /* note that the circle render element has nothing to do with circle object
 	* this element is only use to depict anything rounded on the screen
-	* components like slider can include circle render element 
+	* components like slider can include circle render element
 */
 
 CircleRenderElement::CircleRenderElement(float circleRadius, float circleThickness, glm::vec4 circleColor) :
@@ -18,7 +18,7 @@ CircleRenderElement::CircleRenderElement(float circleRadius, float circleThickne
 		vertices.push_back(cos(i) * circleRadius);
 		vertices.push_back(sin(i) * circleRadius);
 	}
-	vertices.insert(vertices.end(), { circleRadius, 0.0f});
+	vertices.insert(vertices.end(), { circleRadius, 0.0f });
 
 	// create buffers
 	vl = new VertexLayout();		// vl

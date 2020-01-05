@@ -8,20 +8,46 @@ class ECHO_DLL ObjectComponent
 {
 	using Elements = std::unordered_map<std::string, RenderElement*>;
 protected:
-	Object* object;
+	Object* object = nullptr;
 	Elements element;
+
 public:
-	ObjectComponent();
+	// if object is occupied, warn the user and not add the object
+	inline void AddObject(Object* object)
+	{
+		if (this->object == nullptr)
+			this->object = object;
+		else
+			LOG_warning("object occupied");
+	}
 
-	// if object is occupied, warn the user
-	void AddObject(Object* object);
-	void AddElement(const std::string& name, RenderElement* element);
-	void RemoveElement(const std::string& name);
-	
-	Object* GetObject();
-	RenderElement* GetElement(const std::string& name);
+	// add
+	inline void AddElement(const std::string& name, RenderElement* element)
+	{
+		this->element.insert({ name, element });
+	}
 
-	virtual void Render(ShaderList* shaders) = 0;
+	// remove (warning: element will not be deleted)
+	inline void RemoveElement(const std::string& name)
+	{
+		element.erase(name);
+	}
 
-	~ObjectComponent();
+	// get
+	inline Object* GetObject()
+	{
+		return object;
+	}
+
+	inline RenderElement* GetElement(const std::string& name)
+	{
+		return element[name];
+	}
+
+	// iterators
+	inline Elements::iterator ElementBegin() { return element.begin(); }
+	inline Elements::iterator ElementEnd() { return element.end(); }
+
+	// render
+	virtual void Render(ShaderList* shaders, int time) = 0;
 };

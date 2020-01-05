@@ -22,18 +22,16 @@ GameplayLayer::GameplayLayer() :
 		)
 	);
 
-	// set screen ratio
-	Orthographic::SetProjRatio(
-		shaders->At("basic"), 
-		settings["window"]["width"], 
-		settings["window"]["height"]
-	);
+	// set screen ratio for the basic shader
+	glm::mat4 ratio = glm::ortho(0.0f, (float)settings["window"]["width"], 0.0f, (float)settings["window"]["height"]);
+	Orthographic::SetProjMatrix(shaders->At("basic"), ratio);
 
 	// new parser
 	parser = new Parser(settings["path"]["beatmapPath"]);
 	parser->AddParseFunc("circle", CircleParser);
 
 	// parse everything
+	LOG_message("parsing");
 	while (1)
 	{
 		ObjectComponent* oc = parser->Parse();
@@ -42,7 +40,7 @@ GameplayLayer::GameplayLayer() :
 		else
 			object.push_back(oc);
 	}
-	LOG_message(object.size());
+	LOG_message("parse total: " + object.size());
 }
 
 void GameplayLayer::Update()
@@ -50,12 +48,13 @@ void GameplayLayer::Update()
 	// loop through the objects and only render the ones within the time range
 	for (int i = objectIterate; i < object.size(); i++)
 	{
-		if (40 > object[i]->GetObject()->GetEndTime())			// first object disappears
+		int time = Timing::GetTime();
+		if (time > object[i]->GetObject()->GetEndTime())			// first object disappears
 			objectIterate++;
-		else if (40 < object[i]->GetObject()->GetStartTime())	// last object not yet rendered
+		else if (time < object[i]->GetObject()->GetStartTime())	// last object not yet rendered
 			break;
 		else
-			object[i]->Render(shaders);
+			object[i]->Render(shaders, time);
 	}
 }
 
@@ -65,12 +64,21 @@ void GameplayLayer::OnEvent(const Event& e)
 
 GameplayLayer::~GameplayLayer()
 {
+	LOG_erase("erase gameplay layer");
+
+	// delete parser
 	delete parser;
 
+	// delete everything inside objectComponent
 	for (auto oc : object)
-		delete oc;
+	{
+		delete oc->GetObject();
+		for (auto e = oc->ElementBegin(); e != oc->ElementEnd(); e++)
+			delete& e;
+	}
 
-	for (auto s : *shaders)
-		delete s.second;
+	// delete shaders
+	for (auto shader : *shaders)
+		delete shader.second;
 	delete shaders;
 }

@@ -40,6 +40,9 @@ public:
 	// return a score when the user taps
 	virtual int GetScore(int time) = 0;
 
+	// animation time scale
+	virtual float GetApproachScale(int time) = 0;
+
 	inline int GetX() { return x; }
 	inline int GetY() { return y; }
 

@@ -7,19 +7,17 @@ class ECHO_DLL Timing
 {
 private:
 	Timing() = default;
-
-	static int startTime;
-	static int prevTime;
-	static int currentTime;
+	static std::chrono::steady_clock::time_point startTime;
+	static int offset;
 public:
-	static inline int GetTime() 
+	static inline void StartProgram()
 	{
-		prevTime = currentTime;
-		return currentTime = (int)clock() - startTime;
+		startTime = std::chrono::steady_clock::now();
 	}
-	static inline float GetFrameRate()
+
+	static inline int GetTime()
 	{
-		GetTime();
-		return 1000 / (float)(currentTime - startTime);
+		return std::chrono::duration_cast<std::chrono::milliseconds>
+			(std::chrono::steady_clock::now() - startTime).count() - offset;
 	}
 };

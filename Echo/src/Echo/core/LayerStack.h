@@ -6,17 +6,18 @@
 class LayerStack
 {
 private:
-	std::vector<Layer*> layerStack;
+	using stack = std::vector<Layer*>;
+	stack layerStack;
 public:
 	// push and pop
 	inline void push_back(Layer* layer) { layerStack.push_back(layer); }
 	inline void pop_back() { layerStack.pop_back(); }
 
 	// iterators
-	inline std::vector<Layer*>::iterator begin() { return layerStack.begin(); }
-	inline std::vector<Layer*>::iterator end() { return layerStack.end(); }
-	inline std::vector<Layer*>::reverse_iterator rbegin() { return layerStack.rbegin(); }
-	inline std::vector<Layer*>::reverse_iterator rend() { return layerStack.rend(); }
+	inline stack::iterator begin() { return layerStack.begin(); }
+	inline stack::iterator end() { return layerStack.end(); }
+	inline stack::reverse_iterator rbegin() { return layerStack.rbegin(); }
+	inline stack::reverse_iterator rend() { return layerStack.rend(); }
 
 	// push a layer to the top. note this will push to the back of the layerStack
 	void push_to_top(const std::string& name);

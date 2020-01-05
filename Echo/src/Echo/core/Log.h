@@ -13,3 +13,6 @@
 
 #define LOG_warning(x)\
 	std::cout << "[" << __func__ << "][warning]: " << x << std::endl;
+
+#define LOG_erase(x)\
+	std::cout << "[" << __func__ << "][warning]: " << x << std::endl;

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Echo/components/RenderElement.h>
- 
+
 class CircleRenderElement : public RenderElement
 {
 private:

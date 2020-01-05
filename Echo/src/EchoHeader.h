@@ -11,6 +11,7 @@
 #include <memory>
 #include <iterator>
 #include <filesystem>
+#include <mutex>
 
 // i/o
 #include <iostream>

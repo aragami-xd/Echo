@@ -3,6 +3,7 @@ using namespace std;
 
 Parser::Parser(std::string path)
 {
+	LOG_init("new parser");
 	map.open(path);
 	if (!map)
 		LOG_warning("path not exist");
@@ -35,5 +36,3 @@ ObjectComponent* Parser::Parse()
 		return parseFunc[type](ss);
 	}
 }
-
-

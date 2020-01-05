@@ -1,7 +1,7 @@
 #include "osu!trainer.h"
 #include <core/StoryboardLayer.h>
 #include <core/GameplayLayer.h>
-	
+
 using namespace std;
 
 Program::Program()

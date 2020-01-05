@@ -10,6 +10,7 @@ public:
 	Circle(float cx, float cy, int beatTime);
 
 	virtual int GetScore(int time);
+	virtual float GetApproachScale(int time);
 
 	~Circle() = default;
 };

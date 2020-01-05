@@ -6,11 +6,13 @@
     "hp": 7.0,
 
     "scaleAR": 4500,
-    "scaleCS": 500,
+    "scaleCS": 200,
 
     "score300": 1.2,
     "score100": 1.4,
-    "score50": 1.5
+    "score50": 1.5,
+
+    "offset": 0
   },
 
   "path": {

@@ -134,6 +134,6 @@ void WindowsWindow::Update()
 
 WindowsWindow::~WindowsWindow()
 {
-	LOG_message("terminate program");
+	LOG_erase("terminate program");
 	glfwTerminate();
 }

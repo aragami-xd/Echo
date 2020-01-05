@@ -4,6 +4,8 @@ using namespace std;
 Shader::Shader(const string& vertexPath, const string& fragmentPath) :
 	program(0)
 {
+	LOG_init("new shader");
+
 	// compile 2 shaders then link them together
 	program = glCreateProgram();
 	unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexPath);

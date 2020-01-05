@@ -6,5 +6,5 @@
 class CircleComponent : public ObjectComponent
 {
 public:
-	virtual void Render(ShaderList* shaders);
+	virtual void Render(ShaderList* shaders, int time);
 };

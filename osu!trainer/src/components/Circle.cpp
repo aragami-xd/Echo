@@ -24,6 +24,11 @@ int Circle::GetScore(int time)
 		return 0;	// 0 score is a miss
 }
 
+float Circle::GetApproachScale(int time)
+{
+	return abs(beat - time) / (float)approachTime;
+}
+
 // circle parsing function
 ObjectComponent* CircleParser(stringstream& ss)
 {
@@ -39,11 +44,8 @@ ObjectComponent* CircleParser(stringstream& ss)
 	// add render element
 	float objectRadius = settings["metadata"]["scaleCS"] / (float)settings["metadata"]["cs"];
 
-	RenderElement* circleElement = new CircleRenderElement(objectRadius);
-	object->AddElement("circle", circleElement);
-
-	RenderElement* ringElement = new CircleRenderElement(objectRadius * settings["object"]["ringScale"]);
-	object->AddElement("ring", ringElement);
+	RenderElement* element = new CircleRenderElement(objectRadius);
+	object->AddElement("circle", element);
 
 	return object;
 }

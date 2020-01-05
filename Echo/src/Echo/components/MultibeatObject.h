@@ -7,7 +7,7 @@
 class ECHO_DLL MultibeatObject : public Object
 {
 protected:
-	MultibeatObject(float xs, float ys, float xe, float ye, 
+	MultibeatObject(float xs, float ys, float xe, float ye,
 		std::vector<float>& xcp, std::vector<float>ycp, std::vector<int> mbobeats);
 
 	float xEnd;

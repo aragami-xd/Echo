@@ -1,5 +1,5 @@
 #include "Timing.h"
+#include <Settings.h>
 
-int Timing::startTime = 0;
-int Timing::prevTime = 0;
-int Timing::currentTime = 0;
+std::chrono::steady_clock::time_point Timing::startTime = std::chrono::steady_clock::now();
+int Timing::offset = settings["metadata"]["offset"];
