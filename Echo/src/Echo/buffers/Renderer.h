@@ -21,4 +21,9 @@ public:
 		va->Bind();
 		glDrawArrays(flag, 0, count);
 	}
+
+	static inline void StrokeWeight(int weight)
+	{
+		glLineWidth(weight);
+	}
 };

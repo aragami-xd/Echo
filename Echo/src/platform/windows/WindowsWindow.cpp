@@ -17,7 +17,7 @@ WindowsWindow::WindowsWindow(const WindowSetting& ws)
 	wd.title = ws.title;
 
 	// glfw hints
-	glfwWindowHint(GLFW_SAMPLES, 4);
+	//glfwWindowHint(GLFW_SAMPLES, 4);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_VERSION_MINOR, 6);
@@ -38,7 +38,9 @@ WindowsWindow::WindowsWindow(const WindowSetting& ws)
 	glViewport(0, 0, ws.width, ws.height);
 
 	// blending
+	//glEnable(GL_MULTISAMPLE);
 	glEnable(GL_BLEND);
+	glEnable(GL_LINE_SMOOTH);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glDisable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE);

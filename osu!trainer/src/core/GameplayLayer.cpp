@@ -1,7 +1,5 @@
 #include "GameplayLayer.h"
 
-#include <Echo/buffers/Orthographic.h>
-#include <Echo/core/Timing.h>
 #include <Settings.h>
 
 #include <components/Circle.h>
@@ -14,17 +12,12 @@ GameplayLayer::GameplayLayer() :
 
 	// new shader
 	shaders = new ShaderList();
-	shaders->Push(
-		"basic",
-		new Shader(
-			settings["shader"]["basicVertex"],
-			settings["shader"]["basicFragment"]
-		)
-	);
+	shaders->Push("basic", new Shader(settings["shader"]["basicVertex"], settings["shader"]["basicFragment"]));
 
 	// set screen ratio for the basic shader
 	glm::mat4 ratio = glm::ortho(0.0f, (float)settings["window"]["width"], 0.0f, (float)settings["window"]["height"]);
-	Orthographic::SetProjMatrix(shaders->At("basic"), ratio);
+	for (auto shader : *shaders)
+		Orthographic::SetProjMatrix(shader.second, ratio);
 
 	// new parser
 	parser = new Parser(settings["path"]["beatmapPath"]);

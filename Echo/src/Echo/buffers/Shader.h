@@ -8,14 +8,14 @@
 class ECHO_DLL Shader
 {
 private:
+	// shader sources, id and uniform cache
 	unsigned int program;
 	std::unordered_map<std::string, int> uniform;
 
-	// read in the shader source code
+	// parse, compile and assemble the shader
 	std::string ParseShader(const std::string& path);
-
-	// compile the shader
-	unsigned int  CompileShader(unsigned int type, const std::string& path);
+	unsigned int CompileShader(unsigned int type, const std::string& source);
+	unsigned int CreateShader(const std::string& vertexShader, const std::string& fragmentShader);
 
 	// find the uniform
 	int GetUniform(const std::string& name);

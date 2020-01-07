@@ -4,12 +4,66 @@ using namespace std;
 Shader::Shader(const string& vertexPath, const string& fragmentPath) :
 	program(0)
 {
-	LOG_init("new shader");
+	// create the shader
+	program = CreateShader(ParseShader(vertexPath), ParseShader(fragmentPath));
+}
 
-	// compile 2 shaders then link them together
-	program = glCreateProgram();
-	unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexPath);
-	unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentPath);
+string Shader::ParseShader(const string& path)
+{
+	// open the file
+	ifstream source(path);
+	if (!source)
+	{
+		cout << "cannot open shader file" << endl;
+		return "";
+	}
+
+	stringstream ss;
+	ss << source.rdbuf();
+
+	return ss.str();
+}
+
+unsigned int Shader::CompileShader(unsigned int type, const string& source)
+{
+	// get the shader type to compile it
+	unsigned int shaderID = glCreateShader(type);
+	const char* src = source.c_str();
+
+	glShaderSource(shaderID, 1, &src, nullptr);
+	glCompileShader(shaderID);
+
+	int result;
+	glGetShaderiv(shaderID, GL_COMPILE_STATUS, &result);
+
+	// handling compilation error by printing out the message
+	if (result == GL_FALSE)
+	{
+		int length;
+		glGetShaderiv(shaderID, GL_INFO_LOG_LENGTH, &length);
+
+		char* message = new char[length];
+		glGetShaderInfoLog(shaderID, length, &length, message);
+
+		cout << (type == GL_VERTEX_SHADER ? "vertex: " : "fragment: ") << message << endl;
+		glDeleteShader(shaderID);
+
+		delete[] message;
+		return 0;
+	}
+
+	return shaderID;
+}
+
+unsigned int Shader::CreateShader(const string& vertex, const string& fragment)
+{
+	cout << "[vertex shader]\n" << vertex << "\n\n[fragment shader]\n" << fragment << "\n" << endl;
+
+	// create the program and call the compile function to compile and attach the 2 shaders
+	unsigned int program = glCreateProgram();
+
+	unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertex);
+	unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragment);
 
 	glAttachShader(program, vs);
 	glAttachShader(program, fs);
@@ -19,49 +73,9 @@ Shader::Shader(const string& vertexPath, const string& fragmentPath) :
 	glDeleteShader(vs);
 	glDeleteShader(fs);
 
-	// unbind the shader for safety reason
-	glUseProgram(0);
+	return program;
 }
 
-string Shader::ParseShader(const string& path)
-{
-	// parse the shader source code file into const char*
-	ifstream file(path);
-	if (!file)
-	{
-		LOG_warning("cannot open shader");
-		return "";
-	}
-	stringstream ss;
-	ss << file.rdbuf();
-
-	file.close();
-	return ss.str();
-}
-
-unsigned int Shader::CompileShader(unsigned int type, const string& path)
-{
-	// parse the shader
-	unsigned int shader = glCreateShader(type);
-	const char* shaderSource = ParseShader(path).c_str();
-
-	LOG_message(shaderSource);
-	glShaderSource(shader, 1, &shaderSource, NULL);
-	glCompileShader(shader);
-
-	// verify the shader
-	int success;
-	glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
-	if (!success)
-	{
-		char message[512];
-		glGetShaderInfoLog(shader, 512, NULL, message);
-		LOG_warning(message);
-		glDeleteShader(shader);
-		return 0;
-	}
-	return shader;
-}
 
 void Shader::Bind()
 {

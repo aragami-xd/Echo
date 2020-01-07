@@ -1,7 +1,6 @@
 #pragma once
 
-#include <Echo/components/ObjectComponent.h>
-#include <Settings.h>
+#include <Echo.h>
 
 class CircleComponent : public ObjectComponent
 {

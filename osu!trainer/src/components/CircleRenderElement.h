@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Echo/components/RenderElement.h>
+#include <Echo.h>
 
 class CircleRenderElement : public RenderElement
 {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Echo/components/ObjectComponent.h>
+#include <Echo.h>
 
 class Circle : public Object
 {

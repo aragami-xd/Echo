@@ -1,8 +1,4 @@
 #include "CircleComponent.h"
-#include <Echo/buffers/Renderer.h>
-#include <Echo/buffers/Orthographic.h>
-#include <Echo/core/Timing.h>
-#include <Settings.h>
 using namespace std;
 
 void CircleComponent::Render(ShaderList* shaders, int time)
@@ -11,37 +7,27 @@ void CircleComponent::Render(ShaderList* shaders, int time)
 	if (!enableRender)
 		return;
 
-	Shader* basic = shaders->At("basic");
-	basic->Bind();
+	Shader* shader = shaders->At("basic");
+	shader->Bind();
 
 	// draw the inner circle
-	// translate then scale
 	glm::mat4 viewCircle = glm::translate(glm::mat4(1.0f), glm::vec3(object->GetX(), object->GetY(), 0.0f));
-	viewCircle = viewCircle * glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
-	Orthographic::SetViewMatrix(basic, viewCircle);
-
-	Renderer::Render(
-		element["circle"]->GetVertexArray(),
-		settings["circle"]["vertices"],
-		GL_LINE_LOOP
-	);
+	Orthographic::SetViewMatrix(shader, viewCircle);
+	
+	// render
+	Renderer::StrokeWeight(4);
+	Renderer::Render(element["circle"]->GetVertexArray(), settings["circle"]["vertices"], GL_LINE_LOOP);
 
 	// draw the approach circle (ring)
-	glm::mat4 viewRing = glm::translate(glm::mat4(1.0f), glm::vec3(object->GetX(), object->GetY(), 0.0f));
-	viewRing = viewRing * glm::scale(glm::mat4(1.0f),
-		glm::vec3(
-			(float)settings["object"]["ringScale"] * object->GetApproachScale(time) + 1,
-			(float)settings["object"]["ringScale"] * object->GetApproachScale(time) + 1,
-			1.0f
-		)
-	);
-	Orthographic::SetViewMatrix(basic, viewRing);
+	float scale = (float)settings["object"]["ringScale"] * object->GetApproachScale(time) + 1;
 
-	Renderer::Render(
-		element["circle"]->GetVertexArray(),
-		settings["circle"]["vertices"],
-		GL_LINE_LOOP
-	);
+	glm::mat4 viewRing = glm::translate(glm::mat4(1.0f), glm::vec3(object->GetX(), object->GetY(), 0.0f));
+	viewRing = viewRing * glm::scale(glm::mat4(1.0f), glm::vec3(scale, scale, 1.0f));
+	Orthographic::SetViewMatrix(shader, viewRing);
+
+	// render
+	Renderer::StrokeWeight(2);
+	Renderer::Render(element["circle"]->GetVertexArray(), settings["circle"]["vertices"], GL_LINE_LOOP);
 }
 
 int CircleComponent::OnEvent(float x, float y)

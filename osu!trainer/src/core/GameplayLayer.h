@@ -1,7 +1,5 @@
 #pragma once
 
-#include <Echo/core/ShaderList.h>
-#include <Echo/components/Parser.h>
 #include <Echo.h>
 
 class GameplayLayer : public Layer

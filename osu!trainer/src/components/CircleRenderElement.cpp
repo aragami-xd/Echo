@@ -1,5 +1,4 @@
 #include "CircleRenderElement.h"
-#include <Settings.h>
 using namespace std;
 
 #define PI 3.14
