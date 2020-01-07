@@ -111,6 +111,9 @@
     <ClCompile Include="src\Echo\buffers\IndexBuffer.cpp">
       <Filter>Echo\buffers</Filter>
     </ClCompile>
+    <ClCompile Include="src\Echo\buffers\Orthographic.cpp">
+      <Filter>Echo\buffers</Filter>
+    </ClCompile>
     <ClCompile Include="src\Echo\buffers\Shader.cpp">
       <Filter>Echo\buffers</Filter>
     </ClCompile>
@@ -148,9 +151,5 @@
     <ClCompile Include="src\platform\windows\WindowsWindow.cpp">
       <Filter>platform\windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Echo\buffers\Orthographic.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="src\Settings.json" />
   </ItemGroup>
 </Project>
