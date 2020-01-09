@@ -1,6 +1,6 @@
 #include "Application.h"
 #include "Settings.h"
-#include "Timing.h"
+#include <Echo/components/Timing.h>
 
 #include <glad/glad.h>
 #include <glfw/glfw3.h>

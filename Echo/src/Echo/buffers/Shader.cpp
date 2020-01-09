@@ -14,7 +14,7 @@ string Shader::ParseShader(const string& path)
 	ifstream source(path);
 	if (!source)
 	{
-		cout << "cannot open shader file" << endl;
+		LOG_warning("cannot open shader file");
 		return "";
 	}
 
@@ -45,7 +45,9 @@ unsigned int Shader::CompileShader(unsigned int type, const string& source)
 		char* message = new char[length];
 		glGetShaderInfoLog(shaderID, length, &length, message);
 
-		cout << (type == GL_VERTEX_SHADER ? "vertex: " : "fragment: ") << message << endl;
+		LOG_warning((type == GL_VERTEX_SHADER ? "vertex error" : "fragment error"));
+		LOG_warning(message);
+
 		glDeleteShader(shaderID);
 
 		delete[] message;
@@ -57,7 +59,7 @@ unsigned int Shader::CompileShader(unsigned int type, const string& source)
 
 unsigned int Shader::CreateShader(const string& vertex, const string& fragment)
 {
-	cout << "[vertex shader]\n" << vertex << "\n\n[fragment shader]\n" << fragment << "\n" << endl;
+	LOG_message("[vertex shader]\n" + vertex + "\n[fragment shader]\n" + fragment);
 
 	// create the program and call the compile function to compile and attach the 2 shaders
 	unsigned int program = glCreateProgram();

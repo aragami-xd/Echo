@@ -11,6 +11,9 @@ private:
 	// parser
 	Parser* parser;
 
+	// scoring
+	Scoring* scoring;
+
 	// object component vector
 	std::vector<ObjectComponent*> object;
 	int objectIterate = 0;

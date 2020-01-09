@@ -9,10 +9,6 @@
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Dist|x64">
-      <Configuration>Dist</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A498847C-90CF-850D-39BC-6B1025D2010F}</ProjectGuid>
@@ -24,17 +20,11 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
+    <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
@@ -49,28 +39,18 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Debug-windows-x86_64\Echo\</OutDir>
-    <IntDir>..\bin-int\Debug-windows-x86_64\Echo\</IntDir>
+    <OutDir>..\bin\Debug-windows\Echo\</OutDir>
+    <IntDir>..\bin-int\Debug-windows\Echo\</IntDir>
     <TargetName>Echo</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Release-windows-x86_64\Echo\</OutDir>
-    <IntDir>..\bin-int\Release-windows-x86_64\Echo\</IntDir>
-    <TargetName>Echo</TargetName>
-    <TargetExt>.dll</TargetExt>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
-    <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Dist-windows-x86_64\Echo\</OutDir>
-    <IntDir>..\bin-int\Dist-windows-x86_64\Echo\</IntDir>
+    <OutDir>..\bin\Release-windows\Echo\</OutDir>
+    <IntDir>..\bin-int\Release-windows\Echo\</IntDir>
     <TargetName>Echo</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
@@ -78,6 +58,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_BUILD;GLFW_INCLUDE_NONE;ECHO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor;vendor\glfw\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
@@ -85,7 +66,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -94,11 +75,11 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>..\bin\Debug-windows-x86_64\Echo\Echo.lib</ImportLibrary>
+      <ImportLibrary>..\bin\Debug-windows\Echo\Echo.lib</ImportLibrary>
       <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Debug-windows-x86_64\Echo\Echo.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\Echo\Echo.dll ..\bin\Debug-windows-x86_64\osu!trainer &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\Echo\Echo.dll ..\bin\Debug-windows-x86_64\osu!trainer &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Debug-windows\Echo\Echo.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows\Echo\Echo.dll ..\bin\Debug-windows\osu!trainer &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows\Echo\Echo.dll ..\bin\Debug-windows\osu!trainer &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -121,38 +102,11 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>..\bin\Release-windows-x86_64\Echo\Echo.lib</ImportLibrary>
+      <ImportLibrary>..\bin\Release-windows\Echo\Echo.lib</ImportLibrary>
       <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Release-windows-x86_64\Echo\Echo.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\Echo\Echo.dll ..\bin\Release-windows-x86_64\osu!trainer &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\Echo\Echo.dll ..\bin\Release-windows-x86_64\osu!trainer &gt; nul)</Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
-    <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_BUILD;GLFW_INCLUDE_NONE;ECHO_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor;vendor\glfw\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <Optimization>Full</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <MinimalRebuild>false</MinimalRebuild>
-      <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <LanguageStandard>stdcpp17</LanguageStandard>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>..\bin\Dist-windows-x86_64\Echo\Echo.lib</ImportLibrary>
-      <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
-    </Link>
-    <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Dist-windows-x86_64\Echo\Echo.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\Echo\Echo.dll ..\bin\Dist-windows-x86_64\osu!trainer &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\Echo\Echo.dll ..\bin\Dist-windows-x86_64\osu!trainer &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Release-windows\Echo\Echo.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows\Echo\Echo.dll ..\bin\Release-windows\osu!trainer &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows\Echo\Echo.dll ..\bin\Release-windows\osu!trainer &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -162,6 +116,7 @@
     <ClInclude Include="src\Echo\buffers\Orthographic.h" />
     <ClInclude Include="src\Echo\buffers\Renderer.h" />
     <ClInclude Include="src\Echo\buffers\Shader.h" />
+    <ClInclude Include="src\Echo\buffers\Texture.h" />
     <ClInclude Include="src\Echo\buffers\VertexArray.h" />
     <ClInclude Include="src\Echo\buffers\VertexBuffer.h" />
     <ClInclude Include="src\Echo\buffers\VertexLayout.h" />
@@ -170,14 +125,14 @@
     <ClInclude Include="src\Echo\components\ObjectComponent.h" />
     <ClInclude Include="src\Echo\components\Parser.h" />
     <ClInclude Include="src\Echo\components\RenderElement.h" />
+    <ClInclude Include="src\Echo\components\Scoring.h" />
+    <ClInclude Include="src\Echo\components\Timing.h" />
     <ClInclude Include="src\Echo\core\Application.h" />
     <ClInclude Include="src\Echo\core\Container.h" />
-    <ClInclude Include="src\Echo\core\EntryPoint.h" />
     <ClInclude Include="src\Echo\core\Layer.h" />
     <ClInclude Include="src\Echo\core\LayerStack.h" />
     <ClInclude Include="src\Echo\core\Log.h" />
     <ClInclude Include="src\Echo\core\ShaderList.h" />
-    <ClInclude Include="src\Echo\core\Timing.h" />
     <ClInclude Include="src\Echo\core\Window.h" />
     <ClInclude Include="src\Echo\events\ApplicationEvent.h" />
     <ClInclude Include="src\Echo\events\Event.h" />
@@ -191,16 +146,18 @@
     <ClCompile Include="src\Echo\buffers\IndexBuffer.cpp" />
     <ClCompile Include="src\Echo\buffers\Orthographic.cpp" />
     <ClCompile Include="src\Echo\buffers\Shader.cpp" />
+    <ClCompile Include="src\Echo\buffers\Texture.cpp" />
     <ClCompile Include="src\Echo\buffers\VertexArray.cpp" />
     <ClCompile Include="src\Echo\buffers\VertexBuffer.cpp" />
     <ClCompile Include="src\Echo\components\MultibeatObject.cpp" />
     <ClCompile Include="src\Echo\components\Object.cpp" />
     <ClCompile Include="src\Echo\components\Parser.cpp" />
     <ClCompile Include="src\Echo\components\RenderElement.cpp" />
+    <ClCompile Include="src\Echo\components\Scoring.cpp" />
+    <ClCompile Include="src\Echo\components\Timing.cpp" />
     <ClCompile Include="src\Echo\core\Application.cpp" />
     <ClCompile Include="src\Echo\core\Container.cpp" />
     <ClCompile Include="src\Echo\core\LayerStack.cpp" />
-    <ClCompile Include="src\Echo\core\Timing.cpp" />
     <ClCompile Include="src\EchoHeader.cpp" />
     <ClCompile Include="src\platform\windows\WindowsWindow.cpp" />
   </ItemGroup>

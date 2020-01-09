@@ -54,9 +54,11 @@ public:
 	inline Elements::iterator ElementBegin() { return element.begin(); }
 	inline Elements::iterator ElementEnd() { return element.end(); }
 
+	inline bool IsEnabled() { return enableRender; }
+
 	// render
 	virtual void Render(ShaderList* shaders, int time) = 0;
 
 	// event function, return the score
-	virtual int OnEvent(float x, float y) = 0;
+	virtual int OnEvent(float x, float y, int time) = 0;
 };

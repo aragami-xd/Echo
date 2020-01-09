@@ -8,11 +8,9 @@ using namespace std;
 	* components like slider can include circle render element
 */
 
-CircleRenderElement::CircleRenderElement(float circleRadius, float circleThickness, glm::vec4 circleColor) :
-	RenderElement(circleColor)
+CircleRenderElement::CircleRenderElement(float circleRadius)
 {
 	// caculate the vertices coordinate
-	float innerRadius = circleRadius - circleThickness;
 	for (double i = 0; i < 2 * PI; i += 2 * PI / settings["circle"]["vertices"]) {
 		vertices.push_back(cos(i) * circleRadius);
 		vertices.push_back(sin(i) * circleRadius);

@@ -9,7 +9,7 @@ Parser::Parser(std::string path)
 		LOG_warning("path not exist");
 }
 
-void Parser::AddParseFunc(const std::string& type, const std::function<ObjectComponent * (std::stringstream&)>& func)
+void Parser::AddParseFunc(const std::string& type, const ParseFunc& func)
 {
 	parseFunc.insert({ type, func });
 }

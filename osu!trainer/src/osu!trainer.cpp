@@ -7,7 +7,7 @@ using namespace std;
 Program::Program()
 {
 	// pushing layers
-	PushLayer(new StoryboardLayer());
+	//PushLayer(new StoryboardLayer());
 	PushLayer(new GameplayLayer());
 }
 

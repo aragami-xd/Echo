@@ -30,14 +30,14 @@ void CircleComponent::Render(ShaderList* shaders, int time)
 	Renderer::Render(element["circle"]->GetVertexArray(), settings["circle"]["vertices"], GL_LINE_LOOP);
 }
 
-int CircleComponent::OnEvent(float x, float y)
+int CircleComponent::OnEvent(float x, float y, int time)
 {
 	// distant between cursor and center
 	float dist = sqrt(pow(x - object->GetX(), 2) + pow(y - object->GetY(), 2));
 	if (dist < objectSize)
 	{
 		enableRender = false;
-		return 0;
+		return object->GetScore(time);
 	}
 	else
 	{

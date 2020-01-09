@@ -3,21 +3,19 @@
 #include <EchoHeader.h>
 #include "ObjectComponent.h"
 
-// parser functions
-using ParseFunc = std::unordered_map<std::string, std::function<ObjectComponent * (std::stringstream&)>>;
-
 class ECHO_DLL Parser
 {
+	using ParseFunc = std::function<ObjectComponent * (std::stringstream&)>;
 private:
 	std::fstream map;
 	std::string line;
 
 	// individual parser functions
-	ParseFunc parseFunc;
+	std::unordered_map<std::string, ParseFunc> parseFunc;
 public:
 	Parser(const std::string path);
 
-	void AddParseFunc(const std::string& type, const std::function<ObjectComponent * (std::stringstream&)>& func);
+	void AddParseFunc(const std::string& type, const ParseFunc& func);
 	void RemoveParseFunc(const std::string& name);
 
 	ObjectComponent* Parse();

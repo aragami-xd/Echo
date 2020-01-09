@@ -1,12 +1,11 @@
 #include "GameplayLayer.h"
+#include <components/OsuScoring.h>
+#include <components/CircleParser.h>
 
-#include <Settings.h>
-
-#include <components/Circle.h>
 using namespace std;
 
 GameplayLayer::GameplayLayer() :
-	Layer("gameplay layer")
+	Layer("gameplay layer"), mouseX(0), mouseY(0)
 {
 	LOG_init("gameplay layer");
 
@@ -14,14 +13,14 @@ GameplayLayer::GameplayLayer() :
 	shaders = new ShaderList();
 	shaders->Push("basic", new Shader(settings["shader"]["basicVertex"], settings["shader"]["basicFragment"]));
 
-	// set screen ratio for the basic shader
+	// set screen ratio for the shaders
 	glm::mat4 ratio = glm::ortho(0.0f, (float)settings["window"]["width"], 0.0f, (float)settings["window"]["height"]);
 	for (auto shader : *shaders)
 		Orthographic::SetProjMatrix(shader.second, ratio);
 
 	// new parser
 	parser = new Parser(settings["path"]["beatmapPath"]);
-	parser->AddParseFunc("circle", CircleParser);
+	parser->AddParseFunc("circle", CircleParser::CircleParserFunc);
 
 	// parse everything
 	LOG_message("parsing");
@@ -34,6 +33,9 @@ GameplayLayer::GameplayLayer() :
 			object.push_back(oc);
 	}
 	LOG_message("parse total: " + to_string(object.size()));
+
+	// scoring system
+	scoring = new OsuScoring();
 }
 
 void GameplayLayer::Update()
@@ -42,8 +44,12 @@ void GameplayLayer::Update()
 	for (int i = objectIterate; i < object.size(); i++)
 	{
 		int time = Timing::GetTime();
-		if (time > object[i]->GetObject()->GetEndTime())			// first object disappears
+		if (time > object[i]->GetObject()->GetEndTime())		// first object disappears
+		{
 			objectIterate++;
+			if (!object[i]->IsEnabled())						// set as a miss if the object goes out of scope
+				scoring->AddScore(0);
+		}
 		else if (time < object[i]->GetObject()->GetStartTime())	// last object not yet rendered
 			break;
 		else
@@ -65,7 +71,8 @@ void GameplayLayer::Tapping(KeyDownEvent& e)
 		e.GetKey() == settings["keymapping"]["key2"])  && !keyDown)
 	{
 		keyDown = true;
-		object[objectIterate]->OnEvent(mouseX, mouseY);
+		int score = object[objectIterate]->OnEvent(mouseX, mouseY, Timing::GetTime());
+		scoring->AddScore(score);
 	}
 }
 
@@ -83,6 +90,10 @@ void GameplayLayer::MouseMove(MouseMoveEvent& e)
 
 GameplayLayer::~GameplayLayer()
 {
+	LOG_message("result");
+	LOG_message("score: " + to_string(scoring->GetScore()));
+	LOG_message("highest combo: " + to_string(scoring->GetMaxCombo()));
+
 	LOG_erase("erase gameplay layer");
 
 	// delete parser
@@ -100,4 +111,7 @@ GameplayLayer::~GameplayLayer()
 	for (auto shader : *shaders)
 		delete shader.second;
 	delete shaders;
+
+	// delete scoring
+	delete scoring;
 }

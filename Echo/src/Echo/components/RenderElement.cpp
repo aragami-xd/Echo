@@ -1,7 +1,7 @@
 #include "RenderElement.h"
 
-RenderElement::RenderElement(glm::vec4 objectColor) :
-	vl(nullptr), va(nullptr), vb(nullptr), ib(nullptr), color(objectColor)
+RenderElement::RenderElement() :
+	vl(nullptr), va(nullptr), vb(nullptr), ib(nullptr)
 {
 }
 

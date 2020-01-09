@@ -2,6 +2,7 @@
 
 #include <EchoHeader.h>
 
+#ifdef ECHO_DEBUG
 #define LOG_init(x)\
 	std::cout << "[" << __func__ << "][initialize]: " << x << std::endl;
 
@@ -16,3 +17,12 @@
 
 #define LOG_erase(x)\
 	std::cout << "[" << __func__ << "][warning]: " << x << std::endl;
+#endif
+
+#ifdef ECHO_RELEASE
+#define LOG_init(x)
+#define LOG_message(x)
+#define LOG_error(x)
+#define LOG_warning(x)
+#define LOG_erase(x)
+#endif

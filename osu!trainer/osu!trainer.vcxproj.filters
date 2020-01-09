@@ -15,7 +15,13 @@
     <ClInclude Include="src\components\CircleComponent.h">
       <Filter>components</Filter>
     </ClInclude>
+    <ClInclude Include="src\components\CircleParser.h">
+      <Filter>components</Filter>
+    </ClInclude>
     <ClInclude Include="src\components\CircleRenderElement.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\OsuScoring.h">
       <Filter>components</Filter>
     </ClInclude>
     <ClInclude Include="src\components\Slider.h">
@@ -39,10 +45,16 @@
     <ClCompile Include="src\components\CircleRenderElement.cpp">
       <Filter>components</Filter>
     </ClCompile>
+    <ClCompile Include="src\components\OsuScoring.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
     <ClCompile Include="src\components\Slider.cpp">
       <Filter>components</Filter>
     </ClCompile>
     <ClCompile Include="src\core\GameplayLayer.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\StoryboardLayer.cpp">
       <Filter>core</Filter>
     </ClCompile>
     <ClCompile Include="src\osu!trainer.cpp" />

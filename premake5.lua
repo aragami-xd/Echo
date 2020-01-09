@@ -1,11 +1,11 @@
 workspace "Echo"
-	architecture "x64"
-	configurations{"Debug", "Release", "Dist"}
+	architecture "x86_64"
+	configurations{"Debug", "Release"}
 	flags { "MultiProcessorCompile" }
 	startproject "osu!trainer"
 
 -- variables
-outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+outputdir = "%{cfg.buildcfg}-%{cfg.system}"
 
 -- glfw project	
 include "Echo/vendor/glfw"
@@ -24,11 +24,10 @@ project "Echo"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 	defines { "ECHO_WINDOWS", "ECHO_BUILD", "GLFW_INCLUDE_NONE" }
-
 	
 	-- precompiled header
 	-- pchheader "EchoHeader.h"
-	-- pchsource "Echo/src/EchoHeader.cpp"
+	-- pchsource "./Echo/src/EchoHeader.cpp"
 
 	-- include library
 	files
@@ -66,16 +65,14 @@ project "Echo"
 
 	filter "configurations:Debug"
 		defines {"ECHO_DEBUG"}
+		runtime "Debug"
 		optimize "On"
 	
 	filter "configurations:Release"
 		defines {"ECHO_RELEASE"}
+		runtime "Release"
 		optimize "On"
 	
-	filter "configurations:Dist"
-		defines {"ECHO_DIST"}
-		optimize "On"
-
 -- osu!trainer solution
 project "osu!trainer"
 	location "osu!trainer"
@@ -83,7 +80,7 @@ project "osu!trainer"
 	language "C++"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-	defines { "ECHO_WINDOWS" } 
+	defines { "ECHO_WINDOWS" }
 
 	-- include library
 	files
@@ -122,7 +119,16 @@ project "osu!trainer"
 	filter "configurations:Release"
 		defines {"ECHO_RELEASE"}
 		optimize "On"
-	
-	filter "configurations:Dist"
-		defines {"ECHO_DIST"}
-		optimize "On"
+
+-- project "osu!launcher"
+-- 	location "osu!launcher"
+-- 	kind "WindowedApp"
+-- 	language "C#"
+-- 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+-- 	flags { "WPF" }
+
+-- 	files
+-- 	{
+-- 		"%{prj.name}/src/**.xaml.cs",
+-- 		"%{prj.name}/src/**.xaml"
+-- 	}

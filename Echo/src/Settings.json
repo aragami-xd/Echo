@@ -6,28 +6,32 @@
   },
 
   "metadata": {
-    "ar": 7.0,
-    "cs": 4.5,
+    "ar": 10.0,
+    "cs": 4.0,
     "od": 9.0,
     "hp": 7.0,
 
     "scaleAR": 5000,
     "scaleCS": 200,
 
-    "score300": 1.2,
-    "score100": 1.4,
-    "score50": 1.5,
+    "score300": 2.0,
+    "score100": 1.6,
+    "score50": 1.3,
 
     "offset": 0
   },
 
   "path": {
-    "beatmapPath": "./lib/beatmaps/map.txt"
+    "beatmapPath": "./lib/beatmaps/map.txt",
+    "backgroundPath": "./lib/textures/bg.jpg"
   },
 
   "shader": {
     "basicVertex": "./src/shaders/BasicShader.vert",
-    "basicFragment": "./src/shaders/BasicShader.frag"
+    "basicFragment": "./src/shaders/BasicShader.frag",
+
+    "textureVertex": "./src/shaders/TextureShader.vert",
+    "textureFragment": "./src/shaders/TextureShader.frag"
   },
 
   "object": {
