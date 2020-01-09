@@ -1,5 +1,4 @@
 #pragma once
-#include <Echo.h>
 #include "CircleComponent.h"
 #include "CircleRenderElement.h"
 #include "Circle.h"

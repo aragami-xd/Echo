@@ -22,7 +22,7 @@ project "glfw"
 	-- windows config
 	filter "system:windows"
 		systemversion "latest"
-		staticruntime "On"
+		staticruntime "on"
 
 		files
 		{
@@ -46,6 +46,7 @@ project "glfw"
 	filter "configurations:Debug"
 		runtime "Debug"
 		symbols "on"
+		optimize "on"
 
 	filter "configurations:Release"
 		runtime "Release"

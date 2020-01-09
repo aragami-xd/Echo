@@ -77,6 +77,9 @@
     <ClInclude Include="src\Echo\core\Container.h">
       <Filter>Echo\core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Echo\core\EntryPoint.h">
+      <Filter>Echo\core</Filter>
+    </ClInclude>
     <ClInclude Include="src\Echo\core\Layer.h">
       <Filter>Echo\core</Filter>
     </ClInclude>

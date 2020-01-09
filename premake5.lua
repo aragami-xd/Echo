@@ -1,5 +1,5 @@
 workspace "Echo"
-	architecture "x86_64"
+	architecture "x64"
 	configurations{"Debug", "Release"}
 	flags { "MultiProcessorCompile" }
 	startproject "osu!trainer"
@@ -21,13 +21,16 @@ project "Echo"
 	location "Echo"
 	kind "SharedLib"
 	language "C++"
+	cppdialect "C++17"
+
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 	defines { "ECHO_WINDOWS", "ECHO_BUILD", "GLFW_INCLUDE_NONE" }
+
 	
 	-- precompiled header
 	-- pchheader "EchoHeader.h"
-	-- pchsource "./Echo/src/EchoHeader.cpp"
+	-- pchsource "Echo/src/EchoHeader.cpp"
 
 	-- include library
 	files
@@ -58,29 +61,28 @@ project "Echo"
 
 	-- windows config
 	filter "system:windows"
-		cppdialect "C++17"
 		staticruntime "on"
 		systemversion "latest"
 		postbuildcommands { "{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/osu!trainer" }
 
 	filter "configurations:Debug"
 		defines {"ECHO_DEBUG"}
-		runtime "Debug"
-		optimize "On"
+		optimize "Full"
 	
 	filter "configurations:Release"
 		defines {"ECHO_RELEASE"}
-		runtime "Release"
-		optimize "On"
-	
+		optimize "Full"
+
 -- osu!trainer solution
 project "osu!trainer"
 	location "osu!trainer"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++17"
+
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-	defines { "ECHO_WINDOWS" }
+	defines { "ECHO_WINDOWS" } 
 
 	-- include library
 	files
@@ -108,27 +110,13 @@ project "osu!trainer"
 
 	-- windows config
 	filter "system:windows"
-		cppdialect "C++17"
 		staticruntime "on"
 		systemversion "latest"
 
 	filter "configurations:Debug"
 		defines {"ECHO_DEBUG"}
-		optimize "On"
+		optimize "Full"
 	
 	filter "configurations:Release"
 		defines {"ECHO_RELEASE"}
-		optimize "On"
-
--- project "osu!launcher"
--- 	location "osu!launcher"
--- 	kind "WindowedApp"
--- 	language "C#"
--- 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
--- 	flags { "WPF" }
-
--- 	files
--- 	{
--- 		"%{prj.name}/src/**.xaml.cs",
--- 		"%{prj.name}/src/**.xaml"
--- 	}
+		optimize "Full"
