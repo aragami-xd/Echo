@@ -17,9 +17,7 @@
 
 #define LOG_erase(x)\
 	std::cout << "[" << __func__ << "][warning]: " << x << std::endl;
-#endif
-
-#ifdef ECHO_RELEASE
+#else
 #define LOG_init(x)
 #define LOG_message(x)
 #define LOG_error(x)

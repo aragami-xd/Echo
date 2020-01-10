@@ -16,6 +16,10 @@ includeDir = {}
 includeDir["glfw"] = "Echo/vendor/glfw/include"
 includeDir["glad"] = "Echo/vendor/glad/include"
 
+-- precompiled header
+-- pchheader "EchoHeader.h"
+-- pchsource "../Echo/src/EchoHeader.cpp"
+
 -- echo engine solution
 project "Echo"
 	location "Echo"
@@ -26,11 +30,6 @@ project "Echo"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 	defines { "ECHO_WINDOWS", "ECHO_BUILD", "GLFW_INCLUDE_NONE" }
-
-	
-	-- precompiled header
-	-- pchheader "EchoHeader.h"
-	-- pchsource "Echo/src/EchoHeader.cpp"
 
 	-- include library
 	files
@@ -114,9 +113,11 @@ project "osu!trainer"
 		systemversion "latest"
 
 	filter "configurations:Debug"
+		runtime "Debug"
 		defines {"ECHO_DEBUG"}
 		optimize "Full"
 	
 	filter "configurations:Release"
+		runtime "Release"
 		defines {"ECHO_RELEASE"}
 		optimize "Full"

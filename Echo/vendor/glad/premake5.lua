@@ -18,3 +18,11 @@ project "glad"
 	filter "system:windows"
 		systemversion "latest"
 		staticruntime "on"
+
+	filter "configurations:Debug"
+		runtime "Debug"
+		optimize "on"
+
+	filter "configurations:Release"
+		runtime "Release"
+		optimize "on"

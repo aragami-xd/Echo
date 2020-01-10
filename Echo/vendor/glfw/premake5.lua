@@ -45,7 +45,6 @@ project "glfw"
 
 	filter "configurations:Debug"
 		runtime "Debug"
-		symbols "on"
 		optimize "on"
 
 	filter "configurations:Release"
