@@ -22,16 +22,16 @@
   },
 
   "path": {
-    "beatmapPath": "./lib/beatmaps/map.txt",
-    "backgroundPath": "./lib/textures/bg.jpg"
+    "beatmapPath": "lib/beatmaps/map.txt",
+    "backgroundPath": "lib/textures/bg.jpg"
   },
 
   "shader": {
-    "basicVertex": "./src/shaders/BasicShader.vert",
-    "basicFragment": "./src/shaders/BasicShader.frag",
+    "basicVertex": "src/shaders/BasicShader.vert",
+    "basicFragment": "src/shaders/BasicShader.frag",
 
-    "textureVertex": "./src/shaders/TextureShader.vert",
-    "textureFragment": "./src/shaders/TextureShader.frag"
+    "textureVertex": "src/shaders/TextureShader.vert",
+    "textureFragment": "src/shaders/TextureShader.frag"
   },
 
   "object": {
@@ -39,7 +39,7 @@
   },
 
   "circle": {
-    "vertices": 90
+    "vertices": 60
   },
 
   "keymapping": {

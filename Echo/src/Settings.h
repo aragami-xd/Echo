@@ -6,5 +6,9 @@
 using json = nlohmann::json;
 
 const json settings = json::parse(
-	std::ifstream("C:/Users/Rogue/source/repos/Echo/Echo/src/Settings.json")
+#ifdef ECHO_DEBUG
+	std::ifstream(std::filesystem::current_path().string() + "/../Echo/src/Settings.json")
+#else
+	std::ifstream(std::filesystem::current_path().string() + "/Settings.json")
+#endif
 );

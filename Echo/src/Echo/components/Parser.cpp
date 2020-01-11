@@ -1,7 +1,7 @@
 #include "Parser.h"
 using namespace std;
 
-Parser::Parser(std::string path)
+Parser::Parser(const std::string& path)
 {
 	LOG_init("new parser");
 	map.open(path);

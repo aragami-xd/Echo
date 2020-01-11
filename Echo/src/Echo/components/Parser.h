@@ -13,7 +13,7 @@ private:
 	// individual parser functions
 	std::unordered_map<std::string, ParseFunc> parseFunc;
 public:
-	Parser(const std::string path);
+	Parser(const std::string& path);
 
 	void AddParseFunc(const std::string& type, const ParseFunc& func);
 	void RemoveParseFunc(const std::string& name);

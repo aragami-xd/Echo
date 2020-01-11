@@ -65,10 +65,12 @@ project "Echo"
 		postbuildcommands { "{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/osu!trainer" }
 
 	filter "configurations:Debug"
+		runtime "Debug"
 		defines {"ECHO_DEBUG"}
 		optimize "Full"
 	
 	filter "configurations:Release"
+		runtime "Release"
 		defines {"ECHO_RELEASE"}
 		optimize "Full"
 
