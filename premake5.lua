@@ -1,3 +1,4 @@
+-- main workspace link to other individual projects
 workspace "Echo"
 	architecture "x64"
 	configurations{"Debug", "Release"}
@@ -7,7 +8,7 @@ workspace "Echo"
 -- variables
 outputdir = "%{cfg.buildcfg}-%{cfg.system}"
 
--- glfw project	
+-- other vendor projects
 include "Echo/vendor/glfw"
 include "Echo/vendor/glad"
 
@@ -18,9 +19,9 @@ includeDir["glad"] = "Echo/vendor/glad/include"
 
 -- precompiled header
 -- pchheader "EchoHeader.h"
--- pchsource "../Echo/src/EchoHeader.cpp"
+-- pchsource "/Echo/src/EchoHeader.cpp"
 
--- echo engine solution
+-- echo engine project
 project "Echo"
 	location "Echo"
 	kind "SharedLib"
@@ -74,7 +75,7 @@ project "Echo"
 		defines {"ECHO_RELEASE"}
 		optimize "Full"
 
--- osu!trainer solution
+-- osu!trainer project
 project "osu!trainer"
 	location "osu!trainer"
 	kind "ConsoleApp"
@@ -122,4 +123,25 @@ project "osu!trainer"
 	filter "configurations:Release"
 		runtime "Release"
 		defines {"ECHO_RELEASE"}
-		optimize "Full"
+		optimize "Full"	
+
+-- -- osu!launcher project
+-- project "osu!launcher"
+-- 	location "osu!launcher"
+-- 	kind "ConsoleApp"
+-- 	language "C#"
+-- 	-- flags { "WPF" }
+-- 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+
+-- 	files
+-- 	{
+-- 		"%{prj.name}/**.cs",
+-- 		"%{prj.name}/**.xaml",
+-- 		"%{prj.name}/**.xaml.cs",
+-- 	}
+
+-- 	filter "configurations:Debug"
+-- 		runtime "Debug"
+
+-- 	filter "configurations:Release"
+-- 		runtime "Release"
