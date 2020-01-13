@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Echo.h>
-#include <components/BezierSliderRenderElement.h>
 
 class GameplayLayer : public Layer
 {
@@ -27,8 +26,6 @@ private:
 	void Tapping(KeyDownEvent& e);
 	void Release(KeyUpEvent& e);
 	void MouseMove(MouseMoveEvent& e);
-
-	BezierSliderRenderElement* slider;
 public:
 	GameplayLayer();
 

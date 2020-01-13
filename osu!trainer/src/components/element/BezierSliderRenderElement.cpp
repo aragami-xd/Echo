@@ -1,7 +1,7 @@
 #include "BezierSliderRenderElement.h"
 using namespace std;
 
-BezierSliderRenderElement::BezierSliderRenderElement(vector<float>& xcp, vector<float>& ycp)
+BezierSliderRenderElement::BezierSliderRenderElement(vector<float>& xcp, vector<float>& ycp, float circleRadius)
 {
 	/*	bezier curve point equation for 4 control points:
 		(1-t)^3 * P1 + 3 * (1-t)^2 * t * P2 + 3 * (1-t) * t^2 * P3 + t^3 * P4
@@ -15,11 +15,12 @@ BezierSliderRenderElement::BezierSliderRenderElement(vector<float>& xcp, vector<
 	vector<int> coef = RecursiveCoefficient(xcp.size() - 1, coefQueue);
 
 	// calculate vertices
+	std::vector<float> center;
 	float smoothstep = settings["bezier_curve"]["smoothstep"];
 	for (float i = 0.0f; i <= 1.0f; i += smoothstep)
 	{
-		center.push_back(CalcVertices(coef, xcp, i));
-		center.push_back(CalcVertices(coef, ycp, i));
+		center.push_back(CalcCenter(coef, xcp, i));
+		center.push_back(CalcCenter(coef, ycp, i));
 	}
 
 	vertices = center;
@@ -32,7 +33,7 @@ BezierSliderRenderElement::BezierSliderRenderElement(vector<float>& xcp, vector<
 	va->AddBuffer(*vl, *vb);
 }
 
-float BezierSliderRenderElement::CalcVertices(std::vector<int>& coef, std::vector<float>& cp, float inc)
+float BezierSliderRenderElement::CalcCenter(std::vector<int>& coef, std::vector<float>& cp, float inc)
 {
 	float val = 0;
 	for (int i = 0; i < coef.size(); i++)
@@ -77,6 +78,14 @@ vector<int> BezierSliderRenderElement::RecursiveCoefficient(int coef, queue<int>
 		// recursive call
 		return RecursiveCoefficient(coef - 1, coefQueue);
 	}
+}
+
+std::pair<float, float> BezierSliderRenderElement::CalcVertices(float x1, float y1, float x2, float y2, float size, bool direction)
+{
+	float a = (x1 - x2) / (y2 - y1);	// coefficient of the perpendicular line
+	float b = y1 - a * x1;				// constant of the perpendicular line
+
+	// calculate the vertex
 }
 
 BezierSliderRenderElement::~BezierSliderRenderElement()

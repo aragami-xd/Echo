@@ -107,6 +107,7 @@
     <ClInclude Include="src\components\CircleRenderElement.h" />
     <ClInclude Include="src\components\OsuScoring.h" />
     <ClInclude Include="src\components\Slider.h" />
+    <ClInclude Include="src\components\SliderComponent.h" />
     <ClInclude Include="src\components\SliderParser.h" />
     <ClInclude Include="src\core\GameplayLayer.h" />
     <ClInclude Include="src\core\StoryboardLayer.h" />
@@ -119,6 +120,7 @@
     <ClCompile Include="src\components\CircleRenderElement.cpp" />
     <ClCompile Include="src\components\OsuScoring.cpp" />
     <ClCompile Include="src\components\Slider.cpp" />
+    <ClCompile Include="src\components\SliderComponent.cpp" />
     <ClCompile Include="src\core\GameplayLayer.cpp" />
     <ClCompile Include="src\core\StoryboardLayer.cpp" />
     <ClCompile Include="src\osu!trainer.cpp" />

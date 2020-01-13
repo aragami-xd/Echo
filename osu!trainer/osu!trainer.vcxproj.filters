@@ -36,6 +36,7 @@
     <ClInclude Include="src\osu!trainer.h" />
     <ClInclude Include="src\components\SliderParser.h" />
     <ClInclude Include="src\components\BezierSliderRenderElement.h" />
+    <ClInclude Include="src\components\SliderComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\components\Circle.cpp">
@@ -61,5 +62,6 @@
     </ClCompile>
     <ClCompile Include="src\osu!trainer.cpp" />
     <ClCompile Include="src\components\BezierSliderRenderElement.cpp" />
+    <ClCompile Include="src\components\SliderComponent.cpp" />
   </ItemGroup>
 </Project>

@@ -6,6 +6,7 @@ using namespace std;
 /* note that the circle render element has nothing to do with circle object
 	* this element is only use to depict anything rounded on the screen
 	* components like slider can include circle render element
+	* yes, i'm suck at naming, that's why we have 2 different "circles"
 */
 
 CircleRenderElement::CircleRenderElement(float circleRadius)

@@ -1,6 +1,7 @@
 #include "GameplayLayer.h"
 #include <components/OsuScoring.h>
-#include <components/CircleParser.h>
+#include <components/circle/CircleParser.h>
+#include <components/slider/SliderParser.h>
 
 using namespace std;
 
@@ -37,33 +38,25 @@ GameplayLayer::GameplayLayer() :
 
 	// scoring system
 	scoring = new OsuScoring();
-
-	vector<float> verticesA = { 1364.0f,773.0f,198.0f,214.0f, 174.0f };
-	vector<float> vertices = { 224.0f,877.0f,697.0f,104.0f, 801.0f };
-
-	slider = new BezierSliderRenderElement(verticesA, vertices);
 }
 
 void GameplayLayer::Update()
 {
 	// loop through the objects and only render the ones within the time range
-	//for (int i = objectIterate; i < object.size(); i++)
-	//{
-	//	int time = Timing::GetTime();
-	//	if (time > object[i]->GetObject()->GetEndTime())		// first object disappears
-	//	{
-	//		objectIterate++;
-	//		if (!object[i]->IsEnabled())						// set as a miss if the object goes out of scope
-	//			scoring->AddScore(0);
-	//	}
-	//	else if (time < object[i]->GetObject()->GetStartTime())	// last object not yet rendered
-	//		break;
-	//	else
-	//		object[i]->Render(shaders, time);
-	//}
-
-	Renderer::StrokeWeight(3);
-	Renderer::Render(slider->GetVertexArray(), 1 / (float)settings["bezier_curve"]["smoothstep"], GL_LINE_STRIP);
+	for (int i = objectIterate; i < object.size(); i++)
+	{
+		int time = Timing::GetTime();
+		if (time > object[i]->GetObject()->GetEndTime())		// first object disappears
+		{
+			objectIterate++;
+			if (!object[i]->IsEnabled())						// set as a miss if the object goes out of scope
+				scoring->AddScore(0);
+		}
+		else if (time < object[i]->GetObject()->GetStartTime())	// last object not yet rendered
+			break;
+		else
+			object[i]->Render(shaders, time);
+	}
 }
 
 void GameplayLayer::OnEvent(Event& e)

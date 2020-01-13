@@ -1,10 +1,12 @@
 #pragma once
+
+#include <components/element/CircleRenderElement.h>
 #include "CircleComponent.h"
-#include "CircleRenderElement.h"
 #include "Circle.h"
 
-struct CircleParser
+class CircleParser
 {
+public:
 	// circle parsing function
 	static ObjectComponent* CircleParserFunc(std::stringstream& ss);
 };
