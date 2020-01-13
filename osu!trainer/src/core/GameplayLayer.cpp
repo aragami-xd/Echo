@@ -38,8 +38,8 @@ GameplayLayer::GameplayLayer() :
 	// scoring system
 	scoring = new OsuScoring();
 
-	vector<float> verticesA = { 1364.0f,773.0f,198.0f,214.0f };
-	vector<float> vertices = { 224.0f,877.0f,697.0f,104.0f };
+	vector<float> verticesA = { 1364.0f,773.0f,198.0f,214.0f, 174.0f };
+	vector<float> vertices = { 224.0f,877.0f,697.0f,104.0f, 801.0f };
 
 	slider = new BezierSliderRenderElement(verticesA, vertices);
 }
@@ -63,7 +63,7 @@ void GameplayLayer::Update()
 	//}
 
 	Renderer::StrokeWeight(3);
-	Renderer::Render(slider->GetVertexArray(), 2 / 0.001f, GL_LINE_STRIP);
+	Renderer::Render(slider->GetVertexArray(), 1 / (float)settings["bezier_curve"]["smoothstep"], GL_LINE_STRIP);
 }
 
 void GameplayLayer::OnEvent(Event& e)

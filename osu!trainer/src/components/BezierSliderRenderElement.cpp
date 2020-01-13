@@ -12,10 +12,11 @@ BezierSliderRenderElement::BezierSliderRenderElement(vector<float>& xcp, vector<
 	queue<int> coefQueue;
 	coefQueue.push(1);
 	coefQueue.push(1);
-	vector<int> coef = RecursiveCoefficient(xcp.size(), coefQueue);
+	vector<int> coef = RecursiveCoefficient(xcp.size() - 1, coefQueue);
 
 	// calculate vertices
-	for (float i = 0.0f; i <= 1.0f; i += 0.001f)
+	float smoothstep = settings["bezier_curve"]["smoothstep"];
+	for (float i = 0.0f; i <= 1.0f; i += smoothstep)
 	{
 		center.push_back(CalcVertices(coef, xcp, i));
 		center.push_back(CalcVertices(coef, ycp, i));
@@ -23,6 +24,7 @@ BezierSliderRenderElement::BezierSliderRenderElement(vector<float>& xcp, vector<
 
 	vertices = center;
 
+	// generate buffers
 	vl = new VertexLayout();	
 	vl->Push<float>(2);
 	vb = new VertexBuffer(vertices.data(), vertices.size() * sizeof(float));
@@ -33,9 +35,9 @@ BezierSliderRenderElement::BezierSliderRenderElement(vector<float>& xcp, vector<
 float BezierSliderRenderElement::CalcVertices(std::vector<int>& coef, std::vector<float>& cp, float inc)
 {
 	float val = 0;
-	for (int i = 0; i < cp.size(); i++)
+	for (int i = 0; i < coef.size(); i++)
 	{
-		val += coef[i] * cp[i] * pow(1 - inc, cp.size() - i) * pow(inc, i);
+		val += coef[i] * cp[i] * pow(1 - inc, cp.size() - 1 - i) * pow(inc, i);
 	}
 	return val;
 }
