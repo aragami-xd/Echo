@@ -34,6 +34,8 @@
       <Filter>core</Filter>
     </ClInclude>
     <ClInclude Include="src\osu!trainer.h" />
+    <ClInclude Include="src\components\SliderParser.h" />
+    <ClInclude Include="src\components\BezierSliderRenderElement.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\components\Circle.cpp">
@@ -58,5 +60,6 @@
       <Filter>core</Filter>
     </ClCompile>
     <ClCompile Include="src\osu!trainer.cpp" />
+    <ClCompile Include="src\components\BezierSliderRenderElement.cpp" />
   </ItemGroup>
 </Project>

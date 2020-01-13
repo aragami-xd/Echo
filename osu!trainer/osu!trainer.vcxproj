@@ -100,17 +100,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\components\BezierSliderRenderElement.h" />
     <ClInclude Include="src\components\Circle.h" />
     <ClInclude Include="src\components\CircleComponent.h" />
     <ClInclude Include="src\components\CircleParser.h" />
     <ClInclude Include="src\components\CircleRenderElement.h" />
     <ClInclude Include="src\components\OsuScoring.h" />
     <ClInclude Include="src\components\Slider.h" />
+    <ClInclude Include="src\components\SliderParser.h" />
     <ClInclude Include="src\core\GameplayLayer.h" />
     <ClInclude Include="src\core\StoryboardLayer.h" />
     <ClInclude Include="src\osu!trainer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\components\BezierSliderRenderElement.cpp" />
     <ClCompile Include="src\components\Circle.cpp" />
     <ClCompile Include="src\components\CircleComponent.cpp" />
     <ClCompile Include="src\components\CircleRenderElement.cpp" />

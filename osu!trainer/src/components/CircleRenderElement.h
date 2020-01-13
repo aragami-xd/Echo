@@ -10,4 +10,6 @@ public:
 	CircleRenderElement(float circleRadius);
 
 	inline float* GetVertices() { return vertices.data(); }
+
+	~CircleRenderElement();
 };

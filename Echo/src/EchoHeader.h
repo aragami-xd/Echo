@@ -24,6 +24,8 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <utility>
+#include <queue>
+#include <stack>
 
 // log
 #include <Echo/core/Log.h>

@@ -46,7 +46,7 @@
   },
 
   "bezier_curve": {
-    "steps": 0.1
+    "steps": 0.05
   },
 
   "keymapping": {

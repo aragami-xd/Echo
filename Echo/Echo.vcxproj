@@ -120,7 +120,6 @@
     <ClInclude Include="src\Echo\buffers\VertexArray.h" />
     <ClInclude Include="src\Echo\buffers\VertexBuffer.h" />
     <ClInclude Include="src\Echo\buffers\VertexLayout.h" />
-    <ClInclude Include="src\Echo\components\LongObject.h" />
     <ClInclude Include="src\Echo\components\Object.h" />
     <ClInclude Include="src\Echo\components\ObjectComponent.h" />
     <ClInclude Include="src\Echo\components\Parser.h" />
@@ -150,7 +149,6 @@
     <ClCompile Include="src\Echo\buffers\Texture.cpp" />
     <ClCompile Include="src\Echo\buffers\VertexArray.cpp" />
     <ClCompile Include="src\Echo\buffers\VertexBuffer.cpp" />
-    <ClCompile Include="src\Echo\components\LongObject.cpp" />
     <ClCompile Include="src\Echo\components\Object.cpp" />
     <ClCompile Include="src\Echo\components\Parser.cpp" />
     <ClCompile Include="src\Echo\components\RenderElement.cpp" />

@@ -24,3 +24,10 @@ CircleRenderElement::CircleRenderElement(float circleRadius)
 	vl->Push<float>(2);
 	va->AddBuffer(*vl, *vb);
 }
+
+CircleRenderElement::~CircleRenderElement()
+{
+	delete vl;
+	delete vb;
+	delete va;
+}
