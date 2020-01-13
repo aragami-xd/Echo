@@ -15,7 +15,6 @@
 #include <Echo/buffers/Texture.h>
 
 /* echo components */
-#include <Echo/components/MultibeatObject.h>
 #include <Echo/components/Parser.h>
 #include <Echo/components/Scoring.h>
 #include <Echo/components/RenderElement.h>

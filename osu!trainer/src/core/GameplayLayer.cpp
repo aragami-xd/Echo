@@ -9,11 +9,12 @@ GameplayLayer::GameplayLayer() :
 {
 	LOG_init("gameplay layer");
 
-	// new shader
+	// new shaders
 	shaders = new ShaderList();
 	shaders->Push("basic", new Shader(settings["shader"]["basicVertex"], settings["shader"]["basicFragment"]));
+	//shaders->Push("line", new Shader(settings["shader"]["lineVertex"], settings["shader"]["lineFragment"]));
 
-	// set screen ratio for the shaders
+	// set screen ratio for all shaders
 	glm::mat4 ratio = glm::ortho(0.0f, (float)settings["window"]["width"], 0.0f, (float)settings["window"]["height"]);
 	for (auto shader : *shaders)
 		Orthographic::SetProjMatrix(shader.second, ratio);

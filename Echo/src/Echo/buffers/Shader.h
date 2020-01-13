@@ -28,6 +28,7 @@ public:
 	// set uniform
 	void SetShaderUniform1i(const std::string& name, int v);
 	void SetShaderUniform1f(const std::string& name, float v);
+	void SetShaderUniform2f(const std::string& name, float v0, float v1);
 	void SetShaderUniform4f(const std::string& name, float v0, float v1, float v2, float v3);
 	void SetShaderUniformMat4f(const std::string& name, const glm::mat4& mat);
 	void SetShaderUniformVec4f(const std::string& name, const glm::vec4& vec);

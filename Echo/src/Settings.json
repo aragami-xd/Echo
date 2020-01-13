@@ -31,7 +31,10 @@
     "basicFragment": "src/shaders/BasicShader.frag",
 
     "textureVertex": "src/shaders/TextureShader.vert",
-    "textureFragment": "src/shaders/TextureShader.frag"
+    "textureFragment": "src/shaders/TextureShader.frag",
+
+    "lineVertex": "src/shaders/LineShader.vert",
+    "lineFragment": "src/shaders/LineShader.frag"
   },
 
   "object": {
@@ -40,6 +43,10 @@
 
   "circle": {
     "vertices": 60
+  },
+
+  "bezier_curve": {
+    "steps": 0.1
   },
 
   "keymapping": {

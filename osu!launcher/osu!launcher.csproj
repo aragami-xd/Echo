@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>osu_launcher</RootNamespace>
     <UseWPF>true</UseWPF>
     <StartupObject>osu_launcher.App</StartupObject>
+    <ApplicationIcon />
   </PropertyGroup>
 
 </Project>

@@ -15,6 +15,7 @@ void CircleComponent::Render(ShaderList* shaders, int time)
 	Orthographic::SetViewMatrix(shader, viewCircle);
 	
 	// render
+	shader->SetShaderUniform4f("uColor", 1.0f, 1.0f, 1.0f, 1.0f);
 	Renderer::StrokeWeight(4);
 	Renderer::Render(element["circle"]->GetVertexArray(), settings["circle"]["vertices"], GL_LINE_LOOP);
 
@@ -26,6 +27,7 @@ void CircleComponent::Render(ShaderList* shaders, int time)
 	Orthographic::SetViewMatrix(shader, viewRing);
 
 	// render
+	shader->SetShaderUniform4f("uColor", 0.6f, 0.7f, 0.8f, 1.0f);
 	Renderer::StrokeWeight(2);
 	Renderer::Render(element["circle"]->GetVertexArray(), settings["circle"]["vertices"], GL_LINE_LOOP);
 }

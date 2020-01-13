@@ -50,9 +50,6 @@
     <ClInclude Include="src\Echo\buffers\VertexLayout.h">
       <Filter>Echo\buffers</Filter>
     </ClInclude>
-    <ClInclude Include="src\Echo\components\MultibeatObject.h">
-      <Filter>Echo\components</Filter>
-    </ClInclude>
     <ClInclude Include="src\Echo\components\Object.h">
       <Filter>Echo\components</Filter>
     </ClInclude>
@@ -112,6 +109,9 @@
     <ClInclude Include="src\platform\windows\WindowsWindow.h">
       <Filter>platform\windows</Filter>
     </ClInclude>
+    <ClInclude Include="src\Echo\components\LongObject.h">
+      <Filter>Echo\components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Echo\buffers\IndexBuffer.cpp">
@@ -131,9 +131,6 @@
     </ClCompile>
     <ClCompile Include="src\Echo\buffers\VertexBuffer.cpp">
       <Filter>Echo\buffers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Echo\components\MultibeatObject.cpp">
-      <Filter>Echo\components</Filter>
     </ClCompile>
     <ClCompile Include="src\Echo\components\Object.cpp">
       <Filter>Echo\components</Filter>
@@ -162,6 +159,9 @@
     <ClCompile Include="src\EchoHeader.cpp" />
     <ClCompile Include="src\platform\windows\WindowsWindow.cpp">
       <Filter>platform\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Echo\components\LongObject.cpp">
+      <Filter>Echo\components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

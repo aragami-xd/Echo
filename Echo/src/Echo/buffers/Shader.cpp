@@ -115,6 +115,11 @@ void Shader::SetShaderUniform1f(const string& name, float v)
 	glUniform1f(GetUniform(name), v);
 }
 
+void Shader::SetShaderUniform2f(const string& name, float v0, float v1)
+{
+	glUniform2f(GetUniform(name), v0, v1);
+}
+
 void Shader::SetShaderUniform4f(const string& name, float v0, float v1, float v2, float v3)
 {
 	glUniform4f(GetUniform(name), v0, v1, v2, v3);

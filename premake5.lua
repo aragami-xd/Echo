@@ -128,9 +128,9 @@ project "osu!trainer"
 -- -- osu!launcher project
 -- project "osu!launcher"
 -- 	location "osu!launcher"
--- 	kind "ConsoleApp"
+-- 	kind "WindowedApp"
 -- 	language "C#"
--- 	-- flags { "WPF" }
+-- 	flags { "WPF" }
 -- 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 
 -- 	files

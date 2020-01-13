@@ -1,8 +1,7 @@
 ﻿using System;
-using System.IO;
 using System.Windows;
-using System.Windows.Shapes;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace osu_launcher
 {
@@ -39,17 +38,35 @@ namespace osu_launcher
                 }
 
                 // set the working directory, launch path then launch the program
-                ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.WorkingDirectory = System.IO.Path.GetDirectoryName(pathToExe);
-                startInfo.FileName = pathToExe;
-
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                {
+                    WorkingDirectory = System.IO.Path.GetDirectoryName(pathToExe),
+                    FileName = pathToExe
+                };
                 Process LaunchProcess = Process.Start(startInfo);
             }
             catch(Exception exc)
             {
                 Console.WriteLine(exc.Message);
             }
-
         }
+
+        /// <summary>
+        /// collapse the play button when the user scrolls down (to a certain point)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainWindowStack_ScrollChanged(object sender, System.Windows.Controls.ScrollChangedEventArgs e)
+        {
+            Resources["PlayButtonHeight"] = 150 * (MainWindowStack.VerticalOffset / MainWindowStack.Height);
+            Console.WriteLine(Resources["PlayButtonHeight"]);
+        }
+    }
+
+    class PlayerStat
+    {
+        public Tuple<String, int> PlayCount { get; set; }
+        public Tuple<String, int> PP { get; set; }
+        public Tuple<String, float> Accuracy { get; set; }
     }
 }

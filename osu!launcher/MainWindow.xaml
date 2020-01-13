@@ -3,21 +3,26 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:osu_launcher"
         mc:Ignorable="d"
         Title="osu!launcher" Height="450" Width="800"
         Background="{DynamicResource BackgroundColor}">
     <Window.Resources>
-        <SolidColorBrush x:Key="BackgroundColor">#100012</SolidColorBrush>
+        <SolidColorBrush x:Key="BackgroundColor">#120015</SolidColorBrush>
         <SolidColorBrush x:Key="FontColor">LightCyan</SolidColorBrush>
 
-        <x:Array x:Key="GameMode" Type="sys:String">
-            <sys:String>osu!</sys:String>
-            <sys:String>osu!trainer</sys:String>
+        <x:Array x:Key="GameMode" Type="system:String">
+            <system:String>osu!</system:String>
+            <system:String>osu!trainer</system:String>
+        </x:Array>
+
+        <x:Array x:Key="ThemeName" Type="system:String">
+            <system:String>Dark</system:String>
+            <system:String>Light</system:String>
         </x:Array>
     </Window.Resources>
-
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -27,10 +32,28 @@
         <!-- info bar on the left side -->
         <StackPanel Name="StatusBar" Orientation="Vertical" Grid.Column="0">
             <ComboBox Name="GameModeSel" ItemsSource="{StaticResource GameMode}"/>
+            <ComboBox Name="Theme" ItemsSource="{StaticResource ThemeName}"/>
         </StackPanel>
 
         <!-- main program window -->
-        <Button Name="Play" Content="Play" FontSize="40" Foreground="{DynamicResource FontColor}" Background="{DynamicResource BackgroundColor}" BorderBrush="Transparent" Grid.Column="1" Click="Play_Click"/>
+        <Grid Name="MainProgram" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.Resources>
+                <system:Double x:Key="PlayButtonHeight">150</system:Double>
+            </Grid.Resources>
+            
+            <Button Name="PlayButton" Content="Play" FontSize="35" Height="{DynamicResource PlayButtonHeight}" VerticalAlignment="Top" Foreground="{DynamicResource FontColor}" Background="{DynamicResource BackgroundColor}" BorderBrush="Transparent" Click="Play_Click"/>
+            
+            <ScrollViewer Name="MainWindowStack" Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden" ScrollChanged="MainWindowStack_ScrollChanged">
+                <StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
     </Grid>
 
 </Window>
