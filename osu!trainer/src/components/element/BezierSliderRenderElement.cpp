@@ -86,6 +86,7 @@ std::pair<float, float> BezierSliderRenderElement::CalcVertices(float x1, float 
 	float b = y1 - a * x1;				// constant of the perpendicular line
 
 	// calculate the vertex
+	return { a,b };
 }
 
 BezierSliderRenderElement::~BezierSliderRenderElement()

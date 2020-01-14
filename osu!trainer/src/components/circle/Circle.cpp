@@ -1,6 +1,6 @@
 #include "Circle.h"
 #include "CircleComponent.h"
-#include "CircleRenderElement.h"
+#include <components/element/CircleRenderElement.h>
 using namespace std;
 
 Circle::Circle(float cx, float cy, int beatTime) :

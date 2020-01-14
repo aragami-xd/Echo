@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Slider.h"
-#include "BezierSliderRenderElement.h"
-#include "CircleRenderElement.h"
+#include <components/element/BezierSliderRenderElement.h>
+#include <components/element/CircleRenderElement.h>
 
 class SliderComponent : public ObjectComponent
 {

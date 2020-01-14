@@ -23,6 +23,7 @@ GameplayLayer::GameplayLayer() :
 	// new parser
 	parser = new Parser(settings["path"]["beatmapPath"]);
 	parser->AddParseFunc("circle", CircleParser::CircleParserFunc);
+	parser->AddParseFunc("slider", SliderParser::SliderParserFunc);
 
 	// parse everything
 	LOG_message("parsing");
@@ -34,7 +35,7 @@ GameplayLayer::GameplayLayer() :
 		else
 			object.push_back(oc);
 	}
-	LOG_message("parse total: " + to_string(object.size()));
+	LOG_message("parsed total: " + to_string(object.size()));
 
 	// scoring system
 	scoring = new OsuScoring();
