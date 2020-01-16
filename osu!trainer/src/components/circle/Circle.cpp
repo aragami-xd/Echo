@@ -3,8 +3,8 @@
 #include <components/element/CircleRenderElement.h>
 using namespace std;
 
-Circle::Circle(float cx, float cy, int beatTime) :
-	Object(cx, cy), beat(beatTime)
+Circle::Circle(int beatTime) :
+	beat(beatTime)
 {
 	startTime = beatTime - approachTime;
 	endTime = beatTime + score50;

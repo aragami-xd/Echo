@@ -9,7 +9,8 @@ using namespace std;
 	* yes, i'm suck at naming, that's why we have 2 different "circles"
 */
 
-CircleRenderElement::CircleRenderElement(float circleRadius)
+CircleRenderElement::CircleRenderElement(float cx, float cy, float circleRadius) :
+	x(cx), y(cy)
 {
 	// caculate the vertices coordinate
 	for (double i = 0; i < 2 * PI; i += 2 * PI / settings["circle"]["vertices"]) {

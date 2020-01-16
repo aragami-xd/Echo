@@ -2,8 +2,8 @@
 #include <Settings.h>
 using namespace std;
 
-Object::Object(float ox, float oy) :
-	x(ox), y(oy), startTime(0), endTime(0)
+Object::Object() :
+	startTime(0), endTime(0)
 {
 	approachTime = scaleAR / AR;
 

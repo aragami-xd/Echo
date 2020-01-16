@@ -25,5 +25,8 @@ public:
 
 	inline float* GetVertices() { return vertices.data(); }
 
+	virtual float GetX(int time);
+	virtual float GetY(int time);
+
 	~BezierSliderRenderElement();
 };

@@ -6,11 +6,7 @@
 class ECHO_DLL Object
 {
 protected:
-	Object(float ox, float oy);
-
-	// x and y of the starting point
-	float x;
-	float y;
+	Object();
 
 	/* difficulty variables:
 	* AR: approach rate: how fast the object appears and disappears on the screen
@@ -42,9 +38,6 @@ public:
 
 	// animation time scale
 	virtual float GetApproachScale(int time) = 0;
-
-	inline int GetX() { return x; }
-	inline int GetY() { return y; }
 
 	inline int GetStartTime() { return startTime; }
 	inline int GetEndTime() { return endTime; }

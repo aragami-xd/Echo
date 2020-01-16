@@ -4,36 +4,89 @@
     <Filter Include="components">
       <UniqueIdentifier>{8BA12798-7759-69E5-E060-4241CC3704D6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="components\circle">
+      <UniqueIdentifier>{6C3873C5-D84E-715B-21C6-FC7C8D1B42E3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\element">
+      <UniqueIdentifier>{645AE813-503E-A969-B99E-A3BCA5A193EB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\slider">
+      <UniqueIdentifier>{FD1FF7EA-6936-F580-B2AD-80A21E03C608}</UniqueIdentifier>
+    </Filter>
     <Filter Include="core">
       <UniqueIdentifier>{4E40957C-3A77-960D-E363-7C10CF79120F}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\components\OsuScoring.h">
+      <Filter>components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\circle\Circle.h">
+      <Filter>components\circle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\circle\CircleComponent.h">
+      <Filter>components\circle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\circle\CircleParser.h">
+      <Filter>components\circle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\element\BezierSliderRenderElement.h">
+      <Filter>components\element</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\element\CircleRenderElement.h">
+      <Filter>components\element</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\slider\Slider.h">
+      <Filter>components\slider</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\slider\SliderComponent.h">
+      <Filter>components\slider</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\slider\SliderParser.h">
+      <Filter>components\slider</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\GameplayLayer.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\StoryboardLayer.h">
+      <Filter>core</Filter>
+    </ClInclude>
     <ClInclude Include="src\osu!trainer.h" />
-    <ClInclude Include="src\core\GameplayLayer.h" />
-    <ClInclude Include="src\core\StoryboardLayer.h" />
-    <ClInclude Include="src\components\OsuScoring.h" />
-    <ClInclude Include="src\components\slider\SliderParser.h" />
-    <ClInclude Include="src\components\slider\Slider.h" />
-    <ClInclude Include="src\components\slider\SliderComponent.h" />
-    <ClInclude Include="src\components\element\CircleRenderElement.h" />
-    <ClInclude Include="src\components\element\BezierSliderRenderElement.h" />
-    <ClInclude Include="src\components\circle\CircleParser.h" />
-    <ClInclude Include="src\components\circle\Circle.h" />
-    <ClInclude Include="src\components\circle\CircleComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\components\OsuScoring.cpp">
+      <Filter>components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\circle\Circle.cpp">
+      <Filter>components\circle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\circle\CircleComponent.cpp">
+      <Filter>components\circle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\circle\CircleParser.cpp">
+      <Filter>components\circle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\element\BezierSliderRenderElement.cpp">
+      <Filter>components\element</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\element\CircleRenderElement.cpp">
+      <Filter>components\element</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\slider\Slider.cpp">
+      <Filter>components\slider</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\slider\SliderComponent.cpp">
+      <Filter>components\slider</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\slider\SliderParser.cpp">
+      <Filter>components\slider</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\GameplayLayer.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\StoryboardLayer.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
     <ClCompile Include="src\osu!trainer.cpp" />
-    <ClCompile Include="src\core\GameplayLayer.cpp" />
-    <ClCompile Include="src\core\StoryboardLayer.cpp" />
-    <ClCompile Include="src\components\OsuScoring.cpp" />
-    <ClCompile Include="src\components\slider\SliderParser.cpp" />
-    <ClCompile Include="src\components\slider\Slider.cpp" />
-    <ClCompile Include="src\components\slider\SliderComponent.cpp" />
-    <ClCompile Include="src\components\element\BezierSliderRenderElement.cpp" />
-    <ClCompile Include="src\components\element\CircleRenderElement.cpp" />
-    <ClCompile Include="src\components\circle\Circle.cpp" />
-    <ClCompile Include="src\components\circle\CircleComponent.cpp" />
-    <ClCompile Include="src\components\circle\CircleParser.cpp" />
   </ItemGroup>
 </Project>

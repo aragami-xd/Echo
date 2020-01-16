@@ -1,8 +1,8 @@
 #include "Slider.h"
 using namespace std;
 
-Slider::Slider(float xs, float ys, vector<int> beat) :
-	Object(xs, ys), beats(beat), beatIndex(0)
+Slider::Slider(vector<int> beat) :
+	beats(beat), beatIndex(0)
 {
 	startTime = beats.front() - approachTime;
 	endTime = beats.back() + score50;

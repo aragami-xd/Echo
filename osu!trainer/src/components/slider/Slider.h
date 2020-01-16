@@ -8,7 +8,7 @@ private:
 	std::vector<int> beats;
 	int beatIndex;
 public:
-	Slider(float xs, float ys, std::vector<int> beat);
+	Slider(std::vector<int> beat);
 	
 	virtual int GetScore(int time);
 	virtual float GetApproachScale(int time);

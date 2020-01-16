@@ -100,12 +100,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\components\OsuScoring.h" />
     <ClInclude Include="src\components\circle\Circle.h" />
     <ClInclude Include="src\components\circle\CircleComponent.h" />
     <ClInclude Include="src\components\circle\CircleParser.h" />
     <ClInclude Include="src\components\element\BezierSliderRenderElement.h" />
     <ClInclude Include="src\components\element\CircleRenderElement.h" />
-    <ClInclude Include="src\components\OsuScoring.h" />
     <ClInclude Include="src\components\slider\Slider.h" />
     <ClInclude Include="src\components\slider\SliderComponent.h" />
     <ClInclude Include="src\components\slider\SliderParser.h" />
@@ -114,12 +114,12 @@
     <ClInclude Include="src\osu!trainer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\components\OsuScoring.cpp" />
     <ClCompile Include="src\components\circle\Circle.cpp" />
     <ClCompile Include="src\components\circle\CircleComponent.cpp" />
     <ClCompile Include="src\components\circle\CircleParser.cpp" />
     <ClCompile Include="src\components\element\BezierSliderRenderElement.cpp" />
     <ClCompile Include="src\components\element\CircleRenderElement.cpp" />
-    <ClCompile Include="src\components\OsuScoring.cpp" />
     <ClCompile Include="src\components\slider\Slider.cpp" />
     <ClCompile Include="src\components\slider\SliderComponent.cpp" />
     <ClCompile Include="src\components\slider\SliderParser.cpp" />

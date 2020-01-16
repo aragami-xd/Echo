@@ -8,14 +8,13 @@ pair<vector<float>, vector<float>> SliderParser::ParseControlPoints(stringstream
 
 	string token = "";
 
+	data >> token;
 	while (token != "$")
 	{
-		data >> token;						// xcp
-		xcp.push_back(stof(token));
-		data >> token;						// delim, cannot be "$"
-		data >> token;						// ycp
-		ycp.push_back(stof(token));
-		data >> token;						// delim, might be "$"
+		xcp.push_back(stof(token));		// xcp
+		data >> token;
+		ycp.push_back(stof(token));		// ycp
+		data >> token;
 	}
 	return { xcp,ycp };
 }
@@ -25,11 +24,11 @@ vector<int> SliderParser::ParseBeat(stringstream& data)
 	vector<int> beat;
 	string token = "";
 
+	data >> token;
 	while (token != "$")
 	{
-		data >> token;			// beat
 		beat.push_back(stoi(token));
-		data >> token;			// delim
+		data >> token;
 	}
 	return beat;
 }
@@ -43,14 +42,14 @@ ObjectComponent* SliderParser::SliderParserFunc(stringstream& ss)
 	// create slider
 	pair<vector<float>, vector<float>> cp = ParseControlPoints(ss);
 	vector<int> beat = ParseBeat(ss);
-	object->AddObject(new Slider(cp.first.front(), cp.second.front(), beat));
+	object->AddObject(new Slider(beat));
 
 	// add bezier curve
 	RenderElement* curve = new BezierSliderRenderElement(cp.first, cp.second, objectSize);
 	object->AddElement("curve", curve);
 
 	// add moving circle
-	RenderElement * circle = new CircleRenderElement(objectSize);
+	RenderElement * circle = new CircleRenderElement(cp.first.front(), cp.second.front(), objectSize);
 	object->AddElement("circle", circle);
 
 	return object;

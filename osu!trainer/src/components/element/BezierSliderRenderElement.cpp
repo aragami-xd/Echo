@@ -89,6 +89,16 @@ std::pair<float, float> BezierSliderRenderElement::CalcVertices(float x1, float 
 	return { a,b };
 }
 
+float BezierSliderRenderElement::GetX(int time)
+{
+	return 0.0f;
+}
+
+float BezierSliderRenderElement::GetY(int time)
+{
+	return 0.0f;
+}
+
 BezierSliderRenderElement::~BezierSliderRenderElement()
 {
 	delete va;

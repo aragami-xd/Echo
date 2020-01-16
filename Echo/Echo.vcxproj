@@ -150,6 +150,7 @@
     <ClCompile Include="src\Echo\buffers\VertexArray.cpp" />
     <ClCompile Include="src\Echo\buffers\VertexBuffer.cpp" />
     <ClCompile Include="src\Echo\components\Object.cpp" />
+    <ClCompile Include="src\Echo\components\ObjectComponent.cpp" />
     <ClCompile Include="src\Echo\components\Parser.cpp" />
     <ClCompile Include="src\Echo\components\RenderElement.cpp" />
     <ClCompile Include="src\Echo\components\Scoring.cpp" />
