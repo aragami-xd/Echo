@@ -160,5 +160,6 @@
     <ClCompile Include="src\platform\windows\WindowsWindow.cpp">
       <Filter>platform\windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\Echo\buffers\Renderer.cpp" />
   </ItemGroup>
 </Project>

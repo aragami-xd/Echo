@@ -2,8 +2,8 @@
 #include <Settings.h>
 using namespace std;
 
-Object::Object() :
-	startTime(0), endTime(0)
+Object::Object(const vector<int>& beat) :
+	beats(beat), beatIndex(0), startTime(0), endTime(0)
 {
 	approachTime = scaleAR / AR;
 
@@ -11,6 +11,14 @@ Object::Object() :
 	score300 = approachTime / (OD * score300Scaling);
 	score100 = approachTime / (OD * score100Scaling);
 	score50 = approachTime / (OD * score50Scaling);
+}
+
+float Object::GetApproachScale(int time)
+{
+	if (time < beats.front())
+		return abs(beats.front() - time) / (float)approachTime;
+	else
+		return 0;
 }
 
 /* static variables */

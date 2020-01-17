@@ -71,7 +71,7 @@ void GameplayLayer::OnEvent(Event& e)
 void GameplayLayer::Tapping(KeyDownEvent& e)
 {
 	if ((e.GetKey() == settings["keymapping"]["key1"] ||
-		e.GetKey() == settings["keymapping"]["key2"])  && !keyDown)
+		e.GetKey() == settings["keymapping"]["key2"]) && !keyDown)
 	{
 		keyDown = true;
 		int score = object[objectIterate]->OnEvent(mouseX, mouseY, Timing::GetTime());

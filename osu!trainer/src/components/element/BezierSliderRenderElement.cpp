@@ -1,7 +1,8 @@
 #include "BezierSliderRenderElement.h"
 using namespace std;
 
-BezierSliderRenderElement::BezierSliderRenderElement(vector<float>& xcp, vector<float>& ycp, float circleRadius)
+BezierSliderRenderElement::BezierSliderRenderElement(vector<float>& xcp, vector<float>& ycp, float circleRadius) :
+	xControlPoints(xcp), yControlPoints(ycp)
 {
 	/*	bezier curve point equation for 4 control points:
 		(1-t)^3 * P1 + 3 * (1-t)^2 * t * P2 + 3 * (1-t) * t^2 * P3 + t^3 * P4
@@ -12,21 +13,22 @@ BezierSliderRenderElement::BezierSliderRenderElement(vector<float>& xcp, vector<
 	queue<int> coefQueue;
 	coefQueue.push(1);
 	coefQueue.push(1);
-	vector<int> coef = RecursiveCoefficient(xcp.size() - 1, coefQueue);
+	coefficient = RecursiveCoefficient(xcp.size() - 1, coefQueue);
 
 	// calculate vertices
 	std::vector<float> center;
-	float smoothstep = settings["bezier_curve"]["smoothstep"];
+	float smoothstep = settings["bezier"]["step"];
 	for (float i = 0.0f; i <= 1.0f; i += smoothstep)
 	{
-		center.push_back(CalcCenter(coef, xcp, i));
-		center.push_back(CalcCenter(coef, ycp, i));
+		center.push_back(CalcCenter(coefficient, xcp, i));
+		center.push_back(CalcCenter(coefficient, ycp, i));
 	}
 
+	// temporary for now
 	vertices = center;
 
 	// generate buffers
-	vl = new VertexLayout();	
+	vl = new VertexLayout();
 	vl->Push<float>(2);
 	vb = new VertexBuffer(vertices.data(), vertices.size() * sizeof(float));
 	va = new VertexArray();
@@ -74,7 +76,7 @@ vector<int> BezierSliderRenderElement::RecursiveCoefficient(int coef, queue<int>
 		coefQueue.pop();	// delete the remaining 1 from the back from the previous queue
 
 		coefQueue.push(1);
-		
+
 		// recursive call
 		return RecursiveCoefficient(coef - 1, coefQueue);
 	}
@@ -89,14 +91,14 @@ std::pair<float, float> BezierSliderRenderElement::CalcVertices(float x1, float 
 	return { a,b };
 }
 
-float BezierSliderRenderElement::GetX(int time)
+float BezierSliderRenderElement::GetX(float time)
 {
-	return 0.0f;
+	return CalcCenter(coefficient, xControlPoints, time);
 }
 
-float BezierSliderRenderElement::GetY(int time)
+float BezierSliderRenderElement::GetY(float time)
 {
-	return 0.0f;
+	return CalcCenter(coefficient, yControlPoints, time);
 }
 
 BezierSliderRenderElement::~BezierSliderRenderElement()

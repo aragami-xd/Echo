@@ -12,7 +12,7 @@
     "hp": 7.0,
 
     "scaleAR": 5000,
-    "scaleCS": 200,
+    "scaleCS": 220,
 
     "score300": 2.0,
     "score100": 1.6,
@@ -45,8 +45,8 @@
     "vertices": 60
   },
 
-  "bezier_curve": {
-    "smoothstep": 0.01
+  "bezier": {
+    "step": 0.01
   },
 
   "keymapping": {

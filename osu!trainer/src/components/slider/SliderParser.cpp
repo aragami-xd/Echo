@@ -5,11 +5,10 @@ pair<vector<float>, vector<float>> SliderParser::ParseControlPoints(stringstream
 {
 	vector<float> xcp;
 	vector<float> ycp;
-
 	string token = "";
 
 	data >> token;
-	while (token != "$")
+	while (token != "|")
 	{
 		xcp.push_back(stof(token));		// xcp
 		data >> token;
@@ -25,9 +24,9 @@ vector<int> SliderParser::ParseBeat(stringstream& data)
 	string token = "";
 
 	data >> token;
-	while (token != "$")
+	while (token != "|")
 	{
-		beat.push_back(stoi(token));
+		beat.push_back(stoi(token));	// beat
 		data >> token;
 	}
 	return beat;
@@ -39,9 +38,11 @@ ObjectComponent* SliderParser::SliderParserFunc(stringstream& ss)
 	float objectSize = settings["metadata"]["scaleCS"] / (float)settings["metadata"]["cs"];
 	object->SetSize(objectSize);
 
-	// create slider
+	// parse
 	pair<vector<float>, vector<float>> cp = ParseControlPoints(ss);
 	vector<int> beat = ParseBeat(ss);
+
+	// create slider
 	object->AddObject(new Slider(beat));
 
 	// add bezier curve
@@ -49,7 +50,7 @@ ObjectComponent* SliderParser::SliderParserFunc(stringstream& ss)
 	object->AddElement("curve", curve);
 
 	// add moving circle
-	RenderElement * circle = new CircleRenderElement(cp.first.front(), cp.second.front(), objectSize);
+	RenderElement* circle = new CircleRenderElement(cp.first.front(), cp.second.front(), objectSize);
 	object->AddElement("circle", circle);
 
 	return object;

@@ -4,13 +4,9 @@
 
 class Circle : public Object
 {
-private:
-	int beat;
 public:
-	Circle(int beatTime);
-
+	Circle(int beat);
 	virtual int GetScore(int time);
-	virtual float GetApproachScale(int time);
-
+	inline virtual float GetBeatScale(int time) final override { return 1; }
 	~Circle() = default;
 };

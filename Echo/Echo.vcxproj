@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="src\Echo\buffers\IndexBuffer.cpp" />
     <ClCompile Include="src\Echo\buffers\Orthographic.cpp" />
+    <ClCompile Include="src\Echo\buffers\Renderer.cpp" />
     <ClCompile Include="src\Echo\buffers\Shader.cpp" />
     <ClCompile Include="src\Echo\buffers\Texture.cpp" />
     <ClCompile Include="src\Echo\buffers\VertexArray.cpp" />

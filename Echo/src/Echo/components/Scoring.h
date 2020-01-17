@@ -14,6 +14,6 @@ public:
 	virtual void AddScore(int sscore) = 0;
 
 	inline int GetMaxCombo() { return maxCombo; }
-	inline int GetCombo() {	return combo; }
+	inline int GetCombo() { return combo; }
 	inline int GetScore() { return score; }
 };

@@ -9,21 +9,9 @@ class ECHO_DLL Renderer
 private:
 	Renderer() = default;
 public:
-	static inline void Render(VertexArray* va, IndexBuffer* ib, GLenum flag = GL_TRIANGLES)
-	{
-		va->Bind();
-		ib->Bind();
-		glDrawElements(flag, ib->GetCount(), GL_UNSIGNED_INT, nullptr);
-	}
+	// render using vertex array and index array
+	static void Render(VertexArray* va, IndexBuffer* ib, GLenum flag = GL_LINE_LOOP, int weight = 1);
 
-	static inline void Render(VertexArray* va, int count, GLenum flag = GL_TRIANGLES)
-	{
-		va->Bind();
-		glDrawArrays(flag, 0, count);
-	}
-
-	static inline void StrokeWeight(int weight)
-	{
-		glLineWidth(weight);
-	}
+	// render using vertex array only
+	static void Render(VertexArray* va, int count, GLenum flag = GL_LINE_LOOP, int weight = 1);
 };

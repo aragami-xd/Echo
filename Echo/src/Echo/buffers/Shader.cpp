@@ -78,7 +78,6 @@ unsigned int Shader::CreateShader(const string& vertex, const string& fragment)
 	return program;
 }
 
-
 void Shader::Bind()
 {
 	glUseProgram(program);

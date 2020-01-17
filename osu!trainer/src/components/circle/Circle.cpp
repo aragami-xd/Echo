@@ -3,16 +3,16 @@
 #include <components/element/CircleRenderElement.h>
 using namespace std;
 
-Circle::Circle(int beatTime) :
-	beat(beatTime)
+Circle::Circle(int beat) :
+	Object({ beat })
 {
-	startTime = beatTime - approachTime;
-	endTime = beatTime + score50;
+	startTime = beat - approachTime;
+	endTime = beat + score50;
 }
 
 int Circle::GetScore(int time)
 {
-	time = abs(beat - time);
+	time = abs(beats.front() - time);
 	if (time < score300)
 		return 300;
 	else if (time < score100)
@@ -21,9 +21,4 @@ int Circle::GetScore(int time)
 		return 50;
 	else
 		return 0;	// 0 score is a miss
-}
-
-float Circle::GetApproachScale(int time)
-{
-	return abs(beat - time) / (float)approachTime;
 }

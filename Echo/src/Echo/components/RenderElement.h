@@ -7,20 +7,22 @@
 class ECHO_DLL RenderElement
 {
 protected:
+	RenderElement();
+
 	// buffers
 	VertexLayout* vl;
 	VertexArray* va;
 	VertexBuffer* vb;
 	IndexBuffer* ib;
 public:
-	RenderElement();
-
+	// get the buffers (vertex layout and vertex buffer are not needed)
 	VertexArray* GetVertexArray() { return va; }
 	IndexBuffer* GetIndexBuffer() { return ib; }
 
 	// all elements must be able to return x and y when needed
-	virtual float GetX(int time) = 0;
-	virtual float GetY(int time) = 0;
+	// for moving objects, time is needed to calculate the coordinates
+	virtual float GetX(float time) = 0;
+	virtual float GetY(float time) = 0;
 
 	~RenderElement();
 };

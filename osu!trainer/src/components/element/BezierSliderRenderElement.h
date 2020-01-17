@@ -5,6 +5,11 @@
 class BezierSliderRenderElement : public RenderElement
 {
 private:
+	// control points and equation coefficient
+	std::vector<float> xControlPoints;
+	std::vector<float> yControlPoints;
+	std::vector<int> coefficient;
+
 	// the outer vertices of the slider
 	std::vector<float> vertices;
 
@@ -25,8 +30,8 @@ public:
 
 	inline float* GetVertices() { return vertices.data(); }
 
-	virtual float GetX(int time);
-	virtual float GetY(int time);
+	virtual float GetX(float time);
+	virtual float GetY(float time);
 
 	~BezierSliderRenderElement();
 };

@@ -13,8 +13,8 @@ public:
 
 	inline float* GetVertices() { return vertices.data(); }
 
-	inline virtual float GetX(int time) { return x; }
-	inline virtual float GetY(int time) { return y; }
+	inline virtual float GetX(float time) { return x; }
+	inline virtual float GetY(float time) { return y; }
 
 	~CircleRenderElement();
 };
