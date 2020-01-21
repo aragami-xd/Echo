@@ -60,7 +60,7 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_BUILD;GLFW_INCLUDE_NONE;ECHO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor;vendor\glfw\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\vendor;src;vendor;vendor\glfw\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -87,7 +87,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_BUILD;GLFW_INCLUDE_NONE;ECHO_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor;vendor\glfw\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\vendor;src;vendor;vendor\glfw\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -127,7 +127,6 @@
     <ClInclude Include="src\Echo\components\Scoring.h" />
     <ClInclude Include="src\Echo\components\Timing.h" />
     <ClInclude Include="src\Echo\core\Application.h" />
-    <ClInclude Include="src\Echo\core\Container.h" />
     <ClInclude Include="src\Echo\core\EntryPoint.h" />
     <ClInclude Include="src\Echo\core\Layer.h" />
     <ClInclude Include="src\Echo\core\LayerStack.h" />
@@ -157,7 +156,6 @@
     <ClCompile Include="src\Echo\components\Scoring.cpp" />
     <ClCompile Include="src\Echo\components\Timing.cpp" />
     <ClCompile Include="src\Echo\core\Application.cpp" />
-    <ClCompile Include="src\Echo\core\Container.cpp" />
     <ClCompile Include="src\Echo\core\LayerStack.cpp" />
     <ClCompile Include="src\EchoHeader.cpp" />
     <ClCompile Include="src\platform\windows\WindowsWindow.cpp" />

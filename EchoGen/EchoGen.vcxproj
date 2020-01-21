@@ -11,21 +11,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{92041E33-FEB9-9628-87AE-90FFF3628D2C}</ProjectGuid>
+    <ProjectGuid>{9EC1B8B1-0AA1-374D-13B9-C2237F179EAE}</ProjectGuid>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>osu!trainer</RootNamespace>
+    <RootNamespace>EchoGen</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
@@ -42,25 +42,25 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Debug-windows\osu!trainer\</OutDir>
-    <IntDir>..\bin-int\Debug-windows\osutrainer\</IntDir>
-    <TargetName>osu!trainer</TargetName>
-    <TargetExt>.exe</TargetExt>
+    <OutDir>..\bin\Debug-windows\EchoGen\</OutDir>
+    <IntDir>..\bin-int\Debug-windows\EchoGen\</IntDir>
+    <TargetName>EchoGen</TargetName>
+    <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Release-windows\osu!trainer\</OutDir>
-    <IntDir>..\bin-int\Release-windows\osutrainer\</IntDir>
-    <TargetName>osu!trainer</TargetName>
-    <TargetExt>.exe</TargetExt>
+    <OutDir>..\bin\Release-windows\EchoGen\</OutDir>
+    <IntDir>..\bin-int\Release-windows\EchoGen\</IntDir>
+    <TargetName>EchoGen</TargetName>
+    <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\vendor;..\Echo\src;..\Echo\vendor;src;vendor;..\Echo\vendor\glfw\include;..\Echo\vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_BUILD;ECHO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\vendor;src;vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -71,18 +71,21 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
+      <ImportLibrary>..\bin\Debug-windows\EchoGen\EchoGen.lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\bin\Debug-windows\EchoGen\EchoGen.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows\EchoGen\EchoGen.dll ..\bin\Debug-windows\osu!gen &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows\EchoGen\EchoGen.dll ..\bin\Debug-windows\osu!gen &gt; nul)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\vendor;..\Echo\src;..\Echo\vendor;src;vendor;..\Echo\vendor\glfw\include;..\Echo\vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_BUILD;ECHO_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\vendor;src;vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -93,44 +96,27 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
+      <ImportLibrary>..\bin\Release-windows\EchoGen\EchoGen.lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\bin\Release-windows\EchoGen\EchoGen.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows\EchoGen\EchoGen.dll ..\bin\Release-windows\osu!gen &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows\EchoGen\EchoGen.dll ..\bin\Release-windows\osu!gen &gt; nul)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\components\OsuScoring.h" />
-    <ClInclude Include="src\components\circle\Circle.h" />
-    <ClInclude Include="src\components\circle\CircleComponent.h" />
-    <ClInclude Include="src\components\circle\CircleParser.h" />
-    <ClInclude Include="src\components\element\BezierSliderRenderElement.h" />
-    <ClInclude Include="src\components\element\CircleRenderElement.h" />
-    <ClInclude Include="src\components\slider\Slider.h" />
-    <ClInclude Include="src\components\slider\SliderComponent.h" />
-    <ClInclude Include="src\components\slider\SliderParser.h" />
-    <ClInclude Include="src\core\GameplayLayer.h" />
-    <ClInclude Include="src\core\StoryboardLayer.h" />
-    <ClInclude Include="src\osu!trainer.h" />
+    <ClInclude Include="src\Core.h" />
+    <ClInclude Include="src\EchoGen.h" />
+    <ClInclude Include="src\EchoGen\Log.h" />
+    <ClInclude Include="src\EchoGen\Pattern.h" />
+    <ClInclude Include="src\EchoHeader.h" />
+    <ClInclude Include="src\EchoGen\PatternList.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\components\OsuScoring.cpp" />
-    <ClCompile Include="src\components\circle\Circle.cpp" />
-    <ClCompile Include="src\components\circle\CircleComponent.cpp" />
-    <ClCompile Include="src\components\circle\CircleParser.cpp" />
-    <ClCompile Include="src\components\element\BezierSliderRenderElement.cpp" />
-    <ClCompile Include="src\components\element\CircleRenderElement.cpp" />
-    <ClCompile Include="src\components\slider\Slider.cpp" />
-    <ClCompile Include="src\components\slider\SliderComponent.cpp" />
-    <ClCompile Include="src\components\slider\SliderParser.cpp" />
-    <ClCompile Include="src\core\GameplayLayer.cpp" />
-    <ClCompile Include="src\core\StoryboardLayer.cpp" />
-    <ClCompile Include="src\osu!trainer.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Echo\Echo.vcxproj">
-      <Project>{A498847C-90CF-850D-39BC-6B1025D2010F}</Project>
-    </ProjectReference>
+    <ClCompile Include="src\EchoGen\Pattern.cpp" />
+    <ClCompile Include="src\EchoGen\PatternList.cpp" />
+    <ClCompile Include="src\EchoHeader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

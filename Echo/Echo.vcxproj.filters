@@ -71,9 +71,6 @@
     <ClInclude Include="src\Echo\core\Application.h">
       <Filter>Echo\core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Echo\core\Container.h">
-      <Filter>Echo\core</Filter>
-    </ClInclude>
     <ClInclude Include="src\Echo\core\EntryPoint.h">
       <Filter>Echo\core</Filter>
     </ClInclude>
@@ -117,6 +114,9 @@
     <ClCompile Include="src\Echo\buffers\Orthographic.cpp">
       <Filter>Echo\buffers</Filter>
     </ClCompile>
+    <ClCompile Include="src\Echo\buffers\Renderer.cpp">
+      <Filter>Echo\buffers</Filter>
+    </ClCompile>
     <ClCompile Include="src\Echo\buffers\Shader.cpp">
       <Filter>Echo\buffers</Filter>
     </ClCompile>
@@ -150,9 +150,6 @@
     <ClCompile Include="src\Echo\core\Application.cpp">
       <Filter>Echo\core</Filter>
     </ClCompile>
-    <ClCompile Include="src\Echo\core\Container.cpp">
-      <Filter>Echo\core</Filter>
-    </ClCompile>
     <ClCompile Include="src\Echo\core\LayerStack.cpp">
       <Filter>Echo\core</Filter>
     </ClCompile>
@@ -160,6 +157,5 @@
     <ClCompile Include="src\platform\windows\WindowsWindow.cpp">
       <Filter>platform\windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Echo\buffers\Renderer.cpp" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="EchoGen">
+      <UniqueIdentifier>{9EC1B8B1-0AA1-374D-13B9-C2237F179EAE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Core.h" />
+    <ClInclude Include="src\EchoGen.h" />
+    <ClInclude Include="src\EchoGen\Pattern.h">
+      <Filter>EchoGen</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EchoHeader.h" />
+    <ClInclude Include="src\EchoGen\PatternList.h" />
+    <ClInclude Include="src\EchoGen\Log.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\EchoHeader.cpp" />
+    <ClCompile Include="src\EchoGen\Pattern.cpp" />
+    <ClCompile Include="src\EchoGen\PatternList.cpp" />
+  </ItemGroup>
+</Project>

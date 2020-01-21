@@ -19,6 +19,7 @@ void SliderComponent::Render(ShaderList* shaders, int time)
 
 	/* render the slider circle */
 	// translate
+	// translate the circle based on the time ratio above
 	glm::mat4 viewCircle = glm::translate(
 		glm::mat4(1.0f), 
 		glm::vec3(bezier->GetX(timeRatio), bezier->GetY(timeRatio), 0.0f)

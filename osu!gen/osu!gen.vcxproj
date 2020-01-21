@@ -11,10 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{92041E33-FEB9-9628-87AE-90FFF3628D2C}</ProjectGuid>
+    <ProjectGuid>{7744DA78-E323-5914-EC3B-E4EA589ABF75}</ProjectGuid>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>osu!trainer</RootNamespace>
+    <RootNamespace>osu!gen</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -42,16 +42,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Debug-windows\osu!trainer\</OutDir>
-    <IntDir>..\bin-int\Debug-windows\osutrainer\</IntDir>
-    <TargetName>osu!trainer</TargetName>
+    <OutDir>..\bin\Debug-windows\osu!gen\</OutDir>
+    <IntDir>..\bin-int\Debug-windows\osugen\</IntDir>
+    <TargetName>osu!gen</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Release-windows\osu!trainer\</OutDir>
-    <IntDir>..\bin-int\Release-windows\osutrainer\</IntDir>
-    <TargetName>osu!trainer</TargetName>
+    <OutDir>..\bin\Release-windows\osu!gen\</OutDir>
+    <IntDir>..\bin-int\Release-windows\osugen\</IntDir>
+    <TargetName>osu!gen</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -60,7 +60,7 @@
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\vendor;..\Echo\src;..\Echo\vendor;src;vendor;..\Echo\vendor\glfw\include;..\Echo\vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\vendor;..\EchoGen\src;..\EchoGen\vendor;src;vendor;..\Echo\vendor\glfw\include;..\Echo\vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -74,7 +74,6 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -82,7 +81,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\vendor;..\Echo\src;..\Echo\vendor;src;vendor;..\Echo\vendor\glfw\include;..\Echo\vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\vendor;..\EchoGen\src;..\EchoGen\vendor;src;vendor;..\Echo\vendor\glfw\include;..\Echo\vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -96,40 +95,11 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\components\OsuScoring.h" />
-    <ClInclude Include="src\components\circle\Circle.h" />
-    <ClInclude Include="src\components\circle\CircleComponent.h" />
-    <ClInclude Include="src\components\circle\CircleParser.h" />
-    <ClInclude Include="src\components\element\BezierSliderRenderElement.h" />
-    <ClInclude Include="src\components\element\CircleRenderElement.h" />
-    <ClInclude Include="src\components\slider\Slider.h" />
-    <ClInclude Include="src\components\slider\SliderComponent.h" />
-    <ClInclude Include="src\components\slider\SliderParser.h" />
-    <ClInclude Include="src\core\GameplayLayer.h" />
-    <ClInclude Include="src\core\StoryboardLayer.h" />
-    <ClInclude Include="src\osu!trainer.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\components\OsuScoring.cpp" />
-    <ClCompile Include="src\components\circle\Circle.cpp" />
-    <ClCompile Include="src\components\circle\CircleComponent.cpp" />
-    <ClCompile Include="src\components\circle\CircleParser.cpp" />
-    <ClCompile Include="src\components\element\BezierSliderRenderElement.cpp" />
-    <ClCompile Include="src\components\element\CircleRenderElement.cpp" />
-    <ClCompile Include="src\components\slider\Slider.cpp" />
-    <ClCompile Include="src\components\slider\SliderComponent.cpp" />
-    <ClCompile Include="src\components\slider\SliderParser.cpp" />
-    <ClCompile Include="src\core\GameplayLayer.cpp" />
-    <ClCompile Include="src\core\StoryboardLayer.cpp" />
-    <ClCompile Include="src\osu!trainer.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Echo\Echo.vcxproj">
-      <Project>{A498847C-90CF-850D-39BC-6B1025D2010F}</Project>
+    <ProjectReference Include="..\EchoGen\EchoGen.vcxproj">
+      <Project>{9EC1B8B1-0AA1-374D-13B9-C2237F179EAE}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
