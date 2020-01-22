@@ -2,35 +2,38 @@
 
 #include <Echo.h>
 
-class GameplayLayer : public Layer
+namespace OsuTrainer
 {
-private:
-	// shaders
-	ShaderList* shaders;
+	class GameplayLayer : public Echo::Layer
+	{
+	private:
+		// shaders
+		Echo::ShaderList* shaders;
 
-	// parser
-	Parser* parser;
+		// parser
+		Echo::Parser* parser;
 
-	// scoring
-	Scoring* scoring;
+		// scoring
+		Echo::Scoring* scoring;
 
-	// object component vector
-	std::vector<ObjectComponent*> object;
-	int objectIterate = 0;
+		// object component vector
+		std::vector<Echo::ObjectComponent*> object;
+		int objectIterate = 0;
 
-	/* event functions */
-	float mouseX, mouseY;
-	bool keyDown = false;
+		/* event functions */
+		float mouseX, mouseY;
+		bool keyDown = false;
 
-	// functions
-	void Tapping(KeyDownEvent& e);
-	void Release(KeyUpEvent& e);
-	void MouseMove(MouseMoveEvent& e);
-public:
-	GameplayLayer();
+		// functions
+		void Tapping(Echo::KeyDownEvent& e);
+		void Release(Echo::KeyUpEvent& e);
+		void MouseMove(Echo::MouseMoveEvent& e);
+	public:
+		GameplayLayer();
 
-	virtual void Update() override;
-	virtual void OnEvent(Event& e) override;
+		virtual void Update() override;
+		virtual void OnEvent(Echo::Event& e) override;
 
-	~GameplayLayer();
-};
+		~GameplayLayer();
+	};
+}

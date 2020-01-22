@@ -3,14 +3,12 @@
 #include <Echo/events/KeyboardEvent.h>
 #include <Echo/events/MouseEvent.h>
 
-using namespace std;
-
-Window* Window::Create(const WindowSetting& ws)
+Echo::Window* Echo::Window::Create(const Echo::WindowSetting& ws)
 {
-	return new WindowsWindow(ws);
+	return new Echo::WindowsWindow(ws);
 }
 
-WindowsWindow::WindowsWindow(const WindowSetting& ws)
+Echo::WindowsWindow::WindowsWindow(const Echo::WindowSetting& ws)
 {
 	wd.width = ws.width;
 	wd.height = ws.height;
@@ -49,7 +47,7 @@ WindowsWindow::WindowsWindow(const WindowSetting& ws)
 	InitCallback();
 }
 
-void WindowsWindow::InitCallback()
+void Echo::WindowsWindow::InitCallback()
 {
 	// window functions
 	glfwSetWindowCloseCallback(window, [](GLFWwindow* w)
@@ -127,14 +125,14 @@ void WindowsWindow::InitCallback()
 	);
 }
 
-void WindowsWindow::Update()
+void Echo::WindowsWindow::Update()
 {
 	// swap buffers and poll for events
 	glfwSwapBuffers(window);
 	glfwPollEvents();
 }
 
-WindowsWindow::~WindowsWindow()
+Echo::WindowsWindow::~WindowsWindow()
 {
 	LOG_erase("terminate program");
 	glfwTerminate();

@@ -2,9 +2,12 @@
 
 #include "Event.h"
 
-class WindowCloseEvent : public Event
+namespace Echo
 {
-public:
-	WindowCloseEvent() = default;
-	EVENT_CLASS_TYPE(WindowClose);
-};
+	class WindowCloseEvent : public Echo::Event
+	{
+	public:
+		WindowCloseEvent() = default;
+		EVENT_CLASS_TYPE(WindowClose);
+	};
+}

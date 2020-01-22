@@ -1,12 +1,18 @@
 #include "Orthographic.h"
 
-void Orthographic::SetViewMatrix(Shader* shader, glm::mat4 matrix)
+void Echo::Orthographic::SetModelMatrix(Shader* shader, const glm::mat4& matrix)
+{
+	shader->Bind();
+	shader->SetShaderUniformMat4f("model", matrix);
+}
+
+void Echo::Orthographic::SetViewMatrix(Shader* shader, const glm::mat4& matrix)
 {
 	shader->Bind();
 	shader->SetShaderUniformMat4f("view", matrix);
 }
 
-void Orthographic::SetProjMatrix(Shader* shader, glm::mat4 matrix)
+void Echo::Orthographic::SetProjMatrix(Shader* shader, const glm::mat4& matrix)
 {
 	shader->Bind();
 	shader->SetShaderUniformMat4f("proj", matrix);

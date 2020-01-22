@@ -1,19 +1,18 @@
 #include "Slider.h"
-using namespace std;
 
-Slider::Slider(vector<int> beat) :
+OsuTrainer::Slider::Slider(std::vector<int> beat) :
 	Object(beat)
 {
 	startTime = beats.front() - approachTime;
 	endTime = beats.back();
 }
 
-int Slider::GetScore(int time)
+int OsuTrainer::Slider::GetScore(int time)
 {
 	return 0;
 }
 
-float Slider::GetApproachScale(int time)
+float OsuTrainer::Slider::GetApproachScale(int time)
 {
 	if (time < beats.front())
 		return abs(beats.front() - time) / (float)approachTime;
@@ -21,7 +20,7 @@ float Slider::GetApproachScale(int time)
 		return 0;
 }
 
-float Slider::GetBeatScale(int time)
+float OsuTrainer::Slider::GetBeatScale(int time)
 {
 	if (time < beats.front())
 		return 0;

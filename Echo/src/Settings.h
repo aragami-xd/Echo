@@ -5,10 +5,13 @@
 
 using json = nlohmann::json;
 
-const json settings = json::parse(
+namespace Echo
+{
+	const json settings = json::parse(
 #ifdef ECHO_DEBUG
-	std::ifstream(std::filesystem::current_path().string() + "/../Echo/src/Settings.json")
+		std::ifstream(std::filesystem::current_path().string() + "/../Echo/src/Settings.json")
 #else
-	std::ifstream(std::filesystem::current_path().string() + "/Settings.json")
+		std::ifstream(std::filesystem::current_path().string() + "/Settings.json")
 #endif
-);
+	);
+}

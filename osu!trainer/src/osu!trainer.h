@@ -2,15 +2,18 @@
 
 #include <Echo.h>
 
-class Program : public Application
+namespace OsuTrainer
 {
-private:
-public:
-	Program();
-	~Program();
-};
+	class Program : public Echo::Application
+	{
+	private:
+	public:
+		Program();
+		~Program();
+	};
+}
 
-Application* CreateApp()
+Echo::Application* CreateApp()
 {
-	return new Program();
+	return new OsuTrainer::Program();
 }

@@ -2,12 +2,15 @@
 
 #include <Echo.h>
 
-class Slider : public Object
+namespace OsuTrainer
 {
-public:
-	Slider(std::vector<int> beat);
-	virtual int GetScore(int time);
-	virtual float GetApproachScale(int time);
-	virtual float GetBeatScale(int time);
-	~Slider() = default;
-};
+	class Slider : public Echo::Object
+	{
+	public:
+		Slider(std::vector<int> beat);
+		virtual int GetScore(int time);
+		virtual float GetApproachScale(int time);
+		virtual float GetBeatScale(int time);
+		~Slider() = default;
+	};
+}

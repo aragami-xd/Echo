@@ -4,9 +4,8 @@
 
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
-using namespace std;
 
-Application::Application() :
+Echo::Application::Application() :
 	running(true)
 {
 	LOG_init("echo");
@@ -18,40 +17,40 @@ Application::Application() :
 
 	// create new window
 	window = std::unique_ptr<Window>(Window::Create(ws));
-	window->SetEventCallbackFunc(EVENT_FUNC(Application::OnEvent));
+	window->SetEventCallbackFunc(EVENT_FUNC(Echo::Application::OnEvent));
 }
 
-void Application::OnEvent(Event& e)
+void Echo::Application::OnEvent(Event& e)
 {
 	EventInvoker invoker(e);
-	invoker.Invoke<WindowCloseEvent>(EVENT_FUNC(Application::CloseWindow));
+	invoker.Invoke<WindowCloseEvent>(EVENT_FUNC(Echo::Application::CloseWindow));
 
 	for (auto layer = layerStack.rbegin(); layer != layerStack.rend(); layer++)
 		(*(*layer)).OnEvent(e);
 }
 
-void Application::CloseWindow(WindowCloseEvent& e)
+void Echo::Application::CloseWindow(WindowCloseEvent& e)
 {
 	running = false;
 }
 
-void Application::PushLayer(Layer* layer)
+void Echo::Application::PushLayer(Layer* layer)
 {
 	layerStack.push_back(layer);
 }
 
-void Application::PopLayer(const std::string& name)
+void Echo::Application::PopLayer(const std::string& name)
 {
 	layerStack.push_to_top(name);
 	layerStack.pop_back();
 }
 
-void Application::PushToTop(const std::string& name)
+void Echo::Application::PushToTop(const std::string& name)
 {
 	layerStack.push_to_top(name);
 }
 
-void Application::Run()
+void Echo::Application::Run()
 {
 	// start the timer
 	Timing::StartProgram();
@@ -72,6 +71,6 @@ void Application::Run()
 	}
 }
 
-Application::~Application()
+Echo::Application::~Application()
 {
 }

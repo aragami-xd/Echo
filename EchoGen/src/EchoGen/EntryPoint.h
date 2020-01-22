@@ -1,9 +1,9 @@
 #pragma once
 
 /* entry point creates the main program for the application */
-#ifdef ECHO_WINDOWS
+#ifdef ECHO_GEN_WINDOWS
 
-extern Echo::Application* CreateApp();
+extern EchoGen::Application* CreateApp();
 
 int main(int argc, char** argv)
 {

@@ -3,16 +3,19 @@
 #include "VertexLayout.h"
 #include "VertexBuffer.h"
 
-class ECHO_DLL VertexArray
+namespace Echo
 {
-private:
-	unsigned int id;
-public:
-	VertexArray();
+	class ECHO_DLL VertexArray
+	{
+	private:
+		unsigned int id;
+	public:
+		VertexArray();
 
-	void AddBuffer(VertexLayout& vl, VertexBuffer& vb);
-	void Bind();
-	void Unbind();
+		void AddBuffer(VertexLayout& vl, VertexBuffer& vb);
+		void Bind();
+		void Unbind();
 
-	~VertexArray();
-};
+		~VertexArray();
+	};
+}

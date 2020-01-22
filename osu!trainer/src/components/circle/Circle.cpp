@@ -1,16 +1,15 @@
 #include "Circle.h"
 #include "CircleComponent.h"
 #include <components/element/CircleRenderElement.h>
-using namespace std;
 
-Circle::Circle(int beat) :
+OsuTrainer::Circle::Circle(int beat) :
 	Object({ beat })
 {
 	startTime = beat - approachTime;
 	endTime = beat + score50;
 }
 
-int Circle::GetScore(int time)
+int OsuTrainer::Circle::GetScore(int time)
 {
 	time = abs(beats.front() - time);
 	if (time < score300)

@@ -5,41 +5,46 @@
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
 
-struct VertexElement
+namespace Echo
 {
-	unsigned int type;
-	unsigned int byte;
-	unsigned int count;
-	unsigned char normalized;
-};
-
-class ECHO_DLL VertexLayout
-{
-private:
-	std::vector<VertexElement> vertexElement;
-	int stride = 0;
-
-public:
-	inline int GetStride() { return stride; }
-	inline std::vector<VertexElement> GetVertexElement() { return vertexElement; }
-
-	template<typename T>
-	void Push(unsigned int count)
+	/* containing data to construct the vertex array */
+	struct VertexElement
 	{
-		static_assert();
-	}
+		unsigned int type;
+		unsigned int byte;
+		unsigned int count;
+		unsigned char normalized;
+	};
 
-	template<>
-	void Push<float>(unsigned int count)
+	/* constructing the vertex element */
+	class ECHO_DLL VertexLayout
 	{
-		vertexElement.push_back({ GL_FLOAT, sizeof(float), count, GL_FALSE });
-		stride += sizeof(float) * count;
-	}
+	private:
+		std::vector<VertexElement> vertexElement;
+		int stride = 0;
 
-	template<>
-	void Push<int>(unsigned int count)
-	{
-		vertexElement.push_back({ GL_INT, sizeof(int), count, GL_FALSE });
-		stride += sizeof(int) * count;
-	}
-};
+	public:
+		inline int GetStride() { return stride; }
+		inline std::vector<VertexElement> GetVertexElement() { return vertexElement; }
+
+		template<typename T>
+		inline void Push(unsigned int count)
+		{
+			static_assert();
+		}
+
+		template<>
+		inline void Push<float>(unsigned int count)
+		{
+			vertexElement.push_back({ GL_FLOAT, sizeof(float), count, GL_FALSE });
+			stride += sizeof(float) * count;
+		}
+
+		template<>
+		inline void Push<int>(unsigned int count)
+		{
+			vertexElement.push_back({ GL_INT, sizeof(int), count, GL_FALSE });
+			stride += sizeof(int) * count;
+		}
+	};
+}

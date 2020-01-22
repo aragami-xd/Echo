@@ -4,9 +4,12 @@
 #include <components/element/BezierSliderRenderElement.h>
 #include <components/element/CircleRenderElement.h>
 
-class SliderComponent : public ObjectComponent
+namespace OsuTrainer
 {
-public:
-	virtual void Render(ShaderList* shaders, int time);
-	virtual int OnEvent(float x, float y, int time);
-};
+	class SliderComponent : public Echo::ObjectComponent
+	{
+	public:
+		virtual void Render(Echo::ShaderList* shaders, int time);
+		virtual int OnEvent(float x, float y, int time);
+	};
+}

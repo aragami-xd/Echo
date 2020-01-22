@@ -1,6 +1,6 @@
 #include "OsuScoring.h"
 
-void OsuScoring::AddScore(int sscore)
+void OsuTrainer::OsuScoring::AddScore(int sscore)
 {
 	if (sscore < 0)
 		return;

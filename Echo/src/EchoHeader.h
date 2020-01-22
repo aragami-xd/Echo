@@ -30,6 +30,9 @@
 // log
 #include <Echo/core/Log.h>
 
+// PI
+#define PI 3.14
+
 // windows specific
 #ifdef ECHO_WINDOWS
 #include <Windows.h>

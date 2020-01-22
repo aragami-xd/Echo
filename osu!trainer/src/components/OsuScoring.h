@@ -2,8 +2,11 @@
 
 #include <Echo.h>
 
-class OsuScoring : public Scoring
+namespace OsuTrainer
 {
-public:
-	virtual void AddScore(int sscore);
-};
+	class OsuScoring : public Echo::Scoring
+	{
+	public:
+		virtual void AddScore(int sscore);
+	};
+}

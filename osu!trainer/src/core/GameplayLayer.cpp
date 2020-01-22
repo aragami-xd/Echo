@@ -3,50 +3,48 @@
 #include <components/circle/CircleParser.h>
 #include <components/slider/SliderParser.h>
 
-using namespace std;
-
-GameplayLayer::GameplayLayer() :
+OsuTrainer::GameplayLayer::GameplayLayer() :
 	Layer("gameplay layer"), mouseX(0), mouseY(0)
 {
 	LOG_init("gameplay layer");
 
 	// new shaders
-	shaders = new ShaderList();
-	shaders->Push("basic", new Shader(settings["shader"]["basicVertex"], settings["shader"]["basicFragment"]));
+	shaders = new Echo::ShaderList();
+	shaders->Push("basic", new Echo::Shader(Echo::settings["shader"]["basicVertex"], Echo::settings["shader"]["basicFragment"]));
 	//shaders->Push("line", new Shader(settings["shader"]["lineVertex"], settings["shader"]["lineFragment"]));
 
 	// set screen ratio for all shaders
-	glm::mat4 ratio = glm::ortho(0.0f, (float)settings["window"]["width"], 0.0f, (float)settings["window"]["height"]);
+	glm::mat4 ratio = glm::ortho(0.0f, (float)Echo::settings["window"]["width"], 0.0f, (float)Echo::settings["window"]["height"]);
 	for (auto shader : *shaders)
-		Orthographic::SetProjMatrix(shader.second, ratio);
+		Echo::Orthographic::SetProjMatrix(shader.second, ratio);
 
 	// new parser
-	parser = new Parser(settings["path"]["beatmapPath"]);
-	parser->AddParseFunc("circle", CircleParser::CircleParserFunc);
-	parser->AddParseFunc("slider", SliderParser::SliderParserFunc);
+	parser = new Echo::Parser(Echo::settings["path"]["beatmapPath"]);
+	parser->AddParseFunc("circle", OsuTrainer::CircleParser::CircleParserFunc);
+	parser->AddParseFunc("slider", OsuTrainer::SliderParser::SliderParserFunc);
 
 	// parse everything
 	LOG_message("parsing");
 	while (1)
 	{
-		ObjectComponent* oc = parser->Parse();
+		Echo::ObjectComponent* oc = parser->Parse();
 		if (oc == nullptr)
 			break;
 		else
 			object.push_back(oc);
 	}
-	LOG_message("parsed total: " + to_string(object.size()));
+	LOG_message("parsed total: " + std::to_string(object.size()));
 
 	// scoring system
 	scoring = new OsuScoring();
 }
 
-void GameplayLayer::Update()
+void OsuTrainer::GameplayLayer::Update()
 {
 	// loop through the objects and only render the ones within the time range
 	for (int i = objectIterate; i < object.size(); i++)
 	{
-		int time = Timing::GetTime();
+		int time = Echo::Timing::GetTime();
 		if (time > object[i]->GetObject()->GetEndTime())		// first object disappears
 		{
 			objectIterate++;
@@ -60,42 +58,42 @@ void GameplayLayer::Update()
 	}
 }
 
-void GameplayLayer::OnEvent(Event& e)
+void OsuTrainer::GameplayLayer::OnEvent(Echo::Event& e)
 {
-	EventInvoker invoker(e);
-	invoker.Invoke<KeyDownEvent>(EVENT_FUNC(GameplayLayer::Tapping));
-	invoker.Invoke<KeyUpEvent>(EVENT_FUNC(GameplayLayer::Release));
-	invoker.Invoke<MouseMoveEvent>(EVENT_FUNC(GameplayLayer::MouseMove));
+	Echo::EventInvoker invoker(e);
+	invoker.Invoke<Echo::KeyDownEvent>(EVENT_FUNC(GameplayLayer::Tapping));
+	invoker.Invoke<Echo::KeyUpEvent>(EVENT_FUNC(GameplayLayer::Release));
+	invoker.Invoke<Echo::MouseMoveEvent>(EVENT_FUNC(GameplayLayer::MouseMove));
 }
 
-void GameplayLayer::Tapping(KeyDownEvent& e)
+void OsuTrainer::GameplayLayer::Tapping(Echo::KeyDownEvent& e)
 {
-	if ((e.GetKey() == settings["keymapping"]["key1"] ||
-		e.GetKey() == settings["keymapping"]["key2"]) && !keyDown)
+	if ((e.GetKey() == Echo::settings["keymapping"]["key1"] ||
+		e.GetKey() == Echo::settings["keymapping"]["key2"]) && !keyDown)
 	{
 		keyDown = true;
-		int score = object[objectIterate]->OnEvent(mouseX, mouseY, Timing::GetTime());
+		int score = object[objectIterate]->OnEvent(mouseX, mouseY, Echo::Timing::GetTime());
 		scoring->AddScore(score);
 	}
 }
 
-void GameplayLayer::Release(KeyUpEvent& e)
+void OsuTrainer::GameplayLayer::Release(Echo::KeyUpEvent& e)
 {
 	keyDown = false;
 }
 
-void GameplayLayer::MouseMove(MouseMoveEvent& e)
+void OsuTrainer::GameplayLayer::MouseMove(Echo::MouseMoveEvent& e)
 {
 	// flip mouseY bc of y-axis direction
 	mouseX = e.GetX();
-	mouseY = settings["window"]["height"] - e.GetY();
+	mouseY = Echo::settings["window"]["height"] - e.GetY();
 }
 
-GameplayLayer::~GameplayLayer()
+OsuTrainer::GameplayLayer::~GameplayLayer()
 {
 	LOG_message("result");
-	LOG_message("score: " + to_string(scoring->GetScore()));
-	LOG_message("highest combo: " + to_string(scoring->GetMaxCombo()));
+	LOG_message("score: " + std::to_string(scoring->GetScore()));
+	LOG_message("highest combo: " + std::to_string(scoring->GetMaxCombo()));
 
 	LOG_erase("erase gameplay layer");
 

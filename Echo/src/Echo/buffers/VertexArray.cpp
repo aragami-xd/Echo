@@ -1,11 +1,11 @@
 #include "VertexArray.h"
 
-VertexArray::VertexArray()
+Echo::VertexArray::VertexArray()
 {
 	glGenVertexArrays(1, &id);
 }
 
-void VertexArray::AddBuffer(VertexLayout& vl, VertexBuffer& vb)
+void Echo::VertexArray::AddBuffer(VertexLayout& vl, VertexBuffer& vb)
 {
 	glBindVertexArray(id);
 	vb.Bind();
@@ -28,17 +28,17 @@ void VertexArray::AddBuffer(VertexLayout& vl, VertexBuffer& vb)
 	}
 }
 
-void VertexArray::Bind()
+void Echo::VertexArray::Bind()
 {
 	glBindVertexArray(id);
 }
 
-void VertexArray::Unbind()
+void Echo::VertexArray::Unbind()
 {
 	glBindVertexArray(0);
 }
 
-VertexArray::~VertexArray()
+Echo::VertexArray::~VertexArray()
 {
 	glDeleteVertexArrays(1, &id);
 }

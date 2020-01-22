@@ -1,10 +1,9 @@
 #include "PatternList.h"
-using namespace std;
 
-PatternList::PatternList(const std::string& path, const string& extension)
+EchoGen::PatternList::PatternList(const std::string& path, const std::string& extension)
 {
 	// open the file
-	ifstream file(path);
+	std::ifstream file(path);
 	if (!file)
 	{
 		LOG_warning("cannot open patternlist file: " + path);
@@ -12,26 +11,26 @@ PatternList::PatternList(const std::string& path, const string& extension)
 	}
 
 	// parse the file and create the patterns
-	string line;
+	std::string line;
 	while (getline(file, line))
 	{
-		patterns.push_back({ line, new Pattern(line + "." + extension) });
+		patterns.push_back({ line, new EchoGen::Pattern(line + "." + extension) });
 	}
 }
 
-Pattern* PatternList::operator[](int index)
+EchoGen::Pattern* EchoGen::PatternList::At(int index)
 {
 	return patterns[index].second;
 }
 
-Pattern* PatternList::operator[](string& name)
+EchoGen::Pattern* EchoGen::PatternList::At(std::string& name)
 {
 	for (int i = 0; i < patterns.size(); i++)
 		if (patterns[i].first == name)
 			return patterns[i].second;
 }
 
-PatternList::~PatternList()
+EchoGen::PatternList::~PatternList()
 {
 	for (int i = 0; i < patterns.size(); i++)
 		delete patterns[i].second;

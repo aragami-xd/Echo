@@ -4,9 +4,12 @@
 #include "CircleComponent.h"
 #include "Circle.h"
 
-class CircleParser
+namespace OsuTrainer
 {
-public:
-	// circle parsing function
-	static ObjectComponent* CircleParserFunc(std::stringstream& ss);
-};
+	class CircleParser
+	{
+	public:
+		// circle parsing function
+		static Echo::ObjectComponent* CircleParserFunc(std::stringstream& ss);
+	};
+}

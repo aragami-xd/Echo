@@ -1,14 +1,13 @@
 #include "LayerStack.h"
-using namespace std;
 
 // push layer to top
-void LayerStack::push_to_top(const std::string& name)
+void Echo::LayerStack::push_to_top(const std::string& name)
 {
 	for (int i = 0; i < layerStack.size(); i++)
 	{
 		if (layerStack[i]->GetLayerName() == name)
 		{
-			layerStack.push_back(move(layerStack[i]));
+			layerStack.push_back(std::move(layerStack[i]));
 			return;
 		}
 	}
@@ -16,7 +15,7 @@ void LayerStack::push_to_top(const std::string& name)
 }
 
 // swap layers
-void LayerStack::swap(const std::string& layer1, const std::string& layer2)
+void Echo::LayerStack::swap(const std::string& layer1, const std::string& layer2)
 {
 	int layer1Index = -1, layer2Index = -1;
 	for (int i = 0; i < layerStack.size(); i++)

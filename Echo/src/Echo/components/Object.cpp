@@ -1,8 +1,7 @@
 #include "Object.h"
 #include <Settings.h>
-using namespace std;
 
-Object::Object(const vector<int>& beat) :
+Echo::Object::Object(const std::vector<int>& beat) :
 	beats(beat), beatIndex(0), startTime(0), endTime(0)
 {
 	approachTime = scaleAR / AR;
@@ -13,7 +12,7 @@ Object::Object(const vector<int>& beat) :
 	score50 = approachTime / (OD * score50Scaling);
 }
 
-float Object::GetApproachScale(int time)
+float Echo::Object::GetApproachScale(int time)
 {
 	if (time < beats.front())
 		return abs(beats.front() - time) / (float)approachTime;
@@ -22,10 +21,10 @@ float Object::GetApproachScale(int time)
 }
 
 /* static variables */
-float Object::AR = settings["metadata"]["ar"];
-float Object::OD = settings["metadata"]["od"];
-int Object::scaleAR = settings["metadata"]["scaleAR"];
+float Echo::Object::AR = settings["metadata"]["ar"];
+float Echo::Object::OD = settings["metadata"]["od"];
+int Echo::Object::scaleAR = settings["metadata"]["scaleAR"];
 
-float Object::score300Scaling = settings["metadata"]["score300"];
-float Object::score100Scaling = settings["metadata"]["score100"];
-float Object::score50Scaling = settings["metadata"]["score50"];
+float Echo::Object::score300Scaling = settings["metadata"]["score300"];
+float Echo::Object::score100Scaling = settings["metadata"]["score100"];
+float Echo::Object::score50Scaling = settings["metadata"]["score50"];

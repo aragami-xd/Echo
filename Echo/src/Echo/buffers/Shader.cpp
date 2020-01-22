@@ -1,30 +1,29 @@
 #include "Shader.h"
-using namespace std;
 
-Shader::Shader(const string& vertexPath, const string& fragmentPath) :
+Echo::Shader::Shader(const std::string& vertexPath, const std::string& fragmentPath) :
 	program(0)
 {
 	// create the shader
 	program = CreateShader(ParseShader(vertexPath), ParseShader(fragmentPath));
 }
 
-string Shader::ParseShader(const string& path)
+std::string Echo::Shader::ParseShader(const std::string& path)
 {
 	// open the file
-	ifstream source(path);
+	std::ifstream source(path);
 	if (!source)
 	{
 		LOG_warning("cannot open shader file");
 		return "";
 	}
 
-	stringstream ss;
+	std::stringstream ss;
 	ss << source.rdbuf();
 
 	return ss.str();
 }
 
-unsigned int Shader::CompileShader(unsigned int type, const string& source)
+unsigned int Echo::Shader::CompileShader(unsigned int type, const std::string& source)
 {
 	// get the shader type to compile it
 	unsigned int shaderID = glCreateShader(type);
@@ -57,7 +56,7 @@ unsigned int Shader::CompileShader(unsigned int type, const string& source)
 	return shaderID;
 }
 
-unsigned int Shader::CreateShader(const string& vertex, const string& fragment)
+unsigned int Echo::Shader::CreateShader(const std::string& vertex, const std::string& fragment)
 {
 	LOG_message("[vertex shader]\n" + vertex + "\n[fragment shader]\n" + fragment);
 
@@ -78,17 +77,17 @@ unsigned int Shader::CreateShader(const string& vertex, const string& fragment)
 	return program;
 }
 
-void Shader::Bind()
+void Echo::Shader::Bind()
 {
 	glUseProgram(program);
 }
 
-void Shader::Unbind()
+void Echo::Shader::Unbind()
 {
 	glUseProgram(0);
 }
 
-int Shader::GetUniform(const string& name)
+int Echo::Shader::GetUniform(const std::string& name)
 {
 	// find the uniform in the cache
 	if (uniform.count(name) > 0)
@@ -104,37 +103,37 @@ int Shader::GetUniform(const string& name)
 	return location;
 }
 
-void Shader::SetShaderUniform1i(const string& name, int v)
+void Echo::Shader::SetShaderUniform1i(const std::string& name, int v)
 {
 	glUniform1i(GetUniform(name), v);
 }
 
-void Shader::SetShaderUniform1f(const string& name, float v)
+void Echo::Shader::SetShaderUniform1f(const std::string& name, float v)
 {
 	glUniform1f(GetUniform(name), v);
 }
 
-void Shader::SetShaderUniform2f(const string& name, float v0, float v1)
+void Echo::Shader::SetShaderUniform2f(const std::string& name, float v0, float v1)
 {
 	glUniform2f(GetUniform(name), v0, v1);
 }
 
-void Shader::SetShaderUniform4f(const string& name, float v0, float v1, float v2, float v3)
+void Echo::Shader::SetShaderUniform4f(const std::string& name, float v0, float v1, float v2, float v3)
 {
 	glUniform4f(GetUniform(name), v0, v1, v2, v3);
 }
 
-void Shader::SetShaderUniformMat4f(const string& name, const glm::mat4& mat)
+void Echo::Shader::SetShaderUniformMat4f(const std::string& name, const glm::mat4& mat)
 {
 	glUniformMatrix4fv(GetUniform(name), 1, GL_FALSE, &mat[0][0]);
 }
 
-void Shader::SetShaderUniformVec4f(const string& name, const glm::vec4& vec)
+void Echo::Shader::SetShaderUniformVec4f(const std::string& name, const glm::vec4& vec)
 {
 	glUniform4f(GetUniform(name), vec.r, vec.g, vec.b, vec.a);
 }
 
-Shader::~Shader()
+Echo::Shader::~Shader()
 {
 	glDeleteProgram(program);
 }

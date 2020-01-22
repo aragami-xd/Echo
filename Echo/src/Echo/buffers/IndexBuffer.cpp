@@ -1,6 +1,6 @@
 #include "IndexBuffer.h"
 
-IndexBuffer::IndexBuffer(unsigned int* data, int verticesCount, GLenum flag) :
+Echo::IndexBuffer::IndexBuffer(unsigned int* data, int verticesCount, GLenum flag) :
 	id(0), count(verticesCount)
 {
 	glGenBuffers(1, &id);
@@ -8,17 +8,17 @@ IndexBuffer::IndexBuffer(unsigned int* data, int verticesCount, GLenum flag) :
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * count, data, flag);
 }
 
-void IndexBuffer::Bind()
+void Echo::IndexBuffer::Bind()
 {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id);
 }
 
-void IndexBuffer::Unbind()
+void Echo::IndexBuffer::Unbind()
 {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
-IndexBuffer::~IndexBuffer()
+Echo::IndexBuffer::~IndexBuffer()
 {
 	glDeleteBuffers(1, &id);
 }

@@ -1,6 +1,6 @@
 #include "Scoring.h"
 
-Scoring::Scoring() :
+Echo::Scoring::Scoring() :
 	combo(0), maxCombo(0), score(0)
 {
 }

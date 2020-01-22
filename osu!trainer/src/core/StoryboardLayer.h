@@ -1,22 +1,25 @@
 #pragma once
 #include <Echo.h>
 
-class StoryboardLayer : public Layer
+namespace OsuTrainer
 {
-private:
-	Texture* background;
-	VertexBuffer* vb;
-	VertexLayout* vl;
-	VertexArray* va;
+	class StoryboardLayer : public Echo::Layer
+	{
+	private:
+		Echo::Texture* background;
+		Echo::VertexBuffer* vb;
+		Echo::VertexLayout* vl;
+		Echo::VertexArray* va;
 
-	ShaderList* shaders;
+		Echo::ShaderList* shaders;
 
-	void TapFlashing(KeyDownEvent& e);
-public:
-	StoryboardLayer();
+		void TapFlashing(Echo::KeyDownEvent& e);
+	public:
+		StoryboardLayer();
 
-	virtual void Update() override;
-	virtual void OnEvent(Event& e) override;
+		virtual void Update() override;
+		virtual void OnEvent(Echo::Event& e) override;
 
-	~StoryboardLayer();
-};
+		~StoryboardLayer();
+	};
+}

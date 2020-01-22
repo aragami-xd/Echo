@@ -1,7 +1,7 @@
 -- main workspace link to other individual projects
 workspace "Echo"
 	architecture "x64"
-	configurations{"Debug", "Release"}
+	configurations { "Debug", "Release" }
 	flags { "MultiProcessorCompile" }
 	startproject "osu!trainer"
 
@@ -74,12 +74,12 @@ project "Echo"
 
 	filter "configurations:Debug"
 		runtime "Debug"
-		defines {"ECHO_DEBUG"}
+		defines { "ECHO_DEBUG" }
 		optimize "Full"
 	
 	filter "configurations:Release"
 		runtime "Release"
-		defines {"ECHO_RELEASE"}
+		defines { "ECHO_RELEASE" }
 		optimize "Full"
 
 
@@ -126,12 +126,12 @@ project "osu!trainer"
 
 	filter "configurations:Debug"
 		runtime "Debug"
-		defines {"ECHO_DEBUG"}
+		defines { "ECHO_DEBUG" }
 		optimize "Full"
 	
 	filter "configurations:Release"
 		runtime "Release"
-		defines {"ECHO_RELEASE"}
+		defines { "ECHO_RELEASE" }
 		optimize "Full"	
 
 
@@ -145,11 +145,11 @@ project "EchoGen"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-	defines { "ECHO_WINDOWS", "ECHO_BUILD" }
+	defines { "ECHO_GEN_WINDOWS", "ECHO_GEN_BUILD" }
 
 	-- precompiled header
-	-- pchheader "EchoHeader.h"
-	-- pchsource "/EchoGen/src/EchoHeader.cpp"
+	-- pchheader "EchoGenHeader.h"
+	-- pchsource "/EchoGen/src/EchoGenHeader.cpp"
 
 	-- include library
 	files
@@ -174,12 +174,12 @@ project "EchoGen"
 
 	filter "configurations:Debug"
 		runtime "Debug"
-		defines {"ECHO_DEBUG"}
+		defines { "ECHO_GEN_DEBUG" }
 		optimize "Full"
 
 	filter "configurations:Release"
 		runtime "Release"
-		defines {"ECHO_RELEASE"}
+		defines { "ECHO_GEN_RELEASE" }
 		optimize "Full"
 
 
@@ -192,7 +192,7 @@ project "osu!gen"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-	defines { "ECHO_WINDOWS" } 
+	defines { "ECHO_GEN_WINDOWS" } 
 
 	-- include library
 	files
@@ -208,9 +208,7 @@ project "osu!gen"
 		"EchoGen/src",
 		"EchoGen/vendor",
 		"%{prj.name}/src",
-		"%{prj.name}/vendor",
-		"%{EchoInclude.glfw}",
-		"%{EchoInclude.glad}"
+		"%{prj.name}/vendor"
 	}
 
 	-- linker
@@ -223,12 +221,12 @@ project "osu!gen"
 
 	filter "configurations:Debug"
 		runtime "Debug"
-		defines {"ECHO_DEBUG"}
+		defines { "ECHO_GEN_DEBUG" }
 		optimize "Full"
 	
 	filter "configurations:Release"
 		runtime "Release"
-		defines {"ECHO_RELEASE"}
+		defines { "ECHO_GEN_RELEASE" }
 		optimize "Full"		
 
 

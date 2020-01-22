@@ -1,11 +1,10 @@
 #include "SliderParser.h"
-using namespace std;
 
-pair<vector<float>, vector<float>> SliderParser::ParseControlPoints(stringstream& data)
+std::pair<std::vector<float>, std::vector<float>> OsuTrainer::SliderParser::ParseControlPoints(std::stringstream& data)
 {
-	vector<float> xcp;
-	vector<float> ycp;
-	string token = "";
+	std::vector<float> xcp;
+	std::vector<float> ycp;
+	std::string token = "";
 
 	data >> token;
 	while (token != "|")
@@ -18,10 +17,10 @@ pair<vector<float>, vector<float>> SliderParser::ParseControlPoints(stringstream
 	return { xcp,ycp };
 }
 
-vector<int> SliderParser::ParseBeat(stringstream& data)
+std::vector<int> OsuTrainer::SliderParser::ParseBeat(std::stringstream& data)
 {
-	vector<int> beat;
-	string token = "";
+	std::vector<int> beat;
+	std::string token = "";
 
 	data >> token;
 	while (token != "|")
@@ -32,25 +31,25 @@ vector<int> SliderParser::ParseBeat(stringstream& data)
 	return beat;
 }
 
-ObjectComponent* SliderParser::SliderParserFunc(stringstream& ss)
+Echo::ObjectComponent* OsuTrainer::SliderParser::SliderParserFunc(std::stringstream& ss)
 {
-	ObjectComponent* object = new SliderComponent();
-	float objectSize = settings["metadata"]["scaleCS"] / (float)settings["metadata"]["cs"];
+	Echo::ObjectComponent* object = new SliderComponent();
+	float objectSize = Echo::settings["metadata"]["scaleCS"] / (float)Echo::settings["metadata"]["cs"];
 	object->SetSize(objectSize);
 
 	// parse
-	pair<vector<float>, vector<float>> cp = ParseControlPoints(ss);
-	vector<int> beat = ParseBeat(ss);
+	std::pair<std::vector<float>, std::vector<float>> cp = ParseControlPoints(ss);
+	std::vector<int> beat = ParseBeat(ss);
 
 	// create slider
 	object->AddObject(new Slider(beat));
 
 	// add bezier curve
-	RenderElement* curve = new BezierSliderRenderElement(cp.first, cp.second, objectSize);
+	Echo::RenderElement* curve = new BezierSliderRenderElement(cp.first, cp.second, objectSize);
 	object->AddElement("curve", curve);
 
 	// add moving circle
-	RenderElement* circle = new CircleRenderElement(cp.first.front(), cp.second.front(), objectSize);
+	Echo::RenderElement* circle = new CircleRenderElement(cp.first.front(), cp.second.front(), objectSize);
 	object->AddElement("circle", circle);
 
 	return object;

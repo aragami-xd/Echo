@@ -6,18 +6,31 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Core.h" />
     <ClInclude Include="src\EchoGen.h" />
+    <ClInclude Include="src\EchoGen\Application.h">
+      <Filter>EchoGen</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EchoGen\Log.h">
+      <Filter>EchoGen</Filter>
+    </ClInclude>
     <ClInclude Include="src\EchoGen\Pattern.h">
       <Filter>EchoGen</Filter>
     </ClInclude>
-    <ClInclude Include="src\EchoHeader.h" />
-    <ClInclude Include="src\EchoGen\PatternList.h" />
-    <ClInclude Include="src\EchoGen\Log.h" />
+    <ClInclude Include="src\EchoGen\PatternList.h">
+      <Filter>EchoGen</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EchoGenHeader.h" />
+    <ClInclude Include="src\EchoGen\EntryPoint.h" />
+    <ClInclude Include="src\EchoGenCore.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\EchoHeader.cpp" />
-    <ClCompile Include="src\EchoGen\Pattern.cpp" />
-    <ClCompile Include="src\EchoGen\PatternList.cpp" />
+    <ClCompile Include="src\EchoGen\Pattern.cpp">
+      <Filter>EchoGen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EchoGen\PatternList.cpp">
+      <Filter>EchoGen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EchoGenHeader.cpp" />
+    <ClCompile Include="src\EchoGen\Application.cpp" />
   </ItemGroup>
 </Project>

@@ -10,37 +10,40 @@
 #include "Window.h"
 #include "LayerStack.h"
 
-#define EVENT_FUNC(x) bind(&x, this, placeholders::_1)
-
-class ECHO_DLL Application
+namespace Echo
 {
-protected:
-	// window of the program
-	std::unique_ptr<Window> window;
-	WindowSetting ws;
-	bool running;
+#define EVENT_FUNC(x) bind(&x, this, std::placeholders::_1)
 
-	// layers
-	LayerStack layerStack;
+	class ECHO_DLL Application
+	{
+	protected:
+		// window of the program
+		std::unique_ptr<Window> window;
+		WindowSetting ws;
+		bool running;
 
-	// calling the event invoker
-	void OnEvent(Event& e);
+		// layers
+		LayerStack layerStack;
 
-	// close window event function
-	void CloseWindow(WindowCloseEvent& e);
-public:
-	Application();
+		// calling the event invoker
+		void OnEvent(Event& e);
 
-	// run
-	void Run();
+		// close window event function
+		void CloseWindow(WindowCloseEvent& e);
+	public:
+		Application();
 
-	// push and pop layer
-	void PushLayer(Layer* layer);
-	void PopLayer(const std::string& name);
-	void PushToTop(const std::string& name);
+		// run
+		void Run();
 
-	virtual ~Application();
-};
+		// push and pop layer
+		void PushLayer(Layer* layer);
+		void PopLayer(const std::string& name);
+		void PushToTop(const std::string& name);
+
+		virtual ~Application();
+	};
+}
 
 /* create app function defined in the app solution */
-Application* CreateApp();
+Echo::Application* CreateApp();

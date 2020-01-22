@@ -1,7 +1,6 @@
 #include "VertexBuffer.h"
-using namespace std;
 
-VertexBuffer::VertexBuffer(float* data, int size, GLenum flag) :
+Echo::VertexBuffer::VertexBuffer(float* data, int size, GLenum flag) :
 	id(0)
 {
 	glGenBuffers(1, &id);
@@ -9,17 +8,17 @@ VertexBuffer::VertexBuffer(float* data, int size, GLenum flag) :
 	glBufferData(GL_ARRAY_BUFFER, size, data, flag);
 }
 
-void VertexBuffer::Bind()
+void Echo::VertexBuffer::Bind()
 {
 	glBindBuffer(GL_ARRAY_BUFFER, id);
 }
 
-void VertexBuffer::Unbind()
+void Echo::VertexBuffer::Unbind()
 {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-VertexBuffer::~VertexBuffer()
+Echo::VertexBuffer::~VertexBuffer()
 {
 	glDeleteBuffers(1, &id);
 }

@@ -1,12 +1,11 @@
 #include "StoryboardLayer.h"
-using namespace std;
 
-StoryboardLayer::StoryboardLayer() :
+OsuTrainer::StoryboardLayer::StoryboardLayer() :
 	Layer("Storyboard layer")
 {
 	// new background texture
-	background = new Texture(settings["path"]["backgroundPath"]);
-	va = new VertexArray;
+	background = new Echo::Texture(Echo::settings["path"]["backgroundPath"]);
+	va = new Echo::VertexArray;
 
 	float position[32] = {
 		 1.0f,  1.0f,  1.0f,  1.0f,		// position and texture coordinates
@@ -18,34 +17,34 @@ StoryboardLayer::StoryboardLayer() :
 		//1600.0f, 900.0f, 1600.0f, 900.0f,
 		//1600.0f, 0.0f, 1600.0f, 0.0f
 	};
-	vb = new VertexBuffer(position, 32);
+	vb = new Echo::VertexBuffer(position, 32);
 
-	vl = new VertexLayout();
+	vl = new Echo::VertexLayout();
 	vl->Push<float>(2);
 	vl->Push<float>(2);
 	va->AddBuffer(*vl, *vb);
 
 	// new shader
-	shaders = new ShaderList();
-	shaders->Push("texture", new Shader(settings["shader"]["textureVertex"], settings["shader"]["textureFragment"]));
+	shaders = new Echo::ShaderList();
+	shaders->Push("texture", new Echo::Shader(Echo::settings["shader"]["textureVertex"], Echo::settings["shader"]["textureFragment"]));
 }
 
-void StoryboardLayer::TapFlashing(KeyDownEvent& e)
+void OsuTrainer::StoryboardLayer::TapFlashing(Echo::KeyDownEvent& e)
 {
 }
 
-void StoryboardLayer::Update()
+void OsuTrainer::StoryboardLayer::Update()
 {
-	Renderer::Render(va, 32);
+	Echo::Renderer::Render(va, 32);
 }
 
-void StoryboardLayer::OnEvent(Event& e)
+void OsuTrainer::StoryboardLayer::OnEvent(Echo::Event& e)
 {
-	EventInvoker invoker(e);
-	invoker.Invoke<KeyDownEvent>(EVENT_FUNC(StoryboardLayer::TapFlashing));
+	Echo::EventInvoker invoker(e);
+	invoker.Invoke<Echo::KeyDownEvent>(EVENT_FUNC(OsuTrainer::StoryboardLayer::TapFlashing));
 }
 
-StoryboardLayer::~StoryboardLayer()
+OsuTrainer::StoryboardLayer::~StoryboardLayer()
 {
 	delete background;
 	delete vb;

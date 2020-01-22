@@ -6,8 +6,13 @@
 
 #include <Core.h>
 
-struct ECHO_DLL Orthographic
+namespace Echo
 {
-	static void SetViewMatrix(Shader* shader, glm::mat4 matrix);
-	static void SetProjMatrix(Shader* shader, glm::mat4 matrix);
-};
+	class ECHO_DLL Orthographic
+	{
+	public:
+		static void SetModelMatrix(Shader* shader, const glm::mat4& matrix);
+		static void SetViewMatrix(Shader* shader, const glm::mat4& matrix);
+		static void SetProjMatrix(Shader* shader, const glm::mat4& matrix);
+	};
+}

@@ -1,8 +1,8 @@
 #pragma once
 
-#include <EchoHeader.h>
+#include <EchoGenHeader.h>
 
-#ifdef ECHO_DEBUG
+#ifdef ECHO_GEN_DEBUG
 #define LOG_init(x)\
 	std::cout << "[EchoGen][" << __func__ << "][initialize]: " << x << std::endl;
 

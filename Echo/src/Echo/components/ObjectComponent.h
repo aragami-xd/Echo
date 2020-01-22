@@ -4,61 +4,58 @@
 #include "RenderElement.h"
 #include <Echo/core/ShaderList.h>
 
-class ECHO_DLL ObjectComponent
+namespace Echo
 {
-	using Elements = std::unordered_map<std::string, RenderElement*>;
-protected:
-	Object* object = nullptr;
-	Elements element;
-
-	float objectSize;
-	bool enableRender = true;
-public:
-	// set/get object size
-	inline void SetSize(float size) { objectSize = size; }
-	inline float GetSize() { return objectSize; }
-
-	// if object is occupied, warn the user and not add the object
-	inline void AddObject(Object* object)
+	class ECHO_DLL ObjectComponent
 	{
-		if (this->object == nullptr)
-			this->object = object;
-		else
-			LOG_warning("object occupied");
-	}
+		using Elements = std::unordered_map<std::string, RenderElement*>;
+	protected:
+		Object* object = nullptr;
+		Elements element;
 
-	// add
-	inline void AddElement(const std::string& name, RenderElement* element)
-	{
-		this->element.insert({ name, element });
-	}
+		float objectSize;
+		bool enableRender = true;
+	public:
+		// set/get object size
+		inline void SetSize(float size) { objectSize = size; }
+		inline float GetSize() { return objectSize; }
 
-	// remove (warning: element will not be deleted)
-	inline void RemoveElement(const std::string& name)
-	{
-		element.erase(name);
-	}
+		// if object is occupied, warn the user and not add the object
+		inline void AddObject(Object* object)
+		{
+			if (this->object == nullptr)
+				this->object = object;
+			else
+				LOG_warning("object occupied");
+		}
 
-	// get
-	inline Object* GetObject()
-	{
-		return object;
-	}
+		// add
+		inline void AddElement(const std::string& name, RenderElement* element)
+		{
+			this->element.insert({ name, element });
+		}
 
-	inline RenderElement* GetElement(const std::string& name)
-	{
-		return element[name];
-	}
+		// remove (warning: element will not be deleted)
+		inline void RemoveElement(const std::string& name)
+		{
+			element.erase(name);
+		}
 
-	// iterators
-	inline Elements::iterator ElementBegin() { return element.begin(); }
-	inline Elements::iterator ElementEnd() { return element.end(); }
+		// get
+		inline Object* GetObject() { return object; }
 
-	inline bool IsEnabled() { return enableRender; }
+		inline RenderElement* GetElement(const std::string& name) { return element[name]; }
 
-	// render
-	virtual void Render(ShaderList* shaders, int time) = 0;
+		// iterators
+		inline Elements::iterator ElementBegin() { return element.begin(); }
+		inline Elements::iterator ElementEnd() { return element.end(); }
 
-	// event function, return the score
-	virtual int OnEvent(float x, float y, int time) = 0;
-};
+		inline bool IsEnabled() { return enableRender; }
+
+		// render
+		virtual void Render(Echo::ShaderList* shaders, int time) = 0;
+
+		// event function, return the score
+		virtual int OnEvent(float x, float y, int time) = 0;
+	};
+}

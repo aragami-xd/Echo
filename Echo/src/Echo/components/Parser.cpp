@@ -1,7 +1,6 @@
 #include "Parser.h"
-using namespace std;
 
-Parser::Parser(const std::string& path)
+Echo::Parser::Parser(const std::string& path)
 {
 	LOG_init("new parser");
 	map.open(path);
@@ -9,18 +8,18 @@ Parser::Parser(const std::string& path)
 		LOG_warning("path not exist");
 }
 
-void Parser::AddParseFunc(const std::string& type, const ParseFunc& func)
+void Echo::Parser::AddParseFunc(const std::string& type, const ParseFunc& func)
 {
 	parseFunc.insert({ type, func });
 }
 
-void Parser::RemoveParseFunc(const std::string& name)
+void Echo::Parser::RemoveParseFunc(const std::string& name)
 {
 	if (!parseFunc.erase(name))
 		LOG_warning(name + " not found");
 }
 
-ObjectComponent* Parser::Parse()
+Echo::ObjectComponent* Echo::Parser::Parse()
 {
 	// if eof
 	if (!getline(map, line))
@@ -30,8 +29,8 @@ ObjectComponent* Parser::Parse()
 	// else call parser function based on the keyword
 	else
 	{
-		stringstream ss(line);
-		string type;
+		std::stringstream ss(line);
+		std::string type;
 		ss >> type;
 		return parseFunc[type](ss);
 	}

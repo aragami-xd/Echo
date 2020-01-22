@@ -5,9 +5,7 @@
 #include <glad/glad.h>
 #include <glfw/glfw3.h>
 
-using namespace std;
-
-Texture::Texture(const string& path) :
+Echo::Texture::Texture(const std::string& path) :
 	tex(0), width(0), height(0), channel(0), data(nullptr)
 {
 	// float image vertically due to stb loading mechanism
@@ -34,17 +32,17 @@ Texture::Texture(const string& path) :
 	stbi_image_free(data);
 }
 
-void Texture::Bind()
+void Echo::Texture::Bind()
 {
 	glBindTexture(GL_TEXTURE_2D, tex);
 }
 
-void Texture::UnBind()
+void Echo::Texture::UnBind()
 {
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-Texture::~Texture()
+Echo::Texture::~Texture()
 {
 	glDeleteTextures(1, &tex);
 }

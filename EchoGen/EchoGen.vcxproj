@@ -59,7 +59,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_BUILD;ECHO_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ECHO_GEN_WINDOWS;ECHO_GEN_BUILD;ECHO_GEN_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\vendor;src;vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -84,7 +84,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>ECHO_WINDOWS;ECHO_BUILD;ECHO_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ECHO_GEN_WINDOWS;ECHO_GEN_BUILD;ECHO_GEN_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\vendor;src;vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -106,17 +106,20 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Core.h" />
+    <ClInclude Include="src\EchoGenCore.h" />
     <ClInclude Include="src\EchoGen.h" />
+    <ClInclude Include="src\EchoGen\Application.h" />
+    <ClInclude Include="src\EchoGen\EntryPoint.h" />
     <ClInclude Include="src\EchoGen\Log.h" />
     <ClInclude Include="src\EchoGen\Pattern.h" />
-    <ClInclude Include="src\EchoHeader.h" />
     <ClInclude Include="src\EchoGen\PatternList.h" />
+    <ClInclude Include="src\EchoGenHeader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\EchoGen\Application.cpp" />
     <ClCompile Include="src\EchoGen\Pattern.cpp" />
     <ClCompile Include="src\EchoGen\PatternList.cpp" />
-    <ClCompile Include="src\EchoHeader.cpp" />
+    <ClCompile Include="src\EchoGenHeader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

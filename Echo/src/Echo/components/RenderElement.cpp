@@ -1,11 +1,11 @@
 #include "RenderElement.h"
 
-RenderElement::RenderElement() :
+Echo::RenderElement::RenderElement() :
 	vl(nullptr), va(nullptr), vb(nullptr), ib(nullptr)
 {
 }
 
-RenderElement::~RenderElement()
+Echo::RenderElement::~RenderElement()
 {
 	if (vl != nullptr) delete vl;
 	if (va != nullptr) delete va;

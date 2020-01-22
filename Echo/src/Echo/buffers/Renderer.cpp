@@ -1,6 +1,6 @@
 #include "Renderer.h"
 
-void Renderer::Render(VertexArray* va, IndexBuffer* ib, GLenum flag, int weight)
+void Echo::Renderer::Render(VertexArray* va, IndexBuffer* ib, GLenum flag, int weight)
 {
 	glLineWidth(weight);
 	va->Bind();
@@ -8,7 +8,7 @@ void Renderer::Render(VertexArray* va, IndexBuffer* ib, GLenum flag, int weight)
 	glDrawElements(flag, ib->GetCount(), GL_UNSIGNED_INT, nullptr);
 }
 
-void Renderer::Render(VertexArray* va, int count, GLenum flag, int weight)
+void Echo::Renderer::Render(VertexArray* va, int count, GLenum flag, int weight)
 {
 	glLineWidth(weight);
 	va->Bind();

@@ -5,36 +5,39 @@
 
 #include <Echo/buffers/Shader.h>
 
-class ShaderList
+namespace Echo
 {
-	using Shaders = std::unordered_map<std::string, Shader*>;
-private:
-	Shaders shaderList;
-public:
-	inline void Push(const std::string& name, Shader* shader)
+	class ShaderList
 	{
-		shaderList.insert({ name, shader });
-	}
-	inline void Pop(const std::string& name)
-	{
-		delete shaderList[name];
-		shaderList.erase(name);
-	}
+		using Shaders = std::unordered_map<std::string, Shader*>;
+	private:
+		Shaders shaderList;
+	public:
+		inline void Push(const std::string& name, Shader* shader)
+		{
+			shaderList.insert({ name, shader });
+		}
+		inline void Pop(const std::string& name)
+		{
+			delete shaderList[name];
+			shaderList.erase(name);
+		}
 
-	inline Shader* At(const std::string& name)
-	{
-		return shaderList[name];
-	}
+		inline Shader* At(const std::string& name)
+		{
+			return shaderList[name];
+		}
 
-	inline void Bind(const std::string& name)
-	{
-		shaderList[name]->Bind();
-	}
-	inline void Unbind(const std::string& name)
-	{
-		shaderList[name]->Unbind();
-	}
+		inline void Bind(const std::string& name)
+		{
+			shaderList[name]->Bind();
+		}
+		inline void Unbind(const std::string& name)
+		{
+			shaderList[name]->Unbind();
+		}
 
-	inline Shaders::iterator begin() { return shaderList.begin(); }
-	inline Shaders::iterator end() { return shaderList.end(); }
-};
+		inline Shaders::iterator begin() { return shaderList.begin(); }
+		inline Shaders::iterator end() { return shaderList.end(); }
+	};
+}

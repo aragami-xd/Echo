@@ -1,16 +1,19 @@
 #pragma once
 
-#include <EchoHeader.h>
-#include <Core.h>
+#include <EchoGenHeader.h>
+#include <EchoGenCore.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-class ECHO_DLL Pattern
+namespace EchoGen
 {
-private:
-	std::vector<glm::vec2> vertices;
-public:
-	Pattern(const std::string& path);
-	
-	inline std::vector<glm::vec2> GetVertices() { return vertices; }
-};
+	class ECHO_GEN_DLL Pattern
+	{
+	private:
+		std::vector<glm::vec2> vertices;
+	public:
+		Pattern(const std::string& path);
+
+		inline std::vector<glm::vec2> GetVertices() { return vertices; }
+	};
+}
