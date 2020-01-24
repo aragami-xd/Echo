@@ -1,5 +1,5 @@
 #include "Object.h"
-#include <Settings.h>
+#include <EchoSettings.h>
 
 Echo::Object::Object(const std::vector<int>& beat) :
 	beats(beat), beatIndex(0), startTime(0), endTime(0)
@@ -21,10 +21,10 @@ float Echo::Object::GetApproachScale(int time)
 }
 
 /* static variables */
-float Echo::Object::AR = settings["metadata"]["ar"];
-float Echo::Object::OD = settings["metadata"]["od"];
-int Echo::Object::scaleAR = settings["metadata"]["scaleAR"];
+float Echo::Object::AR = Echo::settings["metadata"]["ar"];
+float Echo::Object::OD = Echo::settings["metadata"]["od"];
+int Echo::Object::scaleAR = Echo::settings["metadata"]["scaleAR"];
 
-float Echo::Object::score300Scaling = settings["metadata"]["score300"];
-float Echo::Object::score100Scaling = settings["metadata"]["score100"];
-float Echo::Object::score50Scaling = settings["metadata"]["score50"];
+float Echo::Object::score300Scaling = Echo::settings["metadata"]["score300"];
+float Echo::Object::score100Scaling = Echo::settings["metadata"]["score100"];
+float Echo::Object::score50Scaling = Echo::settings["metadata"]["score50"];

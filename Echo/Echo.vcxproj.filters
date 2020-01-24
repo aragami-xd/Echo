@@ -24,7 +24,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Core.h" />
     <ClInclude Include="src\Echo.h" />
     <ClInclude Include="src\Echo\buffers\IndexBuffer.h">
       <Filter>Echo\buffers</Filter>
@@ -102,10 +101,11 @@
       <Filter>Echo\events</Filter>
     </ClInclude>
     <ClInclude Include="src\EchoHeader.h" />
-    <ClInclude Include="src\Settings.h" />
     <ClInclude Include="src\platform\windows\WindowsWindow.h">
       <Filter>platform\windows</Filter>
     </ClInclude>
+    <ClInclude Include="src\EchoSettings.h" />
+    <ClInclude Include="src\EchoCore.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Echo\buffers\IndexBuffer.cpp">
@@ -157,5 +157,8 @@
     <ClCompile Include="src\platform\windows\WindowsWindow.cpp">
       <Filter>platform\windows</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\EchoSettings.json" />
   </ItemGroup>
 </Project>

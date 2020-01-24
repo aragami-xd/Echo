@@ -52,6 +52,7 @@
       <Filter>core</Filter>
     </ClInclude>
     <ClInclude Include="src\osu!trainer.h" />
+    <ClInclude Include="src\OsuSettings.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\components\OsuScoring.cpp">
@@ -88,5 +89,8 @@
       <Filter>core</Filter>
     </ClCompile>
     <ClCompile Include="src\osu!trainer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\OsuSettings.json" />
   </ItemGroup>
 </Project>

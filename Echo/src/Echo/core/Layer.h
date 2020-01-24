@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Core.h>
+#include <EchoCore.h>
 #include <Echo/events/Event.h>
 
 namespace Echo

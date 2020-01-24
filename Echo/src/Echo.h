@@ -24,4 +24,4 @@
 #include <Echo/core/ShaderList.h>
 
 /* echo settings */
-#include <Settings.h>
+#include <EchoSettings.h>

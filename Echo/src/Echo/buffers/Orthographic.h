@@ -4,7 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include "Shader.h"
 
-#include <Core.h>
+#include <EchoCore.h>
 
 namespace Echo
 {

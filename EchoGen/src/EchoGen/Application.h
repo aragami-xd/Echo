@@ -12,7 +12,7 @@ namespace EchoGen
 		Application();
 
 		// run
-		void Run();
+		virtual void Run();
 
 		~Application();
 	};

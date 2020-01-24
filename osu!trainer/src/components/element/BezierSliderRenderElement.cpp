@@ -1,4 +1,5 @@
 #include "BezierSliderRenderElement.h"
+#include <OsuSettings.h>
 
 OsuTrainer::BezierSliderRenderElement::BezierSliderRenderElement(std::vector<float>& xcp, std::vector<float>& ycp, float circleRadius) :
 	xControlPoints(xcp), yControlPoints(ycp)
@@ -16,7 +17,7 @@ OsuTrainer::BezierSliderRenderElement::BezierSliderRenderElement(std::vector<flo
 
 	// calculate vertices
 	std::vector<float> center;
-	float smoothstep = Echo::settings["bezier"]["step"];
+	float smoothstep = OsuTrainer::settings["bezier"]["step"];
 	for (float i = 0.0f; i <= 1.0f; i += smoothstep)
 	{
 		center.push_back(CalcCenter(coefficient, xcp, i));

@@ -2,6 +2,7 @@
 #include <components/OsuScoring.h>
 #include <components/circle/CircleParser.h>
 #include <components/slider/SliderParser.h>
+#include <OsuSettings.h>
 
 OsuTrainer::GameplayLayer::GameplayLayer() :
 	Layer("gameplay layer"), mouseX(0), mouseY(0)
@@ -10,7 +11,7 @@ OsuTrainer::GameplayLayer::GameplayLayer() :
 
 	// new shaders
 	shaders = new Echo::ShaderList();
-	shaders->Push("basic", new Echo::Shader(Echo::settings["shader"]["basicVertex"], Echo::settings["shader"]["basicFragment"]));
+	shaders->Push("basic", new Echo::Shader(OsuTrainer::settings["shader"]["basicVertex"], OsuTrainer::settings["shader"]["basicFragment"]));
 	//shaders->Push("line", new Shader(settings["shader"]["lineVertex"], settings["shader"]["lineFragment"]));
 
 	// set screen ratio for all shaders
@@ -19,7 +20,7 @@ OsuTrainer::GameplayLayer::GameplayLayer() :
 		Echo::Orthographic::SetProjMatrix(shader.second, ratio);
 
 	// new parser
-	parser = new Echo::Parser(Echo::settings["path"]["beatmapPath"]);
+	parser = new Echo::Parser(OsuTrainer::settings["path"]["beatmapPath"]);
 	parser->AddParseFunc("circle", OsuTrainer::CircleParser::CircleParserFunc);
 	parser->AddParseFunc("slider", OsuTrainer::SliderParser::SliderParserFunc);
 
@@ -68,8 +69,8 @@ void OsuTrainer::GameplayLayer::OnEvent(Echo::Event& e)
 
 void OsuTrainer::GameplayLayer::Tapping(Echo::KeyDownEvent& e)
 {
-	if ((e.GetKey() == Echo::settings["keymapping"]["key1"] ||
-		e.GetKey() == Echo::settings["keymapping"]["key2"]) && !keyDown)
+	if ((e.GetKey() == OsuTrainer::settings["keymapping"]["key1"] ||
+		e.GetKey() == OsuTrainer::settings["keymapping"]["key2"]) && !keyDown)
 	{
 		keyDown = true;
 		int score = object[objectIterate]->OnEvent(mouseX, mouseY, Echo::Timing::GetTime());

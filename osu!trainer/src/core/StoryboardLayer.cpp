@@ -1,10 +1,11 @@
 #include "StoryboardLayer.h"
+#include <OsuSettings.h>
 
 OsuTrainer::StoryboardLayer::StoryboardLayer() :
 	Layer("Storyboard layer")
 {
 	// new background texture
-	background = new Echo::Texture(Echo::settings["path"]["backgroundPath"]);
+	background = new Echo::Texture(OsuTrainer::settings["path"]["backgroundPath"]);
 	va = new Echo::VertexArray;
 
 	float position[32] = {
@@ -26,7 +27,7 @@ OsuTrainer::StoryboardLayer::StoryboardLayer() :
 
 	// new shader
 	shaders = new Echo::ShaderList();
-	shaders->Push("texture", new Echo::Shader(Echo::settings["shader"]["textureVertex"], Echo::settings["shader"]["textureFragment"]));
+	shaders->Push("texture", new Echo::Shader(OsuTrainer::settings["shader"]["textureVertex"], OsuTrainer::settings["shader"]["textureFragment"]));
 }
 
 void OsuTrainer::StoryboardLayer::TapFlashing(Echo::KeyDownEvent& e)

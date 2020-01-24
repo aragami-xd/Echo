@@ -1,5 +1,5 @@
 #include "Timing.h"
-#include <Settings.h>
+#include <EchoSettings.h>
 
 std::chrono::steady_clock::time_point Echo::Timing::startTime = std::chrono::steady_clock::now();
-int Echo::Timing::offset = settings["metadata"]["offset"];
+int Echo::Timing::offset = Echo::settings["metadata"]["offset"];

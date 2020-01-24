@@ -1,4 +1,5 @@
 #include "CircleComponent.h"
+#include <OsuSettings.h>
 
 void OsuTrainer::CircleComponent::Render(Echo::ShaderList* shaders, int time)
 {
@@ -19,11 +20,11 @@ void OsuTrainer::CircleComponent::Render(Echo::ShaderList* shaders, int time)
 
 	// render
 	shader->SetShaderUniform4f("uColor", 1.0f, 1.0f, 1.0f, 1.0f);
-	Echo::Renderer::Render(circle->GetVertexArray(), Echo::settings["circle"]["vertices"], GL_LINE_LOOP, 4);
+	Echo::Renderer::Render(circle->GetVertexArray(), OsuTrainer::settings["circle"]["vertices"], GL_LINE_LOOP, 4);
 
 	/* draw the approach circle (ring) */
 	// translate and scale
-	float scale = (float)Echo::settings["object"]["ringScale"] * object->GetApproachScale(time) + 1;
+	float scale = (float)OsuTrainer::settings["object"]["ringScale"] * object->GetApproachScale(time) + 1;
 
 	glm::mat4 viewRing = glm::translate(glm::mat4(1.0f), glm::vec3(circle->GetX(time), circle->GetY(time), 0.0f));
 	viewRing = viewRing * glm::scale(glm::mat4(1.0f), glm::vec3(scale, scale, 1.0f));
@@ -31,7 +32,7 @@ void OsuTrainer::CircleComponent::Render(Echo::ShaderList* shaders, int time)
 
 	// render
 	shader->SetShaderUniform4f("uColor", 0.6f, 0.7f, 0.8f, 1.0f);
-	Echo::Renderer::Render(circle->GetVertexArray(), Echo::settings["circle"]["vertices"], GL_LINE_LOOP, 4);
+	Echo::Renderer::Render(circle->GetVertexArray(), OsuTrainer::settings["circle"]["vertices"], GL_LINE_LOOP, 4);
 }
 
 int OsuTrainer::CircleComponent::OnEvent(float x, float y, int time)

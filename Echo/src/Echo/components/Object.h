@@ -1,7 +1,7 @@
 #pragma once
 
 #include <EchoHeader.h>
-#include <Core.h>
+#include <EchoCore.h>
 #include <glm/glm.hpp>
 
 namespace Echo

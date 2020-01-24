@@ -1,4 +1,5 @@
 #include "SliderComponent.h"
+#include <OsuSettings.h>
 
 void OsuTrainer::SliderComponent::Render(Echo::ShaderList* shaders, int time)
 {
@@ -15,7 +16,7 @@ void OsuTrainer::SliderComponent::Render(Echo::ShaderList* shaders, int time)
 	Echo::Orthographic::SetViewMatrix(shader, glm::mat4(1.0f));
 
 	shader->SetShaderUniform4f("uColor", 1.0f, 1.0f, 1.0f, 1.0f);
-	Echo::Renderer::Render(bezier->GetVertexArray(), 1 / (float)Echo::settings["bezier"]["step"], GL_LINE_STRIP, 5);
+	Echo::Renderer::Render(bezier->GetVertexArray(), 1 / (float)OsuTrainer::settings["bezier"]["step"], GL_LINE_STRIP, 5);
 
 	/* render the slider circle */
 	// translate
@@ -28,11 +29,11 @@ void OsuTrainer::SliderComponent::Render(Echo::ShaderList* shaders, int time)
 
 	// render
 	shader->SetShaderUniform4f("uColor", 0.6f, 0.7f, 0.8f, 1.0f);
-	Echo::Renderer::Render(circle->GetVertexArray(), Echo::settings["circle"]["vertices"], GL_LINE_LOOP, 4);
+	Echo::Renderer::Render(circle->GetVertexArray(), OsuTrainer::settings["circle"]["vertices"], GL_LINE_LOOP, 4);
 
 	/* render the slider approach circle */
 	// translate and scale
-	float scale = (float)Echo::settings["object"]["ringScale"] * object->GetApproachScale(time) + 1;
+	float scale = (float)OsuTrainer::settings["object"]["ringScale"] * object->GetApproachScale(time) + 1;
 
 	glm::mat4 viewRing = glm::translate(
 		glm::mat4(1.0f),
@@ -43,7 +44,7 @@ void OsuTrainer::SliderComponent::Render(Echo::ShaderList* shaders, int time)
 
 	// render
 	shader->SetShaderUniform4f("uColor", 0.6f, 0.7f, 0.8f, 1.0f);
-	Echo::Renderer::Render(circle->GetVertexArray(), Echo::settings["circle"]["vertices"], GL_LINE_LOOP, 4);
+	Echo::Renderer::Render(circle->GetVertexArray(), OsuTrainer::settings["circle"]["vertices"], GL_LINE_LOOP, 4);
 }
 
 int OsuTrainer::SliderComponent::OnEvent(float x, float y, int time)

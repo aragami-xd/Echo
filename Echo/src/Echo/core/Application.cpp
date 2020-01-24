@@ -1,5 +1,5 @@
 #include "Application.h"
-#include "Settings.h"
+#include "EchoSettings.h"
 #include <Echo/components/Timing.h>
 
 #include <glad/glad.h>
@@ -11,9 +11,9 @@ Echo::Application::Application() :
 	LOG_init("echo");
 
 	// window settings
-	ws.width = settings["window"]["width"];
-	ws.height = settings["window"]["height"];
-	ws.title = settings["window"]["title"];
+	ws.width = Echo::settings["window"]["width"];
+	ws.height = Echo::settings["window"]["height"];
+	ws.title = Echo::settings["window"]["title"];
 
 	// create new window
 	window = std::unique_ptr<Window>(Window::Create(ws));

@@ -112,6 +112,7 @@
     <ClInclude Include="src\core\GameplayLayer.h" />
     <ClInclude Include="src\core\StoryboardLayer.h" />
     <ClInclude Include="src\osu!trainer.h" />
+    <ClInclude Include="src\OsuSettings.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\components\OsuScoring.cpp" />
@@ -131,6 +132,9 @@
     <ProjectReference Include="..\Echo\Echo.vcxproj">
       <Project>{A498847C-90CF-850D-39BC-6B1025D2010F}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\OsuSettings.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

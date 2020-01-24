@@ -1,10 +1,11 @@
 #include "CircleRenderElement.h"
+#include <OsuSettings.h>
 
 OsuTrainer::CircleRenderElement::CircleRenderElement(float cx, float cy, float circleRadius) :
 	x(cx), y(cy)
 {
 	// caculate the vertices coordinate
-	for (double i = 0; i < 2 * PI; i += 2 * PI / Echo::settings["circle"]["vertices"]) {
+	for (double i = 0; i < 2 * PI; i += 2 * PI / OsuTrainer::settings["circle"]["vertices"]) {
 		vertices.push_back(cos(i) * circleRadius);
 		vertices.push_back(sin(i) * circleRadius);
 	}

@@ -5,7 +5,7 @@
 #include <Echo/events/KeyboardEvent.h>
 #include <Echo/events/MouseEvent.h>
 
-#include <Core.h>
+#include <EchoCore.h>
 
 #include "Window.h"
 #include "LayerStack.h"

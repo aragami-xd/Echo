@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Core.h>
+#include <EchoCore.h>
 #include <glad/glad.h>
 
 namespace Echo
