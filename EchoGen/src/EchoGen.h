@@ -1,10 +1,14 @@
 #pragma once
 
 /* linker between engine and app */
-#include <EchoGen/Application.h>
+#include <EchoGen/Core/Application.h>
 
 /* entry point */
-#include <EchoGen/EntryPoint.h>
+#include <EchoGen/Core/EntryPoint.h>
+
+/* header */
+#include <EchoGenHeader.h>
 
 /* other files */
-#include <EchoGen/PatternList.h>
+#include <EchoGen/Gen/Generate.h>
+#include <EchoGen/Pattern/PatternList.h>

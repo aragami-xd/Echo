@@ -98,15 +98,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Gen\GenCircle.h" />
     <ClInclude Include="src\osu!gen.h" />
+    <ClInclude Include="src\OsuGenSettings.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Gen\GenCircle.cpp" />
     <ClCompile Include="src\osu!gen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EchoGen\EchoGen.vcxproj">
       <Project>{9EC1B8B1-0AA1-374D-13B9-C2237F179EAE}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="lib\one_two_jump.txt" />
+    <Text Include="lib\PatternList.txt" />
+    <Text Include="lib\pp_jump.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\OsuGenSettings.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

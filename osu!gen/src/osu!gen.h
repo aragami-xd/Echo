@@ -1,7 +1,6 @@
 #pragma once
 
 #include <EchoGen.h>
-#include <EchoGen/PatternList.h>
 
 namespace OsuGen
 {
@@ -12,7 +11,7 @@ namespace OsuGen
 		EchoGen::PatternList* patterns;
 	public:
 		Program();
-		
+
 		virtual void Run();
 
 		~Program();

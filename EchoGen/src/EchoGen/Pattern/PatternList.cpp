@@ -1,12 +1,13 @@
 #include "PatternList.h"
 
-EchoGen::PatternList::PatternList(const std::string& path, const std::string& extension)
+EchoGen::PatternList::PatternList(const std::string& name)
 {
 	// open the file
-	std::ifstream file(path);
+	std::string libPath = std::filesystem::current_path().string() + "/lib/";
+	std::ifstream file(libPath + name);
 	if (!file)
 	{
-		LOG_warning("cannot open patternlist file: " + path);
+		LOG_warning("cannot open patternlist file: " + name);
 		return;
 	}
 
@@ -14,7 +15,7 @@ EchoGen::PatternList::PatternList(const std::string& path, const std::string& ex
 	std::string line;
 	while (getline(file, line))
 	{
-		patterns.push_back({ line, new EchoGen::Pattern(line + "." + extension) });
+		patterns.push_back({ line, new EchoGen::Pattern(libPath + line + ".txt") });
 	}
 }
 

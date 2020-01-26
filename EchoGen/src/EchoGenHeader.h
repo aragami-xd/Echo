@@ -28,7 +28,7 @@
 #include <stack>
 
 // log
-#include <EchoGen/Log.h>
+#include <EchoGen/Core/Log.h>
 
 // windows specific
 #ifdef ECHO_WINDOWS

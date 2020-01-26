@@ -1,7 +1,7 @@
 #pragma once
 
-#include <EchoGenHeader.h>
 #include <EchoGenCore.h>
+#include <EchoGenHeader.h>
 
 namespace EchoGen
 {
@@ -10,10 +10,10 @@ namespace EchoGen
 	protected:
 	public:
 		Application();
-
-		// run
 		virtual void Run();
-
 		~Application();
 	};
 }
+
+/* create app function defined in the app solution */
+EchoGen::Application* CreateApp();

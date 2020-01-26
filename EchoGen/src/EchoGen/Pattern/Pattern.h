@@ -10,10 +10,12 @@ namespace EchoGen
 	class ECHO_GEN_DLL Pattern
 	{
 	private:
-		std::vector<glm::vec2> vertices;
+		std::vector<glm::vec4> vertices;
+		float refDist;							// reference distance between the first 2 vertices
 	public:
 		Pattern(const std::string& path);
 
-		inline std::vector<glm::vec2> GetVertices() { return vertices; }
+		inline std::vector<glm::vec4> GetVertices() { return vertices; }
+		inline float GetRefDist() { return refDist; }
 	};
 }

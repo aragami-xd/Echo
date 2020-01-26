@@ -108,18 +108,24 @@
   <ItemGroup>
     <ClInclude Include="src\EchoGenCore.h" />
     <ClInclude Include="src\EchoGen.h" />
-    <ClInclude Include="src\EchoGen\Application.h" />
-    <ClInclude Include="src\EchoGen\EntryPoint.h" />
-    <ClInclude Include="src\EchoGen\Log.h" />
-    <ClInclude Include="src\EchoGen\Pattern.h" />
-    <ClInclude Include="src\EchoGen\PatternList.h" />
+    <ClInclude Include="src\EchoGen\Core\Application.h" />
+    <ClInclude Include="src\EchoGen\Core\EntryPoint.h" />
+    <ClInclude Include="src\EchoGen\Core\Log.h" />
+    <ClInclude Include="src\EchoGenSettings.h" />
+    <ClInclude Include="src\EchoGen\Gen\Generate.h" />
+    <ClInclude Include="src\EchoGen\Pattern\Pattern.h" />
+    <ClInclude Include="src\EchoGen\Pattern\PatternList.h" />
     <ClInclude Include="src\EchoGenHeader.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\EchoGen\Application.cpp" />
-    <ClCompile Include="src\EchoGen\Pattern.cpp" />
-    <ClCompile Include="src\EchoGen\PatternList.cpp" />
+    <ClCompile Include="src\EchoGen\Core\Application.cpp" />
+    <ClCompile Include="src\EchoGen\Gen\Generate.cpp" />
+    <ClCompile Include="src\EchoGen\Pattern\Pattern.cpp" />
+    <ClCompile Include="src\EchoGen\Pattern\PatternList.cpp" />
     <ClCompile Include="src\EchoGenHeader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\EchoGenSettings.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
